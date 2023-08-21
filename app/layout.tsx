@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navigation />
-          {children}
+          <div className='mt-20 mx-16 max-md:mx-4'>
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
