@@ -22,7 +22,7 @@ export default function Home() {
             Contactează-ne
           </Button>
         </div>
-        <Image src={background} alt="background" quality={100} className='brightness-75 object-cover absolute h-screen right-0' />
+        <Image src={background} alt="background" quality={100} className='brightness-75 object-cover absolute h-2/5 top-0' />
       </div>
       <div>
         <p>test</p>
