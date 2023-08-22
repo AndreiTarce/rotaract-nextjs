@@ -93,7 +93,7 @@ export function Navigation() {
                                 <Link
                                     href='/'
                                 >
-                                    <DropdownMenuItem>
+                                    <DropdownMenuItem className="text-lg">
                                         Home
                                     </DropdownMenuItem>
                                 </Link>
@@ -101,28 +101,28 @@ export function Navigation() {
                                 <Link
                                     href='/about'
                                 >
-                                    <DropdownMenuItem>
+                                    <DropdownMenuItem className="text-lg">
                                         About us
                                     </DropdownMenuItem>
                                 </Link>
                                 <Link
                                     href='/projects'
                                 >
-                                    <DropdownMenuItem>
+                                    <DropdownMenuItem className="text-lg">
                                         Projects
                                     </DropdownMenuItem>
                                 </Link>
                                 <Link
                                     href='/members'
                                 >
-                                    <DropdownMenuItem>
+                                    <DropdownMenuItem className="text-lg">
                                         Members
                                     </DropdownMenuItem>
                                 </Link>
                                 <Link
                                     href='/contact'
                                 >
-                                    <DropdownMenuItem>
+                                    <DropdownMenuItem className="text-lg">
                                         Contact
                                     </DropdownMenuItem>
                                 </Link>
