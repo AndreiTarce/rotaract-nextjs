@@ -13,7 +13,7 @@ export default function Home() {
           Cluj-Napoca
         </span>
       </div>
-      <div className='z-10 mx-16 max-md:mx-4 text-4xl flex flex-col gap-2'>
+      <div className='z-10 mx-16 max-md:mx-4 text-4xl flex flex-col gap-2 mb-24'>
         <span>
           Vrei să te implici?
         </span>
