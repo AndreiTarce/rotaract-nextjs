@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import * as THREE from 'three'
 
 export default function AnimatedBackground() {
-    const [vantaEffect, setVantaEffect] = useState(0);
+    const [vantaEffect, setVantaEffect] = useState(null);
     const vantaRef = useRef(null);
 
     useEffect(() => {
@@ -26,6 +26,7 @@ export default function AnimatedBackground() {
             );
         }
         return () => {
+            // @ts-ignore
             if (vantaEffect) vantaEffect.destroy();
         };
     }, [vantaEffect]);
