@@ -21,6 +21,7 @@ import logo from '../../../assets/images/visio.png'
 import { ModeToggle } from "../ModeToggle"
 import { Button } from "../button"
 import { Separator } from "../separator"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../dropdown-menu"
 
 export function Navigation() {
     return (
@@ -35,8 +36,8 @@ export function Navigation() {
                         quality={100}
                     />
                 </Link>
-                <ul className="flex flex-row gap-1 max-md:hidden">
-                    <li>
+                <ul className="flex flex-row gap-1">
+                    <li className="max-md:hidden">
                         <Link
                             className={navigationMenuTriggerStyle()}
                             href="/"
@@ -44,7 +45,7 @@ export function Navigation() {
                             Home
                         </Link>
                     </li>
-                    <li>
+                    <li className="max-md:hidden">
                         <Link
                             className={navigationMenuTriggerStyle()}
                             href="/about"
@@ -52,7 +53,7 @@ export function Navigation() {
                             About us
                         </Link>
                     </li>
-                    <li>
+                    <li className="max-md:hidden">
                         <Link
                             className={navigationMenuTriggerStyle()}
                             href="/projects"
@@ -60,7 +61,7 @@ export function Navigation() {
                             Projects
                         </Link>
                     </li>
-                    <li>
+                    <li className="max-md:hidden">
                         <Link
                             className={navigationMenuTriggerStyle()}
                             href="/members"
@@ -68,7 +69,7 @@ export function Navigation() {
                             Members
                         </Link>
                     </li>
-                    <li>
+                    <li className="max-md:hidden">
                         <Link
                             className={navigationMenuTriggerStyle()}
                             href="/contact"
@@ -79,10 +80,57 @@ export function Navigation() {
                     <li>
                         <ModeToggle />
                     </li>
+
+                    <li>
+
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <Button variant="outline" size="icon" className="max-md:flex hidden">
+                                    <Menu className="h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-screen mt-3">
+                                <Link
+                                    href='/'
+                                >
+                                    <DropdownMenuItem>
+                                        Home
+                                    </DropdownMenuItem>
+                                </Link>
+
+                                <Link
+                                    href='/about'
+                                >
+                                    <DropdownMenuItem>
+                                        About us
+                                    </DropdownMenuItem>
+                                </Link>
+                                <Link
+                                    href='/projects'
+                                >
+                                    <DropdownMenuItem>
+                                        Projects
+                                    </DropdownMenuItem>
+                                </Link>
+                                <Link
+                                    href='/members'
+                                >
+                                    <DropdownMenuItem>
+                                        Members
+                                    </DropdownMenuItem>
+                                </Link>
+                                <Link
+                                    href='/contact'
+                                >
+                                    <DropdownMenuItem>
+                                        Contact
+                                    </DropdownMenuItem>
+                                </Link>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </li>
                 </ul>
-                <Button variant="outline" size="icon" className="max-md:flex hidden">
-                    <Menu className="h-4 w-4" />
-                </Button>
+
             </nav>
             <Separator />
         </div>
