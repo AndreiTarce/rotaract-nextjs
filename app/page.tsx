@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import background from '../assets/images/bg.png'
 import { Button } from '@/components/ui/button'
-import AnimatedBackground from '@/components/ui/home/AnimatedBackground'
 
 export default function Home() {
   return (
@@ -23,10 +22,20 @@ export default function Home() {
             Contactează-ne
           </Button>
         </div>
-        <AnimatedBackground />
-        {/* <Image src={background} alt="background" quality={100} className='brightness-75 object-cover absolute h-1/2 right-0' /> */}
+        <Image src={background} alt="background" quality={100} className='brightness-75 object-cover absolute h-screen right-0' />
       </div>
       <div>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
         <p>test</p>
         <p>test</p>
         <p>test</p>
