@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navigation />
-          <div className='mt-20 mx-16 max-md:mx-4'>
+          <div>
             {children}
           </div>
         </ThemeProvider>

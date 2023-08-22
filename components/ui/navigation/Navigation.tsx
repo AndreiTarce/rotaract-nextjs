@@ -130,7 +130,6 @@ export function Navigation() {
                         </DropdownMenu>
                     </li>
                 </ul>
-
             </nav>
             <Separator />
         </div>
