@@ -77,7 +77,7 @@ export function Navigation() {
                             Contact
                         </Link>
                     </li>
-                    <li>
+                    <li className="max-md:fixed max-md:bottom-4 max-md:left-4">
                         <Link
                             href='https://www.instagram.com/rotaractvisiocj/'
                         >
@@ -86,7 +86,7 @@ export function Navigation() {
                             </Button>
                         </Link>
                     </li>
-                    <li>
+                    <li className="max-md:fixed max-md:bottom-4 max-md:left-16">
                         <Link
                             href='https://www.facebook.com/RotaractVisioClujNapoca'
                         >
