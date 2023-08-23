@@ -15,7 +15,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-import { Menu } from 'lucide-react'
+import { Menu, Instagram, Facebook } from 'lucide-react'
 
 import logo from '../../../assets/images/visio.png'
 import { ModeToggle } from "../ModeToggle"
@@ -75,6 +75,24 @@ export function Navigation() {
                             href="/contact"
                         >
                             Contact
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href='https://www.instagram.com/rotaractvisiocj/'
+                        >
+                            <Button size='icon' variant='outline'>
+                                <Instagram />
+                            </Button>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href='https://www.facebook.com/RotaractVisioClujNapoca'
+                        >
+                            <Button size='icon' variant='outline'>
+                                <Facebook />
+                            </Button>
                         </Link>
                     </li>
                     <li>

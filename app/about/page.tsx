@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 export default function About() {
     return (
-        <>
+        <main className="mt-28 mx-16 max-md:mx-4">
             <Card className="w-full">
                 <CardHeader>
                     <CardTitle>Create project</CardTitle>
@@ -44,6 +44,6 @@ export default function About() {
             <Card>
                 test
             </Card>
-        </>
+        </main>
     )
 };

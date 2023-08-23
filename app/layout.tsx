@@ -22,9 +22,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Providers>
             <Navigation />
-            <div>
-              {children}
-            </div>
+            {children}
           </Providers>
         </ThemeProvider>
       </body>
