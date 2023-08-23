@@ -1,4 +1,4 @@
-const ProjectCard = (props) => {
+const ProjectCard = () => {
     return (
         <div className="bg-white shadow-md border border-gray-200 rounded-lg flex-[1_0_300px] max-w-full dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
