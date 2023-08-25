@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import background from '../assets/images/bg.png'
 import { Button } from '@/components/ui/button'
+import connectMongoDB from '@/lib/mongodb'
 
 export default function Home() {
   return (
