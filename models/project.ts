@@ -1,11 +1,19 @@
 import mongoose, { Schema } from "mongoose";
 
-const projectSchema = new Schema(
+export interface IProject {
+    _id: number,
+    title: string,
+    description: string,
+    img: string,
+    url: string
+}
+
+const projectSchema = new Schema<IProject>(
     {
-        id: Number,
         title: String,
         description: String,
         img: String,
+        url: String,
     },
     {
         timestamps: true,

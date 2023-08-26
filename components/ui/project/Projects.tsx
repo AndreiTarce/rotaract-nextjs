@@ -1,5 +1,6 @@
 import Link from "next/link";
-import ProjectCard, { ProjectCardProps } from "./ProjectCard";
+import ProjectCard from "./ProjectCard";
+import { IProject } from "@/models/project";
 
 const getProjects = async () => {
     const url = `${process.env.API_BASE_URL}/api/projects`
@@ -20,8 +21,7 @@ const getProjects = async () => {
 
 export default async function ProjectsList() {
     const { projects } = await getProjects();
-    return projects.map((project: ProjectCardProps, index: number) => (
+    return projects.map((project: IProject, index: number) => (
         <ProjectCard key={index} {...project} />
     ))
-
 }

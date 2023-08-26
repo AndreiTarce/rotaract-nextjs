@@ -1,34 +1,29 @@
 import Link from "next/link";
 import { Button } from "../button";
-import Image from "next/image";
+import { IProject } from "@/models/project";
 
-export interface ProjectCardProps {
-    id: number,
-    title: string,
-    description: string,
-    img: string
-}
-
-const ProjectCard = (props: ProjectCardProps) => {
+const ProjectCard = (props: IProject) => {
     return (
-        <div className="bg-white shadow-md border border-gray-200 rounded-lg flex-[1_0_300px] max-w-full dark:bg-gray-800 dark:border-gray-700">
-            <Link href={`projects/${props.id}`}>
+        <div className="flex  flex-col bg-white shadow-md border border-gray-200 rounded-lg flex-[1_0_300px] max-w-full dark:bg-gray-800 dark:border-gray-700">
+            <Link href={`projects/${props.url}`}>
                 <img
                     className="rounded-t-lg"
                     src={props.img}
                     alt=""
                 />
             </Link>
-            <div className="p-5">
-                <Link href={`projects/${props.id}`}>
-                    <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white">
-                        {props.title}
-                    </h5>
-                </Link>
-                <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
-                    {props.description}
-                </p>
-                <Link href={`projects/${props.id}`}>
+            <div className="p-5 h-full flex flex-col justify-between">
+                <div>
+                    <Link href={`projects/${props.url}`}>
+                        <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white">
+                            {props.title}
+                        </h5>
+                    </Link>
+                    <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
+                        {props.description}
+                    </p>
+                </div>
+                <Link href={`projects/${props.url}`}>
                     <Button size='sm'>
                         Read more
                         <svg
