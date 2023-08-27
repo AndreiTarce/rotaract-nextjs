@@ -13,7 +13,7 @@ export interface IMember {
     picture: string,
     description: string,
     role: string,
-    urls: IMemberLinks[];
+    urls: IMemberLinks;
 }
 
 const SectionSchema = new Schema<IMemberLinks>({
@@ -29,7 +29,7 @@ const memberSchema = new Schema<IMember>(
         picture: String,
         description: String,
         role: String,
-        urls: [SectionSchema]
+        urls: SectionSchema
     },
     {
         timestamps: true,

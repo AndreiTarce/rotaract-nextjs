@@ -5,7 +5,7 @@ export default function Members() {
     return (
         <main className="mt-28 mx-16 max-md:mx-4 mb-8">
             <h1 className="text-5xl font-semibold leading-none mb-2">Meet our{' '}
-                <span className="font-extrabold text-rotaract-cranberry">
+                <span className="font-extrabold bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
                     Board!
                 </span>
             </h1>
@@ -19,7 +19,7 @@ export default function Members() {
                 <MembersList />
             </div>
             <h1 className="text-5xl font-semibold leading-none mb-2">Meet our{' '}
-                <span className="font-extrabold text-rotaract-cranberry">
+                <span className="font-extrabold bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
                     members!
                 </span>
             </h1>

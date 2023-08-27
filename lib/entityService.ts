@@ -1,5 +1,3 @@
-import { IProject } from "@/models/project";
-
 const PROJECTS_PATH = '/api/projects';
 const MEMBERS_PATH = '/api/members';
 const API_BASE_URL = process.env.API_BASE_URL;
