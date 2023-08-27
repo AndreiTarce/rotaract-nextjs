@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-export default function ProjectImageCarousel(props) {
+export default function ProjectImageCarousel(props: any) {
     return (
         <Swiper
             modules={[Navigation, Pagination]}
