@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Button } from "../button";
 import { Card } from "../card";
 import { IMember } from "@/models/member";
+import { Facebook, Linkedin } from "lucide-react";
+import { navigationMenuTriggerStyle } from "../navigation-menu";
 
 const MemberCard = (props: IMember) => {
     return (
@@ -15,29 +17,27 @@ const MemberCard = (props: IMember) => {
             <div className="p-5 h-full flex flex-col justify-between">
                 <div>
                     <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white">
-                        {props.first_name}
+                        {props.first_name} {props.last_name}
                     </h5>
+                    <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
+                        {props.description}
+                    </p>
                     <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
                         {props.role}
                     </p>
                 </div>
-                <Button size='sm'>
-                    Read more
-                    <svg
-                        className="-mr-1 ml-2 h-4 w-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fillRule="evenodd"
-                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                        />
-                    </svg>
-                </Button>
+                <Link href={props.urls.facebook}>
+                    <Button size='icon'>
+                        <Facebook />
+                    </Button>
+                </Link>
+                <Link href={props.urls.linkedin}>
+                    <Button size='icon'>
+                        <Linkedin />
+                    </Button>
+                </Link>
             </div>
-        </Card>
+        </Card >
     );
 };
 
