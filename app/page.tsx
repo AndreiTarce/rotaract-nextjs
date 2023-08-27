@@ -1,14 +1,13 @@
 import Image from 'next/image'
 import background from '../assets/images/bg.png'
 import { Button } from '@/components/ui/button'
-import connectMongoDB from '@/lib/mongodb'
 
 export default function Home() {
   return (
     <main className='relative z-0'>
       <div className='h-screen flex flex-col mt-28 justify-between'>
         <div className='z-10 mx-16 max-md:mx-4'>
-          <h1 className="text-7xl font-extrabold max-md:text-5xl leading-none">
+          <h1 className="w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
             Rotaract Visio
           </h1>
           <span className='font-normal text-5xl max-md:text-4xl'>

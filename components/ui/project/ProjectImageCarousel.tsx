@@ -11,12 +11,9 @@ export default function ProjectImageCarousel(props: any) {
     return (
         <Swiper
             modules={[Navigation, Pagination]}
-            navigation
             pagination
             slidesPerView={1}
             loop
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
             className="w-full"
         >
             {props.children.map((item: any, index: number) => <SwiperSlide key={index}>{item}</SwiperSlide>)}

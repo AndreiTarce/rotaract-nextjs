@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Button } from "../button";
 import { IProject } from "@/models/project";
+import { Card } from "../card";
 
 const ProjectCard = (props: IProject) => {
     return (
-        <div className="flex  flex-col bg-white shadow-md border border-gray-200 rounded-lg flex-[1_0_300px] max-w-full dark:bg-gray-800 dark:border-gray-700">
+        <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full">
             <Link href={`projects/${props.url}`}>
                 <img
                     className="rounded-t-lg"
@@ -23,7 +24,7 @@ const ProjectCard = (props: IProject) => {
                         {props.shortDescription}
                     </p>
                 </div>
-                <Link href={`projects/${props.url}`}>
+                <Link href={`projects/${props.url}`} className="w-fit">
                     <Button size='sm'>
                         Read more
                         <svg
@@ -41,8 +42,7 @@ const ProjectCard = (props: IProject) => {
                     </Button>
                 </Link>
             </div>
-        </div>
-
+        </Card>
     );
 };
 
