@@ -20,7 +20,7 @@ export const getProjects = async () => {
     }
 };
 
-export const getProject = async (projectUrl) => {
+export const getProject = async (projectUrl: string) => {
     const url = `${API_BASE_URL + PROJECTS_PATH}/${projectUrl}`;
     try {
         const res = await fetch(url, {
