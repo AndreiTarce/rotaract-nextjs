@@ -1,26 +1,10 @@
 import Link from "next/link";
 import ProjectCard from "./ProjectCard";
 import { IProject } from "@/models/project";
-
-const getProjects = async () => {
-    const url = `${process.env.API_BASE_URL}/api/projects`
-    try {
-        const res = await fetch(url, {
-            cache: "no-store",
-        });
-
-        if (!res.ok) {
-            throw new Error("Failed to fetch projects");
-        }
-
-        return res.json();
-    } catch (error) {
-        console.log("Error loading projects: ", error);
-    }
-};
+import { getProjects } from "@/lib/entityService";
 
 export default async function ProjectsList() {
-    const { projects } = await getProjects();
+    const { projects }: { projects: IProject[] } = await getProjects();
     return projects.map((project: IProject, index: number) => (
         <ProjectCard key={index} {...project} />
     ))

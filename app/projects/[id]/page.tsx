@@ -1,3 +1,11 @@
-export default function Page({ params }: { params: { id: string } }) {
-    return <div className="mt-24">Project {params.id}</div>
+import { getProject } from "@/lib/entityService"
+
+export default async function Project({ params }: { params: { id: string } }) {
+    const id = params.id;
+    const project = await getProject(id);
+    return (
+        <main className="mt-24">
+            Project {project.title}
+        </main>
+    );
 }

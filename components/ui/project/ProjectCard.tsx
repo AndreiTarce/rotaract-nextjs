@@ -8,7 +8,7 @@ const ProjectCard = (props: IProject) => {
             <Link href={`projects/${props.url}`}>
                 <img
                     className="rounded-t-lg"
-                    src={props.img}
+                    src={props.thumbnailImg}
                     alt=""
                 />
             </Link>
@@ -20,7 +20,7 @@ const ProjectCard = (props: IProject) => {
                         </h5>
                     </Link>
                     <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
-                        {props.description}
+                        {props.shortDescription}
                     </p>
                 </div>
                 <Link href={`projects/${props.url}`}>
