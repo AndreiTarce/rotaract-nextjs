@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-interface ISection {
+export interface ISection {
     title: string;
     body: string;
 }
