@@ -6,8 +6,10 @@ import { redirect } from 'next/navigation'
 export const authConfig: NextAuthOptions = {
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID as string,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+            // @ts-ignore
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            // @ts-ignore
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
         }),
     ],
 }
