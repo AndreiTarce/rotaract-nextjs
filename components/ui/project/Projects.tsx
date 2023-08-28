@@ -1,4 +1,3 @@
-import Link from "next/link";
 import ProjectCard from "./ProjectCard";
 import { IProject } from "@/models/project";
 import { getProjects } from "@/lib/entityService";

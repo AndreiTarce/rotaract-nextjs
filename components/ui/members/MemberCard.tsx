@@ -10,32 +10,36 @@ const MemberCard = (props: IMember) => {
         <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full">
             <img
                 className="rounded-t-lg"
-                // src={props.picture}
-                src='https://lh3.googleusercontent.com/a/AAcHTtc_jNMttn9PiXX2Gv5C-18_tK9YsVoMiUom9wmLh05MTnBl=s360-c-no'
-                alt=""
+                src={props.picture}
+                alt="Profile picture"
             />
             <div className="p-5 h-full flex flex-col justify-between">
                 <div>
-                    <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white">
-                        {props.first_name} {props.last_name}
+                    <h5 className="text-gray-900 text-2xl leading-4 tracking-tight mb-1 dark:text-white">
+                        <span className="font-bold">
+                            {props.first_name}
+                        </span>
+                        {' ' + props.last_name}
                     </h5>
+                    <p className="font-normal text-gray-700 mb-3 dark:text-gray-500">
+                        {props.role}
+                    </p>
                     <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
                         {props.description}
                     </p>
-                    <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
-                        {props.role}
-                    </p>
                 </div>
-                <Link href={props.urls.facebook}>
-                    <Button size='icon'>
-                        <Facebook />
-                    </Button>
-                </Link>
-                <Link href={props.urls.linkedin}>
-                    <Button size='icon'>
-                        <Linkedin />
-                    </Button>
-                </Link>
+                <div className="flex gap-2">
+                    <Link href={props.urls.facebook} className="w-fit">
+                        <Button size='icon'>
+                            <Facebook />
+                        </Button>
+                    </Link>
+                    <Link href={props.urls.linkedin} className="w-fit">
+                        <Button size='icon'>
+                            <Linkedin />
+                        </Button>
+                    </Link>
+                </div>
             </div>
         </Card >
     );

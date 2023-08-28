@@ -1,3 +1,6 @@
+import Member, { IMember } from "@/models/member";
+import connectMongoDB from "./mongodb";
+
 const PROJECTS_PATH = '/api/projects';
 const MEMBERS_PATH = '/api/members';
 const API_BASE_URL = process.env.API_BASE_URL;
@@ -34,7 +37,8 @@ export const getProject = async (projectUrl: string) => {
     } catch (error) {
         console.log("Error loading project: ", error);
     }
-}
+};
+
 export const getMembers = async () => {
     const url = API_BASE_URL + MEMBERS_PATH;
     try {
@@ -67,4 +71,10 @@ export const getMember = async (memberId: string) => {
     } catch (error) {
         console.log("Error loading member: ", error);
     }
-}
+};
+
+export const getBoardMembers = async () => {
+    await connectMongoDB();
+    const boardMembers: IMember[] = await Member.find({ role: { $ne: 'member' } }).lean();
+    return (boardMembers);
+};

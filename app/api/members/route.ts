@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
     await connectMongoDB();
-    const members = await Member.find();
+    const members = await Member.find({ role: 'member' });
     return NextResponse.json({ members });
 }
 
