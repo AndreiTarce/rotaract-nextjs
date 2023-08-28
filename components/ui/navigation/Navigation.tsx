@@ -77,6 +77,14 @@ export function Navigation() {
                             Contact
                         </Link>
                     </li>
+                    <li className="max-md:hidden">
+                        <Link
+                            className={navigationMenuTriggerStyle()}
+                            href="/dashboard"
+                        >
+                            Member dashboard
+                        </Link>
+                    </li>
                     <li>
                         <Link
                             href='https://www.instagram.com/rotaractvisiocj/'
