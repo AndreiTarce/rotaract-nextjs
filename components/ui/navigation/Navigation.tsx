@@ -82,7 +82,7 @@ export function Navigation() {
                             className={navigationMenuTriggerStyle()}
                             href="/dashboard"
                         >
-                            Member dashboard
+                            Members dashboard
                         </Link>
                     </li>
                     <li>
@@ -156,7 +156,7 @@ export function Navigation() {
                                     href='/dashboard'
                                 >
                                     <DropdownMenuItem className="text-lg">
-                                        Member dashboard
+                                        Members dashboard
                                     </DropdownMenuItem>
                                 </Link>
                             </DropdownMenuContent>
