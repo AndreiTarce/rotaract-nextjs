@@ -4,6 +4,8 @@ import { Inter, Montserrat, Poppins, Roboto } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Navigation } from '@/components/ui/navigation/Navigation'
 import Providers from './providers'
+import { Analytics } from '@vercel/analytics/react';
+
 
 const inter = Inter({ subsets: ['latin'] })
 const roboto = Roboto({ subsets: ['latin'], weight: ["400", "500", "700", "900"] })
@@ -26,6 +28,7 @@ export default function RootLayout({
           <Providers>
             <Navigation />
             {children}
+            <Analytics />
           </Providers>
         </ThemeProvider>
       </body>

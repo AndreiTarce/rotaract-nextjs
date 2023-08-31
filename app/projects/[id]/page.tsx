@@ -7,14 +7,14 @@ type ProjectSectionProps = ISection & { key: number };
 type ProjectImageProps = { key?: number, src: string };
 
 const ProjectSection = (props: ProjectSectionProps) => (
-    <section key={props.key} className="mt-8">
+    <section className="mt-8">
         <h2 className="text-3xl font-bold mb-2">{props.title}</h2>
         <p className="lg:text-xl">{props.body}</p>
     </section>
 )
 
 const ProjectImage = (props: ProjectImageProps) => (
-    <img key={props.key} src={props.src} className="w-full rounded-lg" />
+    <img src={props.src} className="w-full rounded-lg" />
 )
 
 export default async function Project({ params }: { params: { id: string } }) {
