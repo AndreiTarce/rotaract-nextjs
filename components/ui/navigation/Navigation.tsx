@@ -77,14 +77,14 @@ export function Navigation() {
                             Contact
                         </Link>
                     </li>
-                    <li className="max-md:hidden">
+                    {/* <li className="max-md:hidden">
                         <Link
                             className={navigationMenuTriggerStyle()}
                             href="/dashboard"
                         >
                             Member dashboard
                         </Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link
                             href='https://www.instagram.com/rotaractvisiocj/'
@@ -152,6 +152,13 @@ export function Navigation() {
                                         Contact
                                     </DropdownMenuItem>
                                 </Link>
+                                {/* <Link
+                                    href='/dashboard'
+                                >
+                                    <DropdownMenuItem className="text-lg">
+                                        Member dashboard
+                                    </DropdownMenuItem>
+                                </Link> */}
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </li>
