@@ -1,6 +1,7 @@
 import { NextAuthOptions, getServerSession } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { redirect } from 'next/navigation'
+import { getMemberWhitelist } from './entityService';
 
 
 export const authConfig: NextAuthOptions = {
@@ -17,4 +18,7 @@ export const authConfig: NextAuthOptions = {
 export async function loginIsRequiredServer() {
     const session = await getServerSession(authConfig);
     if (!session) return redirect('/signin');
+    const whitelistedMembers = await getMemberWhitelist();
+    const isWhitelisted = Boolean(whitelistedMembers.filter(member => member.email === session?.user?.email).length);
+    if (!isWhitelisted) return redirect('/signin?whitelisted=false');
 }

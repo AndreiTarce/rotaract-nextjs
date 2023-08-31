@@ -1,5 +1,6 @@
 import Member, { IMember } from "@/models/member";
 import connectMongoDB from "./mongodb";
+import WhitelistedMember, { IWhitelistedMember } from "@/models/whitelistedMember";
 
 const PROJECTS_PATH = '/api/projects';
 const MEMBERS_PATH = '/api/members';
@@ -76,5 +77,11 @@ export const getMember = async (memberId: string) => {
 export const getBoardMembers = async () => {
     await connectMongoDB();
     const boardMembers: IMember[] = await Member.find({ role: { $ne: 'member' } }).lean();
-    return (boardMembers);
+    return boardMembers;
 };
+
+export const getMemberWhitelist = async () => {
+    await connectMongoDB();
+    const whitelistedMembers: IWhitelistedMember[] = await WhitelistedMember.find().lean();
+    return whitelistedMembers;
+}

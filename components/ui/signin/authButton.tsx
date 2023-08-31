@@ -35,7 +35,7 @@ export function GoogleSignInButton() {
 
 export function GoogleSignOutButton() {
     const handleClick = () => {
-        signOut();
+        signOut({ redirect: true, callbackUrl: '/' });
     }
 
     return (
