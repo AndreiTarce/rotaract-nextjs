@@ -26,7 +26,7 @@ type Props = {
 export default async function SignIn(props: Props) {
     const isWhitelisted = props.searchParams.whitelisted === 'true' ? true : false;
 
-    if (!isWhitelisted) return (
+    if (!isWhitelisted && props.searchParams.whitelisted) return (
         <main className="mt-28 overflow-hidden mx-16 max-md:mx-4 flex justify-center align-middle flex-col gap-8 lg:gap-8 h-full">
             <Alert className="max-w-lg self-center">
                 <XOctagon className="h-4 w-4" />
@@ -36,7 +36,7 @@ export default async function SignIn(props: Props) {
                         Only whitelisted members of <strong>Rotaract Visio Cluj-Napoca</strong> are allowed to access the Members dashboard.
                     </span>
                     <Separator className="my-2" />
-                    <span className="text-gray-700 dark:text-gray-400">If you are a member of <strong>Rotaract Visio Cluj-Napoca</strong> and do not have access, please contact the club's IT Department.</span>
+                    <span className="text-gray-700 dark:text-gray-400">If you are a member of <strong>Rotaract Visio Cluj-Napoca</strong> and do not have access, please contact the club&apos;s IT Department.</span>
                 </AlertDescription>
             </Alert>
             <Image src={AccesDeniendImage} alt='Access Denied' className="max-h-[300px] self-center" />
