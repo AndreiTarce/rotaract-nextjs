@@ -13,11 +13,13 @@ import {
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { AlertOctagon } from 'lucide-react'
+import { AlertOctagon, MailCheck } from 'lucide-react'
 import { useState } from 'react'
+import { useToast } from '../use-toast'
+import { ToastAction } from '../toast'
+import { Toaster } from '../toaster'
 
 const formSchema = z.object({
     first_name: z.string().min(1, {
@@ -48,6 +50,8 @@ export default function ContactForm() {
 
     const [status, setStatus] = useState('')
 
+    const { toast } = useToast()
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -60,20 +64,11 @@ export default function ContactForm() {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // Used to Abort a long running fetch.
         const abortLongFetch = new AbortController()
-        // Abort after 7 seconds.
         const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000)
 
-        // Don't want to actually submit the form
-        // e.preventDefault()
-        console.log(values)
-
-        // Loading
         setStatus(contactStatuses.loading)
 
-        // You can change this fetch URL to a bad url to see the .catch() block hit
-        // Example: '/api/contact-bad'
         fetch('/api/contact', {
             signal: abortLongFetch.signal,
             method: 'POST',
@@ -84,20 +79,28 @@ export default function ContactForm() {
         })
             .then((res) => {
                 if (res.ok) {
-                    // If we got an 'ok' response from fetch, clear the AbortController timeout
                     clearTimeout(abortTimeoutId)
                     return res.json()
                 }
-                // If the response was anything besides 'ok', throw an error to hit our .catch() block
                 throw new Error('Whoops! Error sending email.')
             })
             .then((res) => {
-                // On a successful search, set the status to 'submitted' and reset the fields
                 setStatus(contactStatuses.submitted)
                 form.reset()
+                toast({
+                    title: 'Message sent',
+                    description: (
+                        <div className="flex gap-2">
+                            <MailCheck />
+                            <span className="self-center">
+                                Your message was succesfully sent! Our team will
+                                get back to you as soon as possible.
+                            </span>
+                        </div>
+                    ),
+                })
             })
             .catch((err) => {
-                // There was an error, catch it and set the status to 'error'
                 setStatus(contactStatuses.error)
             })
     }
@@ -240,6 +243,7 @@ export default function ContactForm() {
                     Submit
                 </Button>
             </form>
+            <Toaster />
         </Form>
     )
 }

@@ -1,27 +1,14 @@
-"use client"
+import Image from 'next/image'
+import Link from 'next/link'
 
-import * as React from "react"
-import Link from "next/link"
-import Image from "next/image"
-
-import { cn } from "@/lib/utils"
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-
-import { Menu, Instagram, Facebook } from 'lucide-react'
+import { Facebook, Instagram } from 'lucide-react'
 
 import logo from '../../../assets/images/visio.png'
-import { ModeToggle } from "../ModeToggle"
-import { Button } from "../button"
-import { Separator } from "../separator"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../dropdown-menu"
+import { ModeToggle } from '../ModeToggle'
+import { Button } from '../button'
+import { Separator } from '../separator'
+import HamburgerMenu from './HamburgerMenu'
+import UserMenu from './UserMenu'
 
 export function Navigation() {
     return (
@@ -38,67 +25,50 @@ export function Navigation() {
                 </Link>
                 <ul className="flex flex-row gap-1">
                     <li className="max-md:hidden">
-                        <Link
-                            className={navigationMenuTriggerStyle()}
-                            href="/"
-                        >
-                            Home
+                        <Link href="/">
+                            <Button variant="outline" className="border-0">
+                                Home
+                            </Button>
                         </Link>
                     </li>
                     <li className="max-md:hidden">
-                        <Link
-                            className={navigationMenuTriggerStyle()}
-                            href="/about"
-                        >
-                            About us
+                        <Link href="/about">
+                            <Button variant="outline" className="border-0">
+                                About us
+                            </Button>
                         </Link>
                     </li>
                     <li className="max-md:hidden">
-                        <Link
-                            className={navigationMenuTriggerStyle()}
-                            href="/projects"
-                        >
-                            Projects
+                        <Link href="/projects">
+                            <Button variant="outline" className="border-0">
+                                Projects
+                            </Button>
                         </Link>
                     </li>
                     <li className="max-md:hidden">
-                        <Link
-                            className={navigationMenuTriggerStyle()}
-                            href="/members"
-                        >
-                            Members
+                        <Link href="/members">
+                            <Button variant="outline" className="border-0">
+                                Members
+                            </Button>
                         </Link>
                     </li>
                     <li className="max-md:hidden">
-                        <Link
-                            className={navigationMenuTriggerStyle()}
-                            href="/contact"
-                        >
-                            Contact
-                        </Link>
-                    </li>
-                    <li className="max-md:hidden">
-                        <Link
-                            className={navigationMenuTriggerStyle()}
-                            href="/dashboard"
-                        >
-                            Members dashboard
+                        <Link href="/contact">
+                            <Button variant="outline" className="border-0">
+                                Contact
+                            </Button>
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            href='https://www.instagram.com/rotaractvisiocj/'
-                        >
-                            <Button size='icon' variant='outline'>
+                        <Link href="https://www.instagram.com/rotaractvisiocj/">
+                            <Button size="icon" variant="outline">
                                 <Instagram />
                             </Button>
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            href='https://www.facebook.com/RotaractVisioClujNapoca'
-                        >
-                            <Button size='icon' variant='outline'>
+                        <Link href="https://www.facebook.com/RotaractVisioClujNapoca">
+                            <Button size="icon" variant="outline">
                                 <Facebook />
                             </Button>
                         </Link>
@@ -106,62 +76,10 @@ export function Navigation() {
                     <li>
                         <ModeToggle />
                     </li>
-
-                    <li>
-
-                        <DropdownMenu>
-                            <DropdownMenuTrigger>
-                                <Button variant="outline" size="icon" className="max-md:flex hidden">
-                                    <Menu className="h-4 w-4" />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-screen mt-3">
-                                <Link
-                                    href='/'
-                                >
-                                    <DropdownMenuItem className="text-lg">
-                                        Home
-                                    </DropdownMenuItem>
-                                </Link>
-
-                                <Link
-                                    href='/about'
-                                >
-                                    <DropdownMenuItem className="text-lg">
-                                        About us
-                                    </DropdownMenuItem>
-                                </Link>
-                                <Link
-                                    href='/projects'
-                                >
-                                    <DropdownMenuItem className="text-lg">
-                                        Projects
-                                    </DropdownMenuItem>
-                                </Link>
-                                <Link
-                                    href='/members'
-                                >
-                                    <DropdownMenuItem className="text-lg">
-                                        Members
-                                    </DropdownMenuItem>
-                                </Link>
-                                <Link
-                                    href='/contact'
-                                >
-                                    <DropdownMenuItem className="text-lg">
-                                        Contact
-                                    </DropdownMenuItem>
-                                </Link>
-                                <Link
-                                    href='/dashboard'
-                                >
-                                    <DropdownMenuItem className="text-lg">
-                                        Members dashboard
-                                    </DropdownMenuItem>
-                                </Link>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                    <li className="max-md:hidden">
+                        <UserMenu />
                     </li>
+                    <HamburgerMenu />
                 </ul>
             </nav>
             <Separator />
