@@ -53,7 +53,9 @@ export default async function UserMenu() {
                             </div>
                         </div>
                     ) : (
-                        'Member login'
+                        <span className="dark:text-gray-400 text-base font-normal">
+                            Member login
+                        </span>
                     )}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />

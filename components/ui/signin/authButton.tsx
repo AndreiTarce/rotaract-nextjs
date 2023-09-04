@@ -12,7 +12,7 @@ export function GoogleSignInButton() {
     }
 
     return (
-        <Button onClick={handleClick}>
+        <Button onClick={handleClick} size="sm">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="1.25em"
@@ -43,7 +43,7 @@ export function GoogleSignOutButton() {
     }
 
     return (
-        <Button onClick={handleClick}>
+        <Button onClick={handleClick} size="sm">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="1.25em"

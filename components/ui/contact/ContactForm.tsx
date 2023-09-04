@@ -15,11 +15,10 @@ import {
     FormLabel,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { AlertOctagon, MailCheck } from 'lucide-react'
+import { AlertOctagon, MailCheck, SendHorizonal } from 'lucide-react'
 import { useState } from 'react'
-import { useToast } from '../use-toast'
-import { ToastAction } from '../toast'
 import { Toaster } from '../toaster'
+import { useToast } from '../use-toast'
 
 const formSchema = z.object({
     first_name: z.string().min(1, {
@@ -98,6 +97,7 @@ export default function ContactForm() {
                             </span>
                         </div>
                     ),
+                    duration: 10000,
                 })
             })
             .catch((err) => {
@@ -229,19 +229,23 @@ export default function ContactForm() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">
-                    {status === contactStatuses.loading && (
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="1em"
-                            viewBox="0 0 512 512"
-                            className="animate-spin mr-2 fill-white dark:fill-dark"
-                        >
-                            <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
-                        </svg>
-                    )}
-                    Submit
-                </Button>
+                <div className="flex w-full justify-end">
+                    <Button type="submit">
+                        {status === contactStatuses.loading ? (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="1em"
+                                viewBox="0 0 512 512"
+                                className="animate-spin mr-2 fill-white dark:fill-dark"
+                            >
+                                <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
+                            </svg>
+                        ) : (
+                            <SendHorizonal size={20} className="mr-2" />
+                        )}
+                        Submit
+                    </Button>
+                </div>
             </form>
             <Toaster />
         </Form>

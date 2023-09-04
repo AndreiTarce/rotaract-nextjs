@@ -56,20 +56,6 @@ export default async function HamburgerMenu() {
                         </DropdownMenuItem>
                     </Link>
                     <DropdownMenuSeparator />
-                    {/* <Accordion
-                        type="single"
-                        collapsible
-                        className="w-full border-none"
-                    >
-                        <AccordionItem value="member-login">
-                            <AccordionTrigger className="text-lg">
-                                Is it accessible?
-                            </AccordionTrigger>
-                            <AccordionContent>
-                                Yes. It adheres to the WAI-ARIA design pattern.
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion> */}
                     <DropdownMenuLabel>
                         {session?.user ? (
                             <div className="flex gap-2">
@@ -98,18 +84,20 @@ export default async function HamburgerMenu() {
                                 </div>
                             </div>
                         ) : (
-                            'Member login'
+                            <span className="dark:text-gray-400 font-normal text-base">
+                                Member login
+                            </span>
                         )}
                     </DropdownMenuLabel>
                     {session?.user && (
-                        <DropdownMenuItem>
-                            <Link href="/dashboard" className="flex">
+                        <Link href="/dashboard" className="flex">
+                            <DropdownMenuItem>
                                 <Gauge className="mr-2" />
                                 <span className="self-center">
                                     Members dashboard
                                 </span>
-                            </Link>
-                        </DropdownMenuItem>
+                            </DropdownMenuItem>
+                        </Link>
                     )}
                     <div className="p-2">
                         {session?.user ? (

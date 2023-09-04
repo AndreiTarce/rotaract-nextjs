@@ -1,17 +1,13 @@
-import Link from "next/link";
-import { Button } from "../button";
-import { IProject } from "@/models/project";
-import { Card } from "../card";
+import Link from 'next/link'
+import { Button } from '../button'
+import { IProject } from '@/models/project'
+import { Card } from '../card'
 
 const ProjectCard = (props: IProject) => {
     return (
         <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full">
             <Link href={`projects/${props.url}`}>
-                <img
-                    className="rounded-t-lg"
-                    src={props.thumbnailImg}
-                    alt=""
-                />
+                <img className="rounded-t-lg" src={props.thumbnailImg} alt="" />
             </Link>
             <div className="p-5 h-full flex flex-col justify-between">
                 <div>
@@ -25,7 +21,7 @@ const ProjectCard = (props: IProject) => {
                     </p>
                 </div>
                 <Link href={`projects/${props.url}`} className="w-fit">
-                    <Button size='sm'>
+                    <Button size="sm">
                         Read more
                         <svg
                             className="-mr-1 ml-2 h-4 w-4"
@@ -43,7 +39,7 @@ const ProjectCard = (props: IProject) => {
                 </Link>
             </div>
         </Card>
-    );
-};
+    )
+}
 
-export default ProjectCard;
+export default ProjectCard
