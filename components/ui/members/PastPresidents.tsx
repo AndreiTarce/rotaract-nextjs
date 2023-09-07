@@ -1,9 +1,10 @@
-import { getBoardMembers } from "@/lib/entityService";
-import MemberCard from "./MemberCard";
-import { IMember } from "@/models/member";
+import { getPastPresidents } from '@/lib/entityService'
+import { IMember } from '@/models/member'
+import MemberCard from './MemberCard'
 
 export default async function PastPresidentsList() {
-    // const boardMembers = await getBoardMembers();
-    // return boardMembers.map((member: IMember, index: number) => <MemberCard key={index} {...member} />)
-    return <>Past presidents list</>
+    const pastPresidents = await getPastPresidents()
+    return pastPresidents.map((member: IMember, index: number) => (
+        <MemberCard key={index} {...member} />
+    ))
 }

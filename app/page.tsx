@@ -1,8 +1,11 @@
-import Image from 'next/image'
-import background from '../assets/images/bg.png'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import Link from 'next/link'
+import background from '../assets/images/bg.png'
+import { getDictionary } from '@/lib/localization'
 
-export default function Home() {
+export default async function Home() {
+    const dict = await getDictionary('ro')
     return (
         <main className="relative z-0">
             <div className="h-screen flex flex-col mt-28 justify-between">
@@ -15,10 +18,12 @@ export default function Home() {
                     </span>
                 </div>
                 <div className="z-10 mx-16 max-md:mx-4 text-4xl flex flex-col gap-2 mb-48 text-white">
-                    <span>Vrei să te implici?</span>
-                    <Button className="w-44 text-lg bg-rotaract-cranberry text-white hover:bg-[#020817BB]">
-                        Contactează-ne
-                    </Button>
+                    <span>{dict.home.CTAtext}</span>
+                    <Link href="/contact">
+                        <Button className="w-fit text-lg bg-rotaract-cranberry text-white hover:bg-[#020817BB]">
+                            {dict.home.CTAbutton}
+                        </Button>
+                    </Link>
                 </div>
                 <Image
                     src={background}

@@ -9,6 +9,7 @@ import { Button } from '../button'
 import { Separator } from '../separator'
 import HamburgerMenu from './HamburgerMenu'
 import UserMenu from './UserMenu'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
 export function Navigation() {
     return (
@@ -84,6 +85,9 @@ export function Navigation() {
                     </li>
                     <li className="max-md:hidden">
                         <UserMenu />
+                    </li>
+                    <li>
+                        <LanguageSwitcher />
                     </li>
                     <HamburgerMenu />
                 </ul>

@@ -1,7 +1,7 @@
 import { authConfig } from '@/lib/auth'
 import { Gauge, User } from 'lucide-react'
 import { getServerSession } from 'next-auth'
-import { ModeToggleSwitch } from '../ModeToggle'
+import Link from 'next/link'
 import { Avatar, AvatarFallback, AvatarImage } from '../avatar'
 import { Button } from '../button'
 import {
@@ -13,7 +13,6 @@ import {
     DropdownMenuTrigger,
 } from '../dropdown-menu'
 import { GoogleSignInButton, GoogleSignOutButton } from '../signin/authButton'
-import Link from 'next/link'
 
 export default async function UserMenu() {
     const session = await getServerSession(authConfig)

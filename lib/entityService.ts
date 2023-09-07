@@ -76,7 +76,7 @@ export const getMember = async (memberId: string) => {
 
 export const getBoardMembers = async () => {
     await connectMongoDB();
-    const boardMembers: IMember[] = await Member.find({ role: { $ne: 'member' } }).lean();
+    const boardMembers: IMember[] = await Member.find({ role: { $nin: ['member', 'past president'] } }).lean();
     return boardMembers;
 };
 
@@ -84,4 +84,10 @@ export const getMemberWhitelist = async () => {
     await connectMongoDB();
     const whitelistedMembers: IWhitelistedMember[] = await WhitelistedMember.find().lean();
     return whitelistedMembers;
-}
+};
+
+export const getPastPresidents = async () => {
+    await connectMongoDB();
+    const pastPresidents: IMember[] = await Member.find({ role: 'past president' }).sort({ start_mandate: -1 }).lean();
+    return pastPresidents;
+};
