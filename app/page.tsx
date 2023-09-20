@@ -7,8 +7,8 @@ import { getDictionary } from '@/lib/localization'
 export default async function Home() {
     const dict = await getDictionary('ro')
     return (
-        <main className="relative z-0">
-            <div className="h-screen flex flex-col mt-28 justify-between">
+        <main className="h-full z-0 relative pt-28">
+            <div className="flex flex-col justify-between h-full pb-16">
                 <div className="z-10 mx-16 max-md:mx-4">
                     <h1 className="w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
                         Rotaract Visio
@@ -17,9 +17,9 @@ export default async function Home() {
                         Cluj-Napoca
                     </span>
                 </div>
-                <div className="z-10 mx-16 max-md:mx-4 text-4xl flex flex-col gap-2 mb-48 text-white">
+                <div className="z-10 mx-16 max-md:mx-4 text-4xl flex flex-col gap-2 text-white">
                     <span>{dict.home.CTAtext}</span>
-                    <Link href="/contact">
+                    <Link href="/contact" className="w-fit">
                         <Button className="w-fit text-lg bg-rotaract-cranberry text-white hover:bg-[#020817BB]">
                             {dict.home.CTAbutton}
                         </Button>
@@ -29,44 +29,8 @@ export default async function Home() {
                     src={background}
                     alt="background"
                     quality={100}
-                    className="brightness-75 object-cover absolute h-2/5 top-0 overflow-visible"
+                    className="brightness-75 absolute top-0 object-cover h-full"
                 />
-            </div>
-            <div>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
             </div>
         </main>
     )
