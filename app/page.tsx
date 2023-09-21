@@ -2,11 +2,9 @@ import SlideInWrapper from '@/components/ui/animation/SlideInWrapper'
 import { Button } from '@/components/ui/button'
 import AboutRotaract from '@/components/ui/home/AboutRotaract'
 import AboutVisio from '@/components/about/AboutVisio'
-import { getDictionary } from '@/lib/localization'
 import Link from 'next/link'
 
 export default async function Home() {
-    const dict = await getDictionary('ro')
     return (
         <main className="h-fit pt-12">
             <div className="grid grid-cols-1 grid-rows-[75%_25%] gap-0 h-screen pb-28 bg-[url('../assets/images/bg2.png')] bg-cover bg-center mb-8 ">
@@ -19,10 +17,10 @@ export default async function Home() {
                     </span>
                 </div>
                 <div className="text-4xl flex flex-col gap-2 text-white mx-16 max-md:mx-4">
-                    <span>{dict.home.CTAtext}</span>
+                    <span>Vrei sa te implici?</span>
                     <Link href="/contact" className="w-fit h-fit">
                         <Button className="w-fit text-lg bg-rotaract-cranberry text-white hover:bg-[#020817BB]">
-                            {dict.home.CTAbutton}
+                            Contacteaza-ne
                         </Button>
                     </Link>
                 </div>
