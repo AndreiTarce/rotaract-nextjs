@@ -4,6 +4,7 @@ import Link from 'next/link'
 import background from '../assets/images/bg.png'
 import { getDictionary } from '@/lib/localization'
 import AboutRotaract from '@/components/ui/home/AboutRotaract'
+import AboutVisio from '@/components/ui/home/AboutVisio'
 
 export default async function Home() {
     const dict = await getDictionary('ro')
@@ -34,6 +35,7 @@ export default async function Home() {
                 className="brightness-75 absolute top-0 object-cover h-full -z-10"
             /> */}
             <AboutRotaract />
+            <AboutVisio />
         </main>
     )
 }

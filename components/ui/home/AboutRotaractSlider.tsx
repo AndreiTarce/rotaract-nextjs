@@ -17,6 +17,7 @@ export default function AboutRotaractSlider(props: any) {
             autoplay={{
                 delay: 10000,
             }}
+            spaceBetween={30}
         >
             {props.children.map((element: any, index: number) => (
                 <SwiperSlide key={index} className="pb-16">
