@@ -11,9 +11,9 @@ const firstParagraph = (
             de peste 18 ani, care sunt interesați să aibă un impact pozitiv
             asupra comunităților lor și asupra lumii. Este o ramură orientată
             spre tineret a Rotary International, care este o organizație
-            mondiala renumita. Rotaract combină cuvintele "Rotary" și "Action"
-            pentru a sublinia angajamentul său de a acționa pentru a crea
-            schimbări pozitive.
+            mondiala renumita. Rotaract combină cuvintele &quot;Rotary&quot; și
+            &quot;Action&quot; pentru a sublinia angajamentul său de a acționa
+            pentru a crea schimbări pozitive.
         </p>
         <FontAwesomeIcon icon={faGlobe} className="text-7xl max-md:text-9xl" />
     </div>
