@@ -74,6 +74,11 @@
         @apply bg-background text-foreground;
     }
 }
+
+.swiper-pagination-bullet {
+    background: hsl(0, 0%, 50%) !important;
+}
+
 .swiper-pagination-bullet-active {
     background-color: #d41367 !important;
 }

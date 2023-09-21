@@ -6,15 +6,15 @@ import { Separator } from '../separator'
 
 export default function Footer() {
     return (
-        <div className="mt-8 mb-8 pb-8 dark:text-muted-foreground bottom-0">
+        <div className="my-8 dark:text-muted-foreground bottom-0">
             <Separator className="mb-8" />
             <div className="mx-16 max-md:mx-4">
                 <div className="grid grid-cols-3 grid-rows-1 gap-0 max-md:flex max-md:flex-col max-md:items-center max-md:gap-8">
                     <Image
                         src={logo}
-                        height={40}
                         alt="Rotaract Visio logo"
-                        className="justify-self-start max-md:w-[50vw]"
+                        className="justify-self-start max-md:w-[40vw]"
+                        quality={100}
                     />
                     <div className="flex gap-8 justify-self-center justify-center w-full max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-0 max-md:gap-y-4">
                         <Link
