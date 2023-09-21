@@ -1,10 +1,9 @@
+import FramerMotionTest from '@/components/FramerMotionTest'
 import { Button } from '@/components/ui/button'
-import Image from 'next/image'
-import Link from 'next/link'
-import background from '../assets/images/bg.png'
-import { getDictionary } from '@/lib/localization'
 import AboutRotaract from '@/components/ui/home/AboutRotaract'
 import AboutVisio from '@/components/ui/home/AboutVisio'
+import { getDictionary } from '@/lib/localization'
+import Link from 'next/link'
 
 export default async function Home() {
     const dict = await getDictionary('ro')
@@ -36,6 +35,7 @@ export default async function Home() {
             /> */}
             <AboutRotaract />
             <AboutVisio />
+            <FramerMotionTest />
         </main>
     )
 }
