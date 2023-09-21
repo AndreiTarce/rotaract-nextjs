@@ -1,0 +1,63 @@
+import { faGift, faGlobe } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Card, CardContent, CardHeader, CardTitle } from '../card'
+import { Separator } from '../separator'
+import AboutRotaractSlider from './AboutRotaractSlider'
+
+const firstParagraph = (
+    <div className="flex gap-8 items-center max-md:flex-col">
+        <p className="text-muted-foreground">
+            Rotaract este o comunitate globală de tineri profesionisti cu vârste
+            de peste 18 ani, care sunt interesați să aibă un impact pozitiv
+            asupra comunităților lor și asupra lumii. Este o ramură orientată
+            spre tineret a Rotary International, care este o organizație
+            mondiala renumita. Rotaract combină cuvintele "Rotary" și "Action"
+            pentru a sublinia angajamentul său de a acționa pentru a crea
+            schimbări pozitive.
+        </p>
+        <FontAwesomeIcon icon={faGlobe} className="text-7xl max-md:text-9xl" />
+    </div>
+)
+
+const secondParagraph = (
+    <div className="flex gap-8 items-center max-md:flex-col">
+        <FontAwesomeIcon
+            icon={faGift}
+            className="text-7xl max-md:order-2 max-md:text-9xl"
+        />
+        <p className="text-muted-foreground">
+            Cluburile Rotaract organizează proiecte de servicii, stimulează
+            abilitățile de leadership, promovează înțelegerea culturală, strâng
+            fonduri pentru cauze caritabile, se implică în comunitățile locale
+            și încurajează relatiile sociale între membri. Acesta împuternicește
+            tinerii adulți să devină lideri responsabili și conștienți din punct
+            de vedere social, lucrând pentru schimbări pozitive la nivel local
+            și global.
+        </p>
+    </div>
+)
+
+export default function AboutRotaract() {
+    return (
+        <div className="mx-16 max-md:mx-4">
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
+                        Despre Rotaract
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="flex flex-col gap-8 max-md:hidden">
+                        {firstParagraph}
+                        <Separator />
+                        {secondParagraph}
+                    </div>
+                    <AboutRotaractSlider>
+                        {firstParagraph}
+                        {secondParagraph}
+                    </AboutRotaractSlider>
+                </CardContent>
+            </Card>
+        </div>
+    )
+}
