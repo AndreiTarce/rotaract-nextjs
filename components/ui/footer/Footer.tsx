@@ -13,6 +13,7 @@ export default function Footer() {
                     <Image
                         src={logo}
                         alt="Rotaract Visio logo"
+                        height={40}
                         className="justify-self-start max-md:w-[40vw]"
                         quality={100}
                     />
