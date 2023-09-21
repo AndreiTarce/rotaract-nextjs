@@ -13,8 +13,8 @@ import { LanguageSwitcher } from './LanguageSwitcher'
 
 export function Navigation() {
     return (
-        <div className="fixed top-0 w-full z-10 bg-inherit">
-            <nav className="flex justify-between my-3 mx-16 max-md:mx-4 max-h-12 items-center">
+        <nav className="sticky bg-inherit top-0 z-10">
+            <div className="flex justify-between py-3 mx-16 max-md:mx-4">
                 <Link href="/">
                     <Image
                         src={logo}
@@ -86,13 +86,13 @@ export function Navigation() {
                     <li className="max-md:hidden">
                         <UserMenu />
                     </li>
-                    <li>
+                    {/* <li>
                         <LanguageSwitcher />
-                    </li>
+                    </li> */}
                     <HamburgerMenu />
                 </ul>
-            </nav>
+            </div>
             <Separator />
-        </div>
+        </nav>
     )
 }
