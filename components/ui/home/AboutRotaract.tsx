@@ -43,25 +43,23 @@ const secondParagraph = (
 
 export default function AboutRotaract() {
     return (
-        <div className="mx-16 max-md:mx-4">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
-                        Despre Rotaract
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="flex flex-col gap-8 max-md:hidden">
-                        {firstParagraph}
-                        <Separator />
-                        {secondParagraph}
-                    </div>
-                    <AboutRotaractSlider>
-                        {firstParagraph}
-                        {secondParagraph}
-                    </AboutRotaractSlider>
-                </CardContent>
-            </Card>
-        </div>
+        <Card className="mx-16 max-md:mx-4">
+            <CardHeader>
+                <CardTitle className="text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
+                    Despre Rotaract
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="flex flex-col gap-8 max-md:hidden">
+                    {firstParagraph}
+                    <Separator />
+                    {secondParagraph}
+                </div>
+                <AboutRotaractSlider>
+                    {firstParagraph}
+                    {secondParagraph}
+                </AboutRotaractSlider>
+            </CardContent>
+        </Card>
     )
 }

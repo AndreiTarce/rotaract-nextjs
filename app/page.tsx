@@ -1,4 +1,4 @@
-import FramerMotionTest from '@/components/FramerMotionTest'
+import SlideInWrapper from '@/components/ui/animation/SlideInWrapper'
 import { Button } from '@/components/ui/button'
 import AboutRotaract from '@/components/ui/home/AboutRotaract'
 import AboutVisio from '@/components/ui/home/AboutVisio'
@@ -33,9 +33,12 @@ export default async function Home() {
                 quality={100}
                 className="brightness-75 absolute top-0 object-cover h-full -z-10"
             /> */}
-            <AboutRotaract />
-            <AboutVisio />
-            <FramerMotionTest />
+            <SlideInWrapper>
+                <AboutRotaract />
+            </SlideInWrapper>
+            <SlideInWrapper>
+                <AboutVisio />
+            </SlideInWrapper>
         </main>
     )
 }
