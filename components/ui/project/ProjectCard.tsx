@@ -2,12 +2,18 @@ import Link from 'next/link'
 import { Button } from '../button'
 import { IProject } from '@/models/project'
 import { Card } from '../card'
+import Image from 'next/image'
 
 const ProjectCard = (props: IProject) => {
     return (
-        <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full">
+        <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full overflow-hidden">
             <Link href={`projects/${props.url}`}>
-                <img className="rounded-t-lg" src={props.thumbnailImg} alt="" />
+                <Image
+                    src={props.thumbnailImg}
+                    alt={`${props.title} poster`}
+                    width={600}
+                    height={600}
+                />
             </Link>
             <div className="p-5 h-full flex flex-col justify-between">
                 <div>
@@ -16,7 +22,7 @@ const ProjectCard = (props: IProject) => {
                             {props.title}
                         </h5>
                     </Link>
-                    <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
+                    <p className="font-normal text-muted-foreground mb-3">
                         {props.shortDescription}
                     </p>
                 </div>

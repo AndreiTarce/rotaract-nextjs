@@ -50,7 +50,6 @@ export const getMembers = async () => {
         if (!res.ok) {
             throw new Error("Failed to fetch members");
         }
-
         return res.json();
     } catch (error) {
         console.log("Error loading members: ", error);
