@@ -19,7 +19,6 @@ export function Navigation() {
                         src={logo}
                         alt="Rotaract logo"
                         height={40}
-                        className="sticky top-4 left-16 max-md:top-4 max-md:left-8"
                         quality={100}
                     />
                 </Link>
