@@ -7,26 +7,22 @@ import {
 } from '@/components/ui/card'
 import ContactForm from '@/components/ui/contact/ContactForm'
 import ContactInfoCard from '@/components/ui/contact/ContactInfoCard'
-import { Separator } from '@/components/ui/separator'
-import {
-    faB,
-    faCalendar,
-    faChalkboardUser,
-    faClock,
-    faComments,
-    faEnvelope,
-    faHashtag,
-    faLocationDot,
-    faUsers,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Facebook, Instagram } from 'lucide-react'
-import Link from 'next/link'
 import {
     faFacebook,
     faInstagram,
     faLinkedin,
+    faTiktok,
 } from '@fortawesome/free-brands-svg-icons'
+import {
+    faCalendar,
+    faChalkboardUser,
+    faClock,
+    faEnvelope,
+    faHashtag,
+    faLocationDot,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
 
 export default function Contact() {
     return (
@@ -52,21 +48,39 @@ export default function Contact() {
                         </ContactInfoCard>
                         <ContactInfoCard title="Socials" icon={faHashtag}>
                             <div className="flex gap-4 text-muted-foreground">
-                                <Link href="https://www.instagram.com/rotaractvisiocj/">
+                                <Link
+                                    href="https://www.instagram.com/rotaractvisiocj/"
+                                    target="_blank"
+                                >
                                     <FontAwesomeIcon
                                         icon={faInstagram}
                                         size="xl"
                                     />
                                 </Link>
-                                <Link href="https://www.facebook.com/RotaractVisioClujNapoca">
+                                <Link
+                                    href="https://www.facebook.com/RotaractVisioClujNapoca"
+                                    target="_blank"
+                                >
                                     <FontAwesomeIcon
                                         icon={faFacebook}
                                         size="xl"
                                     />
                                 </Link>
-                                <Link href="https://www.linkedin.com/company/rotaract-cluj-napoca-visio">
+                                <Link
+                                    href="https://www.linkedin.com/company/rotaract-cluj-napoca-visio"
+                                    target="_blank"
+                                >
                                     <FontAwesomeIcon
                                         icon={faLinkedin}
+                                        size="xl"
+                                    />
+                                </Link>
+                                <Link
+                                    href="https://www.tiktok.com/@rotaractvisiocluj"
+                                    target="_blank"
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faTiktok}
                                         size="xl"
                                     />
                                 </Link>

@@ -1,5 +1,11 @@
 import logo from '@/assets/images/visio.webp'
-import { Facebook, Instagram } from 'lucide-react'
+import {
+    faFacebook,
+    faInstagram,
+    faLinkedin,
+    faTiktok,
+} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Separator } from '../separator'
@@ -54,13 +60,25 @@ export default function Footer() {
                             href="https://www.instagram.com/rotaractvisiocj/"
                             target="_blank"
                         >
-                            <Instagram />
+                            <FontAwesomeIcon icon={faInstagram} size="xl" />
                         </Link>
                         <Link
                             href="https://www.facebook.com/RotaractVisioClujNapoca"
                             target="_blank"
                         >
-                            <Facebook />
+                            <FontAwesomeIcon icon={faFacebook} size="xl" />
+                        </Link>
+                        <Link
+                            href="https://www.linkedin.com/company/rotaract-cluj-napoca-visio/"
+                            target="_blank"
+                        >
+                            <FontAwesomeIcon icon={faLinkedin} size="xl" />
+                        </Link>
+                        <Link
+                            href="https://www.tiktok.com/@rotaractvisiocluj"
+                            target="_blank"
+                        >
+                            <FontAwesomeIcon icon={faTiktok} size="xl" />
                         </Link>
                     </div>
                 </div>

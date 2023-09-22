@@ -59,26 +59,6 @@ export function Navigation() {
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            href="https://www.instagram.com/rotaractvisiocj/"
-                            target="_blank"
-                        >
-                            <Button size="icon" variant="outline">
-                                <Instagram />
-                            </Button>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="https://www.facebook.com/RotaractVisioClujNapoca"
-                            target="_blank"
-                        >
-                            <Button size="icon" variant="outline">
-                                <Facebook />
-                            </Button>
-                        </Link>
-                    </li>
-                    <li>
                         <ModeToggle />
                     </li>
                     <li className="max-md:hidden">
