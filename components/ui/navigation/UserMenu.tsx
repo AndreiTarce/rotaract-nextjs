@@ -59,14 +59,14 @@ export default async function UserMenu() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {session?.user && (
-                    <DropdownMenuItem>
-                        <Link href="/dashboard" className="flex">
+                    <Link href="/dashboard" className="flex">
+                        <DropdownMenuItem className="w-full">
                             <Gauge className="mr-2" />
                             <span className="self-center">
                                 Members dashboard
                             </span>
-                        </Link>
-                    </DropdownMenuItem>
+                        </DropdownMenuItem>
+                    </Link>
                 )}
                 <div className="p-2">
                     {session?.user ? (

@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import background from '@/assets/images/bg2.webp'
+import { Button } from '@/components/ui/button'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const AboutRotaract = dynamic(
     () => import('@/components/ui/home/AboutRotaract')
@@ -12,7 +12,6 @@ const AboutVisio = dynamic(() => import('@/components/about/AboutVisio'))
 const SlideInWrapper = dynamic(
     () => import('@/components/ui/animation/SlideInWrapper')
 )
-
 export default async function Home() {
     return (
         <main className="h-fit pt-12">
