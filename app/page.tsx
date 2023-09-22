@@ -25,6 +25,7 @@ export default async function Home() {
                     style={{
                         objectFit: 'cover',
                     }}
+                    priority
                 />
                 <div className="grid grid-cols-1 grid-rows-[75%_25%] gap-0 h-screen pb-28 mb-8">
                     <div className="mx-16 max-md:mx-4">
