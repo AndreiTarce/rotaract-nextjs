@@ -19,6 +19,7 @@ import { AlertOctagon, MailCheck, SendHorizonal } from 'lucide-react'
 import { useState } from 'react'
 import { Toaster } from '../toaster'
 import { useToast } from '../use-toast'
+import { Textarea } from '../textarea'
 
 const formSchema = z.object({
     first_name: z.string().min(1, {
@@ -213,7 +214,7 @@ export default function ContactForm() {
                         <FormItem className="mb-4">
                             <FormLabel>Message</FormLabel>
                             <FormControl>
-                                <Input
+                                <Textarea
                                     placeholder="Type your message here"
                                     {...field}
                                 />
