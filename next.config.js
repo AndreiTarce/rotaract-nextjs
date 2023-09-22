@@ -1,15 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-<<<<<<< Updated upstream
-    i18n: {
-        locales: ['en', 'ro'], // Add the locales you want to support
-        defaultLocale: 'ro', // Set the default locale
-    },
-=======
-    // i18n: {
-    //     locales: ['en', 'ro'], // Add the locales you want to support
-    //     defaultLocale: 'ro', // Set the default locale
-    // },
     images: {
         remotePatterns: [
             {
@@ -23,7 +13,6 @@ const nextConfig = {
             }
         ],
     }
->>>>>>> Stashed changes
 }
 
 module.exports = nextConfig
