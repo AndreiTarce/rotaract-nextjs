@@ -1,12 +1,12 @@
 import { ThemeProvider } from '@/components/theme-provider'
+import Footer from '@/components/ui/footer/Footer'
 import { Navigation } from '@/components/ui/navigation/Navigation'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Providers from './providers'
-import Footer from '@/components/ui/footer/Footer'
-import '@fortawesome/fontawesome-svg-core/styles.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
