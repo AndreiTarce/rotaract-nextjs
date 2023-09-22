@@ -4,14 +4,17 @@ import Link from 'next/link'
 import { Button } from '../button'
 import { Card } from '../card'
 import { Badge } from '../badge'
+import Image from 'next/image'
 
 const MemberCard = (props: IMember) => {
     return (
         <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full">
-            <img
-                className="rounded-t-lg"
+            <Image
                 src={props.picture}
-                alt="Profile picture"
+                alt={`${props.first_name}${props.last_name} photo`}
+                height={500}
+                width={500}
+                loading="lazy"
             />
             <div className="p-5 h-full flex flex-col justify-between">
                 <div>
