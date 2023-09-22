@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { Facebook, Instagram } from 'lucide-react'
 
-import logo from '../../../assets/images/visio.png'
+import logo from '../../../assets/images/visio.webp'
 import { ModeToggle } from '../ModeToggle'
 import { Button } from '../button'
 import { Separator } from '../separator'

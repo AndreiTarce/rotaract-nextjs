@@ -1,13 +1,20 @@
-import SlideInWrapper from '@/components/ui/animation/SlideInWrapper'
 import { Button } from '@/components/ui/button'
-import AboutRotaract from '@/components/ui/home/AboutRotaract'
-import AboutVisio from '@/components/about/AboutVisio'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
+
+const AboutRotaract = dynamic(
+    () => import('@/components/ui/home/AboutRotaract')
+)
+
+const AboutVisio = dynamic(() => import('@/components/about/AboutVisio'))
+const SlideInWrapper = dynamic(
+    () => import('@/components/ui/animation/SlideInWrapper')
+)
 
 export default async function Home() {
     return (
         <main className="h-fit pt-12">
-            <div className="grid grid-cols-1 grid-rows-[75%_25%] gap-0 h-screen pb-28 bg-[url('../assets/images/bg2.png')] bg-cover bg-center mb-8 ">
+            <div className="grid grid-cols-1 grid-rows-[75%_25%] gap-0 h-screen pb-28 bg-[url('../assets/images/bg2.webp')] bg-cover bg-center mb-8 ">
                 <div className="mx-16 max-md:mx-4">
                     <h1 className="w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
                         Rotaract Visio

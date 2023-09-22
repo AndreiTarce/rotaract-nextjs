@@ -1,4 +1,4 @@
-import clujImage from '@/assets/images/cluj3.png'
+import clujImage from '@/assets/images/cluj4.webp'
 import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import Value from './values/Value'
@@ -8,10 +8,11 @@ import ValuesCarousel from './values/ValuesCarousel'
 export default function AboutVisio() {
     return (
         <Card className="overflow-hidden mx-16 max-md:mx-4 mt-8">
-            <div className="md:grid md:grid-cols-[50%_50%] max-md:bg-[url('../assets/images/cluj_biserica2.png')] max-md:bg-cover max-md:bg-top">
+            <div className="md:grid md:grid-cols-[50%_50%] max-md:bg-[url('../assets/images/cluj_biserica2.webp')] max-md:bg-cover max-md:bg-top">
                 <Image
                     src={clujImage}
                     alt="Cluj-Napoca Church"
+                    height={1080}
                     className="max-md:hidden brightness-75 h-full 2xl:max-h-[600px] object-cover object-right"
                 />
                 <div className="h-fit">
