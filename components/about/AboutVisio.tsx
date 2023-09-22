@@ -1,4 +1,5 @@
-import clujImage from '@/assets/images/cluj3.png'
+import clujImage from '@/assets/images/cluj4.webp'
+import clujBiserica from '@/assets/images/cluj_biserica2.webp'
 import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import Value from './values/Value'
@@ -8,19 +9,37 @@ import ValuesCarousel from './values/ValuesCarousel'
 export default function AboutVisio() {
     return (
         <Card className="overflow-hidden mx-16 max-md:mx-4 mt-8">
-            <div className="md:grid md:grid-cols-[50%_50%] max-md:bg-[url('../assets/images/cluj_biserica2.png')] max-md:bg-cover max-md:bg-top">
+            <div className="md:grid md:grid-cols-[50%_50%]">
                 <Image
                     src={clujImage}
                     alt="Cluj-Napoca Church"
-                    className="max-md:hidden brightness-75 h-full 2xl:max-h-[600px] object-cover object-right"
+                    style={{
+                        objectFit: 'cover',
+                        objectPosition: 'right',
+                        height: '100%',
+                        width: 'auto',
+                    }}
+                    loading="lazy"
+                    className="max-md:hidden"
                 />
+
                 <div className="h-fit">
                     <CardHeader>
                         <CardTitle className="text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent text-end">
                             Despre Visio
                         </CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="relative">
+                        <Image
+                            src={clujBiserica}
+                            alt="Cluj-Napoca Church"
+                            fill
+                            style={{
+                                objectFit: 'cover',
+                            }}
+                            className="md:hidden"
+                            loading="lazy"
+                        />
                         <div className="text-end dark:text-muted-foreground md:text-muted-foreground mb-8">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et

@@ -1,22 +1,10 @@
 'use client'
 import { Next13ProgressBar } from 'next13-progressbar'
-import React, { createContext, useState } from 'react'
-
-import { Dispatch, SetStateAction } from 'react'
-
-type LanguageContextType = {
-    language: string
-    setLanguage: Dispatch<SetStateAction<string>>
-}
-
-export const LanguageContext = createContext<LanguageContextType | null>(null)
+import React from 'react'
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
-    const [language, setLanguage] = useState('ro')
     return (
-        <LanguageContext.Provider
-            value={{ language: language, setLanguage: setLanguage }}
-        >
+        <>
             {children}
             <Next13ProgressBar
                 height="4px"
@@ -24,7 +12,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                 options={{ showSpinner: false }}
                 showOnShallow
             />
-        </LanguageContext.Provider>
+        </>
     )
 }
 

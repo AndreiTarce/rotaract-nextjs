@@ -10,7 +10,7 @@ export const getProjects = async () => {
     const url = API_BASE_URL + PROJECTS_PATH;
     try {
         const res = await fetch(url, {
-            cache: "no-store",
+            // cache: "no-store",
         });
 
         if (!res.ok) {
@@ -27,7 +27,7 @@ export const getProject = async (projectUrl: string) => {
     const url = `${API_BASE_URL + PROJECTS_PATH}/${projectUrl}`;
     try {
         const res = await fetch(url, {
-            cache: "no-store",
+            // cache: "no-store",
         });
 
         if (!res.ok) {
@@ -44,7 +44,7 @@ export const getMembers = async () => {
     const url = API_BASE_URL + MEMBERS_PATH;
     try {
         const res = await fetch(url, {
-            cache: "no-store",
+            // cache: "no-store",
         });
 
         if (!res.ok) {
@@ -60,7 +60,7 @@ export const getMember = async (memberId: string) => {
     const url = `${API_BASE_URL + PROJECTS_PATH}/${memberId}`;
     try {
         const res = await fetch(url, {
-            cache: "no-store",
+            // cache: "no-store",
         });
 
         if (!res.ok) {

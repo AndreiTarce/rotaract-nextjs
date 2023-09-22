@@ -3,13 +3,12 @@ import Link from 'next/link'
 
 import { Facebook, Instagram } from 'lucide-react'
 
-import logo from '../../../assets/images/visio.png'
+import logo from '../../../assets/images/visio.webp'
 import { ModeToggle } from '../ModeToggle'
 import { Button } from '../button'
 import { Separator } from '../separator'
 import HamburgerMenu from './HamburgerMenu'
 import UserMenu from './UserMenu'
-import { LanguageSwitcher } from './LanguageSwitcher'
 
 export function Navigation() {
     return (
@@ -20,7 +19,6 @@ export function Navigation() {
                         src={logo}
                         alt="Rotaract logo"
                         height={40}
-                        className="sticky top-4 left-16 max-md:top-4 max-md:left-8"
                         quality={100}
                     />
                 </Link>

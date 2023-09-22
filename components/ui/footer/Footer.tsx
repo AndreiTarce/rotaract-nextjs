@@ -1,4 +1,4 @@
-import logo from '@/assets/images/visio.png'
+import logo from '@/assets/images/visio.webp'
 import { Facebook, Instagram } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
