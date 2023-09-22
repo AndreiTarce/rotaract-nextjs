@@ -1,11 +1,12 @@
 'use client'
+import { LazyMotion, domAnimation } from 'framer-motion'
 import { Next13ProgressBar } from 'next13-progressbar'
 import React from 'react'
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
-            {children}
+            <LazyMotion features={domAnimation}>{children}</LazyMotion>
             <Next13ProgressBar
                 height="4px"
                 color="#d41367"

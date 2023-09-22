@@ -1,7 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const PageWrapper = ({
     children,
@@ -11,14 +11,14 @@ const PageWrapper = ({
 }) => {
     const path = usePathname()
     return (
-        <motion.div
+        <m.div
             key={path}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 300 }}
         >
             {children}
-        </motion.div>
+        </m.div>
     )
 }
 

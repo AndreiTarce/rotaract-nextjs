@@ -1,9 +1,9 @@
 'use client'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 export default function SlideInWrapper(props: { children: React.ReactNode }) {
     return (
-        <motion.div
+        <m.div
             transition={{ duration: 0.5 }}
             initial={{ opacity: 0, translateX: -150 }}
             whileInView={{
@@ -13,6 +13,6 @@ export default function SlideInWrapper(props: { children: React.ReactNode }) {
             }}
         >
             {props.children}
-        </motion.div>
+        </m.div>
     )
 }
