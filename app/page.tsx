@@ -21,6 +21,7 @@ export default async function Home() {
                     src={background}
                     alt="Rotaract Visio Members Photo"
                     className="-z-10"
+                    sizes="(max-width: 808px) 200vw"
                     fill
                     style={{
                         objectFit: 'cover',
@@ -43,12 +44,6 @@ export default async function Home() {
                     </Link>
                 </div>
             </div>
-            {/* <Image
-                src={background}
-                alt="background"
-                quality={100}
-                className="brightness-75 absolute top-0 object-cover h-full -z-10"
-            /> */}
             <SlideInWrapper>
                 <AboutRotaract />
             </SlideInWrapper>
