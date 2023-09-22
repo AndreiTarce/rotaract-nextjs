@@ -13,7 +13,9 @@ export default function AboutVisio() {
                     src={clujImage}
                     alt="Cluj-Napoca Church"
                     height={1080}
+                    width={1642}
                     className="max-md:hidden brightness-75 h-full 2xl:max-h-[600px] object-cover object-right"
+                    loading="lazy"
                 />
                 <div className="h-fit">
                     <CardHeader>
