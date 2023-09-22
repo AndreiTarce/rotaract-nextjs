@@ -1,8 +1,8 @@
+import { IProject } from '@/models/project'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../button'
-import { IProject } from '@/models/project'
 import { Card } from '../card'
-import Image from 'next/image'
 
 const ProjectCard = (props: IProject) => {
     return (

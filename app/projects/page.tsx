@@ -1,3 +1,4 @@
+import SlideInWrapper from '@/components/ui/animation/SlideInWrapper'
 import ProjectsList from '@/components/ui/project/Projects'
 import { Separator } from '@/components/ui/separator'
 

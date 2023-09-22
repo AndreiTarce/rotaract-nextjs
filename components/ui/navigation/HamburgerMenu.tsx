@@ -19,12 +19,8 @@ export default async function HamburgerMenu() {
     return (
         <li className="md:hidden">
             <DropdownMenu>
-                <DropdownMenuTrigger>
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="max-md:flex hidden"
-                    >
+                <DropdownMenuTrigger className="max-md:flex hidden">
+                    <Button variant="outline" size="icon">
                         <Menu className="h-4 w-4" />
                     </Button>
                 </DropdownMenuTrigger>

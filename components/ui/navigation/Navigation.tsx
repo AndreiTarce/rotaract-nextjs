@@ -86,9 +86,6 @@ export function Navigation() {
                     <li className="max-md:hidden">
                         <UserMenu />
                     </li>
-                    {/* <li>
-                        <LanguageSwitcher />
-                    </li> */}
                     <HamburgerMenu />
                 </ul>
             </div>
