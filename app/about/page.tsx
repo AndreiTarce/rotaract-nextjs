@@ -1,74 +1,32 @@
-import PageWrapper from '@/components/ui/animation/PageWrapper'
-import { Button } from '@/components/ui/button'
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-    CardFooter,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
+import AboutVisio from '@/components/about/AboutVisio'
+import background from '@/assets/images/desprenoibg.webp'
+import Image from 'next/image'
 
 export default function About() {
     return (
-        <main className="mt-28 mx-16 max-md:mx-4">
-            <Card className="w-full">
-                <CardHeader>
-                    <CardTitle>Create project</CardTitle>
-                    <CardDescription>
-                        Deploy your new project in one-click.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <form>
-                        <div className="grid w-full items-center gap-4">
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="name">Name</Label>
-                                <Input
-                                    id="name"
-                                    placeholder="Name of your project"
-                                />
-                            </div>
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="framework">Framework</Label>
-                                <Select>
-                                    <SelectTrigger id="framework">
-                                        <SelectValue placeholder="Select" />
-                                    </SelectTrigger>
-                                    <SelectContent position="popper">
-                                        <SelectItem value="next">
-                                            Next.js
-                                        </SelectItem>
-                                        <SelectItem value="sveltekit">
-                                            SvelteKit
-                                        </SelectItem>
-                                        <SelectItem value="astro">
-                                            Astro
-                                        </SelectItem>
-                                        <SelectItem value="nuxt">
-                                            Nuxt.js
-                                        </SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                        </div>
-                    </form>
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                    <Button variant="outline">Cancel</Button>
-                    <Button>Deploy</Button>
-                </CardFooter>
-            </Card>
-            <Card>test</Card>
+        <main className="mt-12">
+            <div className="w-full relative h-screen">
+                <h1 className="mx-16 max-md:mx-4 w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-2">
+                    Despre noi
+                </h1>
+                <p className="mx-16 max-md:mx-4 md:w-2/3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Blanditiis minima tenetur id necessitatibus rem molestias
+                    optio accusamus omnis, fugiat distinctio tempore at ad! Ab
+                    illo dicta ipsam temporibus fuga fugiat.
+                </p>
+                <Image
+                    src={background}
+                    alt="Rotaract Visio Group Photo"
+                    sizes="100vw"
+                    fill
+                    style={{ objectFit: 'cover', zIndex: '-10' }}
+                    priority
+                />
+            </div>
+            <div className="mx-16 max-md:mx-4 mt-16">
+                <AboutVisio />
+            </div>
         </main>
     )
 }

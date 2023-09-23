@@ -46,12 +46,14 @@ export default async function Home() {
                     </div>
                 </div>
             </div>
-            <SlideInWrapper>
-                <AboutRotaract />
-            </SlideInWrapper>
-            <SlideInWrapper>
-                <AboutVisio />
-            </SlideInWrapper>
+            <div className="mx-16 max-md:mx-4">
+                <SlideInWrapper>
+                    <AboutRotaract />
+                </SlideInWrapper>
+                <SlideInWrapper>
+                    <AboutVisio />
+                </SlideInWrapper>
+            </div>
         </main>
     )
 }

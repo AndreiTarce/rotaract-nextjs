@@ -44,6 +44,9 @@ const MemberCard = (props: IMember) => {
                         >
                             <Button size="icon">
                                 <Facebook />
+                                <span className="sr-only">
+                                    Facebook profile
+                                </span>
                             </Button>
                         </Link>
                     )}
@@ -55,6 +58,9 @@ const MemberCard = (props: IMember) => {
                         >
                             <Button size="icon">
                                 <Linkedin />
+                                <span className="sr-only">
+                                    Linkedin profile
+                                </span>
                             </Button>
                         </Link>
                     )}

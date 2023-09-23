@@ -59,24 +59,28 @@ export default function Footer() {
                         <Link
                             href="https://www.instagram.com/rotaractvisiocj/"
                             target="_blank"
+                            aria-label="Check us out on Instagram"
                         >
                             <FontAwesomeIcon icon={faInstagram} size="xl" />
                         </Link>
                         <Link
                             href="https://www.facebook.com/RotaractVisioClujNapoca"
                             target="_blank"
+                            aria-label="Check us out on Facebook"
                         >
                             <FontAwesomeIcon icon={faFacebook} size="xl" />
                         </Link>
                         <Link
                             href="https://www.linkedin.com/company/rotaract-cluj-napoca-visio/"
                             target="_blank"
+                            aria-label="Check us out on Linkedin"
                         >
                             <FontAwesomeIcon icon={faLinkedin} size="xl" />
                         </Link>
                         <Link
                             href="https://www.tiktok.com/@rotaractvisiocluj"
                             target="_blank"
+                            aria-label="Check us out on TikTok"
                         >
                             <FontAwesomeIcon icon={faTiktok} size="xl" />
                         </Link>

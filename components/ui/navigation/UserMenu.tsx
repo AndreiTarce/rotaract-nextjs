@@ -21,6 +21,7 @@ export default async function UserMenu() {
             <DropdownMenuTrigger>
                 <Button size="icon" variant="outline">
                     <User />
+                    <span className="sr-only">Open user menu</span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

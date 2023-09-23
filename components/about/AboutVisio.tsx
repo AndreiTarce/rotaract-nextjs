@@ -8,7 +8,7 @@ import ValuesCarousel from './values/ValuesCarousel'
 
 export default function AboutVisio() {
     return (
-        <Card className="overflow-hidden mx-16 max-md:mx-4 mt-8">
+        <Card className="overflow-hidden mt-8">
             <div className="md:grid md:grid-cols-[50%_50%]">
                 <Image
                     src={clujImage}

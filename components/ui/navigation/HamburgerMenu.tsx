@@ -13,6 +13,7 @@ import { GoogleSignInButton, GoogleSignOutButton } from '../signin/authButton'
 import { getServerSession } from 'next-auth'
 import { authConfig } from '@/lib/auth'
 import { Avatar, AvatarFallback, AvatarImage } from '../avatar'
+import HamburgerMenuNavLink from './HambugerMenuNavLink'
 
 export default async function HamburgerMenu() {
     const session = await getServerSession(authConfig)
@@ -22,35 +23,15 @@ export default async function HamburgerMenu() {
                 <DropdownMenuTrigger className="max-md:flex hidden">
                     <Button variant="outline" size="icon">
                         <Menu className="h-4 w-4" />
+                        <span className="sr-only">Open navigation menu</span>
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-screen mt-3">
-                    <Link href="/">
-                        <DropdownMenuItem className="text-lg">
-                            Home
-                        </DropdownMenuItem>
-                    </Link>
-
-                    <Link href="/about">
-                        <DropdownMenuItem className="text-lg">
-                            About us
-                        </DropdownMenuItem>
-                    </Link>
-                    <Link href="/projects">
-                        <DropdownMenuItem className="text-lg">
-                            Projects
-                        </DropdownMenuItem>
-                    </Link>
-                    <Link href="/members">
-                        <DropdownMenuItem className="text-lg">
-                            Members
-                        </DropdownMenuItem>
-                    </Link>
-                    <Link href="/contact">
-                        <DropdownMenuItem className="text-lg">
-                            Contact
-                        </DropdownMenuItem>
-                    </Link>
+                    <HamburgerMenuNavLink href="/" text="Home" />
+                    <HamburgerMenuNavLink href="/about" text="About us" />
+                    <HamburgerMenuNavLink href="/projects" text="Projects" />
+                    <HamburgerMenuNavLink href="/members" text="Members" />
+                    <HamburgerMenuNavLink href="/contact" text="Contact" />
                     <DropdownMenuSeparator />
                     <DropdownMenuLabel>
                         {session?.user ? (
