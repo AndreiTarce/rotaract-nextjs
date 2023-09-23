@@ -82,3 +82,22 @@
 .swiper-pagination-bullet-active {
     background-color: #d41367 !important;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: hsla(0, 100%, 0%, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-track {
+        background-color: hsla(0, 100%, 100%, 0.1);
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d41367;
+    border-radius: 100vw;
+}
