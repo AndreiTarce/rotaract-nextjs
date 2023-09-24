@@ -63,7 +63,7 @@ const MemberStatistic = (props: {
 
 export default function MemberStatistics() {
     return (
-        <Card className="md:w-fit">
+        <Card className="md:w-fit shadow-md border rounded-lg">
             <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-2xl text-rotaract-cranberry font-extrabold bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
                     Membri curenti

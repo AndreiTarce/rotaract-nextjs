@@ -2,6 +2,7 @@ import AboutVisio from '@/components/about/AboutVisio'
 import background from '@/assets/images/desprenoibg.webp'
 import Image from 'next/image'
 import MemberStatistics from '@/components/about/statistics/MemberStatistics'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function About() {
     return (
@@ -28,6 +29,17 @@ export default function About() {
             <div className="mx-16 max-md:mx-4 mt-16">
                 <MemberStatistics />
                 <AboutVisio />
+                <Card className="mt-8 bg-gradient-to-tr from-rotaract-cranberry to-rose-500 shadow-md border rounded-lg">
+                    <CardHeader>
+                        <CardTitle>Misiune</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit. Maxime esse reprehenderit ut! Enim placeat porro
+                        neque fugiat culpa sunt veniam dolor nemo, non sequi
+                        possimus natus sapiente vero libero animi.
+                    </CardContent>
+                </Card>
             </div>
         </main>
     )

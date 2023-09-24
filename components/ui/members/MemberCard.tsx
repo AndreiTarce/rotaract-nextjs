@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 const MemberCard = (props: IMember) => {
     return (
-        <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full">
+        <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full overflow-hidden">
             <Image
                 src={props.picture}
                 alt={`${props.first_name}${props.last_name} photo`}

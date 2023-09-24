@@ -43,7 +43,7 @@ const secondParagraph = (
 
 export default function AboutRotaract() {
     return (
-        <Card>
+        <Card className="shadow-md border rounded-lg">
             <CardHeader>
                 <CardTitle className="text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
                     Despre Rotaract

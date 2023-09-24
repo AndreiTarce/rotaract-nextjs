@@ -116,7 +116,7 @@ export default function Contact() {
                 </div>
             </div>
             <div className="flex justify-center md:justify-end h-fit">
-                <Card className="w-full max-w-xl">
+                <Card className="w-full max-w-xl shadow-md border rounded-lg">
                     <CardHeader>
                         <CardTitle>Get in touch with us!</CardTitle>
                         <CardDescription>
