@@ -5,13 +5,15 @@ import { Button } from '../button'
 
 export default function NavLink(props: { text: string; href: string }) {
     const pathname = usePathname()
+    const isExactMatch = pathname === props.href
+    const isSubpath = props.href !== '/' && pathname.startsWith(props.href)
 
     return (
         <Link href={props.href}>
             <Button variant="outline" className="border-0 items-start">
                 <div>
                     {props.text}
-                    {pathname === props.href ? (
+                    {isExactMatch || isSubpath ? (
                         <div className="h-[2px] w-2/3 bg-primary rounded-lg"></div>
                     ) : null}
                 </div>
