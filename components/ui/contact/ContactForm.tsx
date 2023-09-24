@@ -15,11 +15,13 @@ import {
     FormLabel,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { AlertOctagon, MailCheck, SendHorizonal } from 'lucide-react'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { AlertOctagon, MailCheck } from 'lucide-react'
 import { useState } from 'react'
+import { Textarea } from '../textarea'
 import { Toaster } from '../toaster'
 import { useToast } from '../use-toast'
-import { Textarea } from '../textarea'
 
 const formSchema = z.object({
     first_name: z.string().min(1, {
@@ -242,7 +244,10 @@ export default function ContactForm() {
                                 <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                             </svg>
                         ) : (
-                            <SendHorizonal size={20} className="mr-2" />
+                            <FontAwesomeIcon
+                                icon={faPaperPlane}
+                                className="mr-2"
+                            />
                         )}
                         Submit
                     </Button>
