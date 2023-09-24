@@ -11,11 +11,13 @@ export default function HamburgerMenuNavLink(props: {
 
     return (
         <Link href={props.href} className="w-full">
-            <DropdownMenuItem className="text-lg flex flex-col items-start justify-start w-fit">
-                {props.text}
-                {pathname === props.href ? (
-                    <div className="h-[2px] w-2/3 bg-primary rounded-lg"></div>
-                ) : null}
+            <DropdownMenuItem className="text-lg flex flex-col items-start justify-start w-full">
+                <div className="w-fit">
+                    {props.text}
+                    {pathname === props.href ? (
+                        <div className="h-[2px] w-2/3 bg-primary rounded-lg"></div>
+                    ) : null}
+                </div>
             </DropdownMenuItem>
         </Link>
     )
