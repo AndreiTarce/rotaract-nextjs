@@ -10,7 +10,7 @@ export default function HamburgerMenuNavLink(props: {
     const pathname = usePathname()
 
     return (
-        <Link href={props.href}>
+        <Link href={props.href} className="w-full">
             <DropdownMenuItem className="text-lg flex flex-col items-start justify-start w-fit">
                 {props.text}
                 {pathname === props.href ? (
