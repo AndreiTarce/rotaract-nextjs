@@ -1,6 +1,7 @@
 import AboutVisio from '@/components/about/AboutVisio'
 import background from '@/assets/images/desprenoibg.webp'
 import Image from 'next/image'
+import MemberStatistics from '@/components/about/statistics/MemberStatistics'
 
 export default function About() {
     return (
@@ -25,6 +26,7 @@ export default function About() {
                 />
             </div>
             <div className="mx-16 max-md:mx-4 mt-16">
+                <MemberStatistics />
                 <AboutVisio />
             </div>
         </main>
