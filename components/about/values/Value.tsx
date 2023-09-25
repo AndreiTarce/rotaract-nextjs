@@ -16,9 +16,7 @@ export default function Value(props: {
                 />
             </div>
             <div className="text-lg font-bold">{props.title}</div>
-            <div className="text-xs text-center text-muted-foreground">
-                {props.text}
-            </div>
+            <div className="text-xs text-center">{props.text}</div>
         </div>
     )
 }
