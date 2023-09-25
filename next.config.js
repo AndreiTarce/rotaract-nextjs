@@ -12,6 +12,7 @@ const nextConfig = {
                 hostname: 'rotaract-visio-bucket.s3.eu-central-1.amazonaws.com'
             }
         ],
+        deviceSizes: [320, 640, 768, 1024, 1280, 1920]
     }
 }
 
