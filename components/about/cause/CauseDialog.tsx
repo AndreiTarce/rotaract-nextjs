@@ -70,7 +70,13 @@ export default function CauseDialog(props: ICauseProps) {
                     </Button>
                     <FontAwesomeIcon
                         icon={faDownload}
-                        className="md:hidden absolute top-4 left-4 !my-0 text-[rgb(248, 250, 252)] opacity-70"
+                        className="md:!hidden absolute top-4 left-4 !my-0 text-[rgb(248, 250, 252)] opacity-70"
+                        onClick={() =>
+                            downloadFile(
+                                'https://rotaract-visio-bucket.s3.eu-central-1.amazonaws.com/members/musteata-gabriela.png',
+                                'test.png'
+                            )
+                        }
                     />
                 </DialogHeader>
                 <div className="overflow-y-auto overflow-x-hidden grow text-muted-foreground">
