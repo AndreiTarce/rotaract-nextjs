@@ -1,15 +1,13 @@
 'use client'
 
+import { ICause } from '@/models/causes'
 import { faExpand } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image, { StaticImageData } from 'next/image'
-import CauseDialog from './CauseDialog'
+import Image from 'next/image'
 import { useState } from 'react'
+import CauseDialog from './CauseDialog'
 
-export default function CauseCard(props: {
-    title: string
-    img: StaticImageData
-}) {
+export default function CauseCard(props: ICause) {
     const [isOpen, setIsOpen] = useState(false)
     return (
         <div>
@@ -19,7 +17,7 @@ export default function CauseCard(props: {
             >
                 <div className="relative">
                     <Image
-                        src={props.img}
+                        src={props.images[0]}
                         alt="Cauza"
                         width={135}
                         height={135}
@@ -39,7 +37,9 @@ export default function CauseCard(props: {
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
                 title={props.title}
-                img={props.img}
+                description={props.description}
+                images={props.images}
+                downloadUrl={props.downloadUrl}
             />
         </div>
     )

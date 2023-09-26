@@ -5,13 +5,12 @@ import WhitelistedMember, { IWhitelistedMember } from "@/models/whitelistedMembe
 const PROJECTS_PATH = '/api/projects';
 const MEMBERS_PATH = '/api/members';
 const API_BASE_URL = process.env.API_BASE_URL;
+const CAUSES_PATH = '/api/causes';
 
 export const getProjects = async () => {
     const url = API_BASE_URL + PROJECTS_PATH;
     try {
-        const res = await fetch(url, {
-            // cache: "no-store",
-        });
+        const res = await fetch(url);
 
         if (!res.ok) {
             throw new Error("Failed to fetch projects");
@@ -26,9 +25,7 @@ export const getProjects = async () => {
 export const getProject = async (projectUrl: string) => {
     const url = `${API_BASE_URL + PROJECTS_PATH}/${projectUrl}`;
     try {
-        const res = await fetch(url, {
-            // cache: "no-store",
-        });
+        const res = await fetch(url);
 
         if (!res.ok) {
             throw new Error("Failed to fetch project");
@@ -43,9 +40,7 @@ export const getProject = async (projectUrl: string) => {
 export const getMembers = async () => {
     const url = API_BASE_URL + MEMBERS_PATH;
     try {
-        const res = await fetch(url, {
-            // cache: "no-store",
-        });
+        const res = await fetch(url);
 
         if (!res.ok) {
             throw new Error("Failed to fetch members");
@@ -89,4 +84,18 @@ export const getPastPresidents = async () => {
     await connectMongoDB();
     const pastPresidents: IMember[] = await Member.find({ role: 'past president' }).sort({ start_mandate: -1 }).lean();
     return pastPresidents;
+};
+
+export const getCauses = async () => {
+    const url = API_BASE_URL + CAUSES_PATH;
+    try {
+        const res = await fetch(url);
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch members");
+        }
+        return res.json();
+    } catch (error) {
+        console.log("Error loading members: ", error);
+    }
 };

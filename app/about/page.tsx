@@ -28,9 +28,13 @@ export default function About() {
                 />
             </div>
             <div className="mx-16 max-md:mx-4 mt-16">
-                <MemberStatistics />
-                <AboutVisio />
-                <OurCauses />
+                <div className="md:grid md:grid-cols-2 gap-4 max-md:flex max-md:flex-col-reverse">
+                    <div className="flex flex-col gap-4">
+                        <MemberStatistics />
+                        <OurCauses />
+                    </div>
+                    <Card>test</Card>
+                </div>
             </div>
         </main>
     )
