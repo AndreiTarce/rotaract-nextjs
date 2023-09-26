@@ -31,7 +31,7 @@ export default function About() {
                 <div className="md:grid md:grid-cols-2 gap-4 max-md:flex max-md:flex-col-reverse">
                     <div className="flex flex-col gap-4">
                         <MemberStatistics />
-                        <OurCauses />
+                        {/* <OurCauses /> */}
                     </div>
                     <Card>test</Card>
                 </div>
