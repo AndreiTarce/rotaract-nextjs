@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function AboutVisio() {
     return (
-        <Card className="overflow-hidden mt-8 shadow-md border rounded-lg">
+        <Card className="overflow-hidden mt-8 shadow-md border rounded-lg relative z-0">
             <div className="md:grid md:grid-cols-[50%_50%]">
                 <Image
                     src={clujImage}
@@ -40,17 +40,7 @@ export default function AboutVisio() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="relative">
-                        <Image
-                            src={clujBiserica}
-                            alt="Cluj-Napoca Church"
-                            fill
-                            style={{
-                                objectFit: 'cover',
-                            }}
-                            className="md:hidden"
-                            loading="lazy"
-                        />
-                        <div className="text-end dark:text-muted-foreground md:text-muted-foreground mb-8">
+                        <div className="text-end dark:text-muted-foreground md:text-muted-foreground mb-8 relative z-10">
                             <p className="mb-4 max-md:text-justify">
                                 Clubul nostru a fost fondat în data de 12
                                 octombrie 2013, sub îndrumarea clubului{' '}
@@ -78,6 +68,16 @@ export default function AboutVisio() {
                                 comunitate.
                             </p>
                         </div>
+                        <Image
+                            src={clujBiserica}
+                            alt="Cluj-Napoca Church"
+                            fill
+                            style={{
+                                objectFit: 'cover',
+                            }}
+                            className="md:hidden"
+                            loading="lazy"
+                        />
                         <ValuesCarousel>
                             <Value
                                 icon={faUserGroup}
