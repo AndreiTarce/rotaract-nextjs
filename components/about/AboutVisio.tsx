@@ -1,9 +1,16 @@
 import clujImage from '@/assets/images/cluj4.webp'
 import clujBiserica from '@/assets/images/cluj_biserica2.webp'
+import {
+    faBrain,
+    faCircleNodes,
+    faHandFist,
+    faHandHoldingMedical,
+    faHandshakeAngle,
+    faUserGroup,
+} from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import Value from './values/Value'
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import ValuesCarousel from './values/ValuesCarousel'
 
 export default function AboutVisio() {
@@ -41,63 +48,52 @@ export default function AboutVisio() {
                             loading="lazy"
                         />
                         <div className="text-end dark:text-muted-foreground md:text-muted-foreground mb-8">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Tincidunt id aliquet risus
-                            feugiat in ante. At elementum eu facilisis sed odio
-                            morbi quis commodo. Pulvinar etiam non quam lacus
-                            suspendisse faucibus. Vitae congue eu consequat ac
-                            felis donec. Habitasse platea dictumst quisque
-                            sagittis purus sit amet volutpat.
+                            <p className="mb-4 max-md:text-justify">
+                                Clubul nostru a fost fondat în data de 12
+                                octombrie 2013, sub îndrumarea clubului Rotary
+                                Visio Cluj-Napoca. Cu o istorie de implicare
+                                comunitară de peste un deceniu, ne străduim să
+                                aducem schimbări pozitive în orașul nostru și în
+                                lumea din jurul nostru.
+                            </p>
+                            <p className="max-md:text-justify">
+                                Misiunea noastră este de a inspira și mobiliza
+                                tinerii din Cluj-Napoca pentru a se implica
+                                activ în proiecte de voluntariat, dezvoltând
+                                astfel lideri viitori și promovând serviciul în
+                                comunitate.
+                            </p>
                         </div>
                         <ValuesCarousel>
                             <Value
-                                icon={faUsers}
+                                icon={faUserGroup}
                                 title="Prietenie"
-                                text="Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Perspiciatis doloremque nesciunt optio. Qui
-                            debitis fuga natus amet a nobis aspernatur! Suscipit
-                            nam nostrum fuga nulla aliquid a eaque illum? Minus?"
+                                text="Poate este nedrept să ne numim un simplu club. Suntem o comunitate unită de prieteni și considerăm că fără legături autentice nu putem funcționa la potențialul maxim."
                             />
                             <Value
-                                icon={faUsers}
-                                title="Prietenie"
-                                text="Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Perspiciatis doloremque nesciunt optio. Qui
-                            debitis fuga natus amet a nobis aspernatur! Suscipit
-                            nam nostrum fuga nulla aliquid a eaque illum? Minus?"
+                                icon={faHandshakeAngle}
+                                title="Implicare"
+                                text="Suntem dornici de a ne implica activ în comunitatea noastră. Acțiunile noastre demonstrează angajamentul nostru față de nevoile celor din jur și dorința de a face o schimbare pozitivă."
                             />
                             <Value
-                                icon={faUsers}
-                                title="Prietenie"
-                                text="Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Perspiciatis doloremque nesciunt optio. Qui
-                            debitis fuga natus amet a nobis aspernatur! Suscipit
-                            nam nostrum fuga nulla aliquid a eaque illum? Minus?"
+                                icon={faBrain}
+                                title="Dezvoltare"
+                                text="Suntem mereu în căutare de oportunități de creștere personală și profesională. Credem cu tărie că investind atât în dezvoltarea noastră, cât și a tinerilor din România punem bazele unui viitor mai bun."
                             />
                             <Value
-                                icon={faUsers}
-                                title="Prietenie"
-                                text="Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Perspiciatis doloremque nesciunt optio. Qui
-                            debitis fuga natus amet a nobis aspernatur! Suscipit
-                            nam nostrum fuga nulla aliquid a eaque illum? Minus?"
+                                icon={faHandHoldingMedical}
+                                title="Serviciu"
+                                text="Serviciul în comunitate este inima a ceea ce facem. Ne angajăm să fim servitori activi ai societății, căutând mereu modalități de a ajuta și de a sprijini pe cei în nevoie."
                             />
                             <Value
-                                icon={faUsers}
-                                title="Prietenie"
-                                text="Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Perspiciatis doloremque nesciunt optio. Qui
-                            debitis fuga natus amet a nobis aspernatur! Suscipit
-                            nam nostrum fuga nulla aliquid a eaque illum? Minus?"
+                                icon={faHandFist}
+                                title="Leadership"
+                                text="Suntem lideri în formare, pregătiți să inspirăm și să ghidăm. Căutăm mereu oportunități de a dezvolta lideri viitori și de a influența schimbarea în comunitatea noastră."
                             />
                             <Value
-                                icon={faUsers}
-                                title="Prietenie"
-                                text="Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Perspiciatis doloremque nesciunt optio. Qui
-                            debitis fuga natus amet a nobis aspernatur! Suscipit
-                            nam nostrum fuga nulla aliquid a eaque illum? Minus?"
+                                icon={faCircleNodes}
+                                title="Comunitate"
+                                text="Suntem mândri să facem parte dintr-o rețea solidă de cluburi Rotaract din întregul nostru District. Împreună, suntem o forță colectivă, capabilă să aducă schimbări semnificative și durabile în lumea din jurul nostru."
                             />
                         </ValuesCarousel>
                     </CardContent>

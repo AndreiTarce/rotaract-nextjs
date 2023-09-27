@@ -4,19 +4,27 @@ import Image from 'next/image'
 import MemberStatistics from '@/components/about/statistics/MemberStatistics'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import OurCauses from '@/components/about/cause/OurCauses'
+import OurValues from '@/components/about/values/OurValues'
 
 export default function About() {
     return (
         <main className="mt-12">
             <div className="w-full relative h-screen">
-                <h1 className="mx-16 max-md:mx-4 w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-2">
+                <h1 className="mx-16 max-md:mx-4 w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-4">
                     Despre noi
                 </h1>
-                <p className="mx-16 max-md:mx-4 md:w-2/3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Blanditiis minima tenetur id necessitatibus rem molestias
-                    optio accusamus omnis, fugiat distinctio tempore at ad! Ab
-                    illo dicta ipsam temporibus fuga fugiat.
+                <p className="mx-16 max-md:mx-4 md:w-2/3 mb-2 ">
+                    Clubul nostru a fost fondat în data de 12 octombrie 2013,
+                    sub îndrumarea clubului Rotary Visio Cluj-Napoca. Cu o
+                    istorie de implicare comunitară de peste un deceniu, ne
+                    străduim să aducem schimbări pozitive în orașul nostru și în
+                    lumea din jurul nostru.
+                </p>
+                <p className="mx-16 max-md:mx-4 md:w-2/3 ">
+                    Misiunea noastră este de a inspira și mobiliza tinerii din
+                    Cluj-Napoca pentru a se implica activ în proiecte de
+                    voluntariat, dezvoltând astfel lideri viitori și promovând
+                    serviciul în comunitate.
                 </p>
                 <Image
                     src={background}
@@ -33,7 +41,7 @@ export default function About() {
                         <MemberStatistics />
                         <OurCauses />
                     </div>
-                    <Card>test</Card>
+                    <OurValues />
                 </div>
             </div>
         </main>

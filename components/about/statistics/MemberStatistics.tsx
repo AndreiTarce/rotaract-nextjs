@@ -33,7 +33,7 @@ export default function MemberStatistics() {
         <Card className="shadow-md border rounded-lg">
             <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-2xl text-rotaract-cranberry font-extrabold bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
-                    Membri curenti
+                    Membri curenți
                 </CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-[repeat(5,_auto)] grid-flow-col-dense">

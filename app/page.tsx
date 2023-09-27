@@ -37,10 +37,10 @@ export default async function Home() {
                         </span>
                     </div>
                     <div className="text-4xl flex flex-col gap-2 text-white mx-16 max-md:mx-4">
-                        <span>Vrei sa te implici?</span>
+                        <span>Vrei să te implici?</span>
                         <Link href="/contact" className="w-fit h-fit">
                             <Button className="w-fit text-lg bg-rotaract-cranberry text-white hover:bg-[#020817BB]">
-                                Contacteaza-ne
+                                Contactează-ne
                             </Button>
                         </Link>
                     </div>

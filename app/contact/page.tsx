@@ -28,14 +28,13 @@ export default function Contact() {
     return (
         <main className="mt-12 mx-24 max-md:mx-4 mb-8 grid md:grid-cols-2 min-h-screen">
             <div className="mb-8">
-                <h1 className="w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-2">
-                    Contacteaza-ne
+                <h1 className="w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-4">
+                    Contactează-ne
                 </h1>
                 <p className="text-muted-foreground">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Doloribus odit aut illo neque corporis sapiente cum eum
-                    laboriosam iure unde temporibus, doloremque eos quae?
-                    Expedita soluta ratione adipisci magni velit.
+                    Vrei să te implici în comunitatea locală, sau pur și simplu
+                    vrei să afli mai multe despre noi? Suntem nerăbdători să
+                    auzim noi inițiative, așa că nu ezita să ne contactezi!
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mt-8">
                     <div className="flex flex-col gap-4">
@@ -118,10 +117,11 @@ export default function Contact() {
             <div className="flex justify-center md:justify-end h-fit">
                 <Card className="w-full max-w-xl shadow-md border rounded-lg">
                     <CardHeader>
-                        <CardTitle>Get in touch with us!</CardTitle>
+                        <CardTitle>Intră în legătură cu noi!</CardTitle>
                         <CardDescription>
-                            Fill out your info and our team will get back to you
-                            as soon as possible.
+                            Completează formularul de mai jos iar echipa noastră
+                            va reveni cu un răspuns în cel mai scurt timp
+                            posibil.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
