@@ -14,6 +14,7 @@ import {
     faTiktok,
 } from '@fortawesome/free-brands-svg-icons'
 import {
+    faArrowUpRightFromSquare,
     faCalendar,
     faChalkboardUser,
     faClock,
@@ -27,7 +28,7 @@ import Link from 'next/link'
 export default function Contact() {
     return (
         <main className="mt-12 mx-24 max-md:mx-4 mb-8 grid md:grid-cols-2 min-h-screen">
-            <div className="mb-8">
+            <div className="mb-4">
                 <h1 className="w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-4">
                     Contactează-ne
                 </h1>
@@ -92,24 +93,34 @@ export default function Contact() {
                                 icon={faLocationDot}
                                 className="mr-4 mt-1"
                             />
-                            <p>
-                                Facultatea de Business, Universitatea Babes
-                                Bolyai Cluj-Napoca
-                            </p>
+                            <Link
+                                href="https://tbs.ubbcluj.ro/"
+                                target="_blank"
+                            >
+                                <p>
+                                    Facultatea de Business, Universitatea
+                                    Babeș-Bolyai Cluj-Napoca{' '}
+                                    <FontAwesomeIcon
+                                        icon={faArrowUpRightFromSquare}
+                                        size="xs"
+                                        className="opacity-50"
+                                    />
+                                </p>
+                            </Link>
                         </div>
                         <div className="flex text-muted-foreground mb-2">
                             <FontAwesomeIcon
                                 icon={faCalendar}
                                 className="mr-4 mt-1"
                             />
-                            <p>In fiecare Joi</p>
+                            <p>În fiecare Joi</p>
                         </div>
                         <div className="flex text-muted-foreground mb-2">
                             <FontAwesomeIcon
                                 icon={faClock}
                                 className="mr-4 mt-1"
                             />
-                            <p>19:00</p>
+                            <p>20:00</p>
                         </div>
                     </ContactInfoCard>
                 </div>

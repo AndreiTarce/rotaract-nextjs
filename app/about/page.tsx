@@ -5,6 +5,9 @@ import MemberStatistics from '@/components/about/statistics/MemberStatistics'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import OurCauses from '@/components/about/cause/OurCauses'
 import OurValues from '@/components/about/values/OurValues'
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 export default function About() {
     return (
@@ -14,11 +17,22 @@ export default function About() {
                     Despre noi
                 </h1>
                 <p className="mx-16 max-md:mx-4 md:w-2/3 mb-2 ">
-                    Clubul nostru a fost fondat în data de 12 octombrie 2013,
-                    sub îndrumarea clubului Rotary Visio Cluj-Napoca. Cu o
-                    istorie de implicare comunitară de peste un deceniu, ne
-                    străduim să aducem schimbări pozitive în orașul nostru și în
-                    lumea din jurul nostru.
+                    Clubul nostru a fost chartat în data de 12 octombrie 2013,
+                    sub îndrumarea clubului{' '}
+                    <Link
+                        href="https://rotaryvisio.ro/"
+                        target="_blank"
+                        className="underline underline-offset-4"
+                    >
+                        Rotary Visio Cluj-Napoca{' '}
+                        <FontAwesomeIcon
+                            icon={faArrowUpRightFromSquare}
+                            size="xs"
+                        />
+                    </Link>{' '}
+                    . Cu o istorie de implicare comunitară de peste un deceniu,
+                    ne străduim să aducem schimbări pozitive în orașul nostru și
+                    în lumea din jurul nostru.
                 </p>
                 <p className="mx-16 max-md:mx-4 md:w-2/3 ">
                     Misiunea noastră este de a inspira și mobiliza tinerii din

@@ -116,12 +116,9 @@ export default function ContactForm() {
                     name="first_name"
                     render={({ field }) => (
                         <FormItem className="mb-4">
-                            <FormLabel>First name</FormLabel>
+                            <FormLabel>Prenume</FormLabel>
                             <FormControl>
-                                <Input
-                                    placeholder="Your first name"
-                                    {...field}
-                                />
+                                <Input placeholder="Prenumele tău" {...field} />
                             </FormControl>
                             {form.formState.errors.first_name && (
                                 <FormDescription className="text-destructive">
@@ -142,12 +139,9 @@ export default function ContactForm() {
                     name="last_name"
                     render={({ field }) => (
                         <FormItem className="mb-4">
-                            <FormLabel>Last name</FormLabel>
+                            <FormLabel>Nume</FormLabel>
                             <FormControl>
-                                <Input
-                                    placeholder="Your last name"
-                                    {...field}
-                                />
+                                <Input placeholder="Numele tău" {...field} />
                             </FormControl>
                             {form.formState.errors.last_name && (
                                 <FormDescription className="text-destructive">
@@ -171,7 +165,7 @@ export default function ContactForm() {
                             <FormLabel>Email</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="Your email address"
+                                    placeholder="Adresa ta de email"
                                     {...field}
                                 />
                             </FormControl>
@@ -191,10 +185,10 @@ export default function ContactForm() {
                     name="subject"
                     render={({ field }) => (
                         <FormItem className="mb-4">
-                            <FormLabel>Subject</FormLabel>
+                            <FormLabel>Subiect</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="Message subject"
+                                    placeholder="Subiectul mesajului"
                                     {...field}
                                 />
                             </FormControl>
@@ -214,10 +208,10 @@ export default function ContactForm() {
                     name="message"
                     render={({ field }) => (
                         <FormItem className="mb-4">
-                            <FormLabel>Message</FormLabel>
+                            <FormLabel>Mesaj</FormLabel>
                             <FormControl>
                                 <Textarea
-                                    placeholder="Type your message here"
+                                    placeholder="Scrie mesajul tău aici"
                                     {...field}
                                 />
                             </FormControl>
@@ -249,7 +243,7 @@ export default function ContactForm() {
                                 className="mr-2"
                             />
                         )}
-                        Submit
+                        Trimite
                     </Button>
                 </div>
             </form>

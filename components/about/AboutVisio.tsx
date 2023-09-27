@@ -1,6 +1,7 @@
 import clujImage from '@/assets/images/cluj4.webp'
 import clujBiserica from '@/assets/images/cluj_biserica2.webp'
 import {
+    faArrowUpRightFromSquare,
     faBrain,
     faCircleNodes,
     faHandFist,
@@ -12,6 +13,8 @@ import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import Value from './values/Value'
 import ValuesCarousel from './values/ValuesCarousel'
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function AboutVisio() {
     return (
@@ -50,11 +53,22 @@ export default function AboutVisio() {
                         <div className="text-end dark:text-muted-foreground md:text-muted-foreground mb-8">
                             <p className="mb-4 max-md:text-justify">
                                 Clubul nostru a fost fondat în data de 12
-                                octombrie 2013, sub îndrumarea clubului Rotary
-                                Visio Cluj-Napoca. Cu o istorie de implicare
-                                comunitară de peste un deceniu, ne străduim să
-                                aducem schimbări pozitive în orașul nostru și în
-                                lumea din jurul nostru.
+                                octombrie 2013, sub îndrumarea clubului{' '}
+                                <Link
+                                    href="https://rotaryvisio.ro/"
+                                    target="_blank"
+                                    className="underline underline-offset-4"
+                                >
+                                    Rotary Visio Cluj-Napoca{' '}
+                                    <FontAwesomeIcon
+                                        icon={faArrowUpRightFromSquare}
+                                        size="xs"
+                                    />
+                                </Link>
+                                . Cu o istorie de implicare comunitară de peste
+                                un deceniu, ne străduim să aducem schimbări
+                                pozitive în orașul nostru și în lumea din jurul
+                                nostru.
                             </p>
                             <p className="max-md:text-justify">
                                 Misiunea noastră este de a inspira și mobiliza
