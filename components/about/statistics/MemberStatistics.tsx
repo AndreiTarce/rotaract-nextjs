@@ -16,7 +16,7 @@ const MemberStatistic = (props: {
         <div>
             <FontAwesomeIcon
                 icon={props.icon}
-                className="h-full w-auto text-muted-foreground"
+                className="!h-full w-auto text-muted-foreground"
             />
         </div>
         <div className="flex flex-col w-fit">
