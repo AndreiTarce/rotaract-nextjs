@@ -5,6 +5,12 @@ export interface ISection {
     body: string;
 }
 
+export interface IProjectPartner {
+    name: string,
+    logoUrl: string,
+    link: string
+}
+
 export interface IProject {
     _id: number,
     title: string,
@@ -14,13 +20,20 @@ export interface IProject {
     coverImg: string,
     images: string[],
     url: string,
-    sections: ISection[];
+    sections: ISection[],
+    partners: IProjectPartner[];
 }
 
 const SectionSchema = new Schema<ISection>({
     title: { type: String, required: true },
     body: { type: String, required: true }
 });
+
+const ProjectPartnerSchema = new Schema<IProjectPartner>({
+    name: { type: String },
+    logoUrl: { type: String },
+    link: { type: String }
+})
 
 const projectSchema = new Schema<IProject>(
     {
@@ -31,7 +44,8 @@ const projectSchema = new Schema<IProject>(
         coverImg: String,
         images: [{ type: String }],
         url: String,
-        sections: [SectionSchema]
+        sections: [SectionSchema],
+        partners: [ProjectPartnerSchema]
     },
     {
         timestamps: true,

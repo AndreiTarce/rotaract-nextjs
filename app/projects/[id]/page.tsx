@@ -1,7 +1,9 @@
 import ProjectImageCarousel from '@/components/ui/project/ProjectImageCarousel'
 import { getProject } from '@/lib/entityService'
-import { IProject, ISection } from '@/models/project'
+import { IProject, IProjectPartner, ISection } from '@/models/project'
 import Image from 'next/image'
+import testlogo from '@/assets/images/visio.webp'
+import Link from 'next/link'
 
 type ProjectSectionProps = ISection & { key: number }
 type ProjectImageProps = { key?: number; src: string }
@@ -25,6 +27,7 @@ const ProjectImage = (props: ProjectImageProps) => (
         width={500}
         height={500}
         className="rounded-lg"
+        loading="eager"
     />
 )
 
@@ -44,6 +47,7 @@ export default async function Project({ params }: { params: { id: string } }) {
                         width={3240}
                         height={1080}
                         className="rounded-lg mb-8"
+                        priority
                     />
                     <p
                         className="lg:text-xl text-muted-foreground"
@@ -58,6 +62,44 @@ export default async function Project({ params }: { params: { id: string } }) {
                             key={index}
                         />
                     ))}
+                    {project.partners && (
+                        <>
+                            <h2 className="mt-8 text-3xl font-bold mb-2">
+                                Parteneri
+                            </h2>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {project.partners.map(
+                                    (
+                                        partner: IProjectPartner,
+                                        index: number
+                                    ) => (
+                                        <Link
+                                            href={partner.link}
+                                            target="_blank"
+                                            key={index}
+                                            className="relative flex flex-col items-center justify-center gap-4 self-center p-3 rounded-lg hover:bg-black hover:dark:bg-white hover:!bg-opacity-10"
+                                        >
+                                            {partner.logoUrl ? (
+                                                <div className="grow">
+                                                    <Image
+                                                        src={partner.logoUrl}
+                                                        alt={`${partner.name} logo`}
+                                                        width={200}
+                                                        height={200}
+                                                        className="h-full w-auto"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <p className="font-semibold">
+                                                    {partner.name}
+                                                </p>
+                                            )}
+                                        </Link>
+                                    )
+                                )}
+                            </div>
+                        </>
+                    )}
                 </div>
                 <div className="lg:hidden grow">
                     <ProjectImageCarousel>
