@@ -59,7 +59,7 @@ export default async function Project({ params }: { params: { id: string } }) {
                         />
                     ))}
                 </div>
-                <div className="lg:hidden">
+                <div className="lg:hidden grow">
                     <ProjectImageCarousel>
                         {project.images.map((image, index) => (
                             <ProjectImage key={index} src={image} />
