@@ -10,7 +10,7 @@ const CAUSES_PATH = '/api/causes';
 export const getProjects = async () => {
     const url = API_BASE_URL + PROJECTS_PATH;
     try {
-        const res = await fetch(url);
+        const res = await fetch(url, { cache: 'no-store' });
 
         if (!res.ok) {
             throw new Error("Failed to fetch projects");
@@ -25,7 +25,7 @@ export const getProjects = async () => {
 export const getProject = async (projectUrl: string) => {
     const url = `${API_BASE_URL + PROJECTS_PATH}/${projectUrl}`;
     try {
-        const res = await fetch(url);
+        const res = await fetch(url, { cache: 'no-store' });
 
         if (!res.ok) {
             throw new Error("Failed to fetch project");
@@ -40,7 +40,7 @@ export const getProject = async (projectUrl: string) => {
 export const getMembers = async () => {
     const url = API_BASE_URL + MEMBERS_PATH;
     try {
-        const res = await fetch(url);
+        const res = await fetch(url, { cache: 'no-store' });
 
         if (!res.ok) {
             throw new Error("Failed to fetch members");
@@ -55,7 +55,7 @@ export const getMember = async (memberId: string) => {
     const url = `${API_BASE_URL + PROJECTS_PATH}/${memberId}`;
     try {
         const res = await fetch(url, {
-            // cache: "no-store",
+            cache: "no-store",
         });
 
         if (!res.ok) {
