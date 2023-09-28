@@ -27,10 +27,10 @@ export default async function HamburgerMenu() {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-screen mt-3">
-                    <HamburgerMenuNavLink href="/" text="Home" />
-                    <HamburgerMenuNavLink href="/about" text="About us" />
-                    <HamburgerMenuNavLink href="/projects" text="Projects" />
-                    <HamburgerMenuNavLink href="/members" text="Members" />
+                    <HamburgerMenuNavLink href="/" text="Acasă" />
+                    <HamburgerMenuNavLink href="/about" text="Despre noi" />
+                    <HamburgerMenuNavLink href="/projects" text="Proiecte" />
+                    <HamburgerMenuNavLink href="/members" text="Membri" />
                     <HamburgerMenuNavLink href="/contact" text="Contact" />
                     <DropdownMenuSeparator />
                     <DropdownMenuLabel>

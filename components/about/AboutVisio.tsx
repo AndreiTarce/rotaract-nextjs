@@ -42,7 +42,7 @@ export default function AboutVisio() {
                     <CardContent className="relative">
                         <div className="text-end dark:text-muted-foreground md:text-muted-foreground mb-8 relative z-10">
                             <p className="mb-4 max-md:text-justify">
-                                Clubul nostru a fost fondat în data de 12
+                                Clubul nostru a fost chartat în data de 12
                                 octombrie 2013, sub îndrumarea clubului{' '}
                                 <Link
                                     href="https://rotaryvisio.ro/"

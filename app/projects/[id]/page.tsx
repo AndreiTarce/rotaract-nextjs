@@ -9,7 +9,12 @@ type ProjectImageProps = { key?: number; src: string }
 const ProjectSection = (props: ProjectSectionProps) => (
     <section className="mt-8">
         <h2 className="text-3xl font-bold mb-2">{props.title}</h2>
-        <p className="lg:text-xl text-muted-foreground">{props.body}</p>
+        <p
+            className="lg:text-xl text-muted-foreground"
+            dangerouslySetInnerHTML={{
+                __html: props.body,
+            }}
+        ></p>
     </section>
 )
 
@@ -38,7 +43,7 @@ export default async function Project({ params }: { params: { id: string } }) {
                         alt={`${project.title} Cover Image`}
                         width={3240}
                         height={1080}
-                        className="rounded-lg mb-8 max-md:hidden"
+                        className="rounded-lg mb-8"
                     />
                     <p
                         className="lg:text-xl text-muted-foreground"

@@ -8,10 +8,10 @@ export default async function Projects() {
                 Proiectele noastre
             </h1>
             <p className="text-muted-foreground md:w-2/3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Doloribus odit aut illo neque corporis sapiente cum eum
-                laboriosam iure unde temporibus, doloremque eos quae? Expedita
-                soluta ratione adipisci magni velit.
+                Principala noastră formă de ajutor o reprezintă proiectele pe
+                care le organizăm. Prin intermediul acestora încercăm să
+                facilităm cât mai mult implicarea comunității în scopuri
+                caritabile. Descoperă mai jos principalele noastre proiecte!
             </p>
             <Separator className="mb-8 mt-4" />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

@@ -22,16 +22,16 @@ export function Navigation() {
                 </Link>
                 <ul className="flex flex-row gap-1">
                     <li className="max-md:hidden">
-                        <NavLink href="/" text="Home" />
+                        <NavLink href="/" text="Acasă" />
                     </li>
                     <li className="max-md:hidden">
-                        <NavLink href="/about" text="About us" />
+                        <NavLink href="/about" text="Despre noi" />
                     </li>
                     <li className="max-md:hidden">
-                        <NavLink href="/projects" text="Projects" />
+                        <NavLink href="/projects" text="Proiecte" />
                     </li>
                     <li className="max-md:hidden">
-                        <NavLink href="/members" text="Members" />
+                        <NavLink href="/members" text="Membri" />
                     </li>
                     <li className="max-md:hidden">
                         <NavLink href="/contact" text="Contact" />
