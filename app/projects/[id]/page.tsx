@@ -35,7 +35,7 @@ export default async function Project({ params }: { params: { id: string } }) {
     const id = params.id
     const project: IProject = await getProject(id)
     return (
-        <main className="mt-12 mb-8 mx-16 max-md:mx-4">
+        <main className="mt-5 md:mt-12 mb-8 mx-16 max-md:mx-4">
             <article className="flex flex-col gap-4">
                 <div className="xl:mx-72 lg:mx-48 mb-8">
                     <h1 className="text-4xl font-bold break-keep md:text-5xl lg:text-7xl mb-4">
