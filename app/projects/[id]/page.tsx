@@ -67,7 +67,7 @@ export default async function Project({ params }: { params: { id: string } }) {
                             <h2 className="mt-8 text-3xl font-bold mb-2">
                                 Parteneri
                             </h2>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
                                 {project.partners.map(
                                     (
                                         partner: IProjectPartner,

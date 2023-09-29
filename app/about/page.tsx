@@ -11,7 +11,7 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 export default function About() {
     return (
-        <main className="mt-12">
+        <main className="mt-5 md:mt-12">
             <div className="w-full relative h-screen">
                 <h1 className="mx-16 max-md:mx-4 w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-4">
                     Despre noi

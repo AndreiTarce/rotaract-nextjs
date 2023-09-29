@@ -14,7 +14,7 @@ const SlideInWrapper = dynamic(
 )
 export default async function Home() {
     return (
-        <main className="h-fit pt-12">
+        <main className="h-fit pt-5 md:pt-12">
             <div className="h-fit relative">
                 <Image
                     src={background}

@@ -27,7 +27,7 @@ import Link from 'next/link'
 
 export default function Contact() {
     return (
-        <main className="mt-12 mx-24 max-md:mx-4 mb-8 grid md:grid-cols-2 min-h-screen">
+        <main className="mt-5 md:mt-12 mx-24 max-md:mx-4 mb-8 grid md:grid-cols-2 min-h-screen">
             <div className="mb-4">
                 <h1 className="w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-4">
                     Contactează-ne

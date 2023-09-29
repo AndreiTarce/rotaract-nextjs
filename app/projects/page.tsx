@@ -3,7 +3,7 @@ import { Separator } from '@/components/ui/separator'
 
 export default async function Projects() {
     return (
-        <main className="mt-12 mx-16 max-md:mx-4 min-h-screen">
+        <main className="mt-5 md:mt-12 mx-16 max-md:mx-4 min-h-screen">
             <h1 className="w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-2">
                 Proiectele noastre
             </h1>
