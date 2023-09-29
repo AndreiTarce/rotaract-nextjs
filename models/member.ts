@@ -3,6 +3,8 @@ import mongoose, { Schema } from "mongoose";
 export interface IMemberLinks {
     facebook: string;
     linkedin: string;
+    instagram: string;
+    tiktok: string;
 }
 
 export interface IMember {
@@ -19,7 +21,9 @@ export interface IMember {
 
 const SectionSchema = new Schema<IMemberLinks>({
     facebook: { type: String, required: false },
-    linkedin: { type: String, required: false }
+    linkedin: { type: String, required: false },
+    instagram: { type: String, required: false },
+    tiktok: { type: String, required: false }
 });
 
 const memberSchema = new Schema<IMember>(

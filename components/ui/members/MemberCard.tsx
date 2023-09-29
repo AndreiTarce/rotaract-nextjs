@@ -5,6 +5,12 @@ import { Button } from '../button'
 import { Card } from '../card'
 import { Badge } from '../badge'
 import Image from 'next/image'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+    faFacebook,
+    faInstagram,
+    faLinkedin,
+} from '@fortawesome/free-brands-svg-icons'
 
 const MemberCard = (props: IMember) => {
     return (
@@ -35,19 +41,15 @@ const MemberCard = (props: IMember) => {
                         {props.description}
                     </p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-3 items-center">
                     {props.urls.facebook && (
                         <Link
                             href={props.urls.facebook}
                             className="w-fit"
                             target="_blank"
                         >
-                            <Button size="icon">
-                                <Facebook />
-                                <span className="sr-only">
-                                    Facebook profile
-                                </span>
-                            </Button>
+                            <FontAwesomeIcon icon={faFacebook} size="2x" />
+                            <span className="sr-only">Facebook profile</span>
                         </Link>
                     )}
                     {props.urls.linkedin && (
@@ -56,12 +58,18 @@ const MemberCard = (props: IMember) => {
                             className="w-fit"
                             target="_blank"
                         >
-                            <Button size="icon">
-                                <Linkedin />
-                                <span className="sr-only">
-                                    Linkedin profile
-                                </span>
-                            </Button>
+                            <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                            <span className="sr-only">Linkedin profile</span>
+                        </Link>
+                    )}
+                    {props.urls.instagram && (
+                        <Link
+                            href={props.urls.instagram}
+                            className="w-fit"
+                            target="_blank"
+                        >
+                            <FontAwesomeIcon icon={faInstagram} size="2x" />
+                            <span className="sr-only">Instagram profile</span>
                         </Link>
                     )}
                 </div>

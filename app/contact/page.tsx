@@ -46,7 +46,7 @@ export default function Contact() {
                                 </p>
                             </Link>
                         </ContactInfoCard>
-                        <ContactInfoCard title="Socials" icon={faHashtag}>
+                        <ContactInfoCard title="Social Media" icon={faHashtag}>
                             <div className="flex gap-4 text-muted-foreground">
                                 <Link
                                     href="https://www.instagram.com/rotaractvisiocj/"

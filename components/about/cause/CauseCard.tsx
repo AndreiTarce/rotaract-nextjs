@@ -12,15 +12,15 @@ export default function CauseCard(props: ICause) {
     return (
         <div>
             <div
-                className="p-2 relative rounded-lg w-fit h-fit max-w-[150px] hover:shadow-lg hover:scale-105 hover:cursor-pointer hover:bg-black hover:!bg-opacity-10"
+                className="p-2 relative rounded-lg w-fit h-fit max-w-[180px] hover:shadow-lg hover:scale-105 hover:cursor-pointer hover:bg-black hover:!bg-opacity-10"
                 onClick={() => setIsOpen(true)}
             >
                 <div className="relative">
                     <Image
                         src={props.images[0]}
                         alt="Cauza"
-                        width={135}
-                        height={135}
+                        width={180}
+                        height={180}
                         className="rounded-lg"
                     />
                     <FontAwesomeIcon
