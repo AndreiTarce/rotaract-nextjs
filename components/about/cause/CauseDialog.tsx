@@ -53,7 +53,7 @@ export default function CauseDialog(props: ICauseProps) {
         <Dialog open={props.isOpen} onOpenChange={props.setIsOpen}>
             <DialogContent className="h-[80%] w-[80%] max-w-[80%] max-md:h-[90%] max-md:max-w-[90%] max-md:w-[90%] rounded-lg flex flex-col">
                 <DialogHeader className="flex">
-                    <DialogTitle className="text-5xl font-extrabold max-md:text-5xl mb-4 w-fit">
+                    <DialogTitle className="text-5xl font-extrabold max-md:text-3xl max-md:mt-4 mb-4 w-fit">
                         {props.title}
                     </DialogTitle>
                     <Button
