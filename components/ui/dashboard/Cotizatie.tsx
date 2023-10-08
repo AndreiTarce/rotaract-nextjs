@@ -25,7 +25,7 @@ export default function Cotizatie() {
                 </div>
                 <FontAwesomeIcon
                     icon={faDownload}
-                    className="self-center h-8 w-8"
+                    className="self-center h-8 w-8 text-muted-foreground"
                 />
             </div>
         </Link>

@@ -45,7 +45,7 @@ export default function IstoricMinute() {
                     </Button>
                 </div>
                 <ScrollArea className="border rounded h-96">
-                    <div className="p-4 flex flex-col">
+                    <div className="p-2 md:p-4 flex flex-col">
                         <Cotizatie />
                         <Separator className="my-1" />
                         <Cotizatie />
