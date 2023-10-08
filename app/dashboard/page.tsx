@@ -5,10 +5,9 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
-import Cotizatie from '@/components/ui/dashboard/Cotizatie'
+import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru'
 import ImportantLinks from '@/components/ui/dashboard/ImportantLinks'
 import IstoricMinute from '@/components/ui/dashboard/IstoricMinute'
-import { GoogleSignOutButton } from '@/components/ui/signin/authButton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { loginIsRequiredServer } from '@/lib/auth'
 
@@ -19,8 +18,8 @@ export default async function Dashboard() {
             <h1 className="text-3xl font-bold tracking-tight mb-8">
                 Dashboard
             </h1>
-            <div className="md:grid md:grid-cols-3 flex flex-col gap-4">
-                <Cotizatie />
+            <div className="md:grid md:grid-cols-3 flex flex-col gap-4 mb-4">
+                <CotizatieMembru />
                 <ImportantLinks />
             </div>
             <IstoricMinute />

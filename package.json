@@ -41,6 +41,7 @@
     "framer-motion": "^10.16.4",
     "lru-cache": "^10.0.1",
     "lucide-react": "^0.268.0",
+    "moment": "^2.29.4",
     "mongodb": "^5.8.1",
     "mongoose": "^7.4.4",
     "next": "13.4.18",

@@ -1,33 +1,33 @@
-import { faDollar } from '@fortawesome/free-solid-svg-icons'
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Card, CardContent, CardHeader, CardTitle } from '../card'
+import Link from 'next/link'
 
 export default function Cotizatie() {
     return (
-        <Card className="flex flex-col justify-between">
-            <CardHeader className="pb-2 flex flex-row justify-between">
-                <CardTitle>Cotizatie</CardTitle>
-                <FontAwesomeIcon
-                    icon={faDollar}
-                    className="text-muted-foreground"
-                />
-            </CardHeader>
-            <CardContent>
-                <div className="flex items-end justify-between">
-                    <div className="flex flex-col">
-                        <p className="text-muted-foreground w-fit">de platit</p>
-                        <p className="text-3xl font-bold text-red-800">
-                            30 RON
-                        </p>
-                    </div>
-                    <div className="flex flex-col items-end">
-                        <p className="text-muted-foreground font-semibold">
-                            Restant din Iunie
-                        </p>
-                        <p className="text-xs text-muted-foreground">06.2023</p>
-                    </div>
+        <Link
+            href="https://docs.google.com/document/d/1Bile9hKM4HnXgnvJwO4RdS3r9fyDsEeW/edit"
+            target="_blank"
+            className="hover:cursor-pointer rounded hover:bg-black dark:hover:bg-white hover:!bg-opacity-10 p-1 md:p-2"
+        >
+            <div className="flex justify-between">
+                <div className="flex flex-col">
+                    <h4 className="font-bold text-xl">Sedinta Club</h4>
+                    <p className="font-semibold text-sm">
+                        14 Octombrie{' '}
+                        <span className="text-muted-foreground">2023</span>
+                    </p>
+                    <p className="text-muted-foreground text-sm">
+                        Autor: Ioana Ciucioiu
+                    </p>
                 </div>
-            </CardContent>
-        </Card>
+                <div className="flex justify-between items-center">
+                    <div className="flex text-muted-foreground text-sm"></div>
+                </div>
+                <FontAwesomeIcon
+                    icon={faDownload}
+                    className="self-center h-8 w-8"
+                />
+            </div>
+        </Link>
     )
 }

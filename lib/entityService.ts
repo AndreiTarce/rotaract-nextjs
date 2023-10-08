@@ -89,7 +89,7 @@ export const getPastPresidents = async () => {
 export const getCauses = async () => {
     const url = API_BASE_URL + CAUSES_PATH;
     try {
-        const res = await fetch(url);
+        const res = await fetch(url, { cache: 'no-store' });
 
         if (!res.ok) {
             throw new Error("Failed to fetch members");
