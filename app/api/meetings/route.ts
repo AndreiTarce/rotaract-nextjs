@@ -11,7 +11,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     const api_key = request.nextUrl.searchParams.get('api_key');
-    if (api_key === '0b9179cc-7bd1-4a17-a448-fafe53cc719b') {
+    if (api_key === process.env.API_KEY) {
         await connectMongoDB();
         const meetings = await Meeting.find();
         return NextResponse.json({ meetings });
