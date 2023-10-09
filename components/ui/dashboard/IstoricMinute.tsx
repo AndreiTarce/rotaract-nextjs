@@ -71,7 +71,12 @@ export default function IstoricMinute() {
             </CardHeader>
             <CardContent>
                 <div className="flex justify-between md:max-w-[200px] w-full mb-2">
-                    <Button variant="outline" size="sm" onClick={subtractYear}>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={subtractYear}
+                        disabled={parseInt(year) > 2014 ? false : true}
+                    >
                         <FontAwesomeIcon icon={faCaretLeft} />
                     </Button>
                     <div className="font-semibold flex justify-center items-center">
