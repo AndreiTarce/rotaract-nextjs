@@ -2,11 +2,7 @@ import Member, { IMember } from "@/models/member";
 import connectMongoDB from "./mongodb";
 import WhitelistedMember, { IWhitelistedMember } from "@/models/whitelistedMember";
 import { NextRequest, NextResponse } from "next/server";
-
-const PROJECTS_PATH = '/api/projects';
-const MEMBERS_PATH = '/api/members';
-const API_BASE_URL = process.env.API_BASE_URL;
-const CAUSES_PATH = '/api/causes';
+import { API_BASE_URL, CAUSES_PATH, MEETINGS_PATH, MEMBERS_PATH, PROJECTS_PATH } from "./constants";
 
 export const getProjects = async () => {
     const url = API_BASE_URL + PROJECTS_PATH;
@@ -101,8 +97,9 @@ export const getCauses = async () => {
     }
 };
 
-export const getMeetings = async (api_key: string) => {
-    const url = API_BASE_URL + PROJECTS_PATH;
+export const getMeetings = async () => {
+    const url = API_BASE_URL + MEETINGS_PATH;
+
     try {
         const res = await fetch(url, { cache: 'no-store' });
 
