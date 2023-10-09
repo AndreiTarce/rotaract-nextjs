@@ -26,7 +26,7 @@ const SectionSchema = new Schema<IMemberLinks>({
     tiktok: { type: String, required: false }
 });
 
-const memberSchema = new Schema<IMember>(
+export const memberSchema = new Schema<IMember>(
     {
         id: Number,
         first_name: String,

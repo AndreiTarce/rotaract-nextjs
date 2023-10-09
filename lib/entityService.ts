@@ -1,6 +1,7 @@
 import Member, { IMember } from "@/models/member";
 import connectMongoDB from "./mongodb";
 import WhitelistedMember, { IWhitelistedMember } from "@/models/whitelistedMember";
+import { NextRequest, NextResponse } from "next/server";
 
 const PROJECTS_PATH = '/api/projects';
 const MEMBERS_PATH = '/api/members';
@@ -97,5 +98,20 @@ export const getCauses = async () => {
         return res.json();
     } catch (error) {
         console.log("Error loading members: ", error);
+    }
+};
+
+export const getMeetings = async (api_key: string) => {
+    const url = API_BASE_URL + PROJECTS_PATH;
+    try {
+        const res = await fetch(url, { cache: 'no-store' });
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch projects");
+        }
+
+        return res.json();
+    } catch (error) {
+        console.log("Error loading projects: ", error);
     }
 };
