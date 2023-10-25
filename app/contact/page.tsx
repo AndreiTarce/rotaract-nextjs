@@ -40,9 +40,9 @@ export default function Contact() {
                 <div className="grid md:grid-cols-2 gap-4 mt-8">
                     <div className="flex flex-col gap-4">
                         <ContactInfoCard title="Email" icon={faEnvelope}>
-                            <Link href="mailto:rotaractvisioclujsite@gmail.com">
+                            <Link href="mailto:rotaractvisiocluj@gmail.com">
                                 <p className="break-all text-muted-foreground">
-                                    rotaractvisioclujsite@gmail.com
+                                    rotaractvisiocluj@gmail.com
                                 </p>
                             </Link>
                         </ContactInfoCard>

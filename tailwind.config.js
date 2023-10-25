@@ -51,7 +51,9 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         'rotaract-cranberry': '#d41367',
-        'dark': '#252525'
+        'dark': '#252525',
+        'dark-blue': '#020817',
+        'light': '#F8FAFC'
       },
       borderRadius: {
         lg: "var(--radius)",
