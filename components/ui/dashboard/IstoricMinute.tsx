@@ -65,7 +65,7 @@ export default function IstoricMinute() {
     }, [year])
 
     return (
-        <Card className="">
+        <Card>
             <CardHeader className="pb-4">
                 <CardTitle>Istoric minute</CardTitle>
             </CardHeader>
