@@ -1,5 +1,6 @@
 import AboutVisio from '@/components/about/AboutVisio'
 import background from '@/assets/images/desprenoibg.webp'
+import backgroundMobile from '@/assets/images/desprenoibgmobile.webp'
 import Image from 'next/image'
 import MemberStatistics from '@/components/about/statistics/MemberStatistics'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -12,7 +13,7 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 export default function About() {
     return (
         <main className="mt-5 md:mt-12">
-            <div className="w-full relative h-screen">
+            <div className="w-full relative h-screen flex flex-col">
                 <h1 className="mx-16 max-md:mx-4 w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-4">
                     Despre noi
                 </h1>
@@ -43,11 +44,30 @@ export default function About() {
                 <Image
                     src={background}
                     alt="Rotaract Visio Group Photo"
-                    sizes="100vw"
                     fill
-                    style={{ objectFit: 'cover', zIndex: '-10' }}
+                    style={{
+                        objectFit: 'cover',
+                        zIndex: '-10',
+                        objectPosition: '45% bottom',
+                    }}
                     priority
+                    className="hidden md:block"
                 />
+                <div className="relative h-full">
+                    <Image
+                        src={backgroundMobile}
+                        alt="Rotaract Visio Group Photo"
+                        sizes="(max-width: 808px) 200vw"
+                        style={{
+                            objectFit: 'cover',
+                            zIndex: '-10',
+                            objectPosition: '32% bottom',
+                        }}
+                        fill
+                        priority
+                        className="md:hidden"
+                    />
+                </div>
             </div>
             <div className="mx-16 max-md:mx-4 mt-16">
                 <div className="md:grid md:grid-cols-2 gap-4 max-md:flex max-md:flex-col-reverse">

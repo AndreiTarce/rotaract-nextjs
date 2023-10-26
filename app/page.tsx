@@ -1,4 +1,5 @@
 import background from '@/assets/images/bg2.webp'
+// import background from '@/assets/images/test.png'
 import { Button } from '@/components/ui/button'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -24,6 +25,7 @@ export default async function Home() {
                     fill
                     style={{
                         objectFit: 'cover',
+                        objectPosition: '50% 100%',
                     }}
                     priority
                 />
