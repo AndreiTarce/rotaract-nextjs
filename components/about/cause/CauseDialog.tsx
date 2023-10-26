@@ -56,40 +56,51 @@ export default function CauseDialog(props: ICauseProps) {
                     <DialogTitle className="text-5xl font-extrabold max-md:text-3xl max-md:mt-4 mb-4 w-fit">
                         {props.title}
                     </DialogTitle>
-                    <Button
-                        className="w-fit max-md:hidden"
-                        size="sm"
-                        onClick={() =>
-                            downloadFile(
-                                props.downloadUrl,
-                                `Mapa ${props.title}.pdf`
-                            )
-                        }
-                    >
-                        <FontAwesomeIcon icon={faDownload} className="mr-3" />
-                        Mapa de prezentare
-                    </Button>
-                    <FontAwesomeIcon
-                        icon={faDownload}
-                        className="md:!hidden absolute top-4 left-4 !my-0 text-[rgb(248, 250, 252)] opacity-70"
-                        onClick={() =>
-                            downloadFile(
-                                props.downloadUrl,
-                                `Mapa ${props.title}.pdf`
-                            )
-                        }
-                    />
+                    {props.downloadUrl && (
+                        <>
+                            <Button
+                                className="w-fit max-md:hidden"
+                                size="sm"
+                                onClick={() =>
+                                    downloadFile(
+                                        props.downloadUrl,
+                                        `Mapa ${props.title}.pdf`
+                                    )
+                                }
+                            >
+                                <FontAwesomeIcon
+                                    icon={faDownload}
+                                    className="mr-3"
+                                />
+                                Mapa de prezentare
+                            </Button>
+                            <FontAwesomeIcon
+                                icon={faDownload}
+                                className="md:!hidden absolute top-4 left-4 !my-0 text-[rgb(248, 250, 252)] opacity-70"
+                                onClick={() =>
+                                    downloadFile(
+                                        props.downloadUrl,
+                                        `Mapa ${props.title}.pdf`
+                                    )
+                                }
+                            />
+                        </>
+                    )}
                 </DialogHeader>
                 <div className="overflow-y-auto overflow-x-hidden grow text-muted-foreground">
                     <p>{props.description}</p>
                 </div>
-                <div>
-                    <CauseImageCarousel>
-                        {props.images.map((image: string, index: number) => (
-                            <CauseImage src={image} key={index} />
-                        ))}
-                    </CauseImageCarousel>
-                </div>
+                {props.images && (
+                    <div>
+                        <CauseImageCarousel>
+                            {props.images.map(
+                                (image: string, index: number) => (
+                                    <CauseImage src={image} key={index} />
+                                )
+                            )}
+                        </CauseImageCarousel>
+                    </div>
+                )}
             </DialogContent>
         </Dialog>
     )

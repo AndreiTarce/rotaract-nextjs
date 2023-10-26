@@ -12,7 +12,7 @@ export default function CauseCard(props: ICause) {
     return (
         <div>
             <div
-                className="p-2 relative rounded-lg w-fit h-fit max-w-[180px] hover:shadow-lg hover:scale-105 hover:cursor-pointer hover:bg-black hover:!bg-opacity-10"
+                className="p-2 relative rounded-lg  max-w-[180px] hover:shadow-lg hover:scale-105 hover:cursor-pointer hover:bg-black hover:!bg-opacity-10"
                 onClick={() => setIsOpen(true)}
             >
                 <div className="relative">
@@ -29,7 +29,7 @@ export default function CauseCard(props: ICause) {
                     />
                     <div className="bg-gradient-to-b from-black to-transparent absolute top-0 h-1/2 w-full rounded-lg opacity-60"></div>
                 </div>
-                <p className="font-semibold text-base mt-2 text-white leading-none">
+                <p className="font-semibold text-xs md:text-base mt-2 text-white leading-none">
                     {props.title}
                 </p>
             </div>

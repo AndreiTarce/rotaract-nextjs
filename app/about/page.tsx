@@ -35,7 +35,7 @@ export default function About() {
                     ne străduim să aducem schimbări pozitive în orașul nostru și
                     în lumea din jurul nostru.
                 </p>
-                <p className="mx-16 max-md:mx-4 md:w-2/3 ">
+                <p className="mx-16 max-md:mx-4 md:w-2/3">
                     Misiunea noastră este de a inspira și mobiliza tinerii din
                     Cluj-Napoca pentru a se implica activ în proiecte de
                     voluntariat, dezvoltând astfel lideri viitori și promovând
