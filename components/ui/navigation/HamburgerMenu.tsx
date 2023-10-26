@@ -67,8 +67,8 @@ export default async function HamburgerMenu() {
                         )}
                     </DropdownMenuLabel>
                     {session?.user && (
-                        <Link href="/dashboard" className="flex">
-                            <DropdownMenuItem>
+                        <Link href="/dashboard" className="flex w-full">
+                            <DropdownMenuItem className="w-full">
                                 <Gauge className="mr-2" />
                                 <span className="self-center">
                                     Members dashboard
