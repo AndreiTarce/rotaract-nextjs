@@ -50,7 +50,6 @@ export default function About() {
                         zIndex: '-10',
                         objectPosition: '45% bottom',
                     }}
-                    priority
                     className="hidden md:block"
                 />
                 <div className="relative h-full">
@@ -64,7 +63,6 @@ export default function About() {
                             objectPosition: '32% bottom',
                         }}
                         fill
-                        priority
                         className="md:hidden"
                     />
                 </div>
