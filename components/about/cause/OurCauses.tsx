@@ -13,7 +13,7 @@ export default async function OurCauses() {
                 </CardTitle>
             </CardHeader>
             <CardContent className="grow flex flex-col justify-between">
-                <p className="text-justify">
+                <p className="text-justify text-white">
                     Fie că este vorba despre educație, sănătate, protejarea
                     mediului sau alte domenii de importanță socială, fiecare
                     proiect pe care îl organizăm este construit pe baza unei
