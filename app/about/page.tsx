@@ -9,6 +9,7 @@ import OurValues from '@/components/about/values/OurValues'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import Timeline from '@/components/about/timeline/Timeline'
 
 export default function About() {
     return (
@@ -68,13 +69,14 @@ export default function About() {
                 </div>
             </div>
             <div className="mx-16 max-md:mx-4 mt-16">
-                <div className="md:grid md:grid-cols-2 gap-4 max-md:flex max-md:flex-col-reverse">
+                <div className="md:grid md:grid-cols-2 gap-4 max-md:flex max-md:flex-col-reverse mb-8">
                     <div className="flex flex-col gap-4">
                         <MemberStatistics />
                         <OurCauses />
                     </div>
                     <OurValues />
                 </div>
+                <Timeline />
             </div>
         </main>
     )
