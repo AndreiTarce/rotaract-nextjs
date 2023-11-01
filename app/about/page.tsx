@@ -76,7 +76,7 @@ export default function About() {
                     </div>
                     <OurValues />
                 </div>
-                <Timeline />
+                {/* <Timeline /> */}
             </div>
         </main>
     )
