@@ -86,7 +86,7 @@ export const getPastPresidents = async () => {
 export const getCauses = async () => {
     const url = API_BASE_URL + CAUSES_PATH;
     try {
-        const res = await fetch(url, { cache: 'no-store' });
+        const res = await fetch(url);
 
         if (!res.ok) {
             throw new Error("Failed to fetch causes");
