@@ -89,11 +89,11 @@ export const getCauses = async () => {
         const res = await fetch(url, { cache: 'no-store' });
 
         if (!res.ok) {
-            throw new Error("Failed to fetch members");
+            throw new Error("Failed to fetch causes");
         }
         return res.json();
     } catch (error) {
-        console.log("Error loading members: ", error);
+        console.log("Error loading causes: ", error);
     }
 };
 
@@ -104,11 +104,11 @@ export const getMeetings = async () => {
         const res = await fetch(url, { cache: 'no-store' });
 
         if (!res.ok) {
-            throw new Error("Failed to fetch projects");
+            throw new Error("Failed to fetch meetings");
         }
 
         return res.json();
     } catch (error) {
-        console.log("Error loading projects: ", error);
+        console.log("Error loading meetings: ", error);
     }
 };

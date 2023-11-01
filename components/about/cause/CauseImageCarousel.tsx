@@ -26,7 +26,7 @@ export default function CauseImageCarousel(props: any) {
             {props.children.map((item: any, index: number) => (
                 <SwiperSlide
                     key={index}
-                    className="flex justify-center items-center"
+                    className="flex justify-center items-center max-md:pb-12 max-md:-mb-4"
                 >
                     {item}
                 </SwiperSlide>

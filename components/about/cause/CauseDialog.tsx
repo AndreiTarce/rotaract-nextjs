@@ -87,8 +87,12 @@ export default function CauseDialog(props: ICauseProps) {
                         </>
                     )}
                 </DialogHeader>
-                <div className="overflow-y-auto overflow-x-hidden grow text-muted-foreground">
-                    <p>{props.description}</p>
+                <div className="overflow-y-auto overflow-x-hidden grow text-muted-foreground pr-2">
+                    <p
+                        dangerouslySetInnerHTML={{
+                            __html: props.description,
+                        }}
+                    ></p>
                 </div>
                 {props.images && (
                     <div>
