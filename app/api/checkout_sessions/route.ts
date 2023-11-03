@@ -18,6 +18,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
             mode: 'payment',
             return_url: `${request.nextUrl.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
             automatic_tax: { enabled: true },
+            payment_method_configuration: 'pmc_1O8OgEH1rXnXzXApHjkFOccf'
         });
 
         return NextResponse.json({ clientSecret: session.client_secret }, { status: 200 })
