@@ -2,7 +2,7 @@ import Member, { IMember } from "@/models/member";
 import connectMongoDB from "./mongodb";
 import WhitelistedMember, { IWhitelistedMember } from "@/models/whitelistedMember";
 import { NextRequest, NextResponse } from "next/server";
-import { API_BASE_URL, CAUSES_PATH, MEETINGS_PATH, MEMBERS_PATH, PROJECTS_PATH } from "./constants";
+import { API_BASE_URL, CAUSES_PATH, CHECKOUT_PATH, MEETINGS_PATH, MEMBERS_PATH, PROJECTS_PATH } from "./constants";
 
 export const getProjects = async () => {
     const url = API_BASE_URL + PROJECTS_PATH;
@@ -112,3 +112,19 @@ export const getMeetings = async () => {
         console.log("Error loading meetings: ", error);
     }
 };
+
+export const getCheckoutSession = async (session_id: string) => {
+    const url = `${API_BASE_URL + CHECKOUT_PATH}?session_id=${session_id}`;
+
+    try {
+        const res = await fetch(url, { cache: 'no-store' });
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch checkout session");
+        }
+
+        return res.json();
+    } catch (error) {
+        console.log("Error fetching checkout session", error)
+    }
+}
