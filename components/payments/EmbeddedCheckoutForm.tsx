@@ -16,7 +16,7 @@ const stripePromise = loadStripe(
 export default function EmbeddedCheckoutForm() {
     const [clientSecret, setClientSecret] = useState()
     const [loading, setLoading] = useState(false)
-    const myRef = useRef(null)
+    const myRef = useRef<null | HTMLDivElement>(null)
 
     const getCheckoutSession = async (
         price: string,
