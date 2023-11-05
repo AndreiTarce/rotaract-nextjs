@@ -1,5 +1,7 @@
 import EmbeddedCheckoutForm from '@/components/payments/EmbeddedCheckoutForm'
-import { Card } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { faAccessibleIcon } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function SupportUs() {
     return (
@@ -14,6 +16,42 @@ export default function SupportUs() {
                 o diferență semnificativă. Donează astăzi și contribuie la un
                 viitor mai luminos!
             </p>
+            <div className="grid grid-cols-2 gap-4">
+                <Card className="shadow-md border rounded-lg">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-lg">
+                            Donație simplă
+                        </CardTitle>
+                        <FontAwesomeIcon
+                            icon={faAccessibleIcon}
+                            className="h-4 w-4 text-muted-foreground"
+                        />
+                    </CardHeader>
+                    <CardContent className="text-muted-foreground">
+                        card content
+                    </CardContent>
+                </Card>
+                <Card className="shadow-md border rounded-lg">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-lg">Donatie </CardTitle>
+                        <FontAwesomeIcon
+                            icon={faAccessibleIcon}
+                            className="h-4 w-4 text-muted-foreground"
+                        />
+                    </CardHeader>
+                    <CardContent>card content</CardContent>
+                </Card>
+                <Card className="shadow-md border rounded-lg">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-lg">Donatie </CardTitle>
+                        <FontAwesomeIcon
+                            icon={faAccessibleIcon}
+                            className="h-4 w-4 text-muted-foreground"
+                        />
+                    </CardHeader>
+                    <CardContent>card content</CardContent>
+                </Card>
+            </div>
             <EmbeddedCheckoutForm />
         </main>
     )
