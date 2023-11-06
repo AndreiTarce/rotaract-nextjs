@@ -36,6 +36,9 @@ export function Navigation() {
                     <li className="max-md:hidden">
                         <NavLink href="/contact" text="Contact" />
                     </li>
+                    <li className="max-md:hidden">
+                        <NavLink href="/support-us" text="Support us" />
+                    </li>
                     <li>
                         <ModeToggle />
                     </li>

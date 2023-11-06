@@ -32,6 +32,10 @@ export default async function HamburgerMenu() {
                     <HamburgerMenuNavLink href="/projects" text="Proiecte" />
                     <HamburgerMenuNavLink href="/members" text="Membri" />
                     <HamburgerMenuNavLink href="/contact" text="Contact" />
+                    <HamburgerMenuNavLink
+                        href="/support-us"
+                        text="Support us"
+                    />
                     <DropdownMenuSeparator />
                     <DropdownMenuLabel>
                         {session?.user ? (
