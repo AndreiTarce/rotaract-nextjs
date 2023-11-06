@@ -217,7 +217,19 @@ export default function EmbeddedCheckoutForm() {
                             <span className="font-semibold">CIF: </span>
                             33329540
                         </p>
-                        <p>
+                        <p
+                            onClick={() => {
+                                navigator.clipboard.writeText(
+                                    'RO29BTRLRONCRT0662749501'
+                                )
+                                toast({
+                                    title: 'Copied to clipboard',
+                                    description: 'RO29BTRLRONCRT0662749501',
+                                    duration: 1000,
+                                })
+                            }}
+                            className="hover:cursor-pointer"
+                        >
                             <span className="font-semibold">IBAN: </span>
                             RO29BTRLRONCRT0662749501{' '}
                             <TooltipProvider>
@@ -225,18 +237,7 @@ export default function EmbeddedCheckoutForm() {
                                     <TooltipTrigger asChild>
                                         <FontAwesomeIcon
                                             icon={faClipboard}
-                                            onClick={() => {
-                                                navigator.clipboard.writeText(
-                                                    'RO29BTRLRONCRT0662749501'
-                                                )
-                                                toast({
-                                                    title: 'Copied to clipboard',
-                                                    description:
-                                                        'RO29BTRLRONCRT0662749501',
-                                                    duration: 1000,
-                                                })
-                                            }}
-                                            className="hover:cursor-pointer ml-1"
+                                            className="ml-1"
                                         />
                                     </TooltipTrigger>
                                     <TooltipContent>
