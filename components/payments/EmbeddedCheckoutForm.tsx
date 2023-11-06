@@ -29,8 +29,7 @@ const stripePromise = loadStripe(
 )
 
 export default function EmbeddedCheckoutForm() {
-    const [clientSecret, setClientSecret] = useState()
-    const [loading, setLoading] = useState(false)
+    const [clientSecret, setClientSecret] = useState<undefined | string>()
     const myRef = useRef<null | HTMLDivElement>(null)
     const { toast } = useToast()
 
@@ -64,7 +63,6 @@ export default function EmbeddedCheckoutForm() {
                         </div>
                         <div className="flex gap-4 flex-wrap">
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -73,7 +71,6 @@ export default function EmbeddedCheckoutForm() {
                                 20 RON
                             </DonateButton>
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -82,7 +79,6 @@ export default function EmbeddedCheckoutForm() {
                                 50 RON
                             </DonateButton>
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -91,7 +87,6 @@ export default function EmbeddedCheckoutForm() {
                                 100 RON
                             </DonateButton>
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -119,7 +114,6 @@ export default function EmbeddedCheckoutForm() {
                         </div>
                         <div className="flex gap-4 flex-wrap">
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -128,7 +122,6 @@ export default function EmbeddedCheckoutForm() {
                                 20 RON
                             </DonateButton>
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -137,7 +130,6 @@ export default function EmbeddedCheckoutForm() {
                                 50 RON
                             </DonateButton>
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -146,7 +138,6 @@ export default function EmbeddedCheckoutForm() {
                                 100 RON
                             </DonateButton>
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -175,7 +166,6 @@ export default function EmbeddedCheckoutForm() {
                         </div>
                         <div className="flex gap-4 flex-wrap">
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -184,7 +174,6 @@ export default function EmbeddedCheckoutForm() {
                                 GhiozdănOK
                             </DonateButton>
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -193,7 +182,6 @@ export default function EmbeddedCheckoutForm() {
                                 Vedere de Crăciun
                             </DonateButton>
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"
@@ -202,7 +190,6 @@ export default function EmbeddedCheckoutForm() {
                                 CATRAFU-SALE
                             </DonateButton>
                             <DonateButton
-                                loading={loading}
                                 price="price_1O8OR1H1rXnXzXAphxmN3uIh"
                                 quantity={1}
                                 mode="payment"

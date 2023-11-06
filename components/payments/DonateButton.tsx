@@ -1,12 +1,10 @@
 'use client'
 import { CHECKOUT_PATH } from '@/lib/constants'
-import { ReactNode, useState } from 'react'
+import { Dispatch, ReactNode, SetStateAction, useState } from 'react'
 import { Button } from '../ui/button'
 
 export default function DonateButton(props: {
-    setClientSecret: (
-        value: string | undefined | ((prevVar: string) => string)
-    ) => void
+    setClientSecret: Dispatch<SetStateAction<string | undefined>>
     price: string
     quantity: number
     mode: string
