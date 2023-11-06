@@ -23,6 +23,14 @@ import {
 } from '../ui/tooltip'
 import { useToast } from '../ui/use-toast'
 import DonateButton from './DonateButton'
+import {
+    STRIPE_CATRAFUSALE_DONATION,
+    STRIPE_GHIOZDANOK_DONATION,
+    STRIPE_HEALTHYVISION_DONATION,
+    STRIPE_RECURRING_DONATION,
+    STRIPE_SIMPLE_DONATION,
+    STRIPE_VEDEREDECRACIUN_DONATION,
+} from './constants'
 
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -63,7 +71,7 @@ export default function EmbeddedCheckoutForm() {
                         </div>
                         <div className="flex gap-4 flex-wrap">
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_SIMPLE_DONATION[0]}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -71,7 +79,7 @@ export default function EmbeddedCheckoutForm() {
                                 20 RON
                             </DonateButton>
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_SIMPLE_DONATION[1]}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -79,7 +87,7 @@ export default function EmbeddedCheckoutForm() {
                                 50 RON
                             </DonateButton>
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_SIMPLE_DONATION[2]}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -87,7 +95,7 @@ export default function EmbeddedCheckoutForm() {
                                 100 RON
                             </DonateButton>
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_SIMPLE_DONATION[3]}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -114,7 +122,7 @@ export default function EmbeddedCheckoutForm() {
                         </div>
                         <div className="flex gap-4 flex-wrap">
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_RECURRING_DONATION[0]}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -122,7 +130,7 @@ export default function EmbeddedCheckoutForm() {
                                 20 RON
                             </DonateButton>
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_RECURRING_DONATION[1]}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -130,7 +138,7 @@ export default function EmbeddedCheckoutForm() {
                                 50 RON
                             </DonateButton>
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_RECURRING_DONATION[2]}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -138,7 +146,7 @@ export default function EmbeddedCheckoutForm() {
                                 100 RON
                             </DonateButton>
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_RECURRING_DONATION[3]}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -166,7 +174,7 @@ export default function EmbeddedCheckoutForm() {
                         </div>
                         <div className="flex gap-4 flex-wrap">
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_GHIOZDANOK_DONATION}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -174,7 +182,7 @@ export default function EmbeddedCheckoutForm() {
                                 GhiozdănOK
                             </DonateButton>
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_VEDEREDECRACIUN_DONATION}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -182,7 +190,7 @@ export default function EmbeddedCheckoutForm() {
                                 Vedere de Crăciun
                             </DonateButton>
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_CATRAFUSALE_DONATION}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
@@ -190,7 +198,7 @@ export default function EmbeddedCheckoutForm() {
                                 CATRAFU-SALE
                             </DonateButton>
                             <DonateButton
-                                price="price_1O8OR1H1rXnXzXAphxmN3uIh"
+                                price={STRIPE_HEALTHYVISION_DONATION}
                                 quantity={1}
                                 mode="payment"
                                 setClientSecret={setClientSecret}
