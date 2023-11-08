@@ -17,8 +17,8 @@ export default function DonateButton(props: {
         price: string,
         quantity: number,
         mode: string,
-        interval: string,
-        currency: string
+        interval?: string,
+        currency?: string
     ) => {
         props.setClientSecret(undefined)
         setLoading(true)
@@ -42,7 +42,13 @@ export default function DonateButton(props: {
     return (
         <Button
             onClick={() =>
-                getCheckoutSession(props.price, props.quantity, props.mode)
+                getCheckoutSession(
+                    props.price,
+                    props.quantity,
+                    props.mode,
+                    props.interval,
+                    props.currency
+                )
             }
             className="font-semibold"
         >
