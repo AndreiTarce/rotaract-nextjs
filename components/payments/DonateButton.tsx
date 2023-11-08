@@ -9,12 +9,16 @@ export default function DonateButton(props: {
     quantity: number
     mode: string
     children: ReactNode
+    interval?: string
+    currency?: string
 }) {
     const [loading, setLoading] = useState(false)
     const getCheckoutSession = async (
         price: string,
         quantity: number,
-        mode: string
+        mode: string,
+        interval: string,
+        currency: string
     ) => {
         props.setClientSecret(undefined)
         setLoading(true)
@@ -24,6 +28,8 @@ export default function DonateButton(props: {
                 price: price,
                 quantity: quantity,
                 mode: mode,
+                interval: interval,
+                currency: currency,
             }),
         })
             .then((res) => res.json())
