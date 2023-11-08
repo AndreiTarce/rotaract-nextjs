@@ -124,7 +124,7 @@ export default function EmbeddedCheckoutForm() {
                             <DonateButton
                                 price={STRIPE_RECURRING_DONATION[0]}
                                 quantity={1}
-                                mode="payment"
+                                mode="subscription"
                                 setClientSecret={setClientSecret}
                             >
                                 20 RON
@@ -132,7 +132,7 @@ export default function EmbeddedCheckoutForm() {
                             <DonateButton
                                 price={STRIPE_RECURRING_DONATION[1]}
                                 quantity={1}
-                                mode="payment"
+                                mode="subscription"
                                 setClientSecret={setClientSecret}
                             >
                                 50 RON
@@ -140,7 +140,7 @@ export default function EmbeddedCheckoutForm() {
                             <DonateButton
                                 price={STRIPE_RECURRING_DONATION[2]}
                                 quantity={1}
-                                mode="payment"
+                                mode="subscription"
                                 setClientSecret={setClientSecret}
                             >
                                 100 RON
@@ -148,7 +148,7 @@ export default function EmbeddedCheckoutForm() {
                             <DonateButton
                                 price={STRIPE_RECURRING_DONATION[3]}
                                 quantity={1}
-                                mode="payment"
+                                mode="subscription"
                                 setClientSecret={setClientSecret}
                             >
                                 Altă valoare
@@ -258,7 +258,7 @@ export default function EmbeddedCheckoutForm() {
                 </Card>
             </div>
             {clientSecret && (
-                <div className="rounded-xl overflow-hidden">
+                <div className="rounded-xl overflow-hidden mt-4">
                     <EmbeddedCheckoutProvider
                         stripe={stripePromise}
                         options={{ clientSecret }}
