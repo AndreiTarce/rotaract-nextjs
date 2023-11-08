@@ -14,6 +14,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
                     // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                     price: body.price,
                     quantity: body.quantity,
+                    price_data: { recurring: { interval: body.interval }, currency: body.currency } || null
                 },
             ],
             mode: body.mode,
