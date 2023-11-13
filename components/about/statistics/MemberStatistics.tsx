@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const MemberStatistic = (props: {
-    type: 'activi' | 'pasivi' | 'aspiranti'
+    type: 'activi' | 'pasivi' | 'aspiranți'
     amount: number
     icon: IconDefinition
 }) => (
@@ -46,7 +46,7 @@ export default function MemberStatistics() {
                     <div className="w-[2px] bg-border rounded-lg"></div>
                 </div>
                 <MemberStatistic
-                    type="aspiranti"
+                    type="aspiranți"
                     icon={faUserGraduate}
                     amount={24}
                 />
