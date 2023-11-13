@@ -37,18 +37,18 @@ export default function MemberStatistics() {
                 </CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-[repeat(5,_auto)] grid-flow-col-dense">
-                <MemberStatistic type="activi" icon={faUserCheck} amount={30} />
+                <MemberStatistic type="activi" icon={faUserCheck} amount={16} />
                 <div className="h-full flex justify-center max-md:invisible">
                     <div className="w-[2px] bg-border rounded-lg"></div>
                 </div>
-                <MemberStatistic type="pasivi" icon={faUserClock} amount={7} />
+                <MemberStatistic type="pasivi" icon={faUserClock} amount={11} />
                 <div className="h-full flex justify-center max-md:invisible">
                     <div className="w-[2px] bg-border rounded-lg"></div>
                 </div>
                 <MemberStatistic
                     type="aspiranti"
                     icon={faUserGraduate}
-                    amount={10}
+                    amount={24}
                 />
             </CardContent>
         </Card>
