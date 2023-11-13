@@ -150,8 +150,6 @@ export default function EmbeddedCheckoutForm() {
                                 quantity={1}
                                 mode="subscription"
                                 setClientSecret={setClientSecret}
-                                interval="month"
-                                currency="RON"
                             >
                                 Altă valoare
                             </DonateButton>
