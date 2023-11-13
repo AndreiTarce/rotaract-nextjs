@@ -148,7 +148,7 @@ export default function EmbeddedCheckoutForm() {
                             <DonateButton
                                 price={STRIPE_RECURRING_DONATION[3]}
                                 quantity={1}
-                                mode="subscription"
+                                mode="payment"
                                 setClientSecret={setClientSecret}
                             >
                                 Altă valoare
