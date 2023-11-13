@@ -21,7 +21,9 @@ export interface IProject {
     images: string[],
     url: string,
     sections: ISection[],
-    partners: IProjectPartner[];
+    partners: IProjectPartner[],
+    donation_link: string,
+    cause_link: string,
 }
 
 const SectionSchema = new Schema<ISection>({
@@ -45,7 +47,9 @@ const projectSchema = new Schema<IProject>(
         images: [{ type: String }],
         url: String,
         sections: [SectionSchema],
-        partners: [ProjectPartnerSchema]
+        partners: [ProjectPartnerSchema],
+        donation_link: String,
+        cause_link: String
     },
     {
         timestamps: true,

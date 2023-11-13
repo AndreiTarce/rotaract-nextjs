@@ -1,10 +1,16 @@
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import ProjectImageCarousel from '@/components/ui/project/ProjectImageCarousel'
+import { Separator } from '@/components/ui/separator'
 import { getProject } from '@/lib/entityService'
 import { IProject, IProjectPartner, ISection } from '@/models/project'
+import {
+    faHandHoldingDollar,
+    faRibbon,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
-import testlogo from '@/assets/images/visio.webp'
 import Link from 'next/link'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 type ProjectSectionProps = ISection & { key: number }
 type ProjectImageProps = { key?: number; src: string }
@@ -50,6 +56,48 @@ export default async function Project({ params }: { params: { id: string } }) {
                         className="rounded-lg mb-8"
                         priority
                     />
+                    {(project.cause_link || project.donation_link) && (
+                        <>
+                            <div className="mb-4 flex gap-4 flex-wrap">
+                                {project.cause_link && (
+                                    <Button className="font-semibold" asChild>
+                                        <Link
+                                            href={{
+                                                pathname: '/about',
+                                                query: {
+                                                    cause: project.cause_link,
+                                                },
+                                            }}
+                                        >
+                                            Vezi cauza proiectului{' '}
+                                            <FontAwesomeIcon
+                                                icon={faRibbon}
+                                                className="ml-2"
+                                            />{' '}
+                                        </Link>
+                                    </Button>
+                                )}
+                                {project.donation_link && (
+                                    <Button
+                                        asChild
+                                        className="font-semibold bg-rotaract-cranberry text-white hover:bg-rotaract-cranberry"
+                                    >
+                                        <Link
+                                            href={project.donation_link}
+                                            target="_blank"
+                                        >
+                                            Donează acum
+                                            <FontAwesomeIcon
+                                                icon={faHandHoldingDollar}
+                                                className="ml-2"
+                                            />
+                                        </Link>
+                                    </Button>
+                                )}
+                            </div>
+                            <Separator className="mb-2" />
+                        </>
+                    )}
                     <p
                         className="lg:text-xl text-muted-foreground"
                         dangerouslySetInnerHTML={{

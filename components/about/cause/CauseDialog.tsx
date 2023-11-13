@@ -12,6 +12,7 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import CauseImageCarousel from './CauseImageCarousel'
+import { useRouter } from 'next/navigation'
 
 interface ICauseSetterProps {
     isOpen: boolean
@@ -49,8 +50,15 @@ const downloadFile = async (url: string, filename?: string) => {
 }
 
 export default function CauseDialog(props: ICauseProps) {
+    const router = useRouter()
     return (
-        <Dialog open={props.isOpen} onOpenChange={props.setIsOpen}>
+        <Dialog
+            open={props.isOpen}
+            onOpenChange={(e) => {
+                props.setIsOpen!(false)
+                router.back()
+            }}
+        >
             <DialogContent className="h-[80%] w-[80%] max-w-[80%] max-md:h-[90%] max-md:max-w-[90%] max-md:w-[90%] rounded-lg flex flex-col">
                 <DialogHeader className="flex">
                     <DialogTitle className="text-5xl font-extrabold max-md:text-3xl max-md:mt-4 mb-4 w-fit">
