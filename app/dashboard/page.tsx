@@ -1,18 +1,15 @@
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card'
 import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru'
 import ImportantLinks from '@/components/ui/dashboard/ImportantLinks'
 import IstoricMinute from '@/components/ui/dashboard/IstoricMinute'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { loginIsRequiredServer } from '@/lib/auth'
+import { authConfig, isSecretary, loginIsRequiredServer } from '@/lib/auth'
+import { getMember } from '@/lib/entityService'
+import { IMember } from '@/models/member'
+import { getServerSession } from 'next-auth'
 
 export default async function Dashboard() {
     await loginIsRequiredServer()
+    const session = await getServerSession(authConfig)
+    const userInfo: IMember = await getMember(session?.user?.email!)
     return (
         <main className="mt-5 md:mt-12 mx-16 max-md:mx-4">
             <h1 className="text-3xl font-bold tracking-tight mb-8">

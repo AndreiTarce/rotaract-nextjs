@@ -10,59 +10,63 @@ import { Card, CardContent, CardHeader, CardTitle } from '../card'
 import { ScrollArea } from '../scroll-area'
 import { Separator } from '../separator'
 import Minuta from './Minuta'
+import {
+    keepPreviousData,
+    useMutation,
+    useQuery,
+    useQueryClient,
+} from '@tanstack/react-query'
+
+const getMeetings = async (params: { api_key: string; year: number }) => {
+    const url = MEETINGS_PATH
+    const { year, api_key } = params
+    const startDate = `${year}-01-01`
+    const endDate = `${year}-12-31`
+
+    try {
+        const res = await fetch(
+            url +
+                '?' +
+                new URLSearchParams({
+                    api_key: api_key,
+                    startDate: startDate,
+                    endDate: endDate,
+                })
+        )
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch meetings')
+        }
+
+        return res.json()
+    } catch (error) {
+        console.log('Error loading meetings: ', error)
+    }
+}
 
 export default function IstoricMinute() {
-    const [date, setDate] = useState(moment())
-    const [year, setYear] = useState(moment().format('YYYY'))
-    const [meetings, setMeetings] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [year, setYear] = useState(new Date().getFullYear())
+    const queryClient = useQueryClient()
+
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ['meetings', year],
+        queryFn: async () => {
+            const { meetings } = await getMeetings({
+                api_key: API_KEY,
+                year: year,
+            })
+            return meetings as IMeeting[]
+        },
+        placeholderData: keepPreviousData,
+    })
 
     const addYear = () => {
-        const newDate = date.add(1, 'year')
-        setYear(newDate.format('YYYY'))
-        setLoading(true)
+        setYear((prevYear) => prevYear + 1)
     }
 
     const subtractYear = () => {
-        const newDate = date.subtract(1, 'year')
-        setYear(newDate.format('YYYY'))
-        setLoading(true)
+        setYear((prevYear) => prevYear - 1)
     }
-
-    const getMeetings = async (params: {
-        api_key: string
-        startDate: string
-        endDate: string
-    }) => {
-        const url = MEETINGS_PATH
-
-        try {
-            const res = await fetch(url + '?' + new URLSearchParams(params))
-
-            if (!res.ok) {
-                throw new Error('Failed to fetch meetings')
-            }
-
-            return res.json()
-        } catch (error) {
-            console.log('Error loading meetings: ', error)
-        }
-    }
-
-    useEffect(() => {
-        const startDate = `${year}-01-01`
-        const endDate = `${year}-12-31`
-        getMeetings({
-            api_key: API_KEY,
-            startDate: startDate,
-            endDate: endDate,
-        })
-            .then((result) => {
-                setMeetings(result.meetings)
-                setLoading(false)
-            })
-            .catch((err) => console.log(err))
-    }, [year])
 
     return (
         <Card>
@@ -75,7 +79,7 @@ export default function IstoricMinute() {
                         variant="outline"
                         size="sm"
                         onClick={subtractYear}
-                        disabled={parseInt(year) > 2014 ? false : true}
+                        disabled={year > 2014 ? false : true}
                     >
                         <FontAwesomeIcon icon={faCaretLeft} />
                     </Button>
@@ -88,8 +92,8 @@ export default function IstoricMinute() {
                 </div>
                 <ScrollArea className="border rounded h-96">
                     <div className="p-2 md:p-4 flex flex-col">
-                        {!loading ? (
-                            meetings.map((meeting: IMeeting, index: number) => (
+                        {!isLoading ? (
+                            data!.map((meeting: IMeeting, index: number) => (
                                 <>
                                     <Minuta
                                         key={index}

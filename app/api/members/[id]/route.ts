@@ -5,6 +5,6 @@ import Member from "@/models/member";
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
     await connectMongoDB();
     const { id } = params;
-    const member = await Member.findOne({ url: id }).lean();
+    const member = await Member.findOne({ email: id });
     return NextResponse.json(member);
 }
