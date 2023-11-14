@@ -16,12 +16,12 @@ const SlideInWrapper = dynamic(
     () => import('@/components/ui/animation/SlideInWrapper')
 )
 export default async function Home() {
-    // const { featuredProject }: { featuredProject: IFeaturedProject[] } =
-    //     await getFeaturedProject()
+    const { featuredProject }: { featuredProject: IFeaturedProject[] } =
+        await getFeaturedProject()
 
-    // const today = new Date()
-    // const featuredProjectStartDate = new Date(featuredProject[0].start_date)
-    // const featuredProjectEndDate = new Date(featuredProject[0].end_date)
+    const today = new Date()
+    const featuredProjectStartDate = new Date(featuredProject[0].start_date)
+    const featuredProjectEndDate = new Date(featuredProject[0].end_date)
 
     return (
         <main className="h-fit pt-5 md:pt-12">
@@ -57,23 +57,23 @@ export default async function Home() {
                             </Link>
                         </div>
                     </div>
-                    {/* {today > featuredProjectStartDate &&
+                    {today > featuredProjectStartDate &&
                         today < featuredProjectEndDate && (
                             <div className="max-md:hidden">
                                 <ProjectCountdown
                                     project={featuredProject[0]}
                                 />
                             </div>
-                        )} */}
+                        )}
                 </div>
             </div>
             <div className="mx-16 max-md:mx-4">
-                {/* {today > featuredProjectStartDate &&
+                {today > featuredProjectStartDate &&
                     today < featuredProjectEndDate && (
                         <div className="md:hidden -mt-24">
                             <ProjectCountdown project={featuredProject[0]} />
                         </div>
-                    )} */}
+                    )}
                 <SlideInWrapper>
                     <AboutRotaract />
                 </SlideInWrapper>
