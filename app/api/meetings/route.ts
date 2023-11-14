@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     const api_key = request.nextUrl.searchParams.get('api_key');
-    if (api_key === process.env.API_KEY) {
+    if (api_key === process.env.NEXT_PUBLIC_API_KEY) {
         const meeting = await request.json();
         await connectMongoDB();
         await Meeting.create(meeting);
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
     const api_key = request.nextUrl.searchParams.get('api_key');
-    if (api_key === process.env.API_KEY) {
+    if (api_key === process.env.NEXT_PUBLIC_API_KEY) {
         const startDateString = request.nextUrl.searchParams.get('startDate') || '2014-01-01';
         const endDateString = request.nextUrl.searchParams.get('endDate') || '2100-01-01';
         const startDate = new Date(startDateString);
@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     const api_key = request.nextUrl.searchParams.get('api_key');
-    if (api_key === process.env.API_KEY) {
+    if (api_key === process.env.NEXT_PULIC_API_KEY) {
         const { id } = await request.json();
         await connectMongoDB();
         await Meeting.findByIdAndDelete(id);

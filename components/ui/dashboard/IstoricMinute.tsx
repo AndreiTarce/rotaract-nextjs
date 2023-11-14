@@ -1,5 +1,5 @@
 'use client'
-import { MEETINGS_PATH } from '@/lib/constants'
+import { API_KEY, MEETINGS_PATH } from '@/lib/constants'
 import { IMeeting } from '@/models/meeting'
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -53,7 +53,7 @@ export default function IstoricMinute() {
         const startDate = `${year}-01-01`
         const endDate = `${year}-12-31`
         getMeetings({
-            api_key: '0b9179cc-7bd1-4a17-a448-fafe53cc719b',
+            api_key: API_KEY,
             startDate: startDate,
             endDate: endDate,
         })

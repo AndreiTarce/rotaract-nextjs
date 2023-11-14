@@ -6,7 +6,7 @@ export default function CotizatieMembru() {
     return (
         <Card className="flex flex-col justify-between">
             <CardHeader className="pb-2 flex flex-row justify-between">
-                <CardTitle>Cotizatie</CardTitle>
+                <CardTitle>Cotizatie - coming soon</CardTitle>
                 <FontAwesomeIcon
                     icon={faDollar}
                     className="text-muted-foreground"
