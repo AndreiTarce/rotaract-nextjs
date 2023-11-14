@@ -53,7 +53,8 @@ module.exports = {
         'rotaract-cranberry': '#d41367',
         'dark': '#252525',
         'dark-blue': '#020817',
-        'light': '#F8FAFC'
+        'light': '#F8FAFC',
+        'countdownbg': '#80838b'
       },
       borderRadius: {
         lg: "var(--radius)",
