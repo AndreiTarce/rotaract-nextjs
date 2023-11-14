@@ -1,3 +1,4 @@
+import AdaugareSedinta from '@/components/ui/dashboard/AdaugareSedinta'
 import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru'
 import ImportantLinks from '@/components/ui/dashboard/ImportantLinks'
 import IstoricMinute from '@/components/ui/dashboard/IstoricMinute'
@@ -19,7 +20,10 @@ export default async function Dashboard() {
                 <CotizatieMembru />
                 <ImportantLinks />
             </div>
-            <IstoricMinute />
+            <div className="flex flex-col gap-4">
+                {isSecretary(userInfo) && <AdaugareSedinta />}
+                <IstoricMinute />
+            </div>
         </main>
     )
 }

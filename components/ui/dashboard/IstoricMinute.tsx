@@ -3,19 +3,17 @@ import { API_KEY, MEETINGS_PATH } from '@/lib/constants'
 import { IMeeting } from '@/models/meeting'
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import moment from 'moment'
-import { useEffect, useState } from 'react'
+import {
+    keepPreviousData,
+    useQuery,
+    useQueryClient,
+} from '@tanstack/react-query'
+import { useState } from 'react'
 import { Button } from '../button'
 import { Card, CardContent, CardHeader, CardTitle } from '../card'
 import { ScrollArea } from '../scroll-area'
 import { Separator } from '../separator'
 import Minuta from './Minuta'
-import {
-    keepPreviousData,
-    useMutation,
-    useQuery,
-    useQueryClient,
-} from '@tanstack/react-query'
 
 const getMeetings = async (params: { api_key: string; year: number }) => {
     const url = MEETINGS_PATH
