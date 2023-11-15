@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
         const startDate = new Date(startDateString);
         const endDate = new Date(endDateString);
         await connectMongoDB();
-        const meetings = await Meeting.find({ date: { $gte: startDate, $lte: endDate } }).sort({ date: -1 });
+        const meetings = await Meeting.find({ start_date: { $gte: startDate, $lte: endDate } }).sort({ start_date: -1 });
         return NextResponse.json({ meetings });
     }
     return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 })

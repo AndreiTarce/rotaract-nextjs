@@ -4,7 +4,8 @@ import { IMember, memberSchema } from "./member";
 export interface IMeeting {
     _id: number,
     type: string,
-    date: Date,
+    start_date: Date,
+    end_date: Date,
     location: string,
     minuteAuthor: string,
     minuteUrl: string,
@@ -16,7 +17,8 @@ export interface IMeeting {
 const meetingSchema = new Schema<IMeeting>(
     {
         type: String,
-        date: Date,
+        start_date: Date,
+        end_date: Date,
         location: String,
         minuteAuthor: String,
         minuteUrl: String,

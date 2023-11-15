@@ -50,9 +50,7 @@ export default function Minuta(props: {
                         Autor: {props.author}
                     </p>
                 </div>
-                <div className="flex justify-between items-center">
-                    <div className="flex text-muted-foreground text-sm"></div>
-                </div>
+                <div className="flex justify-between items-center text-muted-foreground text-sm"></div>
                 <FontAwesomeIcon
                     icon={faDownload}
                     className="self-center h-8 w-8 text-muted-foreground"
