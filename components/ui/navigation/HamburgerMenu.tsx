@@ -30,7 +30,7 @@ export default async function HamburgerMenu() {
                     <HamburgerMenuNavLink href="/" text="Acasă" />
                     <HamburgerMenuNavLink href="/about" text="Despre noi" />
                     <HamburgerMenuNavLink href="/projects" text="Proiecte" />
-                    <HamburgerMenuNavLink href="/members" text="Membri" />
+                    {/* <HamburgerMenuNavLink href="/members" text="Membri" /> */}
                     <HamburgerMenuNavLink href="/contact" text="Contact" />
                     <HamburgerMenuNavLink
                         href="/support-us"
@@ -45,8 +45,8 @@ export default async function HamburgerMenu() {
                                         <AvatarImage
                                             src={
                                                 session?.user?.image as
-                                                    | string
-                                                    | undefined
+                                                | string
+                                                | undefined
                                             }
                                             alt="Profile picture"
                                         />

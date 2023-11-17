@@ -22,7 +22,6 @@ export default async function Home() {
     const today = new Date()
     const featuredProjectStartDate = new Date(featuredProject[0].start_date)
     const featuredProjectEndDate = new Date(featuredProject[0].end_date)
-    console.log('test')
 
     return (
         <main className="h-fit pt-5 md:pt-12">
