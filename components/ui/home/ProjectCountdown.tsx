@@ -14,6 +14,7 @@ import { Button } from '../button'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+    faCircleInfo,
     faHandHoldingDollar,
     faRibbon,
 } from '@fortawesome/free-solid-svg-icons'
@@ -116,7 +117,7 @@ export default function ProjectCountdown({
                             >
                                 Vezi descrierea proiectului{' '}
                                 <FontAwesomeIcon
-                                    icon={faRibbon}
+                                    icon={faCircleInfo}
                                     className="ml-2"
                                 />{' '}
                             </Link>
