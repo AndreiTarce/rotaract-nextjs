@@ -1,15 +1,18 @@
-import AboutVisio from '@/components/about/AboutVisio'
 import background from '@/assets/images/desprenoibg.webp'
 import backgroundMobile from '@/assets/images/desprenoibgmobile.webp'
-import Image from 'next/image'
-import MemberStatistics from '@/components/about/statistics/MemberStatistics'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import OurCauses from '@/components/about/cause/OurCauses'
+import MemberStatistics from '@/components/about/statistics/MemberStatistics'
 import OurValues from '@/components/about/values/OurValues'
-import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-import Timeline from '@/components/about/timeline/Timeline'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+
+export const metadata: Metadata = {
+    title: 'Despre noi | Rotaract Visio Cluj-Napoca',
+    description: 'Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea clubului Rotary Visio Cluj-Napoca  . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru.'
+}
 
 export default function About() {
     return (

@@ -2,6 +2,11 @@ import BoardMembersList from '@/components/ui/members/BoardMembers'
 import MembersList from '@/components/ui/members/Members'
 import PastPresidentsList from '@/components/ui/members/PastPresidents'
 import { Separator } from '@/components/ui/separator'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: 'Membri | Rotaract Visio Cluj-Napoca',
+}
 
 export default function Members() {
     return (

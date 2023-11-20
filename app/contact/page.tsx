@@ -23,7 +23,13 @@ import {
     faLocationDot,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+    title: 'Contact | Rotaract Visio Cluj-Napoca',
+    description: 'Vrei să te implici în comunitatea locală, sau pur și simplu vrei să afli mai multe despre noi? Suntem nerăbdători să auzim noi inițiative, așa că nu ezita să ne contactezi!'
+}
 
 export default function Contact() {
     return (

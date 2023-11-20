@@ -12,6 +12,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import type { Metadata, ResolvingMetadata } from 'next'
+
+type Props = {
+    params: { id: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const id = params.id
+
+    const project: IProject = await getProject(id)
+
+    const previousImages = (await parent).openGraph?.images || []
+
+    return {
+        title: `${project.title} | Rotaract Visio Cluj-Napoca`,
+        openGraph: {
+            images: [project.thumbnailImg, ...previousImages],
+        },
+        description: project.description,
+    }
+}
+
 type ProjectSectionProps = ISection & { key: number }
 type ProjectImageProps = { key?: number; src: string }
 

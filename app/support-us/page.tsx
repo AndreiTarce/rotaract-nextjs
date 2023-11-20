@@ -1,5 +1,11 @@
 import EmbeddedCheckoutForm from '@/components/payments/EmbeddedCheckoutForm'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: 'Support us | Rotaract Visio Cluj-Napoca',
+    description: 'Te invităm să fii parte din schimbarea pe care o aducem comunității noastre! Prin donația ta, sprijini proiectele noastre de caritate și dezvoltare socială, ajutându-ne să facem o diferență semnificativă. Donează astăzi și contribuie la un viitor mai luminos!'
+}
 
 export default function SupportUs() {
     return (
