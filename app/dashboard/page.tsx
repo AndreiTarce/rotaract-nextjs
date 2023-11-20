@@ -5,7 +5,13 @@ import IstoricMinute from '@/components/ui/dashboard/IstoricMinute'
 import { authConfig, isSecretary, loginIsRequiredServer } from '@/lib/auth'
 import { getMember } from '@/lib/entityService'
 import { IMember } from '@/models/member'
+import { Metadata } from 'next'
 import { getServerSession } from 'next-auth'
+
+export const metadata: Metadata = {
+    title: 'Dashboard | Rotaract Visio Cluj-Napoca',
+}
+
 
 export default async function Dashboard() {
     await loginIsRequiredServer()
