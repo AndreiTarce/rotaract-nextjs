@@ -11,12 +11,13 @@ import {
     faInstagram,
     faLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
+import user_placeholder from '@/assets/images/user-placeholder.png'
 
 const MemberCard = (props: IMember) => {
     return (
         <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full overflow-hidden">
             <Image
-                src={props.picture}
+                src={props.picture || user_placeholder}
                 alt={`${props.first_name}${props.last_name} photo`}
                 height={500}
                 width={500}
@@ -42,7 +43,7 @@ const MemberCard = (props: IMember) => {
                     </p>
                 </div>
                 <div className="flex gap-3 items-center">
-                    {props.urls.facebook && (
+                    {props.urls?.facebook && (
                         <Link
                             href={props.urls.facebook}
                             className="w-fit"
@@ -52,7 +53,7 @@ const MemberCard = (props: IMember) => {
                             <span className="sr-only">Facebook profile</span>
                         </Link>
                     )}
-                    {props.urls.linkedin && (
+                    {props.urls?.linkedin && (
                         <Link
                             href={props.urls.linkedin}
                             className="w-fit"
@@ -62,7 +63,7 @@ const MemberCard = (props: IMember) => {
                             <span className="sr-only">Linkedin profile</span>
                         </Link>
                     )}
-                    {props.urls.instagram && (
+                    {props.urls?.instagram && (
                         <Link
                             href={props.urls.instagram}
                             className="w-fit"
