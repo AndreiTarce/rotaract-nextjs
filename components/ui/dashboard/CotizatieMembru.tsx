@@ -13,7 +13,7 @@ export default function CotizatieMembru() {
                 />
             </CardHeader>
             <CardContent>
-                <div className="flex items-end justify-between">
+                {/* <div className="flex items-end justify-between">
                     <div className="flex flex-col">
                         <p className="text-muted-foreground w-fit">de platit</p>
                         <p className="text-3xl font-bold text-red-800">
@@ -26,7 +26,7 @@ export default function CotizatieMembru() {
                         </p>
                         <p className="text-xs text-muted-foreground">06.2023</p>
                     </div>
-                </div>
+                </div> */}
             </CardContent>
         </Card>
     )
