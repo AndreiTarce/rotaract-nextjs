@@ -12,11 +12,12 @@ export async function POST(request: NextRequest, response: NextResponse) {
     try {
         await limiter.check(response, 10, 'CACHE_TOKEN');
         const body: ContactFormSchema = await request.json();
+        const bodyString=`NUME: ${body.first_name} ${body.last_name}\nEMAIL: ${body.email}\nMESSAGE:${body.message}`;
         const data = await resend.emails.send({
             from: 'contact@rotaractvisio.com',
-            to: ['tarceandrei@gmail.com'],
+            to: ['tarceandrei@gmail.com','rotaractvisiocluj@gmail.com','gabrielamusteata28@gmail.com','alexmuresan.dacian@gmail.com'],
             subject: body.subject,
-            html: body.message
+            html: bodyString
         });
         return NextResponse.json(data, { status: 200 });
     } catch (error) {
