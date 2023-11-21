@@ -67,7 +67,7 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
             minuteUrl: '',
             start_date: new Date(),
             // end_date: new Date(),
-            minuteAuthor: `${user.first_name} ${user.last_name}`
+            minuteAuthor: `${user?.first_name} ${user?.last_name}`
         },
     })
 
