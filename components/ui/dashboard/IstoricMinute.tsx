@@ -24,12 +24,12 @@ const getMeetings = async (params: { api_key: string; year: number }) => {
     try {
         const res = await fetch(
             url +
-                '?' +
-                new URLSearchParams({
-                    api_key: api_key,
-                    startDate: startDate,
-                    endDate: endDate,
-                })
+            '?' +
+            new URLSearchParams({
+                api_key: api_key,
+                startDate: startDate,
+                endDate: endDate,
+            }), { cache: 'no-store' }
         )
 
         if (!res.ok) {
@@ -99,6 +99,7 @@ export default function IstoricMinute() {
                                         author={meeting.minuteAuthor}
                                         date={meeting.start_date}
                                         url={meeting.minuteUrl}
+                                        id={meeting._id}
                                     />
                                     <Separator className="my-1" />
                                 </>

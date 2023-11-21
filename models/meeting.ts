@@ -1,8 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 import { IMember, memberSchema } from "./member";
+import { ObjectId } from "mongodb";
 
 export interface IMeeting {
-    _id: number,
+    _id: ObjectId,
     type: string,
     start_date: Date,
     end_date: Date,

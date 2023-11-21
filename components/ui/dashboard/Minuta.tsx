@@ -1,5 +1,6 @@
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ObjectId } from 'mongodb'
 import Link from 'next/link'
 
 export default function Minuta(props: {
@@ -7,10 +8,12 @@ export default function Minuta(props: {
     date: Date
     author: string
     url: string
+    id: ObjectId
 }) {
+    console.log(props);
     const formatDate = (date: Date) => {
         const newDate = new Date(date)
-        const day = newDate.getDay()
+        const day = newDate.getDate()
         const monthIndex = newDate.getMonth()
         const months = [
             'Ianuarie',
