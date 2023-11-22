@@ -4,7 +4,8 @@ import { IMember } from "@/models/member";
 
 export default async function MembersList() {
     const { members }: { members: IMember[] } = await getMembers();
-    return members.map((member: IMember, index: number) => (
+    const activeMembers = members.filter((member: IMember) => member.status === 'activ')
+    return activeMembers.map((member: IMember, index: number) => (
         <MemberCard key={index} {...member} />
     ))
 }

@@ -17,7 +17,8 @@ export interface IMember {
     role: string,
     urls: IMemberLinks,
     start_mandate: number,
-    email: string
+    email: string,
+    status: string
 }
 
 const SectionSchema = new Schema<IMemberLinks>({
@@ -37,7 +38,8 @@ export const memberSchema = new Schema<IMember>(
         role: String,
         urls: SectionSchema,
         start_mandate: Number,
-        email: String
+        email: String,
+        status: String
     },
     {
         timestamps: true,
