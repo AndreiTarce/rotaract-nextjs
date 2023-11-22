@@ -30,9 +30,9 @@ export function Navigation() {
                     <li className="max-md:hidden">
                         <NavLink href="/projects" text="Proiecte" />
                     </li>
-                    {/* <li className="max-md:hidden">
+                    <li className="max-md:hidden">
                         <NavLink href="/members" text="Membri" />
-                    </li> */}
+                    </li>
                     <li className="max-md:hidden">
                         <NavLink href="/contact" text="Contact" />
                     </li>
