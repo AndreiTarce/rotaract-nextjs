@@ -24,4 +24,4 @@ export async function loginIsRequiredServer() {
     if (!isWhitelisted) return redirect('/signin?whitelisted=false');
 }
 
-export const isSecretary = (user: IMember) => user?.role === 'Secretar'
+export const isSecretary = (user: IMember) => user?.role === 'Secretar' || user?.role === "Secretary"
