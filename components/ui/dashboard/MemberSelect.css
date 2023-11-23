@@ -26,6 +26,11 @@
         background-color: hsl(var(--accent));
     }
 
+    .member-select-input {
+        color: hsl(var(--muted-foreground));
+        font-size: 14px;
+    }
+
     .member-select-multivalue {
         background-color: hsl(var(--foreground));
         color: hsl(var(--background));

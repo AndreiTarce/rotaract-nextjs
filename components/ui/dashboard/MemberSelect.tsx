@@ -102,6 +102,7 @@ export default function MemberSelect({
                     menu: () => 'member-select-menu',
                     multiValue: () => 'member-select-multivalue',
                     placeholder: () => 'member-select-placeholder',
+                    input: () => 'member-select-input',
                 }}
                 value={presentMembers}
                 hideSelectedOptions={true}
