@@ -10,7 +10,6 @@ export default function Minuta(props: {
     url: string
     id: ObjectId
 }) {
-    console.log(props);
     const formatDate = (date: Date) => {
         const newDate = new Date(date)
         const day = newDate.getDate()

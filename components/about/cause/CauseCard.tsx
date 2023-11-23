@@ -4,15 +4,13 @@ import { ICause } from '@/models/causes'
 import { faExpand } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import CauseDialog from './CauseDialog'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import Link from 'next/link'
 
 export default function CauseCard(props: ICause) {
     const [isOpen, setIsOpen] = useState(false)
-    const router = useRouter()
-    const pathname = usePathname()
     const searchParams = useSearchParams()
     const cause = searchParams.get('cause')
     return (

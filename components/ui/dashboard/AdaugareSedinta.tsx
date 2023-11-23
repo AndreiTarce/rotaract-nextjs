@@ -1,35 +1,42 @@
 'use client'
 
+import { API_KEY } from '@/lib/constants'
+import { cn } from '@/lib/utils'
+import { IMember } from '@/models/member'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useQueryClient } from '@tanstack/react-query'
+import { format } from 'date-fns'
+import { AlertOctagon, CalendarIcon, MailCheck } from 'lucide-react'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { Button } from '../button'
+import { Calendar } from '../calendar'
 import { Card, CardContent, CardHeader, CardTitle } from '../card'
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+} from '../form'
 import { Input } from '../input'
+import { Popover, PopoverContent, PopoverTrigger } from '../popover'
 import {
     Select,
     SelectContent,
     SelectGroup,
     SelectItem,
     SelectTrigger,
-    SelectValue
+    SelectValue,
 } from '../select'
-import { MEETING_TYPES } from './constants'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../form'
-import { AlertOctagon, CalendarIcon, MailCheck } from 'lucide-react'
-import { Textarea } from '../textarea'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Toaster } from '../toaster'
 import { toast } from '../use-toast'
-import { Button } from '../button'
-import { API_KEY } from '@/lib/constants'
-import { IMember } from '@/models/member'
-import { Popover, PopoverContent, PopoverTrigger } from '../popover'
-import { cn } from '@/lib/utils'
-import { format } from 'date-fns'
-import { Calendar } from '../calendar'
-import { useQueryClient } from '@tanstack/react-query'
+import MemberSelect, { IPresentMemberSelect } from './MemberSelect'
+import { MEETING_TYPES } from './constants'
 
 const formSchema = z.object({
     location: z.string().min(1, {
@@ -43,15 +50,27 @@ const formSchema = z.object({
     }),
     start_date: z.date(),
     // end_date: z.date(),
-    minuteAuthor: z.string()
+    minuteAuthor: z.string(),
+    presentMembers: z.array(z.any()).refine(
+        (data) => {
+            console.log(data)
+            return data.length
+        },
+        {
+            message: 'At least one member must be present.',
+        }
+    ),
 })
 
 export type MeetingFormSchema = z.infer<typeof formSchema>
 
 export default function AdaugareSedinta({ user }: { user: IMember }) {
     const [status, setStatus] = useState('')
+    const [presentMembers, setPresentMembers] = useState<
+        IPresentMemberSelect[]
+    >([])
 
-    const queryClient = useQueryClient();
+    const queryClient = useQueryClient()
 
     const statuses = {
         loading: 'loading',
@@ -67,14 +86,19 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
             minuteUrl: '',
             start_date: new Date(),
             // end_date: new Date(),
-            minuteAuthor: `${user?.first_name} ${user?.last_name}`
+            minuteAuthor: `${user?.first_name} ${user?.last_name}`,
+            presentMembers: [],
         },
     })
+
+    const getPresentMembersArray = (array: IPresentMemberSelect[]) =>
+        array.map((member) => member.value)
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         const abortLongFetch = new AbortController()
         const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000)
 
+        const presentMembersArray = getPresentMembersArray(presentMembers)
         setStatus(statuses.loading)
 
         fetch('/api/meetings' + `?api_key=${API_KEY}`, {
@@ -83,7 +107,10 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(values),
+            body: JSON.stringify({
+                ...values,
+                presentMembers: presentMembersArray,
+            }),
         })
             .then((res) => {
                 if (res.ok) {
@@ -95,7 +122,10 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
             .then((res) => {
                 setStatus(statuses.submitted)
                 form.reset()
-                queryClient.invalidateQueries({ queryKey: ['meetings'], exact: false })
+                queryClient.invalidateQueries({
+                    queryKey: ['meetings'],
+                    exact: false,
+                })
                 toast({
                     title: 'Sedinta adaugata',
                     description: (
@@ -108,11 +138,12 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                     ),
                     duration: 10000,
                 })
+                setPresentMembers([])
             })
             .catch((err) => {
                 setStatus(statuses.error)
+                setPresentMembers([])
             })
-
     }
 
     return (
@@ -130,7 +161,10 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                 render={({ field }) => (
                                     <FormItem className="mb-4">
                                         <FormLabel>Tipul sedintei</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <Select
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                        >
                                             <FormControl>
                                                 <SelectTrigger>
                                                     <SelectValue placeholder="Tipul sedintei" />
@@ -138,11 +172,21 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                             </FormControl>
                                             <SelectContent>
                                                 <SelectGroup>
-                                                    {MEETING_TYPES.map((meeting, index: number) => (
-                                                        <SelectItem value={meeting.name} key={meeting.id}>
-                                                            {meeting.name}
-                                                        </SelectItem>
-                                                    ))}
+                                                    {MEETING_TYPES.map(
+                                                        (
+                                                            meeting,
+                                                            index: number
+                                                        ) => (
+                                                            <SelectItem
+                                                                value={
+                                                                    meeting.name
+                                                                }
+                                                                key={meeting.id}
+                                                            >
+                                                                {meeting.name}
+                                                            </SelectItem>
+                                                        )
+                                                    )}
                                                 </SelectGroup>
                                             </SelectContent>
                                         </Select>
@@ -151,8 +195,8 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
                                                     {
-                                                        form.formState.errors.type
-                                                            ?.message
+                                                        form.formState.errors
+                                                            .type?.message
                                                     }
                                                 </span>
                                             </FormDescription>
@@ -167,15 +211,18 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                     <FormItem className="mb-4">
                                         <FormLabel>Locatie</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Locatie" {...field} />
+                                            <Input
+                                                placeholder="Locatie"
+                                                {...field}
+                                            />
                                         </FormControl>
                                         {form.formState.errors.location && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
                                                     {
-                                                        form.formState.errors.location
-                                                            ?.message
+                                                        form.formState.errors
+                                                            .location?.message
                                                     }
                                                 </span>
                                             </FormDescription>
@@ -190,14 +237,19 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                     <FormItem className="mb-4">
                                         <FormLabel>Autorul minutei</FormLabel>
                                         <FormControl>
-                                            <Input disabled placeholder="Autor" {...field} />
+                                            <Input
+                                                disabled
+                                                placeholder="Autor"
+                                                {...field}
+                                            />
                                         </FormControl>
                                         {form.formState.errors.minuteAuthor && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
                                                     {
-                                                        form.formState.errors.minuteAuthor
+                                                        form.formState.errors
+                                                            .minuteAuthor
                                                             ?.message
                                                     }
                                                 </span>
@@ -216,28 +268,41 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                             <PopoverTrigger asChild>
                                                 <FormControl>
                                                     <Button
-                                                        variant={"outline"}
+                                                        variant={'outline'}
                                                         className={cn(
-                                                            "w-[240px] pl-3 text-left font-normal",
-                                                            !field.value && "text-muted-foreground"
+                                                            'w-[240px] pl-3 text-left font-normal',
+                                                            !field.value &&
+                                                                'text-muted-foreground'
                                                         )}
                                                     >
                                                         {field.value ? (
-                                                            format(field.value, "PPP")
+                                                            format(
+                                                                field.value,
+                                                                'PPP'
+                                                            )
                                                         ) : (
-                                                            <span>Alege o data</span>
+                                                            <span>
+                                                                Alege o data
+                                                            </span>
                                                         )}
                                                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
-                                            <PopoverContent className="w-auto p-0" align="start">
+                                            <PopoverContent
+                                                className="w-auto p-0"
+                                                align="start"
+                                            >
                                                 <Calendar
                                                     mode="single"
                                                     selected={field.value}
                                                     onSelect={field.onChange}
                                                     disabled={(date) =>
-                                                        date > new Date() || date < new Date("1900-01-01")
+                                                        date > new Date() ||
+                                                        date <
+                                                            new Date(
+                                                                '1900-01-01'
+                                                            )
                                                     }
                                                     initialFocus
                                                 />
@@ -248,8 +313,8 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
                                                     {
-                                                        form.formState.errors.start_date
-                                                            ?.message
+                                                        form.formState.errors
+                                                            .start_date?.message
                                                     }
                                                 </span>
                                             </FormDescription>
@@ -264,14 +329,47 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                     <FormItem className="mb-4">
                                         <FormLabel>Link minuta</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Link" {...field} />
+                                            <Input
+                                                placeholder="Link"
+                                                {...field}
+                                            />
                                         </FormControl>
                                         {form.formState.errors.minuteUrl && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
                                                     {
-                                                        form.formState.errors.minuteUrl
+                                                        form.formState.errors
+                                                            .minuteUrl?.message
+                                                    }
+                                                </span>
+                                            </FormDescription>
+                                        )}
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="presentMembers"
+                                render={({ field }) => (
+                                    <FormItem className="mb-4">
+                                        <FormLabel>Membri prezenti</FormLabel>
+                                        <MemberSelect
+                                            presentMembers={presentMembers!}
+                                            setPresentMembers={
+                                                setPresentMembers
+                                            }
+                                            setFormValue={form.setValue}
+                                            clearErrors={form.clearErrors}
+                                        />
+                                        {form.formState.errors
+                                            .presentMembers && (
+                                            <FormDescription className="text-destructive">
+                                                <span className="flex gap-2">
+                                                    <AlertOctagon size={20} />
+                                                    {
+                                                        form.formState.errors
+                                                            .presentMembers
                                                             ?.message
                                                     }
                                                 </span>
@@ -280,8 +378,9 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                     </FormItem>
                                 )}
                             />
+
                             <div className="flex w-full justify-end">
-                                <Button type='submit'>
+                                <Button type="submit">
                                     {status === statuses.loading ? (
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -304,6 +403,18 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                         <Toaster />
                     </Form>
                 </div>
+
+                {/* <div className="h-12 w-12 relative rounded-full overflow-hidden">
+                    <Image
+                        src={user.picture}
+                        alt="test"
+                        width={50}
+                        height={50}
+                        style={{
+                            objectFit: 'cover', // cover, contain, none
+                        }}
+                    />
+                </div> */}
             </CardContent>
         </Card>
     )
