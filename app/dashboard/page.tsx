@@ -16,7 +16,6 @@ export default async function Dashboard() {
     await loginIsRequiredServer()
     const session = await getServerSession(authConfig)
     const userInfo: IMember = await getMember(session?.user?.email!)
-    console.log(session)
     return (
         <main className="mt-5 md:mt-12 mx-16 max-md:mx-4">
             <h1 className="text-3xl font-bold tracking-tight mb-8">
