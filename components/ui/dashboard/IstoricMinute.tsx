@@ -14,6 +14,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '../card'
 import { ScrollArea } from '../scroll-area'
 import { Separator } from '../separator'
 import Minuta from './Minuta'
+import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
+import Link from 'next/link'
 
 const getMeetings = async (params: { api_key: string; year: number }) => {
     const url = MEETINGS_PATH
@@ -24,12 +26,13 @@ const getMeetings = async (params: { api_key: string; year: number }) => {
     try {
         const res = await fetch(
             url +
-            '?' +
-            new URLSearchParams({
-                api_key: api_key,
-                startDate: startDate,
-                endDate: endDate,
-            }), { cache: 'no-store' }
+                '?' +
+                new URLSearchParams({
+                    api_key: api_key,
+                    startDate: startDate,
+                    endDate: endDate,
+                }),
+            { cache: 'no-store' }
         )
 
         if (!res.ok) {
@@ -68,8 +71,20 @@ export default function IstoricMinute() {
 
     return (
         <Card>
-            <CardHeader className="pb-4">
-                <CardTitle>Istoric minute</CardTitle>
+            <CardHeader className="pb-4 flex flex-row justify-between">
+                <CardTitle className="self-center">Istoric Sedinte</CardTitle>
+                <Button asChild variant="outline" size="sm">
+                    <Link
+                        href="https://drive.google.com/drive/folders/1jVd1i82MoMS16nNJGcphXd2rHUDPIeR8?usp=drive_link"
+                        className="!mt-0"
+                        target="_blank"
+                    >
+                        <FontAwesomeIcon
+                            icon={faGoogleDrive}
+                            className="text-muted-foreground"
+                        />
+                    </Link>
+                </Button>
             </CardHeader>
             <CardContent>
                 <div className="flex justify-between md:max-w-[200px] w-full mb-2">
