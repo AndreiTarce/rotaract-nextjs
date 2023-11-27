@@ -3,6 +3,7 @@ import AdaugareSedinta from '@/components/ui/dashboard/AdaugareSedinta'
 import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru'
 import ImportantLinks from '@/components/ui/dashboard/ImportantLinks'
 import IstoricMinute from '@/components/ui/dashboard/IstoricMinute'
+import IstoricSedinte from '@/components/ui/dashboard/IstoricSedinte'
 import MemberInfo from '@/components/ui/dashboard/MemberInfo'
 import MemberPill from '@/components/ui/dashboard/MemberPill'
 import { authConfig, isSecretary, loginIsRequiredServer } from '@/lib/auth'
@@ -42,6 +43,7 @@ export default async function Dashboard() {
             </div> */}
             <div className="flex flex-col gap-4">
                 {isSecretary(userInfo) && <AdaugareSedinta user={userInfo} />}
+                {/* <IstoricSedinte /> */}
                 <IstoricMinute />
             </div>
         </main>

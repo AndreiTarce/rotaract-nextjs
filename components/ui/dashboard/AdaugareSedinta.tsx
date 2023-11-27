@@ -132,7 +132,7 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                         <div className="flex gap-2">
                             <MailCheck />
                             <span className="self-center">
-                                Minuta a fost adugata cu succes!
+                                Sedinta a fost adaugata cu succes!
                             </span>
                         </div>
                     ),

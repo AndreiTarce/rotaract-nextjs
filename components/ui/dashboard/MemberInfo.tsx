@@ -15,7 +15,7 @@ import user_placeholder from '@/assets/images/user-placeholder.png'
 export default async function MemberInfo({ user }: { user: IMember }) {
     const attendance = await getAttendance(user._id)
     return (
-        <div className="flex overflow-hidden p-6 justify-between">
+        <div className="overflow-hidden p-6 relative">
             <div className="flex gap-4 flex-wrap">
                 <div className="relative rounded-full overflow-hidden w-28 h-28 self-center">
                     <Image
@@ -23,7 +23,7 @@ export default async function MemberInfo({ user }: { user: IMember }) {
                         alt="Profile picture"
                         fill
                         style={{
-                            objectFit: 'cover', // cover, contain, none
+                            objectFit: 'cover',
                         }}
                     />
                 </div>
@@ -33,7 +33,10 @@ export default async function MemberInfo({ user }: { user: IMember }) {
                     </CardTitle>
                     <CardDescription>{user.email}</CardDescription>
                     <div className="capitalize">{user.role}</div>
-                    <div className="text-sm mt-4 flex gap-2">
+                    <div className="text-muted-foreground text-sm capitalize">
+                        Status: {user.status}
+                    </div>
+                    <div className="text-sm mt-4 flex gap-2 flex-wrap">
                         <Card className="w-fit px-2 py-1 rounded-full">
                             <span className="dark:text-green-500 text-green-800">
                                 Prezențe {attendance.totalPresences}
@@ -47,7 +50,10 @@ export default async function MemberInfo({ user }: { user: IMember }) {
                     </div>
                 </div>
             </div>
-            <FontAwesomeIcon icon={faUser} className="text-muted-foreground" />
+            <FontAwesomeIcon
+                icon={faUser}
+                className="text-muted-foreground absolute top-6 right-6"
+            />
         </div>
     )
 }

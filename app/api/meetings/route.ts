@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
     const api_key = request.nextUrl.searchParams.get('api_key')
+    const type = request.nextUrl.searchParams.get('type')
     if (api_key === process.env.NEXT_PUBLIC_API_KEY) {
         const startDateString =
             request.nextUrl.searchParams.get('startDate') || '2014-01-01'
@@ -43,6 +44,13 @@ export async function GET(request: NextRequest) {
         const startDate = new Date(startDateString)
         const endDate = new Date(endDateString)
         await connectMongoDB()
+        if (type) {
+            const meetings = await Meeting.find({
+                start_date: { $gte: startDate, $lte: endDate },
+                type: type,
+            }).sort({ start_date: -1 })
+            return NextResponse.json({ meetings })
+        }
         const meetings = await Meeting.find({
             start_date: { $gte: startDate, $lte: endDate },
         }).sort({ start_date: -1 })

@@ -1,65 +1,46 @@
 'use client'
-import { API_KEY, MEETINGS_PATH } from '@/lib/constants'
+
 import { IMeeting } from '@/models/meeting'
+import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
+import { Button } from '../button'
+import { Card, CardHeader, CardTitle, CardContent } from '../card'
+import Minuta from './Minuta'
+import { useState } from 'react'
 import {
     keepPreviousData,
     useQuery,
     useQueryClient,
 } from '@tanstack/react-query'
-import { useState } from 'react'
-import { Button } from '../button'
-import { Card, CardContent, CardHeader, CardTitle } from '../card'
+import { API_KEY } from '@/lib/constants'
+import { getMeetings } from './IstoricMinute'
 import { ScrollArea } from '../scroll-area'
 import { Separator } from '../separator'
-import Minuta from './Minuta'
-import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
-import Link from 'next/link'
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '../select'
+import { MEETING_TYPES } from './constants'
+import Sedinta from './Sedinta'
 
-export const getMeetings = async (params: {
-    api_key: string
-    year: number
-    type?: string
-}) => {
-    const url = MEETINGS_PATH
-    const { year, api_key, type } = params
-    const startDate = `${year}-01-01`
-    const endDate = `${year}-12-31`
-
-    try {
-        const res = await fetch(
-            url +
-                '?' +
-                new URLSearchParams({
-                    api_key: api_key,
-                    startDate: startDate,
-                    endDate: endDate,
-                    type: type ? type : '',
-                }),
-            { cache: 'no-store' }
-        )
-
-        if (!res.ok) {
-            throw new Error('Failed to fetch meetings')
-        }
-
-        return res.json()
-    } catch (error) {
-        console.log('Error loading meetings: ', error)
-    }
-}
-
-export default function IstoricMinute() {
+export default function IstoricSedinte() {
     const [year, setYear] = useState(new Date().getFullYear())
+    const [type, setType] = useState(MEETING_TYPES[0].name)
     const queryClient = useQueryClient()
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: ['meetings', year],
+        queryKey: ['meetings', year, type],
         queryFn: async () => {
             const { meetings } = await getMeetings({
                 api_key: API_KEY,
                 year: year,
+                type: type,
             })
             return meetings as IMeeting[]
         },
@@ -73,11 +54,10 @@ export default function IstoricMinute() {
     const subtractYear = () => {
         setYear((prevYear) => prevYear - 1)
     }
-
     return (
         <Card>
             <CardHeader className="pb-4 flex flex-row justify-between">
-                <CardTitle className="self-center">Istoric minute</CardTitle>
+                <CardTitle className="self-center">Istoric sedinte</CardTitle>
                 <Button asChild variant="outline" size="sm">
                     <Link
                         href="https://drive.google.com/drive/folders/1jVd1i82MoMS16nNJGcphXd2rHUDPIeR8?usp=drive_link"
@@ -92,37 +72,49 @@ export default function IstoricMinute() {
                 </Button>
             </CardHeader>
             <CardContent>
-                <div className="flex justify-between md:max-w-[200px] w-full mb-2">
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={subtractYear}
-                        disabled={year > 2014 ? false : true}
-                    >
-                        <FontAwesomeIcon icon={faCaretLeft} />
-                    </Button>
-                    <div className="font-semibold flex justify-center items-center">
-                        {year}
+                <div className="flex gap-4 mb-2 items-center flex-wrap">
+                    <div className="flex justify-between md:max-w-[200px] w-full">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={subtractYear}
+                            disabled={year > 2014 ? false : true}
+                        >
+                            <FontAwesomeIcon icon={faCaretLeft} />
+                        </Button>
+                        <div className="font-semibold flex justify-center items-center">
+                            {year}
+                        </div>
+                        <Button variant="outline" size="sm" onClick={addYear}>
+                            <FontAwesomeIcon icon={faCaretRight} />
+                        </Button>
                     </div>
-                    <Button variant="outline" size="sm" onClick={addYear}>
-                        <FontAwesomeIcon icon={faCaretRight} />
-                    </Button>
+                    <Select
+                        defaultValue={type}
+                        onValueChange={(e) => setType(e)}
+                    >
+                        <SelectTrigger className="w-fit">
+                            <SelectValue placeholder="Tipul sedintei" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                {MEETING_TYPES.map((meeting, index: number) => (
+                                    <SelectItem
+                                        value={meeting.name}
+                                        key={meeting.id}
+                                    >
+                                        {meeting.name}
+                                    </SelectItem>
+                                ))}
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
                 </div>
                 <ScrollArea className="border rounded h-96">
-                    <div className="p-2 md:p-4 flex flex-col">
+                    <div className="p-2 md:p-4 flex gap-2 flex-wrap">
                         {!isLoading ? (
                             data!.map((meeting: IMeeting, index: number) => (
-                                <>
-                                    <Minuta
-                                        key={index}
-                                        type={meeting.type}
-                                        author={meeting.minuteAuthor}
-                                        date={meeting.start_date}
-                                        url={meeting.minuteUrl}
-                                        id={meeting._id}
-                                    />
-                                    <Separator className="my-1" />
-                                </>
+                                <Sedinta key={index} meeting={meeting} />
                             ))
                         ) : (
                             <div className="flex items-center w-full h-full">
