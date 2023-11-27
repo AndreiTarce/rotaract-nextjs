@@ -403,18 +403,6 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                         <Toaster />
                     </Form>
                 </div>
-
-                {/* <div className="h-12 w-12 relative rounded-full overflow-hidden">
-                    <Image
-                        src={user.picture}
-                        alt="test"
-                        width={50}
-                        height={50}
-                        style={{
-                            objectFit: 'cover', // cover, contain, none
-                        }}
-                    />
-                </div> */}
             </CardContent>
         </Card>
     )

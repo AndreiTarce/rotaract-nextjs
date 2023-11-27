@@ -72,7 +72,7 @@ export default function IstoricMinute() {
     return (
         <Card>
             <CardHeader className="pb-4 flex flex-row justify-between">
-                <CardTitle className="self-center">Istoric Sedinte</CardTitle>
+                <CardTitle className="self-center">Istoric minute</CardTitle>
                 <Button asChild variant="outline" size="sm">
                     <Link
                         href="https://drive.google.com/drive/folders/1jVd1i82MoMS16nNJGcphXd2rHUDPIeR8?usp=drive_link"
