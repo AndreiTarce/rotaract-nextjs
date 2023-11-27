@@ -32,7 +32,7 @@ export default async function MemberInfo({ user }: { user: IMember }) {
                         {user.first_name} {user.last_name}
                     </CardTitle>
                     <CardDescription>{user.email}</CardDescription>
-                    <div className="uppercase">{user.role}</div>
+                    <div className="capitalize">{user.role}</div>
                     <div className="text-sm mt-4 flex gap-2">
                         <Card className="w-fit px-2 py-1 rounded-full">
                             <span className="dark:text-green-500 text-green-800">
