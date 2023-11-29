@@ -3,12 +3,12 @@
 import { API_KEY } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import { IMember } from '@/models/member'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
 import { format } from 'date-fns'
-import { AlertOctagon, CalendarIcon, MailCheck } from 'lucide-react'
+import { AlertOctagon, CalendarIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -37,6 +37,7 @@ import { Toaster } from '../toaster'
 import { toast } from '../use-toast'
 import MemberSelect, { IPresentMemberSelect } from './MemberSelect'
 import { MEETING_TYPES } from './constants'
+import { Textarea } from '../textarea'
 
 const formSchema = z.object({
     location: z.string().min(1, {
@@ -60,6 +61,10 @@ const formSchema = z.object({
             message: 'At least one member must be present.',
         }
     ),
+    start_hour: z.string().min(1, {
+        message: 'Hour is required',
+    }),
+    highlights: z.string(),
 })
 
 export type MeetingFormSchema = z.infer<typeof formSchema>
@@ -86,8 +91,10 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
             minuteUrl: '',
             start_date: new Date(),
             // end_date: new Date(),
+            start_hour: '20:00',
             minuteAuthor: `${user?.first_name} ${user?.last_name}`,
             presentMembers: [],
+            highlights: '',
         },
     })
 
@@ -100,6 +107,18 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
 
         const presentMembersArray = getPresentMembersArray(presentMembers)
         setStatus(statuses.loading)
+        const {
+            type,
+            location,
+            minuteAuthor,
+            minuteUrl,
+            start_date,
+            start_hour,
+            highlights,
+        } = values
+        const [hours, minutes] = values.start_hour.split(':').map(Number)
+        start_date.setHours(hours)
+        start_date.setMinutes(minutes)
 
         fetch('/api/meetings' + `?api_key=${API_KEY}`, {
             signal: abortLongFetch.signal,
@@ -108,7 +127,12 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                ...values,
+                type,
+                location,
+                minuteAuthor,
+                minuteUrl,
+                start_date,
+                highlights,
                 presentMembers: presentMembersArray,
             }),
         })
@@ -130,7 +154,7 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                     title: 'Sedinta adaugata',
                     description: (
                         <div className="flex gap-2">
-                            <MailCheck />
+                            <FontAwesomeIcon icon={faCheckCircle} />
                             <span className="self-center">
                                 Sedinta a fost adaugata cu succes!
                             </span>
@@ -143,6 +167,18 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
             .catch((err) => {
                 setStatus(statuses.error)
                 setPresentMembers([])
+                toast({
+                    title: 'Eroare la adaugare',
+                    variant: 'destructive',
+                    description: (
+                        <div className="flex gap-2">
+                            <span className="self-center">
+                                Sedinta nu a fost adaugata.
+                            </span>
+                        </div>
+                    ),
+                    duration: 10000,
+                })
             })
     }
 
@@ -324,6 +360,32 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                             />
                             <FormField
                                 control={form.control}
+                                name="start_hour"
+                                render={({ field }) => (
+                                    <FormItem className="mb-4">
+                                        <FormLabel>Ora</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="(HH:MM)"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        {form.formState.errors.start_hour && (
+                                            <FormDescription className="text-destructive">
+                                                <span className="flex gap-2">
+                                                    <AlertOctagon size={20} />
+                                                    {
+                                                        form.formState.errors
+                                                            .start_hour?.message
+                                                    }
+                                                </span>
+                                            </FormDescription>
+                                        )}
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
                                 name="minuteUrl"
                                 render={({ field }) => (
                                     <FormItem className="mb-4">
@@ -371,6 +433,33 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                                         form.formState.errors
                                                             .presentMembers
                                                             ?.message
+                                                    }
+                                                </span>
+                                            </FormDescription>
+                                        )}
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="highlights"
+                                render={({ field }) => (
+                                    <FormItem className="mb-4">
+                                        <FormLabel>Highlights</FormLabel>
+                                        <FormControl>
+                                            <Textarea
+                                                placeholder="Coming soon"
+                                                {...field}
+                                                disabled
+                                            />
+                                        </FormControl>
+                                        {form.formState.errors.highlights && (
+                                            <FormDescription className="text-destructive">
+                                                <span className="flex gap-2">
+                                                    <AlertOctagon size={20} />
+                                                    {
+                                                        form.formState.errors
+                                                            .highlights?.message
                                                     }
                                                 </span>
                                             </FormDescription>

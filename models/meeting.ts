@@ -9,6 +9,7 @@ export interface IMeeting {
     end_date: Date
     location: string
     minuteAuthor: string
+    highlights: string
     minuteUrl: string
     duration: number
     presentMembers: IMember[]
@@ -24,6 +25,7 @@ const meetingSchema = new Schema<IMeeting>(
         minuteAuthor: String,
         minuteUrl: String,
         duration: Number,
+        highlights: String,
         absentMembers: [memberSchema],
         presentMembers: [memberSchema],
     },

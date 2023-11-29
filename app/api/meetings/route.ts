@@ -6,29 +6,32 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(request: NextRequest) {
     const api_key = request.nextUrl.searchParams.get('api_key')
     if (api_key === process.env.NEXT_PUBLIC_API_KEY) {
-        const meeting = await request.json()
-        await connectMongoDB()
-        const { presentMembers } = meeting
-        if (presentMembers) {
-            const completeMembers = await Member.find().lean()
-            console.log(completeMembers)
+        try {
+            const meeting = await request.json()
+            await connectMongoDB()
+            const { presentMembers } = meeting
+            if (presentMembers) {
+                const completeMembers = await Member.find().lean()
 
-            // Step 2: Determine the absent members
-            const absentMembers = completeMembers.filter(
-                (member) => !presentMembers.includes(member._id)
-            )
-
-            await Meeting.create({ ...meeting, absentMembers })
+                // Step 2: Determine the absent members
+                const absentMembers = completeMembers.filter(
+                    (member) => !presentMembers.includes(member._id)
+                )
+                console.log(typeof presentMembers[0].id)
+                await Meeting.create({ ...meeting, absentMembers })
+                return NextResponse.json(
+                    { message: 'Meeting created' },
+                    { status: 201 }
+                )
+            }
+            await Meeting.create(meeting)
             return NextResponse.json(
                 { message: 'Meeting created' },
                 { status: 201 }
             )
+        } catch (error) {
+            return NextResponse.json({ message: error }, { status: 500 })
         }
-        await Meeting.create(meeting)
-        return NextResponse.json(
-            { message: 'Meeting created' },
-            { status: 201 }
-        )
     }
     return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 })
 }

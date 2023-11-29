@@ -31,7 +31,8 @@ const SectionSchema = new Schema<IMemberLinks>({
 
 export const memberSchema = new Schema<IMember>(
     {
-        id: ObjectId,
+        _id: ObjectId,
+        id: Number,
         first_name: String,
         last_name: String,
         picture: String,
