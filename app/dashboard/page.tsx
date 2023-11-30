@@ -35,7 +35,7 @@ export default async function Dashboard() {
             </div>
             <div className="flex flex-col gap-4">
                 {isSecretary(userInfo) && <AdaugareSedinta user={userInfo} />}
-                <IstoricSedinte />
+                <IstoricSedinte user={userInfo} />
                 <IstoricMinute />
             </div>
         </main>

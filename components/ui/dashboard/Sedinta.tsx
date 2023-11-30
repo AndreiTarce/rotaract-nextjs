@@ -2,10 +2,23 @@
 
 import { IMeeting } from '@/models/meeting'
 import { IMember } from '@/models/member'
-import { faCalendar, faLocationPin } from '@fortawesome/free-solid-svg-icons'
+import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
+import {
+    faCalendar,
+    faCircle,
+    faLocationPin,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ChevronsUpDown } from 'lucide-react'
+import Link from 'next/link'
+import { useState } from 'react'
 import { Button } from '../button'
 import { Card, CardDescription, CardHeader, CardTitle } from '../card'
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from '../collapsible'
 import {
     Dialog,
     DialogContent,
@@ -15,24 +28,25 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '../dialog'
-import MemberPill from './MemberPill'
-import { ScrollArea } from '../scroll-area'
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from '../collapsible'
-import { useState } from 'react'
-import { ChevronsUpDown } from 'lucide-react'
-import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
-import Link from 'next/link'
-import { Textarea } from '../textarea'
 import { Label } from '../label'
+import { ScrollArea } from '../scroll-area'
+import { Textarea } from '../textarea'
+import MemberPill from './MemberPill'
 
-export default function Sedinta({ meeting }: { meeting: IMeeting }) {
+export default function Sedinta({
+    meeting,
+    user,
+}: {
+    meeting: IMeeting
+    user: IMember
+}) {
     const meetingDate = new Date(meeting.start_date)
     const [isPresentOpen, setIsPresentOpen] = useState(true)
     const [isAbsentOpen, setIsAbsentOpen] = useState(false)
+    const memberIsPresent = meeting.presentMembers?.some(
+        (presentMember) => presentMember._id === user._id
+    )
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -61,6 +75,25 @@ export default function Sedinta({ meeting }: { meeting: IMeeting }) {
                                 {meeting.location}
                             </div>
                         </CardDescription>
+                        {meeting.presentMembers?.length ? (
+                            <div className="w-fit">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="bg-[hsl(var(--accent))]"
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faCircle}
+                                        className={
+                                            memberIsPresent
+                                                ? 'text-green-500 mr-2 '
+                                                : 'text-red-600 mr-2 '
+                                        }
+                                    />
+                                    {memberIsPresent ? 'Prezent' : 'Absent'}
+                                </Button>
+                            </div>
+                        ) : null}
                     </CardHeader>
                 </Card>
             </DialogTrigger>

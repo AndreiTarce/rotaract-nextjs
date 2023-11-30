@@ -28,8 +28,9 @@ import {
 } from '../select'
 import { MEETING_TYPES } from './constants'
 import Sedinta from './Sedinta'
+import { IMember } from '@/models/member'
 
-export default function IstoricSedinte() {
+export default function IstoricSedinte({ user }: { user: IMember }) {
     const [year, setYear] = useState(new Date().getFullYear())
     const [type, setType] = useState(MEETING_TYPES[0].name)
     const queryClient = useQueryClient()
@@ -78,7 +79,7 @@ export default function IstoricSedinte() {
                             variant="outline"
                             size="sm"
                             onClick={subtractYear}
-                            disabled={year > 2014 ? false : true}
+                            disabled={year > 2023 ? false : true}
                         >
                             <FontAwesomeIcon icon={faCaretLeft} />
                         </Button>
@@ -111,12 +112,17 @@ export default function IstoricSedinte() {
                     </Select>
                 </div>
                 <ScrollArea className="border rounded h-96">
-                    {/* <div className="p-2 md:p-4 flex gap-2 flex-wrap"> */}
                     <div className="p-2 md:p-4 grid grid-cols-responsive-grid gap-4">
                         {!isLoading ? (
-                            data!.map((meeting: IMeeting, index: number) => (
-                                <Sedinta key={index} meeting={meeting} />
-                            ))
+                            data!.map((meeting: IMeeting, index: number) =>
+                                meeting.presentMembers?.length ? (
+                                    <Sedinta
+                                        key={index}
+                                        meeting={meeting}
+                                        user={user}
+                                    />
+                                ) : null
+                            )
                         ) : (
                             <div className="flex items-center w-full h-full">
                                 <svg
@@ -130,7 +136,6 @@ export default function IstoricSedinte() {
                             </div>
                         )}
                     </div>
-                    {/* </div> */}
                 </ScrollArea>
             </CardContent>
         </Card>
