@@ -34,15 +34,8 @@ export default async function Dashboard() {
                 <ImportantLinks />
                 <CotizatieMembru />
             </div>
-            {/* <div className="flex gap-4">
-                <MemberPill user={userInfo} />
-                <MemberPill user={userInfo} />
-                <MemberPill user={userInfo} />
-                <MemberPill user={userInfo} />
-                <MemberPill user={userInfo} />
-            </div> */}
             <div className="flex flex-col gap-4">
-                {!isSecretary(userInfo) && <AdaugareSedinta user={userInfo} />}
+                {isSecretary(userInfo) && <AdaugareSedinta user={userInfo} />}
                 <IstoricSedinte />
                 <IstoricMinute />
             </div>
