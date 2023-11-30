@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
             const meeting = await request.json()
             await connectMongoDB()
             const { presentMembers } = meeting
-            if (presentMembers) {
+            if (presentMembers && presentMembers.length) {
                 const completeMembers = await Member.find().lean()
 
                 // Step 2: Determine the absent members
@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
                 { status: 201 }
             )
         } catch (error) {
+            console.log(error)
             return NextResponse.json({ message: error }, { status: 500 })
         }
     }

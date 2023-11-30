@@ -166,18 +166,29 @@ export const getFeaturedProject = async () => {
 export const getAttendance = async (memberId: ObjectId) => {
     const memberIdToSearch = new ObjectId(memberId)
     await connectMongoDB()
+    const currentDate = new Date()
+    const rotarianYearStartDate = new Date(currentDate.getFullYear(), 6, 1)
+    const rotarianYearEndDate = new Date(currentDate.getFullYear() + 1, 6, 1)
 
     const presences = await Meeting.aggregate()
         .unwind('$presentMembers')
         .match({
             'presentMembers._id': memberIdToSearch,
             type: MEETING_TYPES[0].name,
+            start_date: {
+                $gte: rotarianYearStartDate,
+                $lte: rotarianYearEndDate,
+            },
         })
         .group({ _id: null, totalPresences: { $sum: 1 } })
 
     const meetings = await Meeting.aggregate()
         .match({
             type: MEETING_TYPES[0].name,
+            start_date: {
+                $gte: rotarianYearStartDate,
+                $lte: rotarianYearEndDate,
+            },
         })
         .group({ _id: null, totalMeetings: { $sum: 1 } })
 
