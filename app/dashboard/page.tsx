@@ -42,8 +42,8 @@ export default async function Dashboard() {
                 <MemberPill user={userInfo} />
             </div> */}
             <div className="flex flex-col gap-4">
-                {isSecretary(userInfo) && <AdaugareSedinta user={userInfo} />}
-                {/* <IstoricSedinte /> */}
+                {!isSecretary(userInfo) && <AdaugareSedinta user={userInfo} />}
+                <IstoricSedinte />
                 <IstoricMinute />
             </div>
         </main>

@@ -1,8 +1,9 @@
+import user_placeholder from '@/assets/images/user-placeholder.png'
 import { IMember } from '@/models/member'
 import Image from 'next/image'
 import { Card } from '../card'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../hover-card'
-import MemberInfo from './MemberInfo'
+import MemberInfoClient from './MemberInfoClient'
 
 export default function MemberPill({ user }: { user: IMember }) {
     return (
@@ -11,7 +12,7 @@ export default function MemberPill({ user }: { user: IMember }) {
                 <Card className="p-1 rounded-full flex w-fit gap-1 justify-center items-center hover:cursor-pointer">
                     <div className="h-6 w-6 relative rounded-full overflow-hidden">
                         <Image
-                            src={user.picture}
+                            src={user.picture || user_placeholder}
                             alt="test"
                             width={100}
                             height={100}
@@ -27,7 +28,7 @@ export default function MemberPill({ user }: { user: IMember }) {
                 </Card>
             </HoverCardTrigger>
             <HoverCardContent align="start" className="w-[400px] p-0">
-                <MemberInfo user={user} />
+                <MemberInfoClient user={user} />
             </HoverCardContent>
         </HoverCard>
     )

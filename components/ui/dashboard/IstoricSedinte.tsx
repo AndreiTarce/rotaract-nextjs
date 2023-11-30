@@ -111,7 +111,8 @@ export default function IstoricSedinte() {
                     </Select>
                 </div>
                 <ScrollArea className="border rounded h-96">
-                    <div className="p-2 md:p-4 flex gap-2 flex-wrap">
+                    {/* <div className="p-2 md:p-4 flex gap-2 flex-wrap"> */}
+                    <div className="p-2 md:p-4 grid grid-cols-responsive-grid gap-4">
                         {!isLoading ? (
                             data!.map((meeting: IMeeting, index: number) => (
                                 <Sedinta key={index} meeting={meeting} />
@@ -129,6 +130,7 @@ export default function IstoricSedinte() {
                             </div>
                         )}
                     </div>
+                    {/* </div> */}
                 </ScrollArea>
             </CardContent>
         </Card>

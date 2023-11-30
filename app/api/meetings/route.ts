@@ -1,6 +1,6 @@
 import connectMongoDB from '@/lib/mongodb'
 import Meeting from '@/models/meeting'
-import Member from '@/models/member'
+import Member, { IMember } from '@/models/member'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
@@ -13,11 +13,14 @@ export async function POST(request: NextRequest) {
             if (presentMembers && presentMembers.length) {
                 const completeMembers = await Member.find().lean()
 
-                // Step 2: Determine the absent members
                 const absentMembers = completeMembers.filter(
-                    (member) => !presentMembers.includes(member._id)
+                    (member) =>
+                        !presentMembers.some(
+                            (presentMember: IMember) =>
+                                presentMember.id === member.id
+                        )
                 )
-                console.log(typeof presentMembers[0].id)
+
                 await Meeting.create({ ...meeting, absentMembers })
                 return NextResponse.json(
                     { message: 'Meeting created' },

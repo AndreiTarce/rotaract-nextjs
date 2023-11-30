@@ -1,16 +1,10 @@
+import user_placeholder from '@/assets/images/user-placeholder.png'
+import { getAttendance } from '@/lib/entityService'
 import { IMember } from '@/models/member'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from '../card'
 import Image from 'next/image'
-import { getAttendance } from '@/lib/entityService'
-import user_placeholder from '@/assets/images/user-placeholder.png'
+import { Card, CardDescription, CardTitle } from '../card'
 
 export default async function MemberInfo({ user }: { user: IMember }) {
     const attendance = await getAttendance(user._id)
