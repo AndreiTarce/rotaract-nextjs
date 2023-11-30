@@ -114,7 +114,7 @@ export default function Sedinta({ meeting }: { meeting: IMeeting }) {
                                 </div>
                             </CollapsibleTrigger>
                             <CollapsibleContent>
-                                <Card className="md:w-96 p-2">
+                                <Card className="md:w-96 p-2 bg-green-600 bg-opacity-10">
                                     <ScrollArea className="h-[100px] md:h-[300px]">
                                         <div className="flex flex-wrap gap-2 mt-2">
                                             {meeting.presentMembers?.length &&
@@ -153,7 +153,7 @@ export default function Sedinta({ meeting }: { meeting: IMeeting }) {
                                 </div>
                             </CollapsibleTrigger>
                             <CollapsibleContent>
-                                <Card className="md:w-96 p-2">
+                                <Card className="md:w-96 p-2 bg-red-600 bg-opacity-10">
                                     <ScrollArea className="h-[100px] md:h-[300px]">
                                         <div className="flex flex-wrap gap-2 mt-2">
                                             {meeting.absentMembers?.length &&
