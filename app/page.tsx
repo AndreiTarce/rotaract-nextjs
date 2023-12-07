@@ -10,8 +10,18 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
     title: 'Acasă | Rotaract Visio Cluj-Napoca',
-    description: 'Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea clubului Rotary Visio Cluj-Napoca . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru. Misiunea noastră este de a inspira și mobiliza tinerii din Cluj-Napoca pentru a se implica activ în proiecte de voluntariat, dezvoltând astfel lideri viitori și promovând serviciul în comunitate.',
-    keywords: ['rotaract', 'visio', 'cluj-napoca', 'charity', 'rotary', 'proiecte caritabile', 'caritate', 'district2241']
+    description:
+        'Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea clubului Rotary Visio Cluj-Napoca . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru. Misiunea noastră este de a inspira și mobiliza tinerii din Cluj-Napoca pentru a se implica activ în proiecte de voluntariat, dezvoltând astfel lideri viitori și promovând serviciul în comunitate.',
+    keywords: [
+        'rotaract',
+        'visio',
+        'cluj-napoca',
+        'charity',
+        'rotary',
+        'proiecte caritabile',
+        'caritate',
+        'district2241',
+    ],
 }
 
 const AboutRotaract = dynamic(
