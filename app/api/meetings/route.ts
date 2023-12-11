@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     const api_key = request.nextUrl.searchParams.get('api_key')
-    if (api_key === process.env.NEXT_PULIC_API_KEY) {
+    if (api_key === process.env.NEXT_PUBLIC_API_KEY) {
         const { id } = await request.json()
         await connectMongoDB()
         await Meeting.findByIdAndDelete(id)

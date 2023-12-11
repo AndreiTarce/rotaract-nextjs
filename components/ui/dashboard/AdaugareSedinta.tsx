@@ -14,7 +14,13 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Button } from '../button'
 import { Calendar } from '../calendar'
-import { Card, CardContent, CardHeader, CardTitle } from '../card'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '../card'
 import {
     Form,
     FormControl,
