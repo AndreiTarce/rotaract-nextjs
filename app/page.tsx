@@ -1,5 +1,6 @@
 import background from '@/assets/images/bg2.webp'
 import { Button } from '@/components/ui/button'
+import Partners from '@/components/ui/home/Partners'
 import ProjectCountdown from '@/components/ui/home/ProjectCountdown'
 import { getFeaturedProject } from '@/lib/entityService'
 import { IFeaturedProject } from '@/models/featuredProject'
@@ -97,6 +98,9 @@ export default async function Home() {
                 <SlideInWrapper>
                     <AboutVisio />
                 </SlideInWrapper>
+                {/* <SlideInWrapper>
+                    <Partners />
+                </SlideInWrapper> */}
             </div>
         </main>
     )
