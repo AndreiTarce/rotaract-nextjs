@@ -167,8 +167,16 @@ export const getAttendance = async (memberId: ObjectId) => {
     const memberIdToSearch = new ObjectId(memberId)
     await connectMongoDB()
     const currentDate = new Date()
-    const rotarianYearStartDate = new Date(currentDate.getFullYear(), 6, 1)
-    const rotarianYearEndDate = new Date(currentDate.getFullYear() + 1, 6, 1)
+    // const rotarianYearStartDate = new Date(currentDate.getFullYear(), 6, 1)
+    // const rotarianYearEndDate = new Date(currentDate.getFullYear() + 1, 6, 1)
+    const rotarianYearStartDate =
+        currentDate.getMonth() < 6
+            ? new Date(currentDate.getFullYear() - 1, 6, 1)
+            : new Date(currentDate.getFullYear(), 6, 1)
+    const rotarianYearEndDate =
+        currentDate.getMonth() < 6
+            ? new Date(currentDate.getFullYear(), 6, 1)
+            : new Date(currentDate.getFullYear() + 1, 6, 1)
 
     const presences = await Meeting.aggregate()
         .unwind('$presentMembers')
@@ -192,7 +200,7 @@ export const getAttendance = async (memberId: ObjectId) => {
         })
         .group({ _id: null, totalMeetings: { $sum: 1 } })
 
-    let totalAbsences: number = meetings[0].totalMeetings
+    let totalAbsences: number = meetings[0]?.totalMeetings
     let totalPresences = 0
     if (presences && presences.length) {
         totalPresences = presences[0].totalPresences
