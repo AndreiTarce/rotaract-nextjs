@@ -10,7 +10,7 @@ import UserMenu from './UserMenu'
 
 export function Navigation() {
     return (
-        <nav className="sticky bg-inherit top-0 z-10">
+        <nav className="sticky bg-inherit top-0 z-10 w-full">
             <div className="flex justify-between py-3 mx-16 max-md:mx-4">
                 <Link href="/">
                     <Image

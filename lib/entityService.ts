@@ -167,8 +167,6 @@ export const getAttendance = async (memberId: ObjectId) => {
     const memberIdToSearch = new ObjectId(memberId)
     await connectMongoDB()
     const currentDate = new Date()
-    // const rotarianYearStartDate = new Date(currentDate.getFullYear(), 6, 1)
-    // const rotarianYearEndDate = new Date(currentDate.getFullYear() + 1, 6, 1)
     const rotarianYearStartDate =
         currentDate.getMonth() < 6
             ? new Date(currentDate.getFullYear() - 1, 6, 1)

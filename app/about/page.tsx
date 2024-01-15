@@ -11,7 +11,8 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
     title: 'Despre noi | Rotaract Visio Cluj-Napoca',
-    description: 'Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea clubului Rotary Visio Cluj-Napoca  . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru.'
+    description:
+        'Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea clubului Rotary Visio Cluj-Napoca  . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru.',
 }
 
 export default function About() {

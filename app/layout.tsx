@@ -12,7 +12,6 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
     title: 'Rotaract Visio Cluj-Napoca',
-
 }
 
 export default function RootLayout({
@@ -30,10 +29,10 @@ export default function RootLayout({
                         <Analytics />
                     </Providers>
                 </ThemeProvider>
+                <footer>
+                    <Footer />
+                </footer>
             </body>
-            <footer>
-                <Footer />
-            </footer>
         </html>
     )
 }
