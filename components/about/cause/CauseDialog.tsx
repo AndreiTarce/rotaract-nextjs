@@ -143,9 +143,7 @@ export default function CauseDialog(props: ICauseProps) {
         >
             <DrawerContent className="bg-background">
                 <DrawerHeader>
-                    <DrawerTitle className="text-5xl font-extrabold max-md:text-3xl max-md:mt-4 mb-4 w-fit">
-                        {props.title}
-                    </DrawerTitle>
+                    <DrawerTitle className="text-xl">{props.title}</DrawerTitle>
                     <DrawerDescription className="mt-2">
                         {props.downloadUrl && (
                             <Button
@@ -176,15 +174,15 @@ export default function CauseDialog(props: ICauseProps) {
                         ></p>
                     </div>
                     {props.images && (
-                        <div>
-                            <CauseImageCarousel>
-                                {props.images.map(
-                                    (image: string, index: number) => (
-                                        <CauseImage src={image} key={index} />
-                                    )
-                                )}
-                            </CauseImageCarousel>
-                        </div>
+                        // <div>
+                        <CauseImageCarousel>
+                            {props.images.map(
+                                (image: string, index: number) => (
+                                    <CauseImage src={image} key={index} />
+                                )
+                            )}
+                        </CauseImageCarousel>
+                        // </div>
                     )}
                 </DrawerFooter>
             </DrawerContent>

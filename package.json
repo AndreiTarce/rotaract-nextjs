@@ -47,6 +47,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
+    "embla-carousel-react": "^8.0.0-rc19",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.18",
     "framer-motion": "^10.16.4",
@@ -84,6 +85,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "embla-carousel": "^8.0.0-rc19",
     "encoding": "^0.1.13"
   }
 }
