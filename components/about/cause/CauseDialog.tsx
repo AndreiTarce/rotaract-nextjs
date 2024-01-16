@@ -24,6 +24,15 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from '@/components/ui/drawer'
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from '@/components/ui/carousel'
+import { Card, CardContent } from '@/components/ui/card'
+import Autoplay from 'embla-carousel-autoplay'
 
 interface ICauseSetterProps {
     isOpen: boolean
@@ -174,15 +183,30 @@ export default function CauseDialog(props: ICauseProps) {
                         ></p>
                     </div>
                     {props.images && (
-                        // <div>
-                        <CauseImageCarousel>
-                            {props.images.map(
-                                (image: string, index: number) => (
-                                    <CauseImage src={image} key={index} />
-                                )
-                            )}
-                        </CauseImageCarousel>
-                        // </div>
+                        <Carousel
+                            opts={{ loop: true }}
+                            plugins={[
+                                Autoplay({
+                                    delay: 4000,
+                                }),
+                            ]}
+                        >
+                            <CarouselContent>
+                                {props.images.map(
+                                    (image: string, index: number) => (
+                                        <CarouselItem
+                                            key={`carousel-item-${index}`}
+                                            className="basis-1/3"
+                                        >
+                                            <CauseImage
+                                                src={image}
+                                                key={index}
+                                            />
+                                        </CarouselItem>
+                                    )
+                                )}
+                            </CarouselContent>
+                        </Carousel>
                     )}
                 </DrawerFooter>
             </DrawerContent>
