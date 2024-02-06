@@ -31,7 +31,7 @@ export default function SectionsTab({
                     <CardHeader>
                         <CardTitle>Password</CardTitle>
                         <CardDescription>
-                            Change your password here. After saving, you'll be
+                            Change your password here. After saving, youll be
                             logged out.
                         </CardDescription>
                     </CardHeader>
