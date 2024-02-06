@@ -6,7 +6,14 @@ import IstoricMinute from '@/components/ui/dashboard/IstoricMinute'
 import IstoricSedinte from '@/components/ui/dashboard/IstoricSedinte'
 import MemberInfo from '@/components/ui/dashboard/MemberInfo'
 import MemberPill from '@/components/ui/dashboard/MemberPill'
-import { authConfig, isSecretary, loginIsRequiredServer } from '@/lib/auth'
+import MembersPanel from '@/components/ui/dashboard/MembersPanel'
+import SectionsTab from '@/components/ui/dashboard/SectionsTab'
+import {
+    authConfig,
+    isBoard,
+    isSecretary,
+    loginIsRequiredServer,
+} from '@/lib/auth'
 import { getAttendance, getMember } from '@/lib/entityService'
 import { IMember } from '@/models/member'
 import { ObjectId } from 'mongodb'
@@ -26,6 +33,8 @@ export default async function Dashboard() {
             <h1 className="text-3xl font-bold tracking-tight mb-8">
                 Dashboard
             </h1>
+            {/* <SectionsTab> */}
+            {/* </SectionsTab> */}
             <div className="md:grid md:grid-cols-3 flex flex-col gap-4 mb-4">
                 <Card>
                     <MemberInfo user={userInfo} />
@@ -33,6 +42,11 @@ export default async function Dashboard() {
                 <ImportantLinks />
                 <CotizatieMembru />
             </div>
+            {isBoard(userInfo) && (
+                <div className="mb-4">
+                    <MembersPanel user={userInfo} />
+                </div>
+            )}
             <div className="flex flex-col gap-4">
                 {isSecretary(userInfo) && <AdaugareSedinta user={userInfo} />}
                 <IstoricSedinte user={userInfo} />

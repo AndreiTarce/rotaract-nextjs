@@ -20,6 +20,7 @@ export interface IMember {
     start_mandate: number
     email: string
     status: string
+    isBoard: Boolean
 }
 
 const SectionSchema = new Schema<IMemberLinks>({
@@ -42,6 +43,7 @@ export const memberSchema = new Schema<IMember>(
         start_mandate: Number,
         email: String,
         status: String,
+        isBoard: Boolean,
     },
     {
         timestamps: true,
