@@ -51,7 +51,6 @@ const ProjectSection = (props: ProjectSectionProps) => (
                 width={3240}
                 height={1080}
                 className="rounded-lg mb-8"
-                priority
             />
         )}
         <p
