@@ -44,6 +44,16 @@ type ProjectImageProps = { key?: number; src: string }
 const ProjectSection = (props: ProjectSectionProps) => (
     <section className="mt-8">
         <h2 className="text-3xl font-bold mb-2">{props.title}</h2>
+        {props.coverImg && (
+            <Image
+                src={props.coverImg}
+                alt={`${props.title} Cover Image`}
+                width={3240}
+                height={1080}
+                className="rounded-lg mb-8"
+                priority
+            />
+        )}
         <p
             className="lg:text-xl text-muted-foreground"
             dangerouslySetInnerHTML={{
