@@ -145,6 +145,7 @@ export default async function Project({ params }: { params: { id: string } }) {
                             title={section.title}
                             body={section.body}
                             key={index}
+                            coverImg={section.coverImg}
                         />
                     ))}
                     {project.partners && (
