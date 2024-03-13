@@ -33,6 +33,7 @@ import {
 } from '@/components/ui/carousel'
 import { Card, CardContent } from '@/components/ui/card'
 import Autoplay from 'embla-carousel-autoplay'
+import { useState } from 'react'
 
 interface ICauseSetterProps {
     isOpen: boolean
@@ -51,27 +52,32 @@ const CauseImage = (props: { src: string; key: number }) => (
     />
 )
 
-const downloadFile = async (url: string, filename?: string) => {
-    const data = await fetch(url, { headers: { 'Cache-Control': 'no-cache' } })
-    const blob = await data.blob()
-    const objectUrl = URL.createObjectURL(blob)
-
-    const link = document.createElement('a')
-
-    link.setAttribute('href', objectUrl)
-    if (filename) link.setAttribute('download', filename)
-    link.style.display = 'none'
-
-    document.body.appendChild(link)
-
-    link.click()
-
-    document.body.removeChild(link)
-}
-
 export default function CauseDialog(props: ICauseProps) {
     const router = useRouter()
     const isDesktop = useMediaQuery('(min-width: 768px)')
+    const [isDownloading, setIsDownloading] = useState(false)
+
+    const downloadFile = async (url: string, filename?: string) => {
+        setIsDownloading(true)
+        const data = await fetch(url, {
+            headers: { 'Cache-Control': 'no-cache' },
+        })
+        const blob = await data.blob()
+        const objectUrl = URL.createObjectURL(blob)
+
+        const link = document.createElement('a')
+
+        link.setAttribute('href', objectUrl)
+        if (filename) link.setAttribute('download', filename)
+        link.style.display = 'none'
+
+        document.body.appendChild(link)
+
+        link.click()
+        setIsDownloading(false)
+
+        document.body.removeChild(link)
+    }
 
     if (isDesktop)
         return (
@@ -90,7 +96,7 @@ export default function CauseDialog(props: ICauseProps) {
                         {props.downloadUrl && (
                             <>
                                 <Button
-                                    className="w-fit max-md:hidden"
+                                    className="w-fit"
                                     size="sm"
                                     onClick={() =>
                                         downloadFile(
@@ -98,11 +104,23 @@ export default function CauseDialog(props: ICauseProps) {
                                             `Mapa ${props.title}.pdf`
                                         )
                                     }
+                                    disabled={isDownloading}
                                 >
-                                    <FontAwesomeIcon
-                                        icon={faDownload}
-                                        className="mr-3"
-                                    />
+                                    {isDownloading ? (
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="1em"
+                                            viewBox="0 0 512 512"
+                                            className="animate-spin mr-2 fill-white dark:fill-dark"
+                                        >
+                                            <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
+                                        </svg>
+                                    ) : (
+                                        <FontAwesomeIcon
+                                            icon={faDownload}
+                                            className="mr-3"
+                                        />
+                                    )}
                                     Mapa de prezentare
                                 </Button>
                                 <FontAwesomeIcon
@@ -164,11 +182,23 @@ export default function CauseDialog(props: ICauseProps) {
                                         `Mapa ${props.title}.pdf`
                                     )
                                 }
+                                disabled={isDownloading}
                             >
-                                <FontAwesomeIcon
-                                    icon={faDownload}
-                                    className="mr-3"
-                                />
+                                {isDownloading ? (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="1em"
+                                        viewBox="0 0 512 512"
+                                        className="animate-spin mr-2 fill-white dark:fill-dark"
+                                    >
+                                        <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
+                                    </svg>
+                                ) : (
+                                    <FontAwesomeIcon
+                                        icon={faDownload}
+                                        className="mr-3"
+                                    />
+                                )}
                                 Mapa de prezentare
                             </Button>
                         )}
