@@ -1,4 +1,4 @@
-import background from '@/assets/images/bg2.webp'
+import background from '@/assets/images/home_background.webp'
 import { Button } from '@/components/ui/button'
 import Partners from '@/components/ui/home/Partners'
 import ProjectCountdown from '@/components/ui/home/ProjectCountdown'
@@ -52,7 +52,7 @@ export default async function Home() {
                     fill
                     style={{
                         objectFit: 'cover',
-                        objectPosition: '50% 100%',
+                        objectPosition: '45% 100%',
                     }}
                     priority
                 />

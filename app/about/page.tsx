@@ -1,4 +1,4 @@
-import background from '@/assets/images/desprenoibg.webp'
+import background from '@/assets/images/bg2.webp'
 import backgroundMobile from '@/assets/images/desprenoibgmobile.webp'
 import OurCauses from '@/components/about/cause/OurCauses'
 import MemberStatistics from '@/components/about/statistics/MemberStatistics'
@@ -59,7 +59,7 @@ export default function About() {
                 />
                 <div className="relative h-full">
                     <Image
-                        src={backgroundMobile}
+                        src={background}
                         alt="Rotaract Visio Group Photo"
                         sizes="(max-width: 808px) 200vw"
                         style={{
