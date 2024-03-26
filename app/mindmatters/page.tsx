@@ -407,7 +407,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                             <FormLabel>Număr de telefon</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="Adresa ta de email"
+                                    placeholder="Numărul tău de telefon"
                                     {...field}
                                 />
                             </FormControl>
