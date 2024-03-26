@@ -3,7 +3,6 @@ import EmbeddedCheckoutMindMatters from '@/components/payments/EmbeddedCheckoutM
 import {
     MIND_MATTERS_MINDACCESS,
     MIND_MATTERS_MINDFUEL,
-    STRIPE_SIMPLE_DONATION,
 } from '@/components/payments/constants'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -22,7 +21,7 @@ import {
     faAppleWhole,
     faArrowUpRightFromSquare,
     faChalkboardUser,
-    faPaperPlane,
+    faCreditCard,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -439,11 +438,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                             </svg>
                         ) : (
                             <FontAwesomeIcon
-                                icon={faPaperPlane}
+                                icon={faCreditCard}
                                 className="mr-2"
                             />
                         )}
-                        Trimite
+                        Continuă spre plată
                     </Button>
                 </div>
             </form>
