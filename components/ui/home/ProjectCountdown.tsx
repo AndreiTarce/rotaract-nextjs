@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faCircleInfo,
     faHandHoldingDollar,
+    faMoneyCheck,
     faRibbon,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -71,6 +72,7 @@ export default function ProjectCountdown({
             )
         }
     }
+
     return (
         <Card className="mb-8 relative md:max-w-sm max-w-md h-fit">
             <Image
@@ -87,7 +89,7 @@ export default function ProjectCountdown({
             </CardHeader>
             <CardContent>
                 <div className="font-semibold text-muted-foreground mb-4">
-                    Perioada de donații se încheie în
+                    Perioada de înscrieri se încheie în
                 </div>
                 <Countdown renderer={renderer} date={project.end_date} />
                 <Separator className="my-4" />
@@ -129,9 +131,9 @@ export default function ProjectCountdown({
                         className="font-semibold bg-rotaract-cranberry text-white hover:bg-rotaract-cranberry w-full"
                     >
                         <Link href={project.donation_link} target="_blank">
-                            Donează acum
+                            Către înscrieri
                             <FontAwesomeIcon
-                                icon={faHandHoldingDollar}
+                                icon={faMoneyCheck}
                                 className="ml-2"
                             />
                         </Link>

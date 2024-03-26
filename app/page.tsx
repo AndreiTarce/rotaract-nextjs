@@ -38,8 +38,8 @@ export default async function Home() {
         await getFeaturedProject()
 
     const today = new Date()
-    const featuredProjectStartDate = new Date(featuredProject[0].start_date)
-    const featuredProjectEndDate = new Date(featuredProject[0].end_date)
+    const featuredProjectStartDate = new Date(featuredProject[1].start_date)
+    const featuredProjectEndDate = new Date(featuredProject[1].end_date)
 
     return (
         <main className="h-fit pt-5 md:pt-12">
@@ -79,7 +79,7 @@ export default async function Home() {
                         today < featuredProjectEndDate && (
                             <div className="max-md:hidden">
                                 <ProjectCountdown
-                                    project={featuredProject[0]}
+                                    project={featuredProject[1]}
                                 />
                             </div>
                         )}
@@ -89,7 +89,7 @@ export default async function Home() {
                 {today > featuredProjectStartDate &&
                     today < featuredProjectEndDate && (
                         <div className="md:hidden -mt-24">
-                            <ProjectCountdown project={featuredProject[0]} />
+                            <ProjectCountdown project={featuredProject[1]} />
                         </div>
                     )}
                 <SlideInWrapper>
