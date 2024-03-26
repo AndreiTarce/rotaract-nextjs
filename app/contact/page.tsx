@@ -28,7 +28,8 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
     title: 'Contact | Rotaract Visio Cluj-Napoca',
-    description: 'Vrei să te implici în comunitatea locală, sau pur și simplu vrei să afli mai multe despre noi? Suntem nerăbdători să auzim noi inițiative, așa că nu ezita să ne contactezi!'
+    description:
+        'Vrei să te implici în comunitatea locală, sau pur și simplu vrei să afli mai multe despre noi? Suntem nerăbdători să auzim noi inițiative, așa că nu ezita să ne contactezi!',
 }
 
 export default function Contact() {
@@ -93,7 +94,7 @@ export default function Contact() {
                             </div>
                         </ContactInfoCard>
                     </div>
-                    <ContactInfoCard title="Sedinte" icon={faChalkboardUser}>
+                    <ContactInfoCard title="Ședințe" icon={faChalkboardUser}>
                         <div className="flex text-muted-foreground mb-2">
                             <FontAwesomeIcon
                                 icon={faLocationDot}
