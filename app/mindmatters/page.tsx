@@ -214,6 +214,15 @@ export default function MindMatters() {
             {renderStripeCheckout && (
                 <EmbeddedCheckoutMindMatters clientSecret={clientSecret} />
             )}
+            <div className="mt-8 flex flex-col items-center">
+                <p className="text-muted-foreground text-center mb-4">
+                    Nu poți ajunge la eveniment, dar vrei să ajuți? Poți dona
+                    direct către cauza noastră.
+                </p>
+                <Link href="https://donate.stripe.com/cN28y60DKcMmeMo3ce">
+                    <Button>Donează aici</Button>
+                </Link>
+            </div>
         </main>
     )
 }
