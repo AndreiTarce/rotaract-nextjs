@@ -7,6 +7,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
     Form,
     FormControl,
@@ -239,6 +240,7 @@ const formSchema = z.object({
     }),
     phone_number: z.string().min(1, { message: 'Phone number is required' }),
     package: z.string(),
+    agree_to_terms_and_conditions: z.boolean().default(false),
 })
 
 export type CheckoutFormSchema = z.infer<typeof formSchema>
@@ -274,6 +276,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
             email: '',
             phone_number: '',
             package: packageChosen,
+            agree_to_terms_and_conditions: false,
         },
     })
 
@@ -431,6 +434,36 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                                     </span>
                                 </FormDescription>
                             )}
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="agree_to_terms_and_conditions"
+                    render={({ field }) => (
+                        <FormItem className="mb-4 pt-2 flex items-start">
+                            <FormControl>
+                                <Checkbox
+                                    required
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                    className="mr-1"
+                                />
+                            </FormControl>
+                            <FormLabel className="!mt-0 leading-5">
+                                Prin bifarea căsuței alăturate îmi exprim în mod
+                                expres consimţământul că sunt de acord cu
+                                prelucrarea datelor cu caracter personal conform{' '}
+                                <Link
+                                    href={
+                                        'https://docs.google.com/document/d/1cHIhz_7jpLmBqSonGUYP-psbQUy0DgtE'
+                                    }
+                                    className="font-bold underline"
+                                    target="_blank"
+                                >
+                                    termenilor și condițiilor
+                                </Link>
+                            </FormLabel>
                         </FormItem>
                     )}
                 />
