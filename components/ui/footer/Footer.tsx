@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { Separator } from '../separator'
 
 export default function Footer() {
+    const today = new Date()
     return (
         <div className="my-8 dark:text-muted-foreground bottom-0">
             <Separator className="mb-8" />
@@ -87,7 +88,10 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="flex justify-center mt-8 text-center gap-2 max-md:flex-col">
-                    <span>Copyright © 2023 Rotaract Visio Cluj-Napoca</span>
+                    <span>
+                        Copyright © {today.getFullYear()} Rotaract Visio
+                        Cluj-Napoca
+                    </span>
                     <span className="max-md:hidden">|</span>
                     <span>All Rights Reserved</span>
                 </div>
