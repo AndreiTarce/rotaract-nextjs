@@ -21,8 +21,10 @@ import { CHECKOUT_PATH } from '@/lib/constants'
 import {
     faAppleWhole,
     faArrowUpRightFromSquare,
+    faCalendar,
     faChalkboardUser,
     faCreditCard,
+    faLocationPin,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -61,7 +63,7 @@ export default function MindMatters() {
         setProductId,
     }: IPricingCardProps) => (
         <Card
-            className={`w-full h-full flex flex-col items-center p-6 mx-auto text-center text-gray-900 rounded-lg border xl:p-8 dark:text-white ${
+            className={`w-full relative h-full flex flex-col items-center p-6 mx-auto text-center text-gray-900 rounded-lg border xl:p-8 dark:text-white ${
                 recommended
                     ? 'border-[#48bfe3] dark:border-[#48bfe3] max-md:order-1'
                     : 'border-gray-100 shadow dark:border-gray-600 max-md:order-2'
@@ -130,9 +132,32 @@ export default function MindMatters() {
                 <p className="text-8xl font-extrabold max-md:text-6xl leading-none mb-4">
                     Pachete
                 </p>
-                <p className="text-5xl font-extrabold max-md:text-3xl leading-none bg-gradient-to-r from-[#48bfe3] to-[#44afd0] bg-clip-text text-transparent mb-4 text-center">
+                <p className="text-5xl font-extrabold max-md:text-3xl leading-none bg-gradient-to-r from-[#48bfe3] to-[#44afd0] bg-clip-text text-transparent mb-2 text-center">
                     Healthy Vision: Mind Matters
                 </p>
+                <div className="flex gap-6 text-muted-foreground mb-4">
+                    <p>
+                        <FontAwesomeIcon icon={faCalendar} className="mr-2" />
+                        20 aprilie
+                    </p>
+                    <p>
+                        <Link
+                            href="https://maps.app.goo.gl/Umx1A68Qecu8iRCF7"
+                            className="flex justify-center items-center"
+                        >
+                            <FontAwesomeIcon
+                                icon={faLocationPin}
+                                className="mr-2"
+                            />
+                            ABC Incubator
+                            <FontAwesomeIcon
+                                icon={faArrowUpRightFromSquare}
+                                size="xs"
+                                className="ml-1"
+                            />
+                        </Link>
+                    </p>
+                </div>
                 <p className="text-muted-foreground text-center">
                     Toți banii strânși vor fi donați către{' '}
                     <Link
