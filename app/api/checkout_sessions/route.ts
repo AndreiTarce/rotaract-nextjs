@@ -16,6 +16,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
                     quantity: body.quantity,
                 },
             ],
+            allow_promotion_codes: true,
             mode: body.mode,
             return_url: `${request.nextUrl.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
             automatic_tax: { enabled: true },
