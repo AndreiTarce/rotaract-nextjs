@@ -125,7 +125,7 @@ export default function MindMatters() {
                         setProductId(productId)
                     }}
                 >
-                    Înscriere
+                    Înscrie-te
                 </Button>
             </div>
         </Card>
