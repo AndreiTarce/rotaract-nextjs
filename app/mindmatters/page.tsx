@@ -87,8 +87,12 @@ export default function MindMatters() {
                     <FontAwesomeIcon icon={faChalkboardUser} size="1x" />
                     <span>Acces la workshopuri</span>
                 </li>
-                <li className="flex items-center space-x-3">
-                    <FontAwesomeIcon icon={faGift} size="1x" />
+                <li className="flex text-start space-x-3 items-start">
+                    <FontAwesomeIcon
+                        icon={faGift}
+                        size="1x"
+                        className="mt-[2px]"
+                    />
                     <span>Pachete surpriză de la partenerii noștri</span>
                 </li>
                 <li
@@ -97,7 +101,11 @@ export default function MindMatters() {
                         'text-muted-foreground line-through text-center'
                     }`}
                 >
-                    <FontAwesomeIcon icon={faAppleWhole} size="1x" />
+                    <FontAwesomeIcon
+                        icon={faAppleWhole}
+                        size="1x"
+                        className="mt-[2px]"
+                    />
                     <span className="text-start max-w-[180px]">
                         Masa de prânz inclusă{' '}
                         {lunchIncluded && (
