@@ -24,6 +24,7 @@ import {
     faCalendar,
     faChalkboardUser,
     faCreditCard,
+    faGift,
     faLocationPin,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -85,6 +86,10 @@ export default function MindMatters() {
                 <li className="flex items-center space-x-3">
                     <FontAwesomeIcon icon={faChalkboardUser} size="1x" />
                     <span>Acces la workshopuri</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                    <FontAwesomeIcon icon={faGift} size="1x" />
+                    <span>Pachete surpriză de la partenerii noștri</span>
                 </li>
                 <li
                     className={`flex space-x-3 items-start ${
