@@ -3,7 +3,7 @@
 import { API_KEY } from '@/lib/constants'
 import { IMeeting } from '@/models/meeting'
 import { IMember } from '@/models/member'
-import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
+import { faGoogleDrive, faReadme } from '@fortawesome/free-brands-svg-icons'
 import {
     faCalendar,
     faCircle,
@@ -206,12 +206,12 @@ export default function Sedinta({
                     </DialogHeader>
                     {meeting.presentMembers?.length &&
                     meeting.absentMembers?.length ? (
-                        <div className="flex flex-col md:flex-row gap-4 flex-wrap">
+                        <div className="flex flex-col md:gap-4 md:flex-row  flex-wrap">
                             <Collapsible
                                 open={isPresentOpen}
                                 onOpenChange={setIsPresentOpen}
                             >
-                                <CollapsibleTrigger asChild className="mb-2">
+                                <CollapsibleTrigger asChild className="md:mb-2">
                                     <div className="w-fit">
                                         <Button
                                             variant="ghost"
@@ -251,7 +251,7 @@ export default function Sedinta({
                                 open={isAbsentOpen}
                                 onOpenChange={setIsAbsentOpen}
                             >
-                                <CollapsibleTrigger asChild className="mb-2">
+                                <CollapsibleTrigger asChild className="md:mb-2">
                                     <div className="w-fit">
                                         <Button
                                             variant="ghost"
@@ -289,58 +289,88 @@ export default function Sedinta({
                             </Collapsible>
                         </div>
                     ) : null}
-                    <Label className="text-lg font-semibold">Highlights</Label>
-                    <Textarea placeholder="Coming soon" disabled />
+
+                    {/* <Label className="text-lg font-semibold">Highlights</Label>
+                    <Textarea placeholder="Coming soon" disabled /> */}
+
                     <DialogFooter>
-                        {user.role === 'Secretary' ? (
-                            <AlertDialog>
-                                <AlertDialogTrigger asChild>
-                                    <Button variant="destructive">
-                                        Sterge sedinta{' '}
+                        <div className="flex gap-1 flex-wrap">
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button type="submit">
                                         <FontAwesomeIcon
-                                            icon={faTrash}
-                                            className="ml-2"
+                                            icon={faReadme}
+                                            className="mr-2"
                                         />
+                                        Vezi minuta{' '}
                                     </Button>
-                                </AlertDialogTrigger>
-                                <AlertDialogContent>
-                                    <AlertDialogHeader>
-                                        <AlertDialogTitle>
-                                            Esti sigur(ă)?
-                                        </AlertDialogTitle>
-                                        <AlertDialogDescription>
-                                            Acțiunea de ștergere este
-                                            ireversibilă
-                                        </AlertDialogDescription>
-                                    </AlertDialogHeader>
-                                    <AlertDialogFooter>
-                                        <AlertDialogCancel>
-                                            Anulare
-                                        </AlertDialogCancel>
-                                        <AlertDialogAction
-                                            onClick={() =>
-                                                deleteMeeting(meeting._id)
-                                            }
-                                        >
-                                            Sterge{' '}
+                                </DialogTrigger>
+                                <DialogContent className="h-[90%] max-w-[95%] rounded-lg">
+                                    <div className="pt-4">
+                                        <iframe
+                                            src={meeting.minuteUrl.replace(
+                                                /\/view\b/g,
+                                                '/preview'
+                                            )}
+                                            width="100%"
+                                            height="100%"
+                                            allow="autoplay"
+                                        ></iframe>
+                                    </div>
+                                </DialogContent>
+                            </Dialog>
+
+                            <Link href={meeting.minuteUrl} target="_blank">
+                                <Button type="submit">
+                                    <FontAwesomeIcon
+                                        icon={faGoogleDrive}
+                                        className="mr-2"
+                                    />
+                                    Link minuta{' '}
+                                </Button>
+                            </Link>
+
+                            {user.role === 'Secretary' ? (
+                                <AlertDialog>
+                                    <AlertDialogTrigger asChild>
+                                        <Button variant="destructive">
                                             <FontAwesomeIcon
                                                 icon={faTrash}
-                                                className="ml-2"
+                                                className="mr-2"
                                             />
-                                        </AlertDialogAction>
-                                    </AlertDialogFooter>
-                                </AlertDialogContent>
-                            </AlertDialog>
-                        ) : null}
-                        <Link href={meeting.minuteUrl} target="_blank">
-                            <Button type="submit">
-                                Minuta{' '}
-                                <FontAwesomeIcon
-                                    icon={faGoogleDrive}
-                                    className="ml-2"
-                                />
-                            </Button>
-                        </Link>
+                                            Sterge sedinta{' '}
+                                        </Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>
+                                                Esti sigur(ă)?
+                                            </AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                Acțiunea de ștergere este
+                                                ireversibilă
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel>
+                                                Anulare
+                                            </AlertDialogCancel>
+                                            <AlertDialogAction
+                                                onClick={() =>
+                                                    deleteMeeting(meeting._id)
+                                                }
+                                            >
+                                                Sterge{' '}
+                                                <FontAwesomeIcon
+                                                    icon={faTrash}
+                                                    className="ml-2"
+                                                />
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+                            ) : null}
+                        </div>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

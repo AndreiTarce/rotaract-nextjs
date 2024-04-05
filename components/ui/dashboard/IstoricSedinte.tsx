@@ -1,23 +1,21 @@
 'use client'
 
+import { API_KEY } from '@/lib/constants'
 import { IMeeting } from '@/models/meeting'
+import { IMember } from '@/models/member'
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from 'next/link'
-import { Button } from '../button'
-import { Card, CardHeader, CardTitle, CardContent } from '../card'
-import Minuta from './Minuta'
-import { useState } from 'react'
 import {
     keepPreviousData,
     useQuery,
     useQueryClient,
 } from '@tanstack/react-query'
-import { API_KEY } from '@/lib/constants'
-import { getMeetings } from './IstoricMinute'
+import Link from 'next/link'
+import { useState } from 'react'
+import { Button } from '../button'
+import { Card, CardContent, CardHeader, CardTitle } from '../card'
 import { ScrollArea } from '../scroll-area'
-import { Separator } from '../separator'
 import {
     Select,
     SelectContent,
@@ -26,9 +24,9 @@ import {
     SelectTrigger,
     SelectValue,
 } from '../select'
-import { MEETING_TYPES } from './constants'
+import { getMeetings } from './IstoricMinute'
 import Sedinta from './Sedinta'
-import { IMember } from '@/models/member'
+import { MEETING_TYPES } from './constants'
 
 export default function IstoricSedinte({ user }: { user: IMember }) {
     const [year, setYear] = useState(new Date().getFullYear())
@@ -56,7 +54,7 @@ export default function IstoricSedinte({ user }: { user: IMember }) {
         setYear((prevYear) => prevYear - 1)
     }
     return (
-        <Card>
+        <Card className="border-none">
             <CardHeader className="pb-4 flex flex-row justify-between">
                 <CardTitle className="self-center">Istoric sedinte</CardTitle>
                 <Button asChild variant="outline" size="sm">
@@ -111,8 +109,8 @@ export default function IstoricSedinte({ user }: { user: IMember }) {
                         </SelectContent>
                     </Select>
                 </div>
-                <ScrollArea className="border rounded h-96">
-                    <div className="p-2 md:p-4 grid grid-cols-responsive-grid gap-4">
+                <ScrollArea className="rounded h-96 md:pr-4">
+                    <div className="grid grid-cols-responsive-grid gap-4">
                         {!isLoading ? (
                             data!.map((meeting: IMeeting, index: number) =>
                                 meeting.presentMembers?.length ? (

@@ -1,54 +1,32 @@
 'use client'
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '../card'
-import { Input } from '../input'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../tabs'
-import { Label } from '../label'
-import { Button } from '../button'
-import MembersPanel from './MembersPanel'
-import { ReactElement } from 'react'
+
+interface ISectionsTabProps {
+    sedinte: React.ReactNode
+    membri: React.ReactNode
+    functii_secretar?: React.ReactNode
+}
 
 export default function SectionsTab({
-    children,
-}: {
-    children: React.ReactNode
-}) {
+    sedinte,
+    membri,
+    functii_secretar,
+}: ISectionsTabProps) {
     return (
-        <Tabs defaultValue="account">
+        <Tabs defaultValue="sedinte">
             <TabsList className="grid grid-flow-col justify-start">
-                <TabsTrigger value="account">Account</TabsTrigger>
-                <TabsTrigger value="password">Password</TabsTrigger>
+                <TabsTrigger value="sedinte">Sedinte</TabsTrigger>
+                <TabsTrigger value="membri">Membri</TabsTrigger>
+                {functii_secretar && (
+                    <TabsTrigger value="functii_secretar">
+                        Functii secretar
+                    </TabsTrigger>
+                )}
             </TabsList>
-            <TabsContent value="account">{children}</TabsContent>
-            <TabsContent value="password">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Password</CardTitle>
-                        <CardDescription>
-                            Change your password here. After saving, youll be
-                            logged out.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                        <div className="space-y-1">
-                            <Label htmlFor="current">Current password</Label>
-                            <Input id="current" type="password" />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="new">New password</Label>
-                            <Input id="new" type="password" />
-                        </div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button>Save password</Button>
-                    </CardFooter>
-                </Card>
+            <TabsContent value="sedinte">{sedinte}</TabsContent>
+            <TabsContent value="membri">{membri}</TabsContent>
+            <TabsContent value="functii_secretar">
+                {functii_secretar}
             </TabsContent>
         </Tabs>
     )

@@ -75,7 +75,7 @@ export default function IstoricMinute() {
     }
 
     return (
-        <Card>
+        <Card className="border-none">
             <CardHeader className="pb-4 flex flex-row justify-between">
                 <CardTitle className="self-center">Istoric minute</CardTitle>
                 <Button asChild variant="outline" size="sm">
