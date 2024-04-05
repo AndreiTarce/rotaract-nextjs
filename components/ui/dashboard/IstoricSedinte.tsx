@@ -92,7 +92,7 @@ export default function IstoricSedinte({ user }: { user: IMember }) {
                         defaultValue={type}
                         onValueChange={(e) => setType(e)}
                     >
-                        <SelectTrigger className="w-fit">
+                        <SelectTrigger className="w-fit h-9">
                             <SelectValue placeholder="Tipul sedintei" />
                         </SelectTrigger>
                         <SelectContent>

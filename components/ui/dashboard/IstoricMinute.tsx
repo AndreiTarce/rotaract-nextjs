@@ -108,7 +108,7 @@ export default function IstoricMinute() {
                         <FontAwesomeIcon icon={faCaretRight} />
                     </Button>
                 </div>
-                <ScrollArea className="border rounded h-96">
+                <ScrollArea className="border rounded-lg h-96">
                     <div className="p-2 md:p-4 flex flex-col">
                         {!isLoading ? (
                             data!.map((meeting: IMeeting, index: number) => (
