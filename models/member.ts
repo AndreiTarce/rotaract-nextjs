@@ -6,6 +6,7 @@ export interface IMemberLinks {
     linkedin: string
     instagram: string
     tiktok: string
+    website: string
 }
 
 export interface IMember {
@@ -28,6 +29,7 @@ const SectionSchema = new Schema<IMemberLinks>({
     linkedin: { type: String, required: false },
     instagram: { type: String, required: false },
     tiktok: { type: String, required: false },
+    website: { type: String, required: false },
 })
 
 export const memberSchema = new Schema<IMember>(
