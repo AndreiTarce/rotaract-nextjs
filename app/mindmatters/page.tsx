@@ -209,7 +209,7 @@ export default function MindMatters() {
                 )}
                 <div className="flex mt-8">
                     <Card
-                        className={w-full relative h-full flex flex-col items-center p-4 mx-auto text-center  rounded-lg border xl:p-8 border-[#48bfe3] dark:border-[#48bfe3] max-md:order-1}
+                        className={`w-full relative h-full flex flex-col items-center p-4 mx-auto text-center  rounded-lg border xl:p-8 border-[#48bfe3] dark:border-[#48bfe3] max-md:order-1`}
                     >
                         <div className="text-gray-900 dark:text-white">
                             <p className="text-2xl font-bold mb-4">
