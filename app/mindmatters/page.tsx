@@ -185,7 +185,7 @@ export default function MindMatters() {
                         />
                     </Link>
                 </p>
-                {!packageChosen && (
+                {!packageChosen && false && (
                     <div className="grid grid-cols-1 md:grid-cols-2 w-full md:w-1/2 gap-8 md:gap-8 mt-12">
                         <PricingCard
                             title="MindAccess"
@@ -207,6 +207,18 @@ export default function MindMatters() {
                         />
                     </div>
                 )}
+                <div className="flex mt-8">
+                    <Card
+                        className={w-full relative h-full flex flex-col items-center p-4 mx-auto text-center  rounded-lg border xl:p-8 border-[#48bfe3] dark:border-[#48bfe3] max-md:order-1}
+                    >
+                        <div className="text-gray-900 dark:text-white">
+                            <p className="text-2xl font-bold mb-4">
+                                Perioada de înscrieri a fost închisă.
+                            </p>
+                            <p>Vă mulțumim tuturor pentru susținere!</p>
+                        </div>
+                    </Card>
+                </div>
             </div>
             {packageChosen && !renderStripeCheckout && (
                 <div className="flex justify-center mt-12">
