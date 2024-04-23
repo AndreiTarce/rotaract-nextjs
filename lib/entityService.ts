@@ -1,5 +1,6 @@
 import Meeting from '@/models/meeting'
-import Member, { IMember } from '@/models/member'
+import Member from '@/models/member'
+import { IMember } from '@/models/interfaces'
 import WhitelistedMember, {
     IWhitelistedMember,
 } from '@/models/whitelistedMember'

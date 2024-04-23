@@ -1,11 +1,8 @@
-import Image from 'next/image'
-import { Card, CardContent, CardDescription, CardTitle } from '../card'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { IMember } from '@/models/interfaces'
 import user_placeholder from '@/assets/images/user-placeholder.png'
 import { getAttendance } from '@/lib/entityService'
-import { Separator } from '../separator'
+import { IMember } from '@/models/interfaces'
+import Image from 'next/image'
+import { Card } from '../card'
 
 export default async function DashboardMemberCard({ user }: { user: IMember }) {
     const attendance = await getAttendance(user._id)
