@@ -1,8 +1,9 @@
 'use client'
 
 import { API_KEY } from '@/lib/constants'
+import { isSecretary } from '@/lib/utils'
 import { IMeeting } from '@/models/meeting'
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 import { faGoogleDrive, faReadme } from '@fortawesome/free-brands-svg-icons'
 import {
     faCalendar,
@@ -11,10 +12,22 @@ import {
     faTrash,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useQueryClient } from '@tanstack/react-query'
 import { ChevronsUpDown } from 'lucide-react'
 import { ObjectId } from 'mongodb'
 import Link from 'next/link'
-import { use, useState } from 'react'
+import { useState } from 'react'
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '../alert-dialog'
 import { Button } from '../button'
 import { Card, CardDescription, CardHeader, CardTitle } from '../card'
 import {
@@ -38,23 +51,9 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '../dialog'
-import { Label } from '../label'
 import { ScrollArea } from '../scroll-area'
-import { Textarea } from '../textarea'
 import { toast } from '../use-toast'
 import MemberPill from './MemberPill'
-import { useQueryClient } from '@tanstack/react-query'
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '../alert-dialog'
 
 export default function Sedinta({
     meeting,
@@ -290,9 +289,6 @@ export default function Sedinta({
                         </div>
                     ) : null}
 
-                    {/* <Label className="text-lg font-semibold">Highlights</Label>
-                    <Textarea placeholder="Coming soon" disabled /> */}
-
                     <DialogFooter>
                         <div className="flex gap-1 flex-wrap">
                             <Dialog>
@@ -330,7 +326,7 @@ export default function Sedinta({
                                 </Button>
                             </Link>
 
-                            {user.role === 'Secretary' ? (
+                            {isSecretary(user) ? (
                                 <AlertDialog>
                                     <AlertDialogTrigger asChild>
                                         <Button variant="destructive">
@@ -377,9 +373,7 @@ export default function Sedinta({
             <AlertDialog>
                 <ContextMenuContent className="w-64">
                     <AlertDialogTrigger asChild>
-                        <ContextMenuItem
-                            disabled={!(user.role === 'Secretary')}
-                        >
+                        <ContextMenuItem disabled={!isSecretary(user)}>
                             <>
                                 Sterge sedinta
                                 <ContextMenuShortcut>

@@ -1,6 +1,6 @@
 import { getMembers } from '@/lib/entityService'
 import MemberCard from './MemberCard'
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 
 export default async function MembersList() {
     const { members }: { members: IMember[] } = await getMembers()

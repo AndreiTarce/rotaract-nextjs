@@ -2,7 +2,7 @@
 
 import { API_KEY } from '@/lib/constants'
 import { cn } from '@/lib/utils'
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 import { faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -189,7 +189,7 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
     }
 
     return (
-        <Card>
+        <Card className="col-span-1">
             <CardHeader className="pb-4">
                 <CardTitle>Adaugare sedinta</CardTitle>
             </CardHeader>

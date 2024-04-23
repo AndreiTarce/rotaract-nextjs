@@ -2,7 +2,7 @@
 
 import { API_KEY } from '@/lib/constants'
 import { IMeeting } from '@/models/meeting'
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

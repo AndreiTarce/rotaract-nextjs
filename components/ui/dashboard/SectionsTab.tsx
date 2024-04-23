@@ -25,9 +25,11 @@ export default function SectionsTab({
             </TabsList>
             <TabsContent value="sedinte">{sedinte}</TabsContent>
             <TabsContent value="membri">{membri}</TabsContent>
-            <TabsContent value="functii_secretar">
-                {functii_secretar}
-            </TabsContent>
+            {functii_secretar && (
+                <TabsContent value="functii_secretar">
+                    {functii_secretar}
+                </TabsContent>
+            )}
         </Tabs>
     )
 }

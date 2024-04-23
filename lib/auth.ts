@@ -2,7 +2,7 @@ import { NextAuthOptions, getServerSession } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { redirect } from 'next/navigation'
 import { getMemberWhitelist } from './entityService'
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 
 export const authConfig: NextAuthOptions = {
     providers: [
@@ -26,8 +26,3 @@ export async function loginIsRequiredServer() {
     )
     if (!isWhitelisted) return redirect('/signin?whitelisted=false')
 }
-
-export const isSecretary = (user: IMember) =>
-    user?.role === 'Secretar' || user?.role === 'Secretary'
-
-export const isBoard = (user: IMember) => user?.isBoard === true

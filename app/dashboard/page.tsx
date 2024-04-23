@@ -4,13 +4,15 @@ import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru'
 import ImportantLinks from '@/components/ui/dashboard/ImportantLinks'
 import IstoricMinute from '@/components/ui/dashboard/IstoricMinute'
 import IstoricSedinte from '@/components/ui/dashboard/IstoricSedinte'
+import MemberForm from '@/components/ui/dashboard/MemberForm'
 import MemberInfo from '@/components/ui/dashboard/MemberInfo'
 import MembersPanel from '@/components/ui/dashboard/MembersPanel'
 import SectionsTab from '@/components/ui/dashboard/SectionsTab'
 import { Separator } from '@/components/ui/separator'
-import { authConfig, isSecretary, loginIsRequiredServer } from '@/lib/auth'
+import { authConfig, loginIsRequiredServer } from '@/lib/auth'
 import { getMember } from '@/lib/entityService'
-import { IMember } from '@/models/member'
+import { isSecretary } from '@/lib/utils'
+import { IMember } from '@/models/interfaces'
 import { Metadata } from 'next'
 import { getServerSession } from 'next-auth'
 
@@ -53,7 +55,12 @@ export default async function Dashboard() {
                 sedinte={sedinte}
                 membri={membri}
                 functii_secretar={
-                    isSecretary(userInfo) && <AdaugareSedinta user={userInfo} />
+                    isSecretary(userInfo) && (
+                        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+                            <AdaugareSedinta user={userInfo} />
+                            <MemberForm />
+                        </div>
+                    )
                 }
             />
         </main>

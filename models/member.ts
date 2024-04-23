@@ -1,28 +1,6 @@
 import { ObjectId } from 'mongodb'
 import mongoose, { Schema } from 'mongoose'
-
-export interface IMemberLinks {
-    facebook: string
-    linkedin: string
-    instagram: string
-    tiktok: string
-    website: string
-}
-
-export interface IMember {
-    _id: ObjectId
-    id: number
-    first_name: string
-    last_name: string
-    picture: string
-    description: string
-    role: string
-    urls: IMemberLinks
-    start_mandate: number
-    email: string
-    status: string
-    isBoard: Boolean
-}
+import { IMember, IMemberLinks } from './interfaces'
 
 const SectionSchema = new Schema<IMemberLinks>({
     facebook: { type: String, required: false },
