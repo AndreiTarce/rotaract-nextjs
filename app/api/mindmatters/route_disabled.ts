@@ -1,4 +1,4 @@
-import { CheckoutFormSchema } from '@/app/mindmatters/page'
+import { CheckoutFormSchema } from '@/app/mindmatters/page_disabled'
 import connectMongoDB from '@/lib/mongodb'
 import MindMattersRegistration from '@/models/mindMattersRegistration'
 import { NextRequest, NextResponse } from 'next/server'
