@@ -1,7 +1,8 @@
 import connectMongoDB from '@/lib/mongodb'
 import Meeting from '@/models/meeting'
-import Member, { IMember } from '@/models/member'
+import Member from '@/models/member'
 import { NextRequest, NextResponse } from 'next/server'
+import { IMember } from '@/models/interfaces'
 
 export async function POST(request: NextRequest) {
     const api_key = request.nextUrl.searchParams.get('api_key')
