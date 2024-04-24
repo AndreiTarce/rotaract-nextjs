@@ -22,7 +22,7 @@ export const uploadFileToS3 = async (
         Bucket: process.env.AWS_S3_BUCKET_NAME,
         Key: `${path}/${fileName}`,
         Body: fileBuffer,
-        ContentType: file.type,
+        ContentType: (file as any).type,
     }
 
     const command = new PutObjectCommand(params)
