@@ -14,8 +14,8 @@ import {
     PROJECTS_PATH,
 } from './constants'
 import connectMongoDB from './mongodb'
-import mongoose, { ObjectId } from 'mongoose'
-import { ObjectId as mongoObjectId } from 'mongodb'
+import mongoose from 'mongoose'
+import { ObjectId } from 'mongodb'
 import { MEETING_TYPES } from '@/components/ui/dashboard/constants'
 
 export const getProjects = async () => {
@@ -165,8 +165,8 @@ export const getFeaturedProject = async () => {
     }
 }
 
-export const getAttendance = async (memberId: any) => {
-    const memberIdToSearch = new mongoObjectId(memberId)
+export const getAttendance = async (memberId: ObjectId) => {
+    const memberIdToSearch = new ObjectId(memberId)
     await connectMongoDB()
     const currentDate = new Date()
     const rotarianYearStartDate =
