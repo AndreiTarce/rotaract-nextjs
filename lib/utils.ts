@@ -7,6 +7,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const isSecretary = (user: IMember) =>
-    user?.role === memberRoles.SECRETARY || true
+    user?.role === memberRoles.SECRETARY
 
 export const isBoard = (user: IMember) => user?.isBoard === true
