@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
-import { IMember, memberSchema } from './member'
+import { memberSchema } from './member'
 import { ObjectId } from 'mongodb'
+import { IMember } from './interfaces'
 
 export interface IMeeting {
     _id: ObjectId
