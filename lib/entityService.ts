@@ -165,8 +165,8 @@ export const getFeaturedProject = async () => {
     }
 }
 
-export const getAttendance = async (memberId: ObjectId) => {
-    const memberIdToSearch = new mongoObjectId(memberId as any)
+export const getAttendance = async (memberId: any) => {
+    const memberIdToSearch = new mongoObjectId(memberId)
     await connectMongoDB()
     const currentDate = new Date()
     const rotarianYearStartDate =
