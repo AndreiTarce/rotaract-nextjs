@@ -48,7 +48,7 @@ export interface IMember {
     picture: string
     description: string
     role: memberRoles
-    urls: IMemberLinks
+    urls?: IMemberLinks
     start_mandate: number
     email: string
     status: memberStatus

@@ -8,7 +8,7 @@ import {
     memberStatus,
 } from '@/models/interfaces'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AlertOctagon } from 'lucide-react'
+import { AlertOctagon, Facebook } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../card'
@@ -28,11 +28,11 @@ import {
     SelectTrigger,
     SelectValue,
 } from '../select'
-import { MEETING_TYPES } from './constants'
 import { Input } from '../input'
 import { Button } from '../button'
 import { Textarea } from '../textarea'
 import { Label } from '../label'
+import { removeUndefinedLinkKeys } from './utils'
 
 interface IMemberFormProps {
     userInfo?: IMember
@@ -46,7 +46,7 @@ const formSchema = z.object({
     picture_file: z.instanceof(FileList).optional(),
     description: z.string().optional(),
     role: z.nativeEnum(memberRoles),
-    urls: IMemberLinksZodSchema,
+    urls: IMemberLinksZodSchema.optional(),
     start_mandate: z.number().optional(),
     email: z
         .string()
@@ -65,7 +65,30 @@ export default function MemberForm({ userInfo }: IMemberFormProps) {
     })
     const fileRef = form.register('picture_file')
 
-    const onSubmit = () => {}
+    const onSubmit = async (values: MemberFormSchema) => {
+        const data = { ...values }
+        const { picture_file } = data
+        removeUndefinedLinkKeys(data.urls as IMemberLinks)
+        if (!Object.keys(data.urls as IMemberLinks).length) delete data.urls
+        delete data.picture_file
+
+        const formData = new FormData()
+        formData.append('member', JSON.stringify(data))
+        if (Object.keys(picture_file as FileList).length && picture_file)
+            formData.append('picture_file', picture_file[0])
+
+        try {
+            const response = await fetch('/api/members', {
+                method: 'POST',
+                body: formData,
+            })
+
+            const data = await response.json()
+            console.log(data.status)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <Card className="h-fit">
