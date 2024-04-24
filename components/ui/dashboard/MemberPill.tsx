@@ -1,5 +1,5 @@
 import user_placeholder from '@/assets/images/user-placeholder.png'
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 import Image from 'next/image'
 import { Card } from '../card'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../hover-card'

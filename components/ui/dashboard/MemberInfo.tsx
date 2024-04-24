@@ -1,6 +1,6 @@
 import user_placeholder from '@/assets/images/user-placeholder.png'
 import { getAttendance } from '@/lib/entityService'
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'

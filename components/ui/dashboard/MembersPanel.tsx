@@ -1,4 +1,4 @@
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 import { Card, CardContent, CardHeader, CardTitle } from '../card'
 import DashboardMemberCard from './DashboardMemberCard'
 import { ScrollArea } from '../scroll-area'

@@ -1,5 +1,5 @@
 import { getPastPresidents } from '@/lib/entityService'
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 import MemberCard from './MemberCard'
 
 export default async function PastPresidentsList() {

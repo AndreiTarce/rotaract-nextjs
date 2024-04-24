@@ -1,6 +1,6 @@
 'use client'
 import { MEMBERS_PATH } from '@/lib/constants'
-import { IMember } from '@/models/member'
+import { IMember } from '@/models/interfaces'
 import { OptionProps } from 'react-select'
 import Select from 'react-select/async'
 import './MemberSelect.css'
