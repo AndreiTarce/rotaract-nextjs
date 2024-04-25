@@ -189,7 +189,7 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
     }
 
     return (
-        <Card className="col-span-1">
+        <Card className="col-span-1 h-fit">
             <CardHeader className="pb-4">
                 <CardTitle>Adaugare sedinta</CardTitle>
             </CardHeader>

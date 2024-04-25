@@ -27,6 +27,7 @@ export enum memberRoles {
     PR_COORDINATOR = 'PR Coordinator',
     MARKETING_COORDINATOR = 'marketing coordinator',
     FUNDRAISING_DIRECTOR = 'fundraising director',
+    PAST_PRESIDENT = 'past president',
 }
 
 export enum memberStatus {

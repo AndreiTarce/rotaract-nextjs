@@ -1,10 +1,10 @@
 import { Card } from '@/components/ui/card'
 import AdaugareSedinta from '@/components/ui/dashboard/AdaugareSedinta'
+import AddMemberFormCard from '@/components/ui/dashboard/AddMemberFormCard'
 import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru'
 import ImportantLinks from '@/components/ui/dashboard/ImportantLinks'
 import IstoricMinute from '@/components/ui/dashboard/IstoricMinute'
 import IstoricSedinte from '@/components/ui/dashboard/IstoricSedinte'
-import MemberForm from '@/components/ui/dashboard/MemberForm'
 import MemberInfo from '@/components/ui/dashboard/MemberInfo'
 import MembersPanel from '@/components/ui/dashboard/MembersPanel'
 import SectionsTab from '@/components/ui/dashboard/SectionsTab'
@@ -23,11 +23,11 @@ export const metadata: Metadata = {
 export default async function Dashboard() {
     await loginIsRequiredServer()
     const session = await getServerSession(authConfig)
-    const userInfo: IMember = await getMember(session?.user?.email!)
+    const currentUser: IMember = await getMember(session?.user?.email!)
 
     const sedinte = (
         <Card className="flex flex-col md:grid md:grid-cols-2 gap-4">
-            <IstoricSedinte user={userInfo} />
+            <IstoricSedinte user={currentUser} />
             <Separator className="md:hidden" />
             <IstoricMinute />
         </Card>
@@ -35,7 +35,7 @@ export default async function Dashboard() {
 
     const membri = (
         <div className="mb-4">
-            <MembersPanel user={userInfo} />
+            <MembersPanel currentUser={currentUser} />
         </div>
     )
 
@@ -46,7 +46,7 @@ export default async function Dashboard() {
             </h1>
             <div className="md:grid md:grid-cols-3 flex flex-col gap-4 mb-4">
                 <Card>
-                    <MemberInfo user={userInfo} />
+                    <MemberInfo user={currentUser} />
                 </Card>
                 <ImportantLinks />
                 <CotizatieMembru />
@@ -55,10 +55,10 @@ export default async function Dashboard() {
                 sedinte={sedinte}
                 membri={membri}
                 functii_secretar={
-                    isSecretary(userInfo) && (
+                    isSecretary(currentUser) && (
                         <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-                            <AdaugareSedinta user={userInfo} />
-                            <MemberForm />
+                            <AdaugareSedinta user={currentUser} />
+                            <AddMemberFormCard />
                         </div>
                     )
                 }
