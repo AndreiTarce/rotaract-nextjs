@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { buffer } from 'stream/consumers'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
@@ -9,6 +10,7 @@ const endpointSecret =
 export async function POST(request: NextRequest, response: NextResponse) {
     const body = await request.json()
     console.log(body)
+    const buf = await buffer(body)
 
     const sig = request.headers.get('stripe-signature')
 
@@ -16,7 +18,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
     try {
         event = stripe.webhooks.constructEvent(
-            JSON.stringify(body),
+            buf,
             sig as string,
             endpointSecret
         )
