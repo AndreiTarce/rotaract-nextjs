@@ -8,6 +8,7 @@ const endpointSecret =
 
 export async function POST(request: NextRequest, response: NextResponse) {
     const body = await request.json()
+    console.log(body)
 
     const sig = request.headers.get('stripe-signature')
 
@@ -15,7 +16,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
     try {
         event = stripe.webhooks.constructEvent(
-            body,
+            JSON.stringify(body),
             sig as string,
             endpointSecret
         )

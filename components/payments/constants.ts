@@ -1,5 +1,6 @@
 export const STRIPE_SIMPLE_DONATION = [
-    'price_1O9RTzH1rXnXzXAphCRUIvcG',
+    'price_1O8OR1H1rXnXzXAphxmN3uIh',
+    // 'price_1O9RTzH1rXnXzXAphCRUIvcG',
     'price_1O9RUwH1rXnXzXApwrCJAIlE',
     'price_1O9RVTH1rXnXzXAporGfcIj6',
     'price_1O9RbOH1rXnXzXAplKfGiMX0',
