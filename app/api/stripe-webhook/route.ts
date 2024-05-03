@@ -7,10 +7,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 const endpointSecret =
     'whsec_e42a0ea000c076f5b92dafb1574bc98dc44f9d2341105289cc670da525104722'
 
-export async function POST(request: NextRequest, response: NextResponse) {
-    const body = await request.json()
-    console.log(body)
-    const buf = await buffer(body)
+export async function POST(request: Request, response: NextResponse) {
+    const body = await request.text()
 
     const sig = request.headers.get('stripe-signature')
 
@@ -18,7 +16,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
     try {
         event = stripe.webhooks.constructEvent(
-            buf,
+            body,
             sig as string,
             endpointSecret
         )
