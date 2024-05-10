@@ -1,191 +1,68 @@
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card'
-import { GoogleSignOutButton } from '@/components/ui/signin/authButton'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { loginIsRequiredServer } from '@/lib/auth'
+import { Card } from '@/components/ui/card'
+import AdaugareSedinta from '@/components/ui/dashboard/AdaugareSedinta'
+import AddMemberFormCard from '@/components/ui/dashboard/AddMemberFormCard'
+import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru'
+import ImportantLinks from '@/components/ui/dashboard/ImportantLinks'
+import IstoricMinute from '@/components/ui/dashboard/IstoricMinute'
+import IstoricSedinte from '@/components/ui/dashboard/IstoricSedinte'
+import MemberInfo from '@/components/ui/dashboard/MemberInfo'
+import MembersPanel from '@/components/ui/dashboard/MembersPanel'
+import SectionsTab from '@/components/ui/dashboard/SectionsTab'
+import { Separator } from '@/components/ui/separator'
+import { authConfig, loginIsRequiredServer } from '@/lib/auth'
+import { getMember } from '@/lib/entityService'
+import { isSecretary } from '@/lib/utils'
+import { IMember } from '@/models/interfaces'
+import { Metadata } from 'next'
+import { getServerSession } from 'next-auth'
+
+export const metadata: Metadata = {
+    title: 'Dashboard | Rotaract Visio Cluj-Napoca',
+}
 
 export default async function Dashboard() {
     await loginIsRequiredServer()
+    const session = await getServerSession(authConfig)
+    const currentUser: IMember = await getMember(session?.user?.email!)
+
+    const sedinte = (
+        <Card className="flex flex-col md:grid md:grid-cols-2 gap-4">
+            <IstoricSedinte user={currentUser} />
+            <Separator className="md:hidden" />
+            <IstoricMinute />
+        </Card>
+    )
+
+    const membri = (
+        <div className="mb-4">
+            <MembersPanel currentUser={currentUser} />
+        </div>
+    )
+
     return (
-        <main className="mx-16 mt-8">
-            <div className="flex-col md:flex">
-                <div className="">
-                    <div className="flex h-16 items-center px-4">
-                        <div className="ml-auto flex items-center space-x-4"></div>
-                    </div>
-                </div>
-                <div className="flex-1 space-y-4">
-                    <div className="flex items-center justify-between space-y-2">
-                        <h2 className="text-3xl font-bold tracking-tight">
-                            Dashboard
-                        </h2>
-                        <div className="flex items-center space-x-2">
-                            <GoogleSignOutButton />
-                        </div>
-                    </div>
-                    <Tabs defaultValue="overview" className="space-y-4">
-                        <TabsList>
-                            <TabsTrigger value="overview">Overview</TabsTrigger>
-                            <TabsTrigger value="analytics" disabled>
-                                Analytics
-                            </TabsTrigger>
-                            <TabsTrigger value="reports" disabled>
-                                Reports
-                            </TabsTrigger>
-                            <TabsTrigger value="notifications" disabled>
-                                Notifications
-                            </TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="overview" className="space-y-4">
-                            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                                <Card>
-                                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                        <CardTitle className="text-sm font-medium">
-                                            Total Revenue
-                                        </CardTitle>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            className="h-4 w-4 text-muted-foreground"
-                                        >
-                                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                                        </svg>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="text-2xl font-bold">
-                                            $45,231.89
-                                        </div>
-                                        <p className="text-xs text-muted-foreground">
-                                            +20.1% from last month
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                                <Card>
-                                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                        <CardTitle className="text-sm font-medium">
-                                            Subscriptions
-                                        </CardTitle>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            className="h-4 w-4 text-muted-foreground"
-                                        >
-                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                                            <circle cx="9" cy="7" r="4" />
-                                            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                                        </svg>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="text-2xl font-bold">
-                                            +2350
-                                        </div>
-                                        <p className="text-xs text-muted-foreground">
-                                            +180.1% from last month
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                                <Card>
-                                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                        <CardTitle className="text-sm font-medium">
-                                            Sales
-                                        </CardTitle>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            className="h-4 w-4 text-muted-foreground"
-                                        >
-                                            <rect
-                                                width="20"
-                                                height="14"
-                                                x="2"
-                                                y="5"
-                                                rx="2"
-                                            />
-                                            <path d="M2 10h20" />
-                                        </svg>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="text-2xl font-bold">
-                                            +12,234
-                                        </div>
-                                        <p className="text-xs text-muted-foreground">
-                                            +19% from last month
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                                <Card>
-                                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                        <CardTitle className="text-sm font-medium">
-                                            Active Now
-                                        </CardTitle>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            className="h-4 w-4 text-muted-foreground"
-                                        >
-                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                                        </svg>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="text-2xl font-bold">
-                                            +573
-                                        </div>
-                                        <p className="text-xs text-muted-foreground">
-                                            +201 since last hour
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                            </div>
-                            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                                <Card className="col-span-4">
-                                    <CardHeader>
-                                        <CardTitle>Overview</CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="pl-2">
-                                        {/* <Overview /> */}
-                                    </CardContent>
-                                </Card>
-                                <Card className="col-span-3">
-                                    <CardHeader>
-                                        <CardTitle>Recent Sales</CardTitle>
-                                        <CardDescription>
-                                            You made 265 sales this month.
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        {/* <RecentSales /> */}
-                                    </CardContent>
-                                </Card>
-                            </div>
-                        </TabsContent>
-                    </Tabs>
-                </div>
+        <main className="mt-5 md:mt-12 mx-16 max-md:mx-4">
+            <h1 className="text-3xl font-bold tracking-tight mb-8">
+                Dashboard
+            </h1>
+            <div className="md:grid md:grid-cols-3 flex flex-col gap-4 mb-4">
+                <Card>
+                    <MemberInfo user={currentUser} />
+                </Card>
+                <ImportantLinks />
+                <CotizatieMembru />
             </div>
+            <SectionsTab
+                sedinte={sedinte}
+                membri={membri}
+                functii_secretar={
+                    isSecretary(currentUser) && (
+                        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+                            <AdaugareSedinta user={currentUser} />
+                            <AddMemberFormCard />
+                        </div>
+                    )
+                }
+            />
         </main>
     )
 }

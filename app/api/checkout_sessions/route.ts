@@ -23,8 +23,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
             customer_email: body.customer_email || undefined,
         })
 
-        console.log(session)
-
         return NextResponse.json(
             { clientSecret: session.client_secret },
             { status: 200 }

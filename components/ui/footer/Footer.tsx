@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { Separator } from '../separator'
 
 export default function Footer() {
+    const today = new Date()
     return (
         <div className="my-8 dark:text-muted-foreground bottom-0">
             <Separator className="mb-8" />
@@ -59,31 +60,38 @@ export default function Footer() {
                         <Link
                             href="https://www.instagram.com/rotaractvisiocj/"
                             target="_blank"
+                            aria-label="Check us out on Instagram"
                         >
                             <FontAwesomeIcon icon={faInstagram} size="xl" />
                         </Link>
                         <Link
                             href="https://www.facebook.com/RotaractVisioClujNapoca"
                             target="_blank"
+                            aria-label="Check us out on Facebook"
                         >
                             <FontAwesomeIcon icon={faFacebook} size="xl" />
                         </Link>
                         <Link
                             href="https://www.linkedin.com/company/rotaract-cluj-napoca-visio/"
                             target="_blank"
+                            aria-label="Check us out on Linkedin"
                         >
                             <FontAwesomeIcon icon={faLinkedin} size="xl" />
                         </Link>
                         <Link
                             href="https://www.tiktok.com/@rotaractvisiocluj"
                             target="_blank"
+                            aria-label="Check us out on TikTok"
                         >
                             <FontAwesomeIcon icon={faTiktok} size="xl" />
                         </Link>
                     </div>
                 </div>
                 <div className="flex justify-center mt-8 text-center gap-2 max-md:flex-col">
-                    <span>Copyright © 2023 Rotaract Visio Cluj-Napoca</span>
+                    <span>
+                        Copyright © {today.getFullYear()} Rotaract Visio
+                        Cluj-Napoca
+                    </span>
                     <span className="max-md:hidden">|</span>
                     <span>All Rights Reserved</span>
                 </div>

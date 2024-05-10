@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../button'
 import { Card } from '../card'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const ProjectCard = (props: IProject) => {
     return (
@@ -26,11 +28,11 @@ const ProjectCard = (props: IProject) => {
                         {props.shortDescription}
                     </p>
                 </div>
-                <Link href={`projects/${props.url}`} className="w-fit">
+                <Link href={`projects/${props.url}`} className="w-fit" passHref>
                     <Button size="sm">
-                        Read more
+                        Citește mai mult
                         <svg
-                            className="-mr-1 ml-2 h-4 w-4"
+                            className="ml-2 h-4 w-4"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"

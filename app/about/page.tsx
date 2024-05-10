@@ -1,74 +1,87 @@
-import PageWrapper from '@/components/ui/animation/PageWrapper'
-import { Button } from '@/components/ui/button'
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-    CardFooter,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
+import background from '@/assets/images/bg2.webp'
+import backgroundMobile from '@/assets/images/desprenoibgmobile.webp'
+import OurCauses from '@/components/about/cause/OurCauses'
+import MemberStatistics from '@/components/about/statistics/MemberStatistics'
+import OurValues from '@/components/about/values/OurValues'
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+
+export const metadata: Metadata = {
+    title: 'Despre noi | Rotaract Visio Cluj-Napoca',
+    description:
+        'Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea clubului Rotary Visio Cluj-Napoca  . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru.',
+}
 
 export default function About() {
     return (
-        <main className="mt-28 mx-16 max-md:mx-4">
-            <Card className="w-full">
-                <CardHeader>
-                    <CardTitle>Create project</CardTitle>
-                    <CardDescription>
-                        Deploy your new project in one-click.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <form>
-                        <div className="grid w-full items-center gap-4">
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="name">Name</Label>
-                                <Input
-                                    id="name"
-                                    placeholder="Name of your project"
-                                />
-                            </div>
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="framework">Framework</Label>
-                                <Select>
-                                    <SelectTrigger id="framework">
-                                        <SelectValue placeholder="Select" />
-                                    </SelectTrigger>
-                                    <SelectContent position="popper">
-                                        <SelectItem value="next">
-                                            Next.js
-                                        </SelectItem>
-                                        <SelectItem value="sveltekit">
-                                            SvelteKit
-                                        </SelectItem>
-                                        <SelectItem value="astro">
-                                            Astro
-                                        </SelectItem>
-                                        <SelectItem value="nuxt">
-                                            Nuxt.js
-                                        </SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                        </div>
-                    </form>
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                    <Button variant="outline">Cancel</Button>
-                    <Button>Deploy</Button>
-                </CardFooter>
-            </Card>
-            <Card>test</Card>
+        <main className="mt-5 md:mt-12">
+            <div className="w-full relative h-screen flex flex-col">
+                <h1 className="mx-16 max-md:mx-4 w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-4">
+                    Despre noi
+                </h1>
+                <p className="mx-16 max-md:mx-4 md:w-2/3 mb-2 ">
+                    Clubul nostru a fost chartat în data de 12 octombrie 2013,
+                    sub îndrumarea clubului{' '}
+                    <Link
+                        href="https://rotaryvisio.ro/"
+                        target="_blank"
+                        className="underline underline-offset-4"
+                    >
+                        Rotary Visio Cluj-Napoca{' '}
+                        <FontAwesomeIcon
+                            icon={faArrowUpRightFromSquare}
+                            size="xs"
+                        />
+                    </Link>{' '}
+                    . Cu o istorie de implicare comunitară de peste un deceniu,
+                    ne străduim să aducem schimbări pozitive în orașul nostru și
+                    în lumea din jurul nostru.
+                </p>
+                <p className="mx-16 max-md:mx-4 md:w-2/3">
+                    Misiunea noastră este de a inspira și mobiliza tinerii din
+                    Cluj-Napoca pentru a se implica activ în proiecte de
+                    voluntariat, dezvoltând astfel lideri viitori și promovând
+                    serviciul în comunitate.
+                </p>
+                <Image
+                    src={background}
+                    alt="Rotaract Visio Group Photo"
+                    fill
+                    style={{
+                        objectFit: 'cover',
+                        zIndex: '-10',
+                        objectPosition: '45% bottom',
+                    }}
+                    className="hidden md:block"
+                />
+                <div className="relative h-full">
+                    <Image
+                        src={background}
+                        alt="Rotaract Visio Group Photo"
+                        sizes="(max-width: 808px) 200vw"
+                        style={{
+                            objectFit: 'cover',
+                            zIndex: '-10',
+                            objectPosition: '32% bottom',
+                        }}
+                        fill
+                        className="md:hidden"
+                    />
+                </div>
+            </div>
+            <div className="mx-16 max-md:mx-4 mt-16">
+                <div className="md:grid md:grid-cols-2 gap-4 max-md:flex max-md:flex-col-reverse mb-8">
+                    <div className="flex flex-col gap-4">
+                        <MemberStatistics />
+                        <OurCauses />
+                    </div>
+                    <OurValues />
+                </div>
+                {/* <Timeline /> */}
+            </div>
         </main>
     )
 }

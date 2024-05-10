@@ -15,11 +15,13 @@ import {
     FormLabel,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { AlertOctagon, MailCheck, SendHorizonal } from 'lucide-react'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { AlertOctagon, MailCheck } from 'lucide-react'
 import { useState } from 'react'
+import { Textarea } from '../textarea'
 import { Toaster } from '../toaster'
 import { useToast } from '../use-toast'
-import { Textarea } from '../textarea'
 
 const formSchema = z.object({
     first_name: z.string().min(1, {
@@ -114,12 +116,9 @@ export default function ContactForm() {
                     name="first_name"
                     render={({ field }) => (
                         <FormItem className="mb-4">
-                            <FormLabel>First name</FormLabel>
+                            <FormLabel>Prenume</FormLabel>
                             <FormControl>
-                                <Input
-                                    placeholder="Your first name"
-                                    {...field}
-                                />
+                                <Input placeholder="Prenumele tău" {...field} />
                             </FormControl>
                             {form.formState.errors.first_name && (
                                 <FormDescription className="text-destructive">
@@ -140,12 +139,9 @@ export default function ContactForm() {
                     name="last_name"
                     render={({ field }) => (
                         <FormItem className="mb-4">
-                            <FormLabel>Last name</FormLabel>
+                            <FormLabel>Nume</FormLabel>
                             <FormControl>
-                                <Input
-                                    placeholder="Your last name"
-                                    {...field}
-                                />
+                                <Input placeholder="Numele tău" {...field} />
                             </FormControl>
                             {form.formState.errors.last_name && (
                                 <FormDescription className="text-destructive">
@@ -169,7 +165,7 @@ export default function ContactForm() {
                             <FormLabel>Email</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="Your email address"
+                                    placeholder="Adresa ta de email"
                                     {...field}
                                 />
                             </FormControl>
@@ -189,10 +185,10 @@ export default function ContactForm() {
                     name="subject"
                     render={({ field }) => (
                         <FormItem className="mb-4">
-                            <FormLabel>Subject</FormLabel>
+                            <FormLabel>Subiect</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="Message subject"
+                                    placeholder="Subiectul mesajului"
                                     {...field}
                                 />
                             </FormControl>
@@ -212,10 +208,10 @@ export default function ContactForm() {
                     name="message"
                     render={({ field }) => (
                         <FormItem className="mb-4">
-                            <FormLabel>Message</FormLabel>
+                            <FormLabel>Mesaj</FormLabel>
                             <FormControl>
                                 <Textarea
-                                    placeholder="Type your message here"
+                                    placeholder="Scrie mesajul tău aici"
                                     {...field}
                                 />
                             </FormControl>
@@ -242,9 +238,12 @@ export default function ContactForm() {
                                 <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                             </svg>
                         ) : (
-                            <SendHorizonal size={20} className="mr-2" />
+                            <FontAwesomeIcon
+                                icon={faPaperPlane}
+                                className="mr-2"
+                            />
                         )}
-                        Submit
+                        Trimite
                     </Button>
                 </div>
             </form>

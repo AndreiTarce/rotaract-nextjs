@@ -1,8 +1,8 @@
-import { NextAuthOptions, getServerSession } from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import { redirect } from 'next/navigation';
-import { getMemberWhitelist, getMembers } from './entityService';
-
+import { NextAuthOptions, getServerSession } from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import { redirect } from 'next/navigation'
+import { getMemberWhitelist } from './entityService'
+import { IMember } from '@/models/interfaces'
 
 export const authConfig: NextAuthOptions = {
     providers: [
@@ -10,15 +10,19 @@ export const authConfig: NextAuthOptions = {
             // @ts-ignore
             clientId: process.env.GOOGLE_CLIENT_ID,
             // @ts-ignore
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
     ],
 }
 
 export async function loginIsRequiredServer() {
-    const session = await getServerSession(authConfig);
-    if (!session) return redirect('/signin');
-    const whitelistedMembers = await getMemberWhitelist();
-    const isWhitelisted = Boolean(whitelistedMembers.filter(member => member.email === session?.user?.email).length);
-    if (!isWhitelisted) return redirect('/signin?whitelisted=false');
+    const session = await getServerSession(authConfig)
+    if (!session) return redirect('/signin')
+    const whitelistedMembers = await getMemberWhitelist()
+    const isWhitelisted = Boolean(
+        whitelistedMembers.filter(
+            (member) => member.email === session?.user?.email
+        ).length
+    )
+    if (!isWhitelisted) return redirect('/signin?whitelisted=false')
 }

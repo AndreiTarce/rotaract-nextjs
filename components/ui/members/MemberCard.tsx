@@ -1,16 +1,78 @@
-import { IMember } from '@/models/member'
-import { Facebook, Linkedin } from 'lucide-react'
-import Link from 'next/link'
-import { Button } from '../button'
-import { Card } from '../card'
-import { Badge } from '../badge'
+import user_placeholder from '@/assets/images/user-placeholder.png'
+import { IMember } from '@/models/interfaces'
+import {
+    faFacebook,
+    faInstagram,
+    faLinkedin,
+    faTiktok,
+} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
+import Link from 'next/link'
+import { Badge } from '../badge'
+import { Card } from '../card'
+import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 
 const MemberCard = (props: IMember) => {
+    const personalLinks = (
+        <>
+            {props.urls?.facebook && (
+                <Link
+                    href={props.urls.facebook}
+                    className="w-fit"
+                    target="_blank"
+                >
+                    <FontAwesomeIcon icon={faFacebook} size="2x" />
+                    <span className="sr-only">Facebook profile</span>
+                </Link>
+            )}
+            {props.urls?.linkedin && (
+                <Link
+                    href={props.urls.linkedin}
+                    className="w-fit"
+                    target="_blank"
+                >
+                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                    <span className="sr-only">Linkedin profile</span>
+                </Link>
+            )}
+            {props.urls?.instagram && (
+                <Link
+                    href={props.urls.instagram}
+                    className="w-fit"
+                    target="_blank"
+                >
+                    <FontAwesomeIcon icon={faInstagram} size="2x" />
+                    <span className="sr-only">Instagram profile</span>
+                </Link>
+            )}
+            {props.urls?.tiktok && (
+                <Link
+                    href={props.urls.tiktok}
+                    className="w-fit"
+                    target="_blank"
+                >
+                    <FontAwesomeIcon icon={faTiktok} size="2x" />
+                    <span className="sr-only">Tiktok profile</span>
+                </Link>
+            )}
+            {props.urls?.website && (
+                <Link
+                    href={props.urls.website}
+                    className="w-fit"
+                    target="_blank"
+                >
+                    <FontAwesomeIcon icon={faGlobe} size="2x" />
+                    <span className="sr-only">Personal website</span>
+                </Link>
+            )}
+        </>
+    )
+
     return (
-        <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full">
+        <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full overflow-hidden">
             <Image
-                src={props.picture}
+                src={props.picture || user_placeholder}
                 alt={`${props.first_name}${props.last_name} photo`}
                 height={500}
                 width={500}
@@ -35,30 +97,7 @@ const MemberCard = (props: IMember) => {
                         {props.description}
                     </p>
                 </div>
-                <div className="flex gap-2">
-                    {props.urls.facebook && (
-                        <Link
-                            href={props.urls.facebook}
-                            className="w-fit"
-                            target="_blank"
-                        >
-                            <Button size="icon">
-                                <Facebook />
-                            </Button>
-                        </Link>
-                    )}
-                    {props.urls.linkedin && (
-                        <Link
-                            href={props.urls.linkedin}
-                            className="w-fit"
-                            target="_blank"
-                        >
-                            <Button size="icon">
-                                <Linkedin />
-                            </Button>
-                        </Link>
-                    )}
-                </div>
+                <div className="flex gap-3 items-center">{personalLinks}</div>
             </div>
         </Card>
     )

@@ -1,5 +1,5 @@
 'use client'
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { Autoplay, Navigation, Pagination, Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -9,7 +9,7 @@ import 'swiper/css/scrollbar'
 export default function ValuesCarousel(props: any) {
     return (
         <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
+            modules={[Navigation, Pagination, Autoplay, Mousewheel]}
             pagination
             slidesPerView={1}
             loop
@@ -25,6 +25,7 @@ export default function ValuesCarousel(props: any) {
             }}
             centeredSlides={false}
             centerInsufficientSlides={true}
+            mousewheel
         >
             {props.children.map((element: any, index: number) => (
                 <SwiperSlide

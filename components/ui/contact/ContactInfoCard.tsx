@@ -9,7 +9,7 @@ export default function ContactInfoCard(props: {
     children: ReactNode
 }) {
     return (
-        <Card>
+        <Card className="shadow-md border rounded-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-lg">{props.title}</CardTitle>
                 <FontAwesomeIcon

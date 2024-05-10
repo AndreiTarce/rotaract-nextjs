@@ -2,10 +2,15 @@ import BoardMembersList from '@/components/ui/members/BoardMembers'
 import MembersList from '@/components/ui/members/Members'
 import PastPresidentsList from '@/components/ui/members/PastPresidents'
 import { Separator } from '@/components/ui/separator'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: 'Membri | Rotaract Visio Cluj-Napoca',
+}
 
 export default function Members() {
     return (
-        <main className="mt-12 mx-16 max-md:mx-4 mb-8 xl:mx-48">
+        <main className="mt-5 md:mt-12 mx-16 max-md:mx-4 mb-8 xl:mx-48">
             <h1 className="text-5xl font-semibold leading-none mb-2">
                 Meet our{' '}
                 <span className="font-extrabold bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">

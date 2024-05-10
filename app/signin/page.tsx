@@ -11,6 +11,12 @@ import { GoogleSignInButton } from '@/components/ui/signin/authButton'
 import { XOctagon } from 'lucide-react'
 import Image from 'next/image'
 import AccesDeniendImage from '../../assets/images/access_denied.svg'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: 'Signin | Rotaract Visio Cluj-Napoca',
+}
+
 
 type Props = {
     params: {}

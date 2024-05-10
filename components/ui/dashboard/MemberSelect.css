@@ -1,0 +1,58 @@
+.member-select {
+    .member-select-control {
+        border-color: hsl(var(--input));
+        background-color: hsl(var(--background));
+        color: hsl(var(--muted-foreground));
+    }
+
+    .member-select-placeholder {
+        color: hsl(var(--muted-foreground));
+        font-size: 14px;
+    }
+
+    .member-select-indicator-separator {
+        background-color: hsl(var(--muted-foreground));
+    }
+
+    .member-select-indicator-container {
+        color: hsl(var(--muted-foreground));
+    }
+
+    .member-select-option {
+        color: hsl(var(--foreground));
+    }
+
+    .css-d7l1ni-option {
+        background-color: hsl(var(--accent));
+    }
+
+    .member-select-input {
+        color: hsl(var(--muted-foreground));
+        font-size: 14px;
+    }
+
+    .member-select-multivalue {
+        background-color: hsl(var(--foreground));
+        color: hsl(var(--background));
+
+        .css-wsp0cs-MultiValueGeneric {
+            color: inherit;
+        }
+
+        [role='button']:hover {
+            background-color: hsl(var(--accent));
+            color: hsl(var(--accent-foreground));
+        }
+    }
+
+    .member-select-menu {
+        background-color: hsl(var(--background));
+    }
+}
+
+.css-t3ipsp-control,
+.css-t3ipsp-control:hover {
+    border: 0;
+    border-color: unset !important;
+    box-shadow: 0 0 0 1px hsl(var(--ring)) !important;
+}

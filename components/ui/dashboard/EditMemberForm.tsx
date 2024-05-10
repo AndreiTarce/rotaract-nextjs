@@ -1,8 +1,12 @@
 'use client'
 import { IMember } from '@/models/interfaces'
+import MemberForm, { MemberFormSchema, memberFormStatuses } from './MemberForm'
+import { isSecretary } from '@/lib/utils'
 import Image from 'next/image'
+import { Button } from '../button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-import MemberForm, { MemberFormSchema } from './MemberForm'
 
 export default function EditMemberForm({
     userInfo,

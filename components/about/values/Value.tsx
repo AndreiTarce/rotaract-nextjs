@@ -1,5 +1,4 @@
-import { Avatar, AvatarImage } from '@/components/ui/avatar'
-import { IconDefinition, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Value(props: {
@@ -17,7 +16,9 @@ export default function Value(props: {
                 />
             </div>
             <div className="text-lg font-bold">{props.title}</div>
-            <div className="text-xs text-center ">{props.text}</div>
+            <div className="text-xs text-center md:text-muted-foreground">
+                {props.text}
+            </div>
         </div>
     )
 }

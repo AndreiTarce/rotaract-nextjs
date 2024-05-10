@@ -17,8 +17,6 @@ import {
 import EditMemberForm from './EditMemberForm'
 import { ScrollArea } from '../scroll-area'
 import { isSecretary } from '@/lib/utils'
-import useMediaQuery from '@/hooks/useMediaQuery'
-import { Drawer } from '../drawer'
 
 export default async function DashboardMemberCard({
     user,

@@ -51,7 +51,10 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         'rotaract-cranberry': '#d41367',
-        'dark': '#252525'
+        'dark': '#252525',
+        'dark-blue': '#020817',
+        'light': '#F8FAFC',
+        'countdownbg': '#80838b'
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -72,6 +75,10 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      gridTemplateColumns: {
+        'responsive-grid': 'repeat(auto-fill, minmax(250px, 1fr))',
+        'responsive-grid-sm': 'repeat(auto-fill, minmax(150px, 1fr))'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
