@@ -1,25 +1,85 @@
 'use client'
 import { useState } from 'react'
 import { CatrafusalePackageCard } from './PackageCard'
+import single from '@/assets/images/single.png'
+import double from '@/assets/images/double.png'
+import mixt from '@/assets/images/masa_stander.png'
+import table from '@/assets/images/masa.png'
 
 export default function CatrafusalePackages() {
     const [productId, setProductId] = useState('')
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 w-full md:w-1/2 gap-8 md:gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full md:w-1/2 gap-8 md:gap-8 mt-4">
             <CatrafusalePackageCard
-                title="SIMPLU"
+                title="SINGLE"
                 description={
                     <span>
                         1 stander
                         <br />
                         50 price tags
+                        <br />
+                        10 umerașe
                     </span>
                 }
                 price={250}
                 dimensions="Dimensiune stander: 100x20x30cm"
                 productId="pId"
                 setProductId={setProductId}
+                image={single}
+            />
+            <CatrafusalePackageCard
+                title="DOUBLE"
+                description={
+                    <span>
+                        2 standere
+                        <br />
+                        100 price tags
+                        <br />
+                        20 umerașe
+                    </span>
+                }
+                price={400}
+                dimensions="Dimensiune stander: 100x20x30cm"
+                productId="pId"
+                setProductId={setProductId}
+                image={double}
+            />
+            <CatrafusalePackageCard
+                title="SINGLE TABLE"
+                description={
+                    <span>
+                        1 masă
+                        <br />
+                        50 price tags
+                        <br />
+                        10 umerașe
+                    </span>
+                }
+                price={150}
+                dimensions="Dimensiune stander: 100x20x30cm"
+                productId="pId"
+                setProductId={setProductId}
+                image={table}
+            />
+            <CatrafusalePackageCard
+                title="MIXT"
+                description={
+                    <span>
+                        1 stander
+                        <br />
+                        1 masă
+                        <br />
+                        100 price tags
+                        <br />
+                        20 umerașe
+                    </span>
+                }
+                price={350}
+                dimensions="Dimensiune stander: 100x20x30cm"
+                productId="pId"
+                setProductId={setProductId}
+                image={mixt}
             />
         </div>
     )

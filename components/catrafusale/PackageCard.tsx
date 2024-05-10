@@ -1,6 +1,7 @@
 import { Dispatch, ReactElement, SetStateAction } from 'react'
 import { Button } from '../ui/button'
 import { Card } from '../ui/card'
+import Image, { StaticImageData } from 'next/image'
 
 interface IPricingCardProps {
     title: string
@@ -19,6 +20,7 @@ interface IPackageCard {
     dimensions: string
     productId: string
     setProductId: Dispatch<SetStateAction<string>>
+    image: StaticImageData
 }
 
 export const CatrafusalePackageCard = ({
@@ -28,6 +30,7 @@ export const CatrafusalePackageCard = ({
     dimensions,
     productId,
     setProductId,
+    image,
 }: IPackageCard) => (
     <Card className="w-full relative h-full flex flex-col items-center p-6 mx-auto text-center text-gray-900 rounded-lg border xl:p-8 dark:text-white">
         <h3 className="mb-4 text-4xl font-semibold">{title}</h3>
@@ -38,6 +41,14 @@ export const CatrafusalePackageCard = ({
         <p className="text-sm text-gray-500 dark:text-gray-400 font-light">
             {dimensions}
         </p>
+        <Image
+            src={image}
+            alt="package picture"
+            height={800}
+            width={800}
+            quality={100}
+            className="mt-4"
+        />
         <div className="flex justify-center items-baseline my-8">
             <span className="mr-2 text-5xl font-extrabold">{price} RON</span>
         </div>
