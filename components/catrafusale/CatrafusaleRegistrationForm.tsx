@@ -33,9 +33,7 @@ const formSchema = z.object({
     last_name: z.string().min(1, {
         message: 'Last name is required.',
     }),
-    shop_name: z.string().min(1, {
-        message: 'Shop name is required',
-    }),
+    shop_name: z.string(),
     email: z.string().min(1, { message: 'Email is required' }).email({
         message: 'Email must be valid. (e.g. example@gmail.com)',
     }),
@@ -234,9 +232,15 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                         <FormLabel>
                                             Numele magazinului tău
                                         </FormLabel>
+                                        <FormDescription>
+                                            Acesta va apărea pe printurile din
+                                            ziua evenimentul. Dacă lași acest
+                                            câmp gol, vom folosi numele și
+                                            prenumele tău.
+                                        </FormDescription>
                                         <FormControl>
                                             <Input
-                                                placeholder="Un nume sugestiv pentru magazinul tău (va apărea pe printuri)"
+                                                placeholder="Alege un nume sugestiv și atrăgător"
                                                 {...field}
                                             />
                                         </FormControl>
