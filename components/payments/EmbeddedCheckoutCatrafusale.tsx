@@ -15,29 +15,16 @@ export default function EmbeddedCheckoutCatrafusale({
 }: {
     clientSecret: string
 }) {
-    const myRef = useRef<null | HTMLDivElement>(null)
-
-    useEffect(() => {
-        if (clientSecret)
-            setTimeout(() => {
-                myRef.current?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'end',
-                })
-            }, 300)
-    }, [clientSecret])
-
     return (
-        // <div>
-        <div className="rounded-xl overflow-hidden mt-4 w-full">
-            <EmbeddedCheckoutProvider
-                stripe={stripePromise}
-                options={{ clientSecret }}
-            >
-                <EmbeddedCheckout className="embedded-checkout w-full" />
-            </EmbeddedCheckoutProvider>
-        </div>
-        //     <div ref={myRef}></div>
-        // </div>
+        <>
+            <div className="rounded-xl overflow-hidden mt-4 w-full">
+                <EmbeddedCheckoutProvider
+                    stripe={stripePromise}
+                    options={{ clientSecret }}
+                >
+                    <EmbeddedCheckout className="embedded-checkout w-full" />
+                </EmbeddedCheckoutProvider>
+            </div>
+        </>
     )
 }
