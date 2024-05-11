@@ -22,6 +22,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
             return_url: `${request.nextUrl.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
             automatic_tax: { enabled: true },
             customer_email: body.customer_email || undefined,
+            submit_type: 'donate',
         })
 
         return NextResponse.json({ ...session }, { status: 200 })
