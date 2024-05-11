@@ -10,6 +10,7 @@ const endpointSecret = 'whsec_NvJvUrhBKOElor0N6f0XhClzPwoCo7DM'
 
 export async function POST(request: NextRequest, response: NextResponse) {
     const body = await request.text()
+    await connectMongoDB()
 
     const sig = request.headers.get('stripe-signature')
 
@@ -32,7 +33,14 @@ export async function POST(request: NextRequest, response: NextResponse) {
     switch (event.type) {
         case 'checkout.session.completed':
             const checkoutSession = event.data.object
-            handleCatrafusaleRegistration(checkoutSession)
+            if (checkoutSession.metadata?.catrafusale_registration === 'true') {
+                await CatrafusaleRegistration.findOneAndUpdate(
+                    {
+                        checkout_session_id: checkoutSession.id,
+                    },
+                    { paid: true }
+                )
+            }
             break
         default:
             console.log(`Unhandled event type ${event.type}`)
@@ -40,24 +48,4 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
     // Return a 200 response to acknowledge receipt of the event
     return NextResponse.json({ status: 200 })
-}
-
-const handleCatrafusaleRegistration = (
-    checkoutSession: Stripe.Checkout.Session
-) => {
-    if (checkoutSession.metadata?.catrafusale_registration === 'true') {
-        updateCatrafusaleRegistration(checkoutSession)
-    }
-}
-
-const updateCatrafusaleRegistration = async (
-    checkoutSession: Stripe.Checkout.Session
-) => {
-    await connectMongoDB()
-    await CatrafusaleRegistration.findOneAndUpdate(
-        {
-            checkout_session_id: checkoutSession.id,
-        },
-        { paid: true }
-    )
 }
