@@ -98,7 +98,7 @@ export default function CatrafusalePackages() {
                         <br />
                         100 price tags
                         <br />
-                        20 umerașe
+                        10 umerașe
                     </span>
                 }
                 price={350}

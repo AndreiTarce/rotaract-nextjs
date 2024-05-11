@@ -21,10 +21,10 @@ const MIND_MATTERS_MINDACCESS = 'price_1OyfwSH1rXnXzXApCbHQYRpq'
 const MIND_MATTERS_MINDFUEL = 'price_1OyfxoH1rXnXzXAptsqOPQCq'
 
 enum CATRAFUSALE_PACKAGES {
-    SINGLE = 'price_1O8OR1H1rXnXzXAphxmN3uIh',
-    DOUBLE = 'price_1O8OR1H1rXnXzXAphxmN3uIh',
-    SINGLE_TABLE = 'price_1O8OR1H1rXnXzXAphxmN3uIh',
-    MIXT = 'price_1O8OR1H1rXnXzXAphxmN3uIh',
+    SINGLE = 'price_1PFHbyH1rXnXzXApNJslmKJj',
+    DOUBLE = 'price_1PFHd7H1rXnXzXApRMfKkOCQ',
+    SINGLE_TABLE = 'price_1PFHdkH1rXnXzXApjHFj8INf',
+    MIXT = 'price_1PFHeKH1rXnXzXApPeRJ1aLt',
 }
 
 export {
