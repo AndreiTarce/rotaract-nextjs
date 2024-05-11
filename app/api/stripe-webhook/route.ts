@@ -1,3 +1,4 @@
+import { ICatrafusaleRegistrationObject } from '@/components/catrafusale/CatrafusaleRegistrationForm'
 import connectMongoDB from '@/lib/mongodb'
 import CatrafusaleRegistration from '@/models/catrafusaleRegistration'
 import { NextRequest, NextResponse } from 'next/server'
@@ -53,8 +54,10 @@ const updateCatrafusaleRegistration = async (
     checkoutSession: Stripe.Checkout.Session
 ) => {
     await connectMongoDB()
-    const registration = await CatrafusaleRegistration.findOne({
-        checkout_session_id: checkoutSession.id,
-    })
-    console.log(registration)
+    await CatrafusaleRegistration.findOneAndUpdate(
+        {
+            checkout_session_id: checkoutSession.id,
+        },
+        { paid: true }
+    )
 }
