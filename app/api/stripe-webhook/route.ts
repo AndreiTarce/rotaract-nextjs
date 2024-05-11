@@ -1,3 +1,5 @@
+import connectMongoDB from '@/lib/mongodb'
+import CatrafusaleRegistration from '@/models/catrafusaleRegistration'
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
@@ -29,7 +31,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     switch (event.type) {
         case 'checkout.session.completed':
             const checkoutSession = event.data.object
-            console.log(checkoutSession)
+            handleCatrafusaleRegistration(checkoutSession)
             break
         default:
             console.log(`Unhandled event type ${event.type}`)
@@ -37,4 +39,22 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
     // Return a 200 response to acknowledge receipt of the event
     return NextResponse.json({ status: 200 })
+}
+
+const handleCatrafusaleRegistration = (
+    checkoutSession: Stripe.Checkout.Session
+) => {
+    if (checkoutSession.metadata?.catrafusale_registration === 'true') {
+        updateCatrafusaleRegistration(checkoutSession)
+    }
+}
+
+const updateCatrafusaleRegistration = async (
+    checkoutSession: Stripe.Checkout.Session
+) => {
+    await connectMongoDB()
+    const registration = await CatrafusaleRegistration.findOne({
+        checkout_session_id: checkoutSession.id,
+    })
+    console.log(registration)
 }
