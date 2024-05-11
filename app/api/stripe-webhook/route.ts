@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { buffer } from 'stream/consumers'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
@@ -27,7 +26,14 @@ export async function POST(request: NextRequest, response: NextResponse) {
     }
 
     // Handle the event
-    console.log(`Unhandled event type ${event.type}`)
+    switch (event.type) {
+        case 'checkout.session.completed':
+            const checkoutSession = event.data.object
+            console.log(checkoutSession)
+            break
+        default:
+            console.log(`Unhandled event type ${event.type}`)
+    }
 
     // Return a 200 response to acknowledge receipt of the event
     return NextResponse.json({ status: 200 })
