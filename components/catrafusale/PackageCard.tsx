@@ -3,23 +3,13 @@ import { Button } from '../ui/button'
 import { Card } from '../ui/card'
 import Image, { StaticImageData } from 'next/image'
 
-interface IPricingCardProps {
-    title: string
-    description: string
-    price: number
-    lunchIncluded?: boolean
-    productId: string
-    setPackageChosen: Dispatch<SetStateAction<string | undefined>>
-    setProductId: Dispatch<SetStateAction<string>>
-}
-
 interface IPackageCard {
     title: string
     description: string | ReactElement
     price: number
-    dimensions: string
+    dimensions: string | ReactElement
     productId: string
-    setProductId: Dispatch<SetStateAction<string>>
+    setProductId: Dispatch<SetStateAction<string | undefined>>
     image: StaticImageData
 }
 

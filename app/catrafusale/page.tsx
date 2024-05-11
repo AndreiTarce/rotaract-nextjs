@@ -11,6 +11,11 @@ import Link from 'next/link'
 import primaria_cluj_white from '@/assets/images/primaria_cluj_white.png'
 import visit_cluj_white from '@/assets/images/visit_cluj_white.png'
 import zilele_clujului_white from '@/assets/images/zilele_clujului_white.png'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: 'CATRAFU-SALE #8 | Rotaract Visio Cluj-Napoca',
+}
 
 export default function Catrafusale() {
     return (

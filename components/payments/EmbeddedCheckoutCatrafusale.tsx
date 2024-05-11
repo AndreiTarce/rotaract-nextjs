@@ -10,10 +10,10 @@ const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 )
 
-export default function EmbeddedCheckoutMindMatters({
+export default function EmbeddedCheckoutCatrafusale({
     clientSecret,
 }: {
-    clientSecret: string | undefined
+    clientSecret: string
 }) {
     const myRef = useRef<null | HTMLDivElement>(null)
 
@@ -28,18 +28,16 @@ export default function EmbeddedCheckoutMindMatters({
     }, [clientSecret])
 
     return (
-        <div>
-            {clientSecret && (
-                <div className="rounded-xl overflow-hidden mt-4 w-full relative">
-                    <EmbeddedCheckoutProvider
-                        stripe={stripePromise}
-                        options={{ clientSecret }}
-                    >
-                        <EmbeddedCheckout className="embedded-checkout w-full" />
-                    </EmbeddedCheckoutProvider>
-                </div>
-            )}
-            <div ref={myRef}></div>
+        // <div>
+        <div className="rounded-xl overflow-hidden mt-4 w-full">
+            <EmbeddedCheckoutProvider
+                stripe={stripePromise}
+                options={{ clientSecret }}
+            >
+                <EmbeddedCheckout className="embedded-checkout w-full" />
+            </EmbeddedCheckoutProvider>
         </div>
+        //     <div ref={myRef}></div>
+        // </div>
     )
 }
