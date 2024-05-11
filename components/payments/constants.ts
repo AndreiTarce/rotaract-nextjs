@@ -21,7 +21,6 @@ const MIND_MATTERS_MINDACCESS = 'price_1OyfwSH1rXnXzXApCbHQYRpq'
 const MIND_MATTERS_MINDFUEL = 'price_1OyfxoH1rXnXzXAptsqOPQCq'
 
 enum CATRAFUSALE_PACKAGES {
-    // SINGLE = 'price_1PFHbyH1rXnXzXApNJslmKJj',
     SINGLE = 'price_1O8OR1H1rXnXzXAphxmN3uIh',
     DOUBLE = 'price_1PFHd7H1rXnXzXApRMfKkOCQ',
     SINGLE_TABLE = 'price_1PFHdkH1rXnXzXApjHFj8INf',
