@@ -24,18 +24,18 @@ export default function EmbeddedCheckoutMindMatters({
                     behavior: 'smooth',
                     block: 'end',
                 })
-            }, 100)
+            }, 300)
     }, [clientSecret])
 
     return (
         <div>
             {clientSecret && (
-                <div className="rounded-xl overflow-hidden mt-4">
+                <div className="rounded-xl overflow-hidden mt-4 w-full relative">
                     <EmbeddedCheckoutProvider
                         stripe={stripePromise}
                         options={{ clientSecret }}
                     >
-                        <EmbeddedCheckout className="embedded-checkout" />
+                        <EmbeddedCheckout className="embedded-checkout w-full" />
                     </EmbeddedCheckoutProvider>
                 </div>
             )}

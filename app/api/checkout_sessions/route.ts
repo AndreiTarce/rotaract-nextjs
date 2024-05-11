@@ -9,6 +9,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({
             ui_mode: 'embedded',
+            metadata: body.metadata || {},
             line_items: [
                 {
                     // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
@@ -23,10 +24,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
             customer_email: body.customer_email || undefined,
         })
 
-        return NextResponse.json(
-            { clientSecret: session.client_secret },
-            { status: 200 }
-        )
+        return NextResponse.json({ ...session }, { status: 200 })
     } catch (err) {
         return NextResponse.json({ error: err }, { status: 500 })
     }
