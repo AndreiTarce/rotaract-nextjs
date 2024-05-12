@@ -36,12 +36,12 @@ const SlideInWrapper = dynamic(
 export default async function Home() {
     const { featuredProjects }: { featuredProjects: IFeaturedProject[] } =
         await getFeaturedProject()
-    // const featuredProject = featuredProjects[0]
-    // console.log(featuredProject)
+    const featuredProject = featuredProjects[0]
+    console.log(featuredProject)
 
     const today = new Date()
-    // const featuredProjectStartDate = new Date(featuredProject.start_date)
-    // const featuredProjectEndDate = new Date(featuredProject.end_date)
+    const featuredProjectStartDate = new Date(featuredProject.start_date)
+    const featuredProjectEndDate = new Date(featuredProject.end_date)
 
     return (
         <main className="h-fit pt-5 md:pt-12">
@@ -77,21 +77,21 @@ export default async function Home() {
                             </Link>
                         </div>
                     </div>
-                    {/* {today > featuredProjectStartDate &&
+                    {today > featuredProjectStartDate &&
                         today < featuredProjectEndDate && (
                             <div className="max-md:hidden">
                                 <ProjectCountdown project={featuredProject} />
                             </div>
-                        )} */}
+                        )}
                 </div>
             </div>
             <div className="mx-16 max-md:mx-4">
-                {/* {today > featuredProjectStartDate &&
+                {today > featuredProjectStartDate &&
                     today < featuredProjectEndDate && (
                         <div className="md:hidden -mt-24">
                             <ProjectCountdown project={featuredProject} />
                         </div>
-                    )} */}
+                    )}
                 <SlideInWrapper>
                     <AboutRotaract />
                 </SlideInWrapper>
