@@ -36,10 +36,11 @@ const SlideInWrapper = dynamic(
 export default async function Home() {
     const { featuredProject }: { featuredProject: IFeaturedProject[] } =
         await getFeaturedProject()
+    console.log(featuredProject)
 
     const today = new Date()
-    const featuredProjectStartDate = new Date(featuredProject[2]?.start_date)
-    const featuredProjectEndDate = new Date(featuredProject[2]?.end_date)
+    const featuredProjectStartDate = new Date(featuredProject[0]?.start_date)
+    const featuredProjectEndDate = new Date(featuredProject[0]?.end_date)
 
     return (
         <main className="h-fit pt-5 md:pt-12">
@@ -79,7 +80,7 @@ export default async function Home() {
                         today < featuredProjectEndDate && (
                             <div className="max-md:hidden">
                                 <ProjectCountdown
-                                    project={featuredProject[1]}
+                                    project={featuredProject[0]}
                                 />
                             </div>
                         )}
@@ -89,7 +90,7 @@ export default async function Home() {
                 {today > featuredProjectStartDate &&
                     today < featuredProjectEndDate && (
                         <div className="md:hidden -mt-24">
-                            <ProjectCountdown project={featuredProject[2]} />
+                            <ProjectCountdown project={featuredProject[0]} />
                         </div>
                     )}
                 <SlideInWrapper>
