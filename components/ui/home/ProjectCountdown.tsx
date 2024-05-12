@@ -95,22 +95,24 @@ export default function ProjectCountdown({
                 <Separator className="my-4" />
                 <div className="flex gap-4 flex-wrap">
                     <div className="flex justify-between w-full flex-wrap gap-4">
-                        <Button className="font-semibold" asChild size="sm">
-                            <Link
-                                href={{
-                                    pathname: '/about',
-                                    query: {
-                                        cause: project.cause_link,
-                                    },
-                                }}
-                            >
-                                Vezi cauza proiectului{' '}
-                                <FontAwesomeIcon
-                                    icon={faRibbon}
-                                    className="ml-2"
-                                />{' '}
-                            </Link>
-                        </Button>
+                        {project.cause_link && (
+                            <Button className="font-semibold" asChild size="sm">
+                                <Link
+                                    href={{
+                                        pathname: '/about',
+                                        query: {
+                                            cause: project.cause_link,
+                                        },
+                                    }}
+                                >
+                                    Vezi cauza proiectului{' '}
+                                    <FontAwesomeIcon
+                                        icon={faRibbon}
+                                        className="ml-2"
+                                    />{' '}
+                                </Link>
+                            </Button>
+                        )}
                         <Button className="font-semibold" asChild size="sm">
                             <Link
                                 href={{
