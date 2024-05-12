@@ -331,7 +331,7 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                             datelor cu caracter personal conform{' '}
                                             <Link
                                                 href={
-                                                    'https://docs.google.com/document/d/1cHIhz_7jpLmBqSonGUYP-psbQUy0DgtE'
+                                                    'https://docs.google.com/document/d/1M3xy8RK_zEyt8c3Pkl75QcB-whuD8fE4LjKHkmfCuDY'
                                                 }
                                                 className="font-bold underline"
                                                 target="_blank"
