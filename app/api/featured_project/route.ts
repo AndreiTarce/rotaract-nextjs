@@ -1,9 +1,9 @@
-import connectMongoDB from "@/lib/mongodb";
-import FeaturedProject from "@/models/featuredProject";
-import { NextResponse } from "next/server";
+import connectMongoDB from '@/lib/mongodb'
+import FeaturedProject from '@/models/featuredProject'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
-    await connectMongoDB();
-    const featuredProject = await FeaturedProject.find();
-    return NextResponse.json({ featuredProject });
+    await connectMongoDB()
+    const featuredProjects = await FeaturedProject.find()
+    return NextResponse.json({ featuredProjects })
 }

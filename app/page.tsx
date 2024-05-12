@@ -34,13 +34,13 @@ const SlideInWrapper = dynamic(
     () => import('@/components/ui/animation/SlideInWrapper')
 )
 export default async function Home() {
-    const { featuredProject }: { featuredProject: IFeaturedProject[] } =
+    const { featuredProjects }: { featuredProjects: IFeaturedProject[] } =
         await getFeaturedProject()
-    console.log(featuredProject)
+    const featuredProject = featuredProjects[0]
 
     const today = new Date()
-    const featuredProjectStartDate = new Date(featuredProject[0]?.start_date)
-    const featuredProjectEndDate = new Date(featuredProject[0]?.end_date)
+    const featuredProjectStartDate = new Date(featuredProject.start_date)
+    const featuredProjectEndDate = new Date(featuredProject.end_date)
 
     return (
         <main className="h-fit pt-5 md:pt-12">
@@ -79,9 +79,7 @@ export default async function Home() {
                     {today > featuredProjectStartDate &&
                         today < featuredProjectEndDate && (
                             <div className="max-md:hidden">
-                                <ProjectCountdown
-                                    project={featuredProject[0]}
-                                />
+                                <ProjectCountdown project={featuredProject} />
                             </div>
                         )}
                 </div>
@@ -90,7 +88,7 @@ export default async function Home() {
                 {today > featuredProjectStartDate &&
                     today < featuredProjectEndDate && (
                         <div className="md:hidden -mt-24">
-                            <ProjectCountdown project={featuredProject[0]} />
+                            <ProjectCountdown project={featuredProject} />
                         </div>
                     )}
                 <SlideInWrapper>
