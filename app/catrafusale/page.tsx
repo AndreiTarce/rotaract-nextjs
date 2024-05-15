@@ -12,6 +12,7 @@ import primaria_cluj_white from '@/assets/images/primaria_cluj_white.png'
 import visit_cluj_white from '@/assets/images/visit_cluj_white.png'
 import zilele_clujului_white from '@/assets/images/zilele_clujului_white.png'
 import { Metadata } from 'next'
+import CatrafusaleFAQ from '@/components/catrafusale/CatrafusaleFAQ'
 
 export const metadata: Metadata = {
     title: 'CATRAFU-SALE #8 | Rotaract Visio Cluj-Napoca',
@@ -36,7 +37,7 @@ export default function Catrafusale() {
                     </p>
                     <p>
                         <Link
-                            href=" ttps://maps.app.goo.gl/AutjCVotMSUADPS48"
+                            href="https://maps.app.goo.gl/AutjCVotMSUADPS48"
                             className="flex justify-center items-center"
                             target="_blank"
                         >
@@ -72,7 +73,7 @@ export default function Catrafusale() {
                     înscrie-te la ediția de anul acesta!{' '}
                 </p>
 
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center mb-8">
                     <Image
                         src={catrafusale_white}
                         alt="catrafusale"
@@ -98,6 +99,8 @@ export default function Catrafusale() {
                         className="h-[40px] w-auto md:h-[60px]"
                     />
                 </div>
+
+                <CatrafusaleFAQ />
 
                 <CatrafusalePackages />
             </div>
