@@ -6,15 +6,13 @@ import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
-const endpointSecret = 'we_1PH0uoH1rXnXzXApjlFytdhD'
+const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET
 
 export async function POST(request: NextRequest, response: NextResponse) {
     const body = await request.text()
-    console.log(body)
     await connectMongoDB()
 
     const sig = request.headers.get('stripe-signature')
-    console.log(sig)
 
     let event
 
@@ -22,7 +20,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         event = stripe.webhooks.constructEvent(
             body,
             sig as string,
-            endpointSecret
+            endpointSecret as string
         )
     } catch (err) {
         return NextResponse.json(
