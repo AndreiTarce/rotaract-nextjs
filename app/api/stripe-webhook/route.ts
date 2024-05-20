@@ -10,9 +10,11 @@ const endpointSecret = 'we_1PH0uoH1rXnXzXApjlFytdhD'
 
 export async function POST(request: NextRequest, response: NextResponse) {
     const body = await request.text()
+    console.log(body)
     await connectMongoDB()
 
     const sig = request.headers.get('stripe-signature')
+    console.log(sig)
 
     let event
 
