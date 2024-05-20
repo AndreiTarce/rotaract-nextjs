@@ -6,7 +6,7 @@ import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
-const endpointSecret = 'whsec_NvJvUrhBKOElor0N6f0XhClzPwoCo7DM'
+const endpointSecret = 'we_1PH0uoH1rXnXzXApjlFytdhD'
 
 export async function POST(request: NextRequest, response: NextResponse) {
     const body = await request.text()
