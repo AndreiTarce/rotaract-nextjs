@@ -1,13 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { Stripe } from 'stripe'
+import { NextRequest, NextResponse } from 'next/server';
+import { Stripe } from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(request: NextRequest, response: NextResponse) {
-    const body = await request.json()
+    const body = await request.json();
     try {
         // Create Checkout Sessions from body params.
-        const session = await stripe.checkout.sessions.create({
+        const sessionObject: Stripe.Checkout.SessionCreateParams = {
             ui_mode: 'embedded',
             metadata: body.metadata || {},
             line_items: [
@@ -22,24 +22,27 @@ export async function POST(request: NextRequest, response: NextResponse) {
             return_url: `${request.nextUrl.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
             automatic_tax: { enabled: true },
             customer_email: body.customer_email || undefined,
-            submit_type: 'donate',
-        })
+        };
+        if (sessionObject.mode !== 'subscription') {
+            sessionObject.submit_type = 'donate';
+        }
+        const session = await stripe.checkout.sessions.create(sessionObject);
 
-        return NextResponse.json({ ...session }, { status: 200 })
+        return NextResponse.json({ ...session }, { status: 200 });
     } catch (err) {
-        return NextResponse.json({ error: err }, { status: 500 })
+        return NextResponse.json({ error: err }, { status: 500 });
     }
 }
 
 export async function GET(request: NextRequest, response: NextResponse) {
-    const session_id = request.nextUrl.searchParams.get('session_id')
+    const session_id = request.nextUrl.searchParams.get('session_id');
     try {
         const session = await stripe.checkout.sessions.retrieve(
             session_id as string
-        )
+        );
 
-        return NextResponse.json({ session }, { status: 200 })
+        return NextResponse.json({ session }, { status: 200 });
     } catch (err) {
-        return NextResponse.json({ error: 'Server error' }, { status: 500 })
+        return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }
 }
