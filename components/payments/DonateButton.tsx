@@ -1,18 +1,18 @@
-'use client'
-import { CHECKOUT_PATH } from '@/lib/constants'
-import { Dispatch, ReactNode, SetStateAction, useState } from 'react'
-import { Button } from '../ui/button'
+'use client';
+import { CHECKOUT_PATH } from '@/lib/constants';
+import { Dispatch, ReactNode, SetStateAction, useState } from 'react';
+import { Button } from '../ui/button';
 
 export default function DonateButton(props: {
-    setClientSecret: Dispatch<SetStateAction<string | undefined>>
-    price: string
-    quantity: number
-    mode: string
-    children: ReactNode
-    interval?: string
-    currency?: string
+    setClientSecret: Dispatch<SetStateAction<string | undefined>>;
+    price: string;
+    quantity: number;
+    mode: string;
+    children: ReactNode;
+    interval?: string;
+    currency?: string;
 }) {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const getCheckoutSession = async (
         price: string,
         quantity: number,
@@ -20,8 +20,8 @@ export default function DonateButton(props: {
         interval?: string,
         currency?: string
     ) => {
-        props.setClientSecret(undefined)
-        setLoading(true)
+        props.setClientSecret(undefined);
+        setLoading(true);
         fetch(CHECKOUT_PATH, {
             method: 'POST',
             body: JSON.stringify({
@@ -34,10 +34,10 @@ export default function DonateButton(props: {
         })
             .then((res) => res.json())
             .then((data) => {
-                props.setClientSecret(data.clientSecret)
-                setLoading(false)
-            })
-    }
+                props.setClientSecret(data.client_secret);
+                setLoading(false);
+            });
+    };
 
     return (
         <Button
@@ -64,5 +64,5 @@ export default function DonateButton(props: {
             )}
             {props.children}
         </Button>
-    )
+    );
 }
