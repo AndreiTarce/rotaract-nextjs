@@ -5,6 +5,7 @@ import zilele_clujului_white from '@/assets/images/zilele_clujului_white.png';
 import CatrafusaleFAQ from '@/components/catrafusale/CatrafusaleFAQ';
 import CatrafusalePackages from '@/components/catrafusale/Packages';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getCatrafusaleRegistrations } from '@/lib/entityService';
 import {
     faArrowUpRightFromSquare,
     faCalendar,
@@ -20,7 +21,9 @@ export const metadata: Metadata = {
     title: 'CATRAFU-SALE #8 | Rotaract Visio Cluj-Napoca',
 };
 
-export default function Catrafusale() {
+export default async function Catrafusale() {
+    const registrations = await getCatrafusaleRegistrations();
+    console.log(registrations.length <= 20);
     return (
         <main className="mx-24 mb-8 mt-5 max-md:mx-4 md:mt-12">
             <div className="flex flex-col items-center">
@@ -104,54 +107,87 @@ export default function Catrafusale() {
 
                 <CatrafusaleFAQ />
 
-                {isFlashSaleActive() && (
-                    <Card className="mb-4 flex grow flex-col rounded-lg border bg-gradient-to-tr from-[#ffe4d2] to-[#ee8984] shadow-md md:w-1/2">
-                        <CardHeader className="pb-4">
-                            <CardTitle className="text-5xl font-extrabold text-foreground dark:text-background max-md:text-5xl">
-                                Flash sale
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-foreground dark:text-background">
-                                Doar azi, <b>24 mai</b>, poți beneficia de
-                                super-reduceri la pachetele CATRAFU-SALE #8!
-                                <br />
-                                <br /> În cadrul acestui flash sale, avem 2
-                                oferte:
-                                <br />
-                                <ul className="ml-5 list-disc">
-                                    <li>
-                                        <b>30% reducere la orice pachet</b>
-                                    </li>
-                                    <li>
-                                        <b>1+1 gratuit la orice pachet</b>
-                                    </li>
-                                </ul>
-                                <br />
-                                Pentru reducerea de <b>30% la orice pachet</b>,
-                                va trebui să folosești codul promoțional{' '}
-                                <b>FLASH30</b> la checkout. <br />
-                                Pentru a beneficia de oferta de{' '}
-                                <b>1+1 gratuit</b>, tot ce trebuie să faci este
-                                să achiziționezi un pachet în decursul zilei de
-                                azi. După checkout vei primi pe email un cod de
-                                reducere de 100%, pe care îl poți împărtăși cu
-                                un prieten.
-                                <br />
-                                <br />
-                                <i>
-                                    *Ofertele nu se cumulează. Codul de reducere
-                                    de 100% se va aplica pachetelor cu valoare
-                                    mai mică sau egală cu pachetul achiziționat.
-                                    (ex: achiziționare pachet SINGLE - reducere
-                                    100% pentru un pachet SINGLE/SINGLE TABLE)
-                                </i>
+                {registrations.length <= 20 ? (
+                    <>
+                        {isFlashSaleActive() && (
+                            <Card className="mb-4 flex grow flex-col rounded-lg border bg-gradient-to-tr from-[#ffe4d2] to-[#ee8984] shadow-md md:w-1/2">
+                                <CardHeader className="pb-4">
+                                    <CardTitle className="text-5xl font-extrabold text-foreground dark:text-background max-md:text-5xl">
+                                        Flash sale
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-foreground dark:text-background">
+                                        Doar azi, <b>24 mai</b>, poți beneficia
+                                        de super-reduceri la pachetele
+                                        CATRAFU-SALE #8!
+                                        <br />
+                                        <br /> În cadrul acestui flash sale,
+                                        avem 2 oferte:
+                                        <br />
+                                        <ul className="ml-5 list-disc">
+                                            <li>
+                                                <b>
+                                                    30% reducere la orice pachet
+                                                </b>
+                                            </li>
+                                            <li>
+                                                <b>
+                                                    1+1 gratuit la orice pachet
+                                                </b>
+                                            </li>
+                                        </ul>
+                                        <br />
+                                        Pentru reducerea de{' '}
+                                        <b>30% la orice pachet</b>, va trebui să
+                                        folosești codul promoțional{' '}
+                                        <b>FLASH30</b> la checkout. <br />
+                                        Pentru a beneficia de oferta de{' '}
+                                        <b>1+1 gratuit</b>, tot ce trebuie să
+                                        faci este să achiziționezi un pachet în
+                                        decursul zilei de azi. După checkout vei
+                                        primi pe email un cod de reducere de
+                                        100%, pe care îl poți împărtăși cu un
+                                        prieten.
+                                        <br />
+                                        <br />
+                                        <i>
+                                            *Ofertele nu se cumulează. Codul de
+                                            reducere de 100% se va aplica
+                                            pachetelor cu valoare mai mică sau
+                                            egală cu pachetul achiziționat. (ex:
+                                            achiziționare pachet SINGLE -
+                                            reducere 100% pentru un pachet
+                                            SINGLE/SINGLE TABLE).
+                                            <br />
+                                            Locurile la eveniment sunt limitate.
+                                            Transmiterea codului pe email nu
+                                            echivalează cu înscrierea la
+                                            eveniment, fiind necesară efectuarea
+                                            unei înscrieri distincte pe website.
+                                            <br />
+                                            Dacă întâmpini probleme, te rugăm să
+                                            ne contactezi.
+                                        </i>
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        )}
+
+                        <CatrafusalePackages />
+                    </>
+                ) : (
+                    <Card
+                        className={`relative mx-auto flex h-full flex-col items-center rounded-lg border border-[#eda289]  p-4 text-center dark:border-[#eda289] max-md:order-1 md:w-1/2 xl:p-8`}
+                    >
+                        <div className="text-gray-900 dark:text-white">
+                            <p className="mb-4 text-2xl font-bold">
+                                Perioada de înscrieri a fost închisă.
                             </p>
-                        </CardContent>
+                            <p>Vă mulțumim tuturor pentru susținere!</p>
+                        </div>
                     </Card>
                 )}
-
-                <CatrafusalePackages />
             </div>
         </main>
     );
