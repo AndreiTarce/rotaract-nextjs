@@ -78,6 +78,7 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
             ...values,
             package: packageName,
             paid: false,
+            oneplusone: false,
         };
 
         const checkoutSession = await getCheckoutSession(
@@ -314,7 +315,7 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                 control={form.control}
                                 name="agree_to_terms_and_conditions"
                                 render={({ field }) => (
-                                    <FormItem className="mb-4 pt-2 flex items-start">
+                                    <FormItem className="mb-4 flex items-start pt-2">
                                         <FormControl>
                                             <Checkbox
                                                 required
@@ -351,7 +352,7 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                             xmlns="http://www.w3.org/2000/svg"
                                             height="1em"
                                             viewBox="0 0 512 512"
-                                            className="animate-spin mr-2 fill-white dark:fill-dark"
+                                            className="mr-2 animate-spin fill-white dark:fill-dark"
                                         >
                                             <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                                         </svg>

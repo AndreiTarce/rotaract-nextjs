@@ -64,6 +64,14 @@ const handleFlashSaleActive = async (
     ) {
         const promotionCode = await createPromoCode(checkoutSession);
         await sendPromoCodeEmailToClient(checkoutSession, promotionCode);
+        await CatrafusaleRegistration.findOneAndUpdate(
+            {
+                checkout_session_id: checkoutSession.id,
+            },
+            {
+                oneplusone: true,
+            }
+        );
     }
 };
 

@@ -1,14 +1,15 @@
-import { ICatrafusaleRegistrationObject } from '@/components/catrafusale/CatrafusaleRegistrationForm'
-import mongoose, { Schema } from 'mongoose'
+import { ICatrafusaleRegistrationObject } from '@/components/catrafusale/CatrafusaleRegistrationForm';
+import mongoose, { Schema } from 'mongoose';
 
 export interface ICatrafusaleRegistration {
-    first_name: string
-    last_name: string
-    shop_name: string
-    email: string
-    phone_number: string
-    package: string
-    paid: boolean
+    first_name: string;
+    last_name: string;
+    shop_name: string;
+    email: string;
+    phone_number: string;
+    package: string;
+    paid: boolean;
+    oneplusone: boolean;
 }
 
 export const CatrafusaleRegistrationSchema =
@@ -22,14 +23,15 @@ export const CatrafusaleRegistrationSchema =
             package: String,
             paid: Boolean,
             checkout_session_id: String,
+            oneplusone: Boolean,
         },
         {
             timestamps: true,
         }
-    )
+    );
 
 const CatrafusaleRegistration =
     mongoose.models.CatrafusaleRegistration ||
-    mongoose.model('CatrafusaleRegistration', CatrafusaleRegistrationSchema)
+    mongoose.model('CatrafusaleRegistration', CatrafusaleRegistrationSchema);
 
-export default CatrafusaleRegistration
+export default CatrafusaleRegistration;
