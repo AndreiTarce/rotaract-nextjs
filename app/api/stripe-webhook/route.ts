@@ -67,7 +67,7 @@ const handleFlashSaleActive = async (
     }
 };
 
-const isFlashSaleActive = () => {
+export const isFlashSaleActive = () => {
     const today = new Date();
     const flashSaleStartDate = new Date(2024, 5 - 1, 24, 0, 1, 0);
     const flashSaleEndDate = new Date(2024, 5 - 1, 24, 23, 59, 0);

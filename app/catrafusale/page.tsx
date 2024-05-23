@@ -1,36 +1,38 @@
-import catrafusale_white from '@/assets/images/catrafusale_white.png'
-import CatrafusalePackages from '@/components/catrafusale/Packages'
+import catrafusale_white from '@/assets/images/catrafusale_white.png';
+import primaria_cluj_white from '@/assets/images/primaria_cluj_white.png';
+import visit_cluj_white from '@/assets/images/visit_cluj_white.png';
+import zilele_clujului_white from '@/assets/images/zilele_clujului_white.png';
+import CatrafusaleFAQ from '@/components/catrafusale/CatrafusaleFAQ';
+import CatrafusalePackages from '@/components/catrafusale/Packages';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
     faArrowUpRightFromSquare,
     faCalendar,
     faLocationPin,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import Link from 'next/link'
-import primaria_cluj_white from '@/assets/images/primaria_cluj_white.png'
-import visit_cluj_white from '@/assets/images/visit_cluj_white.png'
-import zilele_clujului_white from '@/assets/images/zilele_clujului_white.png'
-import { Metadata } from 'next'
-import CatrafusaleFAQ from '@/components/catrafusale/CatrafusaleFAQ'
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { isFlashSaleActive } from '../api/stripe-webhook/route';
 
 export const metadata: Metadata = {
     title: 'CATRAFU-SALE #8 | Rotaract Visio Cluj-Napoca',
-}
+};
 
 export default function Catrafusale() {
     return (
-        <main className="mt-5 md:mt-12 mx-24 max-md:mx-4 mb-8">
+        <main className="mx-24 mb-8 mt-5 max-md:mx-4 md:mt-12">
             <div className="flex flex-col items-center">
-                <h1 className="text-8xl font-extrabold max-md:text-6xl leading-none mb-4">
+                <h1 className="mb-4 text-8xl font-extrabold leading-none max-md:text-6xl">
                     Pachete
                 </h1>
 
-                <h2 className="text-3xl md:text-6xl font-extrabold leading-none bg-gradient-to-r from-[#ffe4d2] to-[#ee8984] bg-clip-text text-transparent mb-2">
+                <h2 className="mb-2 bg-gradient-to-r from-[#ffe4d2] to-[#ee8984] bg-clip-text text-3xl font-extrabold leading-none text-transparent md:text-6xl">
                     CATRAFU-SALE #8
                 </h2>
 
-                <div className="flex gap-6 text-muted-foreground mb-4">
+                <div className="mb-4 flex gap-6 text-muted-foreground">
                     <p>
                         <FontAwesomeIcon icon={faCalendar} className="mr-2" />2
                         iunie
@@ -38,7 +40,7 @@ export default function Catrafusale() {
                     <p>
                         <Link
                             href="https://maps.app.goo.gl/AutjCVotMSUADPS48"
-                            className="flex justify-center items-center"
+                            className="flex items-center justify-center"
                             target="_blank"
                         >
                             <FontAwesomeIcon
@@ -55,7 +57,7 @@ export default function Catrafusale() {
                     </p>
                 </div>
 
-                <p className="text-muted-foreground text-center md:w-1/2 mb-4">
+                <p className="mb-4 text-center text-muted-foreground md:w-1/2">
                     Vrei să participi la
                     <Link href="/projects/catrafusale" target="_blank">
                         <b>
@@ -73,7 +75,7 @@ export default function Catrafusale() {
                     înscrie-te la ediția de anul acesta!{' '}
                 </p>
 
-                <div className="flex justify-center items-center mb-8">
+                <div className="mb-8 flex items-center justify-center">
                     <Image
                         src={catrafusale_white}
                         alt="catrafusale"
@@ -102,8 +104,55 @@ export default function Catrafusale() {
 
                 <CatrafusaleFAQ />
 
+                {isFlashSaleActive() && (
+                    <Card className="mb-4 flex grow flex-col rounded-lg border bg-gradient-to-tr from-[#ffe4d2] to-[#ee8984] shadow-md md:w-1/2">
+                        <CardHeader className="pb-4">
+                            <CardTitle className="text-5xl font-extrabold text-foreground dark:text-background max-md:text-5xl">
+                                Flash sale
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-foreground dark:text-background">
+                                Doar azi, <b>24 mai</b>, poți beneficia de
+                                super-reduceri la pachetele CATRAFU-SALE #8!
+                                <br />
+                                <br /> În cadrul acestui flash sale, avem 2
+                                oferte:
+                                <br />
+                                <ul className="ml-5 list-disc">
+                                    <li>
+                                        <b>30% reducere la orice pachet</b>
+                                    </li>
+                                    <li>
+                                        <b>1+1 gratuit la orice pachet</b>
+                                    </li>
+                                </ul>
+                                <br />
+                                Pentru reducerea de <b>30% la orice pachet</b>,
+                                va trebui să folosești codul promoțional{' '}
+                                <b>FLASH30</b> la checkout. <br />
+                                Pentru a beneficia de oferta de{' '}
+                                <b>1+1 gratuit</b>, tot ce trebuie să faci este
+                                să achiziționezi un pachet în decursul zilei de
+                                azi. După checkout vei primi pe email un cod de
+                                reducere de 100%, pe care îl poți împărtăși cu
+                                un prieten.
+                                <br />
+                                <br />
+                                <i>
+                                    *Ofertele nu se cumulează. Codul de reducere
+                                    de 100% se va aplica pachetelor cu valoare
+                                    mai mică sau egală cu pachetul achiziționat.
+                                    (ex: achiziționare pachet SINGLE - reducere
+                                    100% pentru un pachet SINGLE/SINGLE TABLE)
+                                </i>
+                            </p>
+                        </CardContent>
+                    </Card>
+                )}
+
                 <CatrafusalePackages />
             </div>
         </main>
-    )
+    );
 }

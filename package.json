@@ -92,6 +92,7 @@
   },
   "devDependencies": {
     "embla-carousel": "^8.0.0-rc19",
-    "encoding": "^0.1.13"
+    "encoding": "^0.1.13",
+    "prettier-plugin-tailwindcss": "^0.5.14"
   }
 }
