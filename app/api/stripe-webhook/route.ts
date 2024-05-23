@@ -77,6 +77,7 @@ const handleFlashSaleActive = async (
 
 export const isFlashSaleActive = () => {
     const today = new Date();
+    console.log(today);
     const flashSaleStartDate = new Date(2024, 5 - 1, 24, 0, 1, 0);
     const flashSaleEndDate = new Date(2024, 5 - 1, 24, 23, 59, 0);
     return flashSaleStartDate < today && today < flashSaleEndDate;
