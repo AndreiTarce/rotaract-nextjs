@@ -27,7 +27,7 @@ export const CatrafusaleFlashSaleEmail = (
                     <Img
                         src={`${baseUrl}/static/catrafusale_black.png`}
                         width="auto"
-                        height="36"
+                        height="100"
                         alt="Catrafusale"
                     />
                 </Section>
