@@ -1,9 +1,20 @@
-'use client'
+'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Dispatch, SetStateAction, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { CHECKOUT_PATH } from '@/lib/constants';
+import { ICatrafusaleRegistration } from '@/models/catrafusaleRegistration';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { AlertOctagon } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import EmbeddedCheckoutCatrafusale from '../payments/EmbeddedCheckoutCatrafusale';
+import { CATRAFUSALE_PACKAGES } from '../payments/constants';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Checkbox } from '../ui/checkbox';
 import {
     Form,
     FormControl,
@@ -11,20 +22,8 @@ import {
     FormField,
     FormItem,
     FormLabel,
-} from '../ui/form'
-import { Input } from '../ui/input'
-import { AlertOctagon } from 'lucide-react'
-import { Checkbox } from '../ui/checkbox'
-import Link from 'next/link'
-import { Button } from '../ui/button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import { CATRAFUSALE_PACKAGES } from '../payments/constants'
-import { CHECKOUT_PATH } from '@/lib/constants'
-import { ICatrafusaleRegistration } from '@/models/catrafusaleRegistration'
-import EmbeddedCheckoutMindMatters from '../payments/EmbeddedCheckoutMindMatters'
-import EmbeddedCheckoutCatrafusale from '../payments/EmbeddedCheckoutCatrafusale'
+} from '../ui/form';
+import { Input } from '../ui/input';
 
 const formSchema = z.object({
     first_name: z.string().min(1, {
@@ -40,24 +39,24 @@ const formSchema = z.object({
     phone_number: z.string().min(1, { message: 'Phone number is required' }),
     package: z.string().optional(),
     agree_to_terms_and_conditions: z.boolean().default(false),
-})
+});
 
 interface CheckoutFormProps {
-    productId: string
+    productId: string;
 }
 
-export type CatrafusaleFormSchema = z.infer<typeof formSchema>
+export type CatrafusaleFormSchema = z.infer<typeof formSchema>;
 
 export interface ICatrafusaleRegistrationObject
     extends ICatrafusaleRegistration {
-    checkout_session_id?: string
+    checkout_session_id?: string;
 }
 
 export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
     productId,
 }) => {
-    const [clientSecret, setClientSecret] = useState<string>()
-    const [loading, setLoading] = useState(false)
+    const [clientSecret, setClientSecret] = useState<string>();
+    const [loading, setLoading] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -69,37 +68,37 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
             phone_number: '',
             agree_to_terms_and_conditions: false,
         },
-    })
+    });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        setLoading(true)
-        const packageName = getPackageName(productId)
+        setLoading(true);
+        const packageName = getPackageName(productId);
 
         const registration: ICatrafusaleRegistrationObject = {
             ...values,
             package: packageName,
             paid: false,
-        }
+        };
 
         const checkoutSession = await getCheckoutSession(
             productId,
             1,
             'payment',
             registration.email,
-            { catrafusale_registration: true }
-        )
+            { catrafusale_registration: true, productId }
+        );
 
-        registration.checkout_session_id = checkoutSession.id
-        sendRegistration(registration)
-        setLoading(false)
-        setClientSecret(checkoutSession.client_secret)
-    }
+        registration.checkout_session_id = checkoutSession.id;
+        sendRegistration(registration);
+        setLoading(false);
+        setClientSecret(checkoutSession.client_secret);
+    };
 
     const sendRegistration = async (
         registration: ICatrafusaleRegistrationObject
     ) => {
-        const abortLongFetch = new AbortController()
-        const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000)
+        const abortLongFetch = new AbortController();
+        const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000);
         try {
             const response = await fetch('/api/catrafusale', {
                 signal: abortLongFetch.signal,
@@ -108,12 +107,12 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(registration),
-            })
-            clearTimeout(abortTimeoutId)
+            });
+            clearTimeout(abortTimeoutId);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 
     const getCheckoutSession = async (
         price: string,
@@ -138,30 +137,30 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
         })
             .then((res) => res.json())
             .then((data) => {
-                return data
-            })
+                return data;
+            });
 
     const getPackageName = (productId: string) => {
         switch (productId) {
             case CATRAFUSALE_PACKAGES.SINGLE:
-                return 'single'
+                return 'single';
             case CATRAFUSALE_PACKAGES.DOUBLE:
-                return 'double'
+                return 'double';
             case CATRAFUSALE_PACKAGES.SINGLE_TABLE:
-                return 'table'
+                return 'table';
             case CATRAFUSALE_PACKAGES.MIXT:
-                return 'mixt'
+                return 'mixt';
             default:
-                return ''
+                return '';
         }
-    }
+    };
 
     if (clientSecret)
         return (
             <div className="md:w-3/4">
                 <EmbeddedCheckoutCatrafusale clientSecret={clientSecret} />
             </div>
-        )
+        );
 
     return (
         <div className="flex md:w-1/2">
@@ -370,5 +369,5 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                 </CardContent>
             </Card>
         </div>
-    )
-}
+    );
+};

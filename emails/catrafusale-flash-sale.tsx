@@ -34,8 +34,9 @@ export const CatrafusaleFlashSaleEmail = (
                 <Heading style={h1}>Îți mulțumim pentru donație!</Heading>
                 <Text style={heroText}>
                     Te așteptăm cu mare drag, în data de 2 iunie la CATRAFU-SALE
-                    #8! De asemenea, ai mai jos un cod de reducere 100% pentru
-                    un pachet, pe care îl poți trimite unui prieten!
+                    #8! De asemenea, ai mai jos un cod de reducere 100%
+                    (aplicabil pachetelor cu valoare mai mică sau egală cu cel
+                    achiziționat), pe care îl poți trimite unui prieten!
                 </Text>
 
                 <Section style={codeBox}>
@@ -57,31 +58,6 @@ export const CatrafusaleFlashSaleEmail = (
         </Body>
     </Html>
 );
-
-const footerText = {
-    fontSize: '12px',
-    color: '#b7b7b7',
-    lineHeight: '15px',
-    textAlign: 'left' as const,
-    marginBottom: '50px',
-};
-
-const footerLink = {
-    color: '#b7b7b7',
-    textDecoration: 'underline',
-};
-
-const footerLogos = {
-    marginBottom: '32px',
-    paddingLeft: '8px',
-    paddingRight: '8px',
-    width: '100%',
-};
-
-const socialMediaIcon = {
-    display: 'inline',
-    marginLeft: '32px',
-};
 
 const main = {
     backgroundColor: '#ffffff',

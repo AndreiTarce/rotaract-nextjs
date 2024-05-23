@@ -1,3 +1,4 @@
+import { CATRAFUSALE_PACKAGES } from '@/components/payments/constants';
 import { CatrafusaleFlashSaleEmail } from '@/emails/catrafusale-flash-sale';
 import connectMongoDB from '@/lib/mongodb';
 import CatrafusaleRegistration from '@/models/catrafusaleRegistration';
@@ -62,15 +63,13 @@ const handleFlashSaleActive = async (
         !checkoutSession.total_details?.amount_discount
     ) {
         const promotionCode = await createPromoCode(checkoutSession);
-        console.log(promotionCode);
         await sendPromoCodeEmailToClient(checkoutSession, promotionCode);
     }
 };
 
 const isFlashSaleActive = () => {
     const today = new Date();
-    const flashSaleStartDate = new Date(2024, 5 - 1, 23, 0, 1, 0);
-    // const flashSaleStartDate = new Date(2024, 5 - 1, 24, 0, 1, 0);
+    const flashSaleStartDate = new Date(2024, 5 - 1, 24, 0, 1, 0);
     const flashSaleEndDate = new Date(2024, 5 - 1, 24, 23, 59, 0);
     return flashSaleStartDate < today && today < flashSaleEndDate;
 };
@@ -80,22 +79,24 @@ const sendPromoCodeEmailToClient = async (
     promotionCode: Stripe.PromotionCode
 ) => {
     console.log(
-        'no promo code used, and the flash sale is active, so send him an email'
+        'no promo code used, and the flash sale is active, so send them a promo code'
     );
     await sendEmail({
         to: [checkoutSession.customer_email as string],
         subject: 'CATRAFU-SALE 1+1 Gratis',
-        // html: `Îți mulțumim pentru donația ta și te așteptăm cu mare drag în data de 2 iunie, la CATRAFU-SALE #8!
-        // Iată aici codul promoțional ${promotionCode.code}`,
         react: CatrafusaleFlashSaleEmail(promotionCode),
     });
 };
 
 const createPromoCode = async (checkoutSession: Stripe.Checkout.Session) => {
+    const productsArray = generateCouponProductsArray(
+        checkoutSession.metadata?.productId as string
+    );
+
     const coupon = await stripe.coupons.create({
         duration: 'once',
         percent_off: 100,
-        // applies_to: { products: [] },
+        applies_to: { products: [...productsArray] },
     });
 
     const promotionCode = await stripe.promotionCodes.create({
@@ -103,4 +104,26 @@ const createPromoCode = async (checkoutSession: Stripe.Checkout.Session) => {
     });
 
     return promotionCode;
+};
+
+const generateCouponProductsArray = (productId: string) => {
+    const array: string[] = [
+        CATRAFUSALE_PACKAGES.SINGLE_TABLE,
+        CATRAFUSALE_PACKAGES.SINGLE,
+        CATRAFUSALE_PACKAGES.DOUBLE,
+        CATRAFUSALE_PACKAGES.MIXT,
+    ];
+
+    switch (productId) {
+        case CATRAFUSALE_PACKAGES.MIXT:
+            return array;
+        case CATRAFUSALE_PACKAGES.DOUBLE:
+            return array.slice(0, 3);
+        case CATRAFUSALE_PACKAGES.SINGLE:
+            return array.slice(0, 2);
+        case CATRAFUSALE_PACKAGES.SINGLE_TABLE:
+            return array.slice(0, 1);
+        default:
+            return array;
+    }
 };
