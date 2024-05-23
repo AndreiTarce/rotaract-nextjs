@@ -1,7 +1,10 @@
 {
   "trailingComma": "es5",
   "tabWidth": 4,
-  "semi": false,
+  "semi": true,
   "singleQuote": true,
-  "max_line_length ": 120
+  "max_line_length ": 120,
+  "plugins": [
+    "prettier-plugin-organize-imports"
+  ]
 }
