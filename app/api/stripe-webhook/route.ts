@@ -117,10 +117,10 @@ const createPromoCode = async (checkoutSession: Stripe.Checkout.Session) => {
 
 const generateCouponProductsArray = (productId: string) => {
     const array: string[] = [
-        CATRAFUSALE_PACKAGES.SINGLE_TABLE,
-        CATRAFUSALE_PACKAGES.SINGLE,
-        CATRAFUSALE_PACKAGES.DOUBLE,
-        CATRAFUSALE_PACKAGES.MIXT,
+        'prod_Q5SYEz5tybmAdB',
+        'prod_Q5SXOBffiHzTP1',
+        'prod_Q5SYu9I7Q0HSdU',
+        'prod_Q5SZGjvZ8MEtZe',
     ];
 
     switch (productId) {
