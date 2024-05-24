@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { isFlashSaleActive } from '../api/stripe-webhook/route';
+import { isFlashSaleActive } from '../api/stripe-webhook/catrafusale/logic';
 
 export const metadata: Metadata = {
     title: 'CATRAFU-SALE #8 | Rotaract Visio Cluj-Napoca',
