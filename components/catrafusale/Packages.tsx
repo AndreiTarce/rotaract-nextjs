@@ -87,7 +87,6 @@ export default function CatrafusalePackages() {
                 productId={CATRAFUSALE_PACKAGES.SINGLE_TABLE}
                 setProductId={setProductId}
                 image={table}
-                sold_out
             />
             <CatrafusalePackageCard
                 title="MIXT"
@@ -121,7 +120,6 @@ export default function CatrafusalePackages() {
                 productId={CATRAFUSALE_PACKAGES.MIXT}
                 setProductId={setProductId}
                 image={mixt}
-                sold_out
             />
         </div>
     );
