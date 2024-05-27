@@ -35,6 +35,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     switch (event.type) {
         case 'checkout.session.completed':
             const checkoutSession = event.data.object;
+            console.log(checkoutSession);
             if (checkoutSession.metadata?.catrafusale_registration === 'true') {
                 await CatrafusaleRegistration.findOneAndUpdate(
                     {
@@ -44,6 +45,11 @@ export async function POST(request: NextRequest, response: NextResponse) {
                 );
 
                 await handleFlashSaleActive(checkoutSession);
+            }
+
+            if (checkoutSession.metadata?.catrafusale_raffle === 'true') {
+                //add tickets to db
+                //send client ticket numbers through email
             }
 
             break;

@@ -12,6 +12,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
             metadata: body.metadata || {},
             line_items: [
                 {
+                    adjustable_quantity: {
+                        enabled: body.adjustable_quantity || false,
+                    },
                     // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                     price: body.price,
                     quantity: body.quantity,
@@ -22,6 +25,10 @@ export async function POST(request: NextRequest, response: NextResponse) {
             return_url: `${request.nextUrl.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
             automatic_tax: { enabled: true },
             customer_email: body.customer_email || undefined,
+            phone_number_collection: {
+                enabled: body.phone_number_collection || false,
+            },
+            custom_fields: [...(body.custom_fields || undefined)],
         };
         if (sessionObject.mode !== 'subscription') {
             sessionObject.submit_type = 'donate';

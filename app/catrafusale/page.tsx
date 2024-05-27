@@ -3,6 +3,7 @@ import primaria_cluj_white from '@/assets/images/primaria_cluj_white.png';
 import visit_cluj_white from '@/assets/images/visit_cluj_white.png';
 import zilele_clujului_white from '@/assets/images/zilele_clujului_white.png';
 import CatrafusaleFAQ from '@/components/catrafusale/CatrafusaleFAQ';
+import CatrafusaleRaffle from '@/components/catrafusale/CatrafusaleRaffle';
 import CatrafusalePackages from '@/components/catrafusale/Packages';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getCatrafusaleRegistrations } from '@/lib/entityService';
@@ -27,6 +28,7 @@ export default async function Catrafusale() {
         (registration) =>
             registration.package === 'table' || registration.package === 'mixt'
     );
+
     return (
         <main className="mx-24 mb-8 mt-5 max-md:mx-4 md:mt-12">
             <div className="flex flex-col items-center">
@@ -109,6 +111,8 @@ export default async function Catrafusale() {
                 </div>
 
                 <CatrafusaleFAQ />
+
+                <CatrafusaleRaffle />
 
                 {registrations.length <= 20 ? (
                     <>
