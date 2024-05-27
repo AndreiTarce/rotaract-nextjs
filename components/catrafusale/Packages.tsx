@@ -8,7 +8,11 @@ import { CATRAFUSALE_PACKAGES } from '../payments/constants';
 import { CatrafusaleRegistrationForm } from './CatrafusaleRegistrationForm';
 import { CatrafusalePackageCard } from './PackageCard';
 
-export default function CatrafusalePackages() {
+export default function CatrafusalePackages({
+    singlePackageRegistrations,
+}: {
+    singlePackageRegistrations?: number;
+}) {
     const [productId, setProductId] = useState<string | undefined>();
 
     if (productId) return <CatrafusaleRegistrationForm productId={productId} />;
@@ -87,6 +91,7 @@ export default function CatrafusalePackages() {
                 productId={CATRAFUSALE_PACKAGES.SINGLE_TABLE}
                 setProductId={setProductId}
                 image={table}
+                sold_out={(singlePackageRegistrations as number) > 5}
             />
             <CatrafusalePackageCard
                 title="MIXT"
@@ -120,6 +125,7 @@ export default function CatrafusalePackages() {
                 productId={CATRAFUSALE_PACKAGES.MIXT}
                 setProductId={setProductId}
                 image={mixt}
+                sold_out={(singlePackageRegistrations as number) > 5}
             />
         </div>
     );

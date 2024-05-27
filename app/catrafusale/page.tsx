@@ -23,7 +23,10 @@ export const metadata: Metadata = {
 
 export default async function Catrafusale() {
     const registrations = await getCatrafusaleRegistrations();
-    console.log(registrations.length <= 20);
+    const singlePackageRegistrations = registrations.filter(
+        (registration) =>
+            registration.package === 'table' || registration.package === 'mixt'
+    );
     return (
         <main className="mx-24 mb-8 mt-5 max-md:mx-4 md:mt-12">
             <div className="flex flex-col items-center">
@@ -174,7 +177,11 @@ export default async function Catrafusale() {
                             </Card>
                         )}
 
-                        <CatrafusalePackages />
+                        <CatrafusalePackages
+                            singlePackageRegistrations={
+                                singlePackageRegistrations.length
+                            }
+                        />
                     </>
                 ) : (
                     <Card
