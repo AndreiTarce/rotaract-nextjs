@@ -1,16 +1,17 @@
-import { Dispatch, ReactElement, SetStateAction } from 'react'
-import { Button } from '../ui/button'
-import { Card } from '../ui/card'
-import Image, { StaticImageData } from 'next/image'
+import Image, { StaticImageData } from 'next/image';
+import { Dispatch, ReactElement, SetStateAction } from 'react';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
 
 interface IPackageCard {
-    title: string
-    description: string | ReactElement
-    price: number
-    dimensions: string | ReactElement
-    productId: string
-    setProductId: Dispatch<SetStateAction<string | undefined>>
-    image: StaticImageData
+    title: string;
+    description: string | ReactElement;
+    price: number;
+    dimensions: string | ReactElement;
+    productId: string;
+    setProductId: Dispatch<SetStateAction<string | undefined>>;
+    image: StaticImageData;
+    sold_out?: boolean;
 }
 
 export const CatrafusalePackageCard = ({
@@ -21,14 +22,15 @@ export const CatrafusalePackageCard = ({
     productId,
     setProductId,
     image,
+    sold_out = false,
 }: IPackageCard) => (
-    <Card className="w-full relative h-full flex flex-col items-center p-6 mx-auto text-center text-gray-900 rounded-lg border xl:p-8 dark:text-white">
+    <Card className="relative mx-auto flex h-full w-full flex-col items-center rounded-lg border p-6 text-center text-gray-900 dark:text-white xl:p-8">
         <h3 className="mb-4 text-4xl font-semibold">{title}</h3>
-        <p className="text-gray-500 sm:text-lg dark:text-gray-400 mb-4">
+        <p className="mb-4 text-gray-500 dark:text-gray-400 sm:text-lg">
             {description}
             <br />
         </p>
-        <p className="text-sm text-gray-500 dark:text-gray-400 font-light">
+        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
             {dimensions}
         </p>
         <Image
@@ -39,18 +41,19 @@ export const CatrafusalePackageCard = ({
             quality={100}
             className="mt-4"
         />
-        <div className="flex justify-center items-baseline my-8">
+        <div className="my-8 flex items-baseline justify-center">
             <span className="mr-2 text-5xl font-extrabold">{price} RON</span>
         </div>
-        <div className="h-full w-full flex justify-end items-end mt-8">
+        <div className="mt-8 flex h-full w-full items-end justify-end">
             <Button
-                className="font-semibold w-full bg-[#eda298] text-base"
+                className="w-full bg-[#eda298] text-base font-semibold"
                 onClick={() => {
-                    setProductId(productId)
+                    setProductId(productId);
                 }}
+                disabled={sold_out}
             >
-                Înscrie-te
+                {sold_out ? 'SOLD OUT' : 'Înscrie-te'}
             </Button>
         </div>
     </Card>
-)
+);

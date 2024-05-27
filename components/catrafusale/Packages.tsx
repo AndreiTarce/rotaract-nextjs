@@ -1,20 +1,20 @@
-'use client'
-import double from '@/assets/images/double.png'
-import table from '@/assets/images/masa.png'
-import mixt from '@/assets/images/masa_stander.png'
-import single from '@/assets/images/single.png'
-import { useState } from 'react'
-import { CatrafusaleRegistrationForm } from './CatrafusaleRegistrationForm'
-import { CatrafusalePackageCard } from './PackageCard'
-import { CATRAFUSALE_PACKAGES } from '../payments/constants'
+'use client';
+import double from '@/assets/images/double.png';
+import table from '@/assets/images/masa.png';
+import mixt from '@/assets/images/masa_stander.png';
+import single from '@/assets/images/single.png';
+import { useState } from 'react';
+import { CATRAFUSALE_PACKAGES } from '../payments/constants';
+import { CatrafusaleRegistrationForm } from './CatrafusaleRegistrationForm';
+import { CatrafusalePackageCard } from './PackageCard';
 
 export default function CatrafusalePackages() {
-    const [productId, setProductId] = useState<string | undefined>()
+    const [productId, setProductId] = useState<string | undefined>();
 
-    if (productId) return <CatrafusaleRegistrationForm productId={productId} />
+    if (productId) return <CatrafusaleRegistrationForm productId={productId} />;
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 w-full md:w-1/2 gap-8 md:gap-8 mt-4">
+        <div className="mt-4 grid w-full grid-cols-1 gap-8 md:w-1/2 md:grid-cols-2 md:gap-8">
             <CatrafusalePackageCard
                 title="SINGLE"
                 description={
@@ -87,6 +87,7 @@ export default function CatrafusalePackages() {
                 productId={CATRAFUSALE_PACKAGES.SINGLE_TABLE}
                 setProductId={setProductId}
                 image={table}
+                sold_out
             />
             <CatrafusalePackageCard
                 title="MIXT"
@@ -120,7 +121,8 @@ export default function CatrafusalePackages() {
                 productId={CATRAFUSALE_PACKAGES.MIXT}
                 setProductId={setProductId}
                 image={mixt}
+                sold_out
             />
         </div>
-    )
+    );
 }
