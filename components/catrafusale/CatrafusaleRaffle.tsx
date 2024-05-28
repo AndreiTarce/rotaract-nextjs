@@ -59,9 +59,9 @@ export default function CatrafusaleRaffle() {
                     dar nu poți ajunge în ziua evenimentului? Well, we have some
                     good news! Participarea fizică nu este obligatorie, așadar
                     poți achiziționa bilete la tombolă online, iar noi vom face
-                    extragerea fizic. Toți câștigătorii vor fi anunțați
-                    printr-un email, iar noi ne vom asigura că premiile ajung la
-                    voi după eveniment.
+                    extragerea fizic. Toți câștigătorii vor fi contactați
+                    ulterior, iar noi ne vom asigura că premiile ajung la voi
+                    după eveniment.
                     <Accordion
                         type="single"
                         collapsible
@@ -74,46 +74,48 @@ export default function CatrafusaleRaffle() {
                             </AccordionTrigger>
                             <AccordionContent className="px-4">
                                 <ul className="list-disc">
-                                    <li>Un abonament la Untold</li>
+                                    <li>Un abonament la Untold.</li>
                                     <li>
                                         10 pachete de vouchere cu reducere
                                         individuala/pachet de minim 300€ pentru
-                                        vacanțe pe velier de la Dream Sales
+                                        vacanțe pe velier de la Dream Sales.
                                     </li>
                                     <li>
                                         Voucher de cazare pentru 2 persoane 1
                                         noapte de weekend în regim Bed &
                                         Breakfast la Double Tree by Hilton
-                                        Cluj-Napoca
+                                        Cluj-Napoca.
                                     </li>
                                     <li>
                                         Voucher Day Pass la Salute per Aqua
                                         pentru 2 persons, în incinta Double Tree
-                                        by Hilton Cluj-Napoca
+                                        by Hilton Cluj-Napoca.
                                     </li>
                                     <li>
                                         Un voucher de 300 de lei pentru o masă
-                                        la Livada
+                                        la Livada.
                                     </li>
                                     <li>
                                         Un voucher pentru tuns și aranjat la
-                                        Vestige
+                                        Vestige.
                                     </li>
                                     <li>
                                         1 voucher de 50% reducere pentru 2 ore
-                                        de joc, 8 persoane, la LaserTag
+                                        de joc, 8 persoane, la LaserTag Fonix
+                                        Cluj.
                                     </li>
                                     <li>
                                         2 vouchere de 50% reducere pentru 1 ore
-                                        de joc, 8 persoane, la LaserTag
+                                        de joc, 8 persoane, la LaserTag Fonix
+                                        Cluj.
                                     </li>
                                     <li>
-                                        3 abonamente duble la TISWF -
-                                        Transilvania Festival
+                                        3 abonamente duble la Transylvania
+                                        International Spoken Word Festival.
                                     </li>
                                     <li>
                                         3 vouchere pentru 1 luna de cafea
-                                        gratuită la Ted’s Coffee
+                                        gratuită la Ted’s Coffee.
                                     </li>
                                     <li>O periuța de dinți electrică</li>
                                 </ul>

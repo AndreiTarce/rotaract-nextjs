@@ -82,11 +82,10 @@ export const CatrafusaleRaffleTicketEmail = (ticket_numbers: TicketNumbers) => (
                             3 vouchere pentru 1 luna de cafea gratuită la Ted’s
                             Coffee.
                         </li>
-                        <li>
-                            O periuța de dinți electrică Astfel, vom avea la
-                            finalul tombolei nu mai puțin de 25 de câștigători.
-                        </li>
+                        <li>O periuța de dinți electrică.</li>
                     </ol>
+                    Astfel, vom avea la finalul tombolei nu mai puțin de 25 de
+                    câștigători.
                 </Text>
 
                 <Section>
