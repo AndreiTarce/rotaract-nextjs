@@ -144,7 +144,7 @@ const createFirstRaffleTicket = async (
         name: checkoutSession.customer_details?.name as string,
         phone_number: checkoutSession.customer_details?.phone as string,
         tickets: ticketsBought,
-        ticket_numbers: { start: 1, end: ticketsBought },
+        ticket_numbers: { start: 1001, end: 1000 + ticketsBought },
     };
     const successfulRegistration =
         await CatrafusaleRaffleRegistration.create(raffleRegistration);
