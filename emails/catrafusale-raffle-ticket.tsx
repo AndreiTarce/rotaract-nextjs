@@ -18,7 +18,7 @@ const baseUrl = process.env.VERCEL_URL
 export const CatrafusaleRaffleTicketEmail = (ticket_numbers: TicketNumbers) => (
     <Html>
         <Head />
-        <Preview>Îți mulțumim pentru donație!</Preview>
+        <Preview>Numerele biletelor tale la tombolă</Preview>
         <Body style={main}>
             <Container style={container}>
                 <Section style={logoContainer}>
@@ -29,31 +29,86 @@ export const CatrafusaleRaffleTicketEmail = (ticket_numbers: TicketNumbers) => (
                         alt="Catrafusale"
                     />
                 </Section>
-                <Heading style={h1}>Îți mulțumim pentru donație!</Heading>
+                <Heading style={h1}>
+                    Mulțumim pentru achiziționarea unui bilet în cadrul tombolei
+                    noastre!
+                </Heading>
                 <Text style={heroText}>
-                    Te așteptăm cu mare drag, în data de 2 iunie la CATRAFU-SALE
-                    #8! De asemenea, ai mai jos un cod de reducere 100%
-                    (aplicabil pachetelor cu valoare mai mică sau egală cu cel
-                    achiziționat), pe care îl poți trimite unui prieten!
+                    Îți amintim cu această ocazie că toate fondurile acumulate
+                    în urma tombolei sunt direcționate către cauza noastră,
+                    îmbunătățirea condițiilor generale din cadrul școlii “Iuliu
+                    Hațieganu” din Panticeu. Așadar îți mulțumim pentru aportul
+                    tău în încurajarea parcursului școlar al acestor copii.
+                </Text>
+                <Text style={text}>
+                    Extragerea câștigătorilor are loc în data de 2 Iunie, în
+                    cadrul evenimentului nostru CatrafuSALE, unde te așteptăm cu
+                    multe activități și surprize! Premiile care pot fi câștigate
+                    sunt următoarele:
+                    <ol>
+                        <li>Un abonament la Untold.</li>
+                        <li>
+                            10 pachete de vouchere cu reducere
+                            individuala/pachet de minim 300€ pentru vacanțe pe
+                            velier de la Dream Sales.
+                        </li>
+                        <li>
+                            Voucher de cazare pentru 2 persoane 1 noapte de
+                            weekend în regim Bed & Breakfast la Double Tree by
+                            Hilton Cluj-Napoca.
+                        </li>
+                        <li>
+                            Voucher Day Pass la Salute per Aqua pentru 2
+                            persons, în incinta Double Tree by Hilton
+                            Cluj-Napoca.
+                        </li>
+                        <li>
+                            Un voucher de 300 de lei pentru o masă la Livada.
+                        </li>
+                        <li>Un voucher pentru tuns și aranjat la Vestige.</li>
+                        <li>
+                            1 voucher de 50% reducere pentru 2 ore de joc, 8
+                            persoane, la LaserTag Fonix Cluj.
+                        </li>
+                        <li>
+                            2 vouchere de 50% reducere pentru 1 ore de joc, 8
+                            persoane, la LaserTag Fonix Cluj.
+                        </li>
+                        <li>
+                            3 abonamente duble la Transylvania International
+                            Spoken Word Festival.
+                        </li>
+                        <li>
+                            3 vouchere pentru 1 luna de cafea gratuită la Ted’s
+                            Coffee.
+                        </li>
+                        <li>
+                            O periuța de dinți electrică Astfel, vom avea la
+                            finalul tombolei nu mai puțin de 25 de câștigători.
+                        </li>
+                    </ol>
                 </Text>
 
-                <Section style={codeBox}>
-                    <Text style={confirmationCodeText}>
-                        {ticket_numbers.start === ticket_numbers.end
-                            ? `${ticket_numbers.start}`
-                            : `${ticket_numbers.start}-${ticket_numbers.end}`}
+                <Section>
+                    <Text style={text}>
+                        Mai jos găsești numărul biletelor tale:
                     </Text>
+                    <Section style={codeBox}>
+                        <Text style={confirmationCodeText}>
+                            {ticket_numbers.start === ticket_numbers.end
+                                ? `${ticket_numbers.start}`
+                                : `${ticket_numbers.start}-${ticket_numbers.end}`}
+                        </Text>
+                    </Section>
                 </Section>
 
                 <Text style={text}>
-                    Pentru ca prietenul tău să poată beneficia de această
-                    ofertă, va trebui să acceseze pagina de înscrieri, să aleagă
-                    un pachet și să completeze formularul. Ultimul pas va fi
-                    pagina de plată, unde va putea introduce codul promoțional.
-                    Dacă întâmpinați probleme sau aveți întrebări, vă rugăm să
-                    ne contactați la adresa de email rotaractvisiocluj@gmail.com
-                    sau pe conturile noastre de social media.
+                    Dacă te afli printre câștigători, te vom contacta în ziua
+                    următoare pentru a-ți revendica premiul. Pentru alte
+                    întrebări, ne poți contacta pe paginile noastre de social
+                    media sau la adresa de e-mail rotaractvisiocluj@gmail.com.
                 </Text>
+                <Text style={text}>Mult noroc! Echipa CatrafuSALE</Text>
             </Container>
         </Body>
     </Html>
