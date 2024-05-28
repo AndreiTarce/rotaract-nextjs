@@ -28,10 +28,12 @@ export async function POST(request: NextRequest, response: NextResponse) {
             phone_number_collection: {
                 enabled: body.phone_number_collection || false,
             },
-            custom_fields: [...(body.custom_fields || undefined)],
         };
         if (sessionObject.mode !== 'subscription') {
             sessionObject.submit_type = 'donate';
+        }
+        if (body.custom_fields) {
+            sessionObject.custom_fields = [...body.custom_fields];
         }
         const session = await stripe.checkout.sessions.create(sessionObject);
 

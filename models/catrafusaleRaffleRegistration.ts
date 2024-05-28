@@ -5,7 +5,18 @@ export interface ICatrafusaleRaffleRegistration {
     email: string;
     phone_number: string;
     tickets: number;
+    ticket_numbers: TicketNumbers;
 }
+
+export interface TicketNumbers {
+    start: number;
+    end: number;
+}
+
+const TicketNumbersSchema = new Schema<TicketNumbers>({
+    start: Number,
+    end: Number,
+});
 
 export const CatrafusaleRaffleRegistrationSchema =
     new Schema<ICatrafusaleRaffleRegistration>(
@@ -14,6 +25,7 @@ export const CatrafusaleRaffleRegistrationSchema =
             email: String,
             phone_number: String,
             tickets: Number,
+            ticket_numbers: TicketNumbersSchema,
         },
         {
             timestamps: true,

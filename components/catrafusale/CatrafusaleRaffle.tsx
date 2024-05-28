@@ -26,13 +26,6 @@ export default function CatrafusaleRaffle() {
                 metadata: { catrafusale_raffle: true },
                 adjustable_quantity: true,
                 phone_number_collection: true,
-                custom_fields: [
-                    {
-                        label: { custom: 'Numele tău', type: 'custom' },
-                        key: 'name',
-                        type: 'text',
-                    },
-                ],
             }),
         });
         const checkoutSession = await response.json();
