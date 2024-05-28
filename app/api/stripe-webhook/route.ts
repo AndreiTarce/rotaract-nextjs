@@ -51,7 +51,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
             if (checkoutSession.metadata?.catrafusale_raffle === 'true') {
                 //add tickets to db
                 //send client ticket numbers through email
-                handleRaffleTicketSale(checkoutSession);
+                await handleRaffleTicketSale(checkoutSession);
             }
 
             break;
