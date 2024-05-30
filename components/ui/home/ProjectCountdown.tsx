@@ -1,29 +1,28 @@
-'use client'
-import { IFeaturedProject } from '@/models/featuredProject'
+'use client';
+import { IFeaturedProject } from '@/models/featuredProject';
+import {
+    faCircleInfo,
+    faMoneyCheck,
+    faRibbon,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
+import Link from 'next/link';
+import Countdown from 'react-countdown';
+import { Button } from '../button';
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle,
-} from '../card'
-import Countdown from 'react-countdown'
-import Image from 'next/image'
-import { Separator } from '../separator'
-import { Button } from '../button'
-import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-    faCircleInfo,
-    faHandHoldingDollar,
-    faMoneyCheck,
-    faRibbon,
-} from '@fortawesome/free-solid-svg-icons'
+} from '../card';
+import { Separator } from '../separator';
 
 export default function ProjectCountdown({
     project,
 }: {
-    project: IFeaturedProject
+    project: IFeaturedProject;
 }) {
     const renderer = ({
         days,
@@ -32,49 +31,49 @@ export default function ProjectCountdown({
         seconds,
         completed,
     }: {
-        days: number
-        hours: number
-        minutes: number
-        seconds: number
-        completed: boolean
+        days: number;
+        hours: number;
+        minutes: number;
+        seconds: number;
+        completed: boolean;
     }) => {
         if (completed) {
             // Render a completed state
-            return <></>
+            return <></>;
         } else {
             return (
-                <div className="grid grid-flow-col md:gap-4 max-md:justify-between text-center auto-cols-max">
-                    <div className="flex flex-col p-2 bg-countdownbg rounded-box text-white rounded-lg">
-                        <span className="countdown md:text-3xl text-3xl">
+                <div className="grid auto-cols-max grid-flow-col text-center max-md:justify-between md:gap-4">
+                    <div className="rounded-box flex flex-col rounded-lg bg-countdownbg p-2 text-white">
+                        <span className="countdown text-3xl md:text-3xl">
                             <span>{days}</span>
                         </span>
                         zile
                     </div>
-                    <div className="flex flex-col p-2 bg-countdownbg rounded-box text-white rounded-lg">
-                        <span className="countdown md:text-3xl text-3xl">
+                    <div className="rounded-box flex flex-col rounded-lg bg-countdownbg p-2 text-white">
+                        <span className="countdown text-3xl md:text-3xl">
                             <span>{hours}</span>
                         </span>
                         ore
                     </div>
-                    <div className="flex flex-col p-2 bg-countdownbg rounded-box text-white rounded-lg">
-                        <span className="countdown md:text-3xl text-3xl">
+                    <div className="rounded-box flex flex-col rounded-lg bg-countdownbg p-2 text-white">
+                        <span className="countdown text-3xl md:text-3xl">
                             <span>{minutes}</span>
                         </span>
                         minute
                     </div>
-                    <div className="flex flex-col p-2 bg-countdownbg rounded-box text-white rounded-lg">
-                        <span className="countdown md:text-3xl text-3xl">
+                    <div className="rounded-box flex flex-col rounded-lg bg-countdownbg p-2 text-white">
+                        <span className="countdown text-3xl md:text-3xl">
                             <span>{seconds}</span>
                         </span>
                         secunde
                     </div>
                 </div>
-            )
+            );
         }
-    }
+    };
 
     return (
-        <Card className="mb-8 relative md:max-w-sm max-w-md h-fit">
+        <Card className="relative mb-8 h-fit max-w-md md:max-w-sm">
             <Image
                 src={project.coverImg}
                 alt="Featured project background"
@@ -88,13 +87,18 @@ export default function ProjectCountdown({
                 <CardDescription>Proiect în desfășurare</CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="font-semibold text-muted-foreground mb-4">
+                <div className="mb-4 font-semibold text-muted-foreground">
                     Perioada de înscrieri se încheie în
                 </div>
-                <Countdown renderer={renderer} date={project.end_date} />
+                <Countdown
+                    renderer={renderer}
+                    date={new Date(project.end_date).setHours(
+                        new Date(project.end_date).getHours() - 2
+                    )}
+                />
                 <Separator className="my-4" />
-                <div className="flex gap-4 flex-wrap">
-                    <div className="flex justify-between w-full flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4">
+                    <div className="flex w-full flex-wrap justify-between gap-4">
                         {project.cause_link && (
                             <Button className="font-semibold" asChild size="sm">
                                 <Link
@@ -130,7 +134,7 @@ export default function ProjectCountdown({
                     <Button
                         size="lg"
                         asChild
-                        className="font-semibold bg-rotaract-cranberry text-white hover:bg-rotaract-cranberry w-full"
+                        className="w-full bg-rotaract-cranberry font-semibold text-white hover:bg-rotaract-cranberry"
                     >
                         <Link href={project.donation_link} target="_blank">
                             Către înscrieri
@@ -143,5 +147,5 @@ export default function ProjectCountdown({
                 </div>
             </CardContent>
         </Card>
-    )
+    );
 }

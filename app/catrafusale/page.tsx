@@ -114,7 +114,7 @@ export default async function Catrafusale() {
 
                 <CatrafusaleRaffle />
 
-                {registrations.length <= 20 ? (
+                {registrations.length <= 20 && false ? (
                     <>
                         {isFlashSaleActive() && (
                             <Card className="mb-4 flex grow flex-col rounded-lg border bg-gradient-to-tr from-[#ffe4d2] to-[#ee8984] shadow-md md:w-1/2">
