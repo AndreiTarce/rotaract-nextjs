@@ -1,10 +1,22 @@
-import connectMongoDB from "@/lib/mongodb";
-import Project from "@/models/project";
-import { NextRequest, NextResponse } from "next/server";
+import connectMongoDB from '@/lib/mongodb';
+import { ProjectRepository } from '@/repositories/projectRepository';
+import { ProjectService } from '@/services/projectService';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-    await connectMongoDB();
-    const { id } = params;
-    const project = await Project.findOne({ url: id }).lean();
-    return NextResponse.json(project);
+const projectRepository = new ProjectRepository();
+const projectService = new ProjectService(projectRepository);
+
+export async function GET(
+    request: NextRequest,
+    { params }: { params: { id: string } }
+) {
+    try {
+        console.log('here');
+        const { id } = params;
+        await connectMongoDB();
+        const project = await projectService.getProjectByUrl(id);
+        return NextResponse.json(project, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ message: 'Server error' }, { status: 500 });
+    }
 }

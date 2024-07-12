@@ -1,14 +1,12 @@
-import { IProject } from '@/models/project'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '../button'
-import { Card } from '../card'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { IProject } from '@/interfaces/IProject';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '../button';
+import { Card } from '../card';
 
 const ProjectCard = (props: IProject) => {
     return (
-        <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full overflow-hidden">
+        <Card className="flex max-w-full flex-[1_0_300px] flex-col overflow-hidden rounded-lg border shadow-md">
             <Link href={`projects/${props.url}`}>
                 <Image
                     src={props.thumbnailImg}
@@ -17,14 +15,14 @@ const ProjectCard = (props: IProject) => {
                     height={600}
                 />
             </Link>
-            <div className="p-5 h-full flex flex-col justify-between">
+            <div className="flex h-full flex-col justify-between p-5">
                 <div>
                     <Link href={`projects/${props.url}`}>
-                        <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white">
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {props.title}
                         </h5>
                     </Link>
-                    <p className="font-normal text-muted-foreground mb-3">
+                    <p className="mb-3 font-normal text-muted-foreground">
                         {props.shortDescription}
                     </p>
                 </div>
@@ -47,7 +45,7 @@ const ProjectCard = (props: IProject) => {
                 </Link>
             </div>
         </Card>
-    )
-}
+    );
+};
 
-export default ProjectCard
+export default ProjectCard;

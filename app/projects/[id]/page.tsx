@@ -1,33 +1,37 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import ProjectImageCarousel from '@/components/ui/project/ProjectImageCarousel'
-import { Separator } from '@/components/ui/separator'
-import { getProject } from '@/lib/entityService'
-import { IProject, IProjectPartner, ISection } from '@/models/project'
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import ProjectImageCarousel from '@/components/ui/project/ProjectImageCarousel';
+import { Separator } from '@/components/ui/separator';
+import { getProject } from '@/lib/entityService';
 import {
     faHandHoldingDollar,
     faRibbon,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import Link from 'next/link'
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import type { Metadata, ResolvingMetadata } from 'next'
+import {
+    IProject,
+    IProjectPartner,
+    IProjectSection,
+} from '@/interfaces/IProject';
+import type { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {
-    params: { id: string }
-    searchParams: { [key: string]: string | string[] | undefined }
-}
+    params: { id: string };
+    searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export async function generateMetadata(
     { params, searchParams }: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const id = params.id
+    const id = params.id;
 
-    const project: IProject = await getProject(id)
+    const project: IProject = await getProject(id);
 
-    const previousImages = (await parent).openGraph?.images || []
+    const previousImages = (await parent).openGraph?.images || [];
 
     return {
         title: `${project.title} | Rotaract Visio Cluj-Napoca`,
@@ -35,32 +39,32 @@ export async function generateMetadata(
             images: [project.thumbnailImg, ...previousImages],
         },
         description: project.description,
-    }
+    };
 }
 
-type ProjectSectionProps = ISection & { key: number }
-type ProjectImageProps = { key?: number; src: string }
+type ProjectSectionProps = IProjectSection & { key: number };
+type ProjectImageProps = { key?: number; src: string };
 
 const ProjectSection = (props: ProjectSectionProps) => (
     <section className="mt-8">
-        <h2 className="text-3xl font-bold mb-2">{props.title}</h2>
+        <h2 className="mb-2 text-3xl font-bold">{props.title}</h2>
         {props.coverImg && (
             <Image
                 src={props.coverImg}
                 alt={`${props.title} Cover Image`}
                 width={3240}
                 height={1080}
-                className="rounded-lg mb-8"
+                className="mb-8 rounded-lg"
             />
         )}
         <p
-            className="lg:text-xl text-muted-foreground"
+            className="text-muted-foreground lg:text-xl"
             dangerouslySetInnerHTML={{
                 __html: props.body,
             }}
         ></p>
     </section>
-)
+);
 
 const ProjectImage = (props: ProjectImageProps) => (
     <Image
@@ -71,16 +75,16 @@ const ProjectImage = (props: ProjectImageProps) => (
         className="rounded-lg"
         loading="eager"
     />
-)
+);
 
 export default async function Project({ params }: { params: { id: string } }) {
-    const id = params.id
-    const project: IProject = await getProject(id)
+    const id = params.id;
+    const project: IProject = await getProject(id);
     return (
-        <main className="mt-5 md:mt-12 mb-8 mx-16 max-md:mx-4">
+        <main className="mx-16 mb-8 mt-5 max-md:mx-4 md:mt-12">
             <article className="flex flex-col gap-8">
-                <div className="xl:mx-72 lg:mx-48">
-                    <h1 className="text-4xl font-bold break-keep md:text-5xl lg:text-7xl mb-4">
+                <div className="lg:mx-48 xl:mx-72">
+                    <h1 className="mb-4 break-keep text-4xl font-bold md:text-5xl lg:text-7xl">
                         {project.title}
                     </h1>
                     <Image
@@ -88,12 +92,12 @@ export default async function Project({ params }: { params: { id: string } }) {
                         alt={`${project.title} Cover Image`}
                         width={3240}
                         height={1080}
-                        className="rounded-lg mb-8"
+                        className="mb-8 rounded-lg"
                         priority
                     />
                     {(project.cause_link || project.donation_link) && (
                         <>
-                            <div className="mb-4 flex gap-4 flex-wrap">
+                            <div className="mb-4 flex flex-wrap gap-4">
                                 {project.cause_link && (
                                     <Button className="font-semibold" asChild>
                                         <Link
@@ -115,7 +119,7 @@ export default async function Project({ params }: { params: { id: string } }) {
                                 {project.donation_link && (
                                     <Button
                                         asChild
-                                        className="font-semibold bg-rotaract-cranberry text-white hover:bg-rotaract-cranberry"
+                                        className="bg-rotaract-cranberry font-semibold text-white hover:bg-rotaract-cranberry"
                                     >
                                         <Link
                                             href={project.donation_link}
@@ -134,7 +138,7 @@ export default async function Project({ params }: { params: { id: string } }) {
                         </>
                     )}
                     <p
-                        className="lg:text-xl text-muted-foreground"
+                        className="text-muted-foreground lg:text-xl"
                         dangerouslySetInnerHTML={{
                             __html: project.description,
                         }}
@@ -148,14 +152,14 @@ export default async function Project({ params }: { params: { id: string } }) {
                         />
                     ))}
                     {project.partners && (
-                        <Card className="mt-8 bg-dark-blue dark:bg-light bg-opacity-20 dark:bg-opacity-10">
+                        <Card className="mt-8 bg-dark-blue bg-opacity-20 dark:bg-light dark:bg-opacity-10">
                             <CardHeader>
                                 <CardTitle className="text-3xl font-bold">
                                     Parteneri
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+                                <div className="grid grid-cols-2 gap-4 md:grid-cols-6">
                                     {project.partners.map(
                                         (
                                             partner: IProjectPartner,
@@ -165,7 +169,7 @@ export default async function Project({ params }: { params: { id: string } }) {
                                                 href={partner.link}
                                                 target="_blank"
                                                 key={index}
-                                                className="relative flex flex-col items-center justify-center gap-4 self-center p-3 rounded-lg hover:bg-black hover:dark:bg-white hover:!bg-opacity-10"
+                                                className="relative flex flex-col items-center justify-center gap-4 self-center rounded-lg p-3 hover:bg-black hover:!bg-opacity-10 hover:dark:bg-white"
                                             >
                                                 {partner.logoUrl ? (
                                                     <div className="grow">
@@ -194,14 +198,14 @@ export default async function Project({ params }: { params: { id: string } }) {
                 </div>
                 {project.images && (
                     <>
-                        <div className="lg:hidden grow">
+                        <div className="grow lg:hidden">
                             <ProjectImageCarousel>
                                 {project.images.map((image, index) => (
                                     <ProjectImage key={index} src={image} />
                                 ))}
                             </ProjectImageCarousel>
                         </div>
-                        <div className="hidden lg:gap-2 lg:grid lg:grid-cols-5">
+                        <div className="hidden lg:grid lg:grid-cols-5 lg:gap-2">
                             {project.images.map((image, index) => (
                                 <ProjectImage src={image} key={index} />
                             ))}
@@ -210,5 +214,5 @@ export default async function Project({ params }: { params: { id: string } }) {
                 )}
             </article>
         </main>
-    )
+    );
 }
