@@ -2,7 +2,7 @@ import {
     IProjectDocument,
     IProjectPartner,
     IProjectSection,
-} from '@/interfaces/IProject';
+} from '@/interfaces/project/IProject';
 import mongoose, { Schema } from 'mongoose';
 
 const SectionSchema = new Schema<IProjectSection>({

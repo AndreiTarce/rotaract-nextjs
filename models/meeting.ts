@@ -1,20 +1,20 @@
-import mongoose, { Schema } from 'mongoose'
-import { memberSchema } from './member'
-import { ObjectId } from 'mongodb'
-import { IMember } from './interfaces'
+import { ObjectId } from 'mongodb';
+import mongoose, { Schema } from 'mongoose';
+import { IMember } from '../interfaces/member/IMember';
+import { memberSchema } from './member';
 
 export interface IMeeting {
-    _id: ObjectId
-    type: string
-    start_date: Date
-    end_date: Date
-    location: string
-    minuteAuthor: string
-    highlights: string
-    minuteUrl: string
-    duration: number
-    presentMembers: IMember[]
-    absentMembers: IMember[]
+    _id: ObjectId;
+    type: string;
+    start_date: Date;
+    end_date: Date;
+    location: string;
+    minuteAuthor: string;
+    highlights: string;
+    minuteUrl: string;
+    duration: number;
+    presentMembers: IMember[];
+    absentMembers: IMember[];
 }
 
 const meetingSchema = new Schema<IMeeting>(
@@ -33,9 +33,9 @@ const meetingSchema = new Schema<IMeeting>(
     {
         timestamps: true,
     }
-)
+);
 
 const Meeting =
-    mongoose.models.Meeting || mongoose.model('Meeting', meetingSchema)
+    mongoose.models.Meeting || mongoose.model('Meeting', meetingSchema);
 
-export default Meeting
+export default Meeting;

@@ -1,4 +1,4 @@
-import { IProject } from '@/interfaces/IProject';
+import { IProject } from '@/interfaces/project/IProject';
 import { getProjects } from '@/lib/entityService';
 import ProjectCard from './ProjectCard';
 

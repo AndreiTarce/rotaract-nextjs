@@ -15,7 +15,7 @@ import {
     IProject,
     IProjectPartner,
     IProjectSection,
-} from '@/interfaces/IProject';
+} from '@/interfaces/project/IProject';
 import type { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {

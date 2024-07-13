@@ -1,6 +1,6 @@
-import { ObjectId } from 'mongodb'
-import mongoose, { Schema } from 'mongoose'
-import { IMember, IMemberLinks } from './interfaces'
+import { ObjectId } from 'mongodb';
+import mongoose, { Schema } from 'mongoose';
+import { IMember, IMemberLinks } from '../interfaces/member/IMember';
 
 const SectionSchema = new Schema<IMemberLinks>({
     facebook: { type: String, required: false },
@@ -8,7 +8,7 @@ const SectionSchema = new Schema<IMemberLinks>({
     instagram: { type: String, required: false },
     tiktok: { type: String, required: false },
     website: { type: String, required: false },
-})
+});
 
 export const memberSchema = new Schema<IMember>(
     {
@@ -28,8 +28,8 @@ export const memberSchema = new Schema<IMember>(
     {
         timestamps: true,
     }
-)
+);
 
-const Member = mongoose.models.Member || mongoose.model('Member', memberSchema)
+const Member = mongoose.models.Member || mongoose.model('Member', memberSchema);
 
-export default Member
+export default Member;

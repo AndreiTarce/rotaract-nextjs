@@ -1,5 +1,5 @@
-import { IProjectDocument } from '@/interfaces/IProject';
-import { IProjectRepository } from '@/interfaces/IProjectRepository';
+import { IProjectDocument } from '@/interfaces/project/IProject';
+import { IProjectRepository } from '@/interfaces/project/IProjectRepository';
 import Project from '@/models/project';
 import { Repository } from './repository';
 

@@ -1,30 +1,30 @@
-'use client'
+'use client';
+
+import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
     IMember,
     IMemberLinksZodSchema,
     memberRoles,
     memberStatus,
-} from '@/models/interfaces'
-import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { AlertOctagon } from 'lucide-react'
-import { useForm } from 'react-hook-form'
-import { CardContent, CardFooter } from '../card'
+} from '@/interfaces/member/IMember';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { AlertOctagon } from 'lucide-react';
+import { Dispatch, SetStateAction } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '../button';
 import {
     Form,
+    FormControl,
+    FormDescription,
     FormField,
     FormItem,
     FormLabel,
-    FormControl,
-    FormDescription,
-} from '../form'
-import { Input } from '../input'
-import { Textarea } from '../textarea'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '../button'
+} from '../form';
+import { Input } from '../input';
+import { Label } from '../label';
 import {
     Select,
     SelectContent,
@@ -32,17 +32,16 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '../select'
-import { Label } from '../label'
-import { Dispatch, SetStateAction } from 'react'
+} from '../select';
+import { Textarea } from '../textarea';
 
 export interface IMemberFormProps {
-    userInfo?: IMember
-    onSubmit: (values: MemberFormSchema) => Promise<void> | void
-    status: memberFormStatuses | undefined
-    fieldsContainerClassname?: string
-    readOnly?: boolean
-    setIsReadOnly?: Dispatch<SetStateAction<boolean | undefined>>
+    userInfo?: IMember;
+    onSubmit: (values: MemberFormSchema) => Promise<void> | void;
+    status: memberFormStatuses | undefined;
+    fieldsContainerClassname?: string;
+    readOnly?: boolean;
+    setIsReadOnly?: Dispatch<SetStateAction<boolean | undefined>>;
 }
 
 export enum memberFormStatuses {
@@ -67,9 +66,9 @@ const formSchema = z.object({
         .min(1, { message: 'Email is required' }),
     status: z.nativeEnum(memberStatus),
     isBoard: z.boolean().optional(),
-})
+});
 
-export type MemberFormSchema = z.infer<typeof formSchema>
+export type MemberFormSchema = z.infer<typeof formSchema>;
 
 export default function MemberForm({
     userInfo,
@@ -88,14 +87,14 @@ export default function MemberForm({
             email: '',
             status: memberStatus.ASPIRANT,
         },
-    })
+    });
 
     const handleSubmit = async (values: MemberFormSchema) => {
-        onSubmit(values)
-        form.reset()
-    }
+        onSubmit(values);
+        form.reset();
+    };
 
-    const fileRef = form.register('picture_file')
+    const fileRef = form.register('picture_file');
 
     return (
         <Form {...form}>
@@ -415,7 +414,7 @@ export default function MemberForm({
                             name="urls.facebook"
                             disabled={readOnly}
                             render={({ field }) => (
-                                <FormItem className="pt-2 mb-2">
+                                <FormItem className="mb-2 pt-2">
                                     <FormControl>
                                         <Input
                                             placeholder="Facebook"
@@ -543,7 +542,7 @@ export default function MemberForm({
                     </div>
                 </div>
                 {!readOnly && (
-                    <div className="flex w-full justify-end mt-4">
+                    <div className="mt-4 flex w-full justify-end">
                         {!userInfo && (
                             <Button type="submit">
                                 {status === memberFormStatuses.LOADING ? (
@@ -551,7 +550,7 @@ export default function MemberForm({
                                         xmlns="http://www.w3.org/2000/svg"
                                         height="1em"
                                         viewBox="0 0 512 512"
-                                        className="animate-spin mr-2 fill-white dark:fill-dark"
+                                        className="mr-2 animate-spin fill-white dark:fill-dark"
                                     >
                                         <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                                     </svg>
@@ -565,7 +564,7 @@ export default function MemberForm({
                             </Button>
                         )}
                         {userInfo && setIsReadOnly && (
-                            <div className="flex gap-2 w-full">
+                            <div className="flex w-full gap-2">
                                 <Button
                                     variant="secondary"
                                     className="w-full"
@@ -586,5 +585,5 @@ export default function MemberForm({
                 )}
             </form>
         </Form>
-    )
+    );
 }

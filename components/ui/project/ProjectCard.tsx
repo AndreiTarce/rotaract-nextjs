@@ -1,4 +1,4 @@
-import { IProject } from '@/interfaces/IProject';
+import { IProject } from '@/interfaces/project/IProject';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../button';
