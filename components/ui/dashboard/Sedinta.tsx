@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import { API_KEY } from '@/lib/constants'
-import { isSecretary } from '@/lib/utils'
-import { IMeeting } from '@/models/meeting'
-import { IMember } from '@/models/interfaces'
-import { faGoogleDrive, faReadme } from '@fortawesome/free-brands-svg-icons'
+import { IMember } from '@/interfaces/member/IMember';
+import { API_KEY } from '@/lib/constants';
+import { isSecretary } from '@/lib/utils';
+import { IMeeting } from '@/models/meeting';
+import { faGoogleDrive, faReadme } from '@fortawesome/free-brands-svg-icons';
 import {
     faCalendar,
     faCircle,
     faLocationPin,
     faTrash,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useQueryClient } from '@tanstack/react-query'
-import { ChevronsUpDown } from 'lucide-react'
-import { ObjectId } from 'mongodb'
-import Link from 'next/link'
-import { useState } from 'react'
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useQueryClient } from '@tanstack/react-query';
+import { ChevronsUpDown } from 'lucide-react';
+import { ObjectId } from 'mongodb';
+import Link from 'next/link';
+import { useState } from 'react';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -27,21 +27,21 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
-} from '../alert-dialog'
-import { Button } from '../button'
-import { Card, CardDescription, CardHeader, CardTitle } from '../card'
+} from '../alert-dialog';
+import { Button } from '../button';
+import { Card, CardDescription, CardHeader, CardTitle } from '../card';
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
-} from '../collapsible'
+} from '../collapsible';
 import {
     ContextMenu,
     ContextMenuContent,
     ContextMenuItem,
     ContextMenuShortcut,
     ContextMenuTrigger,
-} from '../context-menu'
+} from '../context-menu';
 import {
     Dialog,
     DialogContent,
@@ -50,25 +50,25 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from '../dialog'
-import { ScrollArea } from '../scroll-area'
-import { toast } from '../use-toast'
-import MemberPill from './MemberPill'
+} from '../dialog';
+import { ScrollArea } from '../scroll-area';
+import { toast } from '../use-toast';
+import MemberPill from './MemberPill';
 
 export default function Sedinta({
     meeting,
     user,
 }: {
-    meeting: IMeeting
-    user: IMember
+    meeting: IMeeting;
+    user: IMember;
 }) {
-    const meetingDate = new Date(meeting.start_date)
-    const [isPresentOpen, setIsPresentOpen] = useState(true)
-    const [isAbsentOpen, setIsAbsentOpen] = useState(false)
+    const meetingDate = new Date(meeting.start_date);
+    const [isPresentOpen, setIsPresentOpen] = useState(true);
+    const [isAbsentOpen, setIsAbsentOpen] = useState(false);
     const memberIsPresent = meeting.presentMembers?.some(
         (presentMember) => presentMember._id === user._id
-    )
-    const queryClient = useQueryClient()
+    );
+    const queryClient = useQueryClient();
 
     const deleteMeeting = (id: ObjectId) => {
         fetch('/api/meetings' + `?api_key=${API_KEY}`, {
@@ -82,15 +82,15 @@ export default function Sedinta({
         })
             .then((res) => {
                 if (res.ok) {
-                    return res.json()
+                    return res.json();
                 }
-                throw new Error('Error deleting meeting')
+                throw new Error('Error deleting meeting');
             })
             .then((res) => {
                 queryClient.invalidateQueries({
                     queryKey: ['meetings'],
                     exact: false,
-                })
+                });
                 toast({
                     title: 'Stergere sedinta',
                     description: (
@@ -102,7 +102,7 @@ export default function Sedinta({
                         </div>
                     ),
                     duration: 10000,
-                })
+                });
             })
             .catch((err) => {
                 toast({
@@ -116,16 +116,16 @@ export default function Sedinta({
                         </div>
                     ),
                     duration: 10000,
-                })
-            })
-    }
+                });
+            });
+    };
 
     return (
         <ContextMenu>
             <Dialog>
                 <DialogTrigger asChild>
                     <ContextMenuTrigger>
-                        <Card className="hover:scale-105 hover:bg-opacity-10 hover:bg-dark hover:cursor-pointer max-w-[300px] min-h-fit">
+                        <Card className="min-h-fit max-w-[300px] hover:scale-105 hover:cursor-pointer hover:bg-dark hover:bg-opacity-10">
                             <CardHeader>
                                 <CardTitle>{meeting.type}</CardTitle>
                                 <CardDescription className="flex flex-col">
@@ -161,8 +161,8 @@ export default function Sedinta({
                                                 icon={faCircle}
                                                 className={
                                                     memberIsPresent
-                                                        ? 'text-green-500 mr-2 '
-                                                        : 'text-red-600 mr-2 '
+                                                        ? 'mr-2 text-green-500 '
+                                                        : 'mr-2 text-red-600 '
                                                 }
                                             />
                                             {memberIsPresent
@@ -175,7 +175,7 @@ export default function Sedinta({
                         </Card>
                     </ContextMenuTrigger>
                 </DialogTrigger>
-                <DialogContent className="max-w-[60%] max-md:w-[90%] max-md:max-w-[90%] rounded-lg">
+                <DialogContent className="max-w-[60%] rounded-lg max-md:w-[90%] max-md:max-w-[90%]">
                     <DialogHeader>
                         <DialogTitle className="text-4xl">
                             {meeting.type}
@@ -205,7 +205,7 @@ export default function Sedinta({
                     </DialogHeader>
                     {meeting.presentMembers?.length &&
                     meeting.absentMembers?.length ? (
-                        <div className="flex flex-col md:gap-4 md:flex-row  flex-wrap">
+                        <div className="flex flex-col flex-wrap md:flex-row  md:gap-4">
                             <Collapsible
                                 open={isPresentOpen}
                                 onOpenChange={setIsPresentOpen}
@@ -215,7 +215,7 @@ export default function Sedinta({
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            className="px-2 -ml-2"
+                                            className="-ml-2 px-2"
                                         >
                                             <span className="text-lg font-semibold">
                                                 Membri prezenti
@@ -225,9 +225,9 @@ export default function Sedinta({
                                     </div>
                                 </CollapsibleTrigger>
                                 <CollapsibleContent>
-                                    <Card className="md:w-96 p-2 bg-green-600 bg-opacity-10">
+                                    <Card className="bg-green-600 bg-opacity-10 p-2 md:w-96">
                                         <ScrollArea className="h-[100px] md:h-[300px]">
-                                            <div className="flex flex-wrap gap-2 mt-2">
+                                            <div className="mt-2 flex flex-wrap gap-2">
                                                 {meeting.presentMembers
                                                     ?.length &&
                                                     meeting.presentMembers.map(
@@ -255,7 +255,7 @@ export default function Sedinta({
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            className="px-2 -ml-2"
+                                            className="-ml-2 px-2"
                                         >
                                             <span className="text-lg font-semibold">
                                                 Membri absenti
@@ -265,9 +265,9 @@ export default function Sedinta({
                                     </div>
                                 </CollapsibleTrigger>
                                 <CollapsibleContent>
-                                    <Card className="md:w-96 p-2 bg-red-600 bg-opacity-10">
+                                    <Card className="bg-red-600 bg-opacity-10 p-2 md:w-96">
                                         <ScrollArea className="h-[100px] md:h-[300px]">
-                                            <div className="flex flex-wrap gap-2 mt-2">
+                                            <div className="mt-2 flex flex-wrap gap-2">
                                                 {meeting.absentMembers
                                                     ?.length &&
                                                     meeting.absentMembers.map(
@@ -290,7 +290,7 @@ export default function Sedinta({
                     ) : null}
 
                     <DialogFooter>
-                        <div className="flex gap-1 flex-wrap">
+                        <div className="flex flex-wrap gap-1">
                             <Dialog>
                                 <DialogTrigger asChild>
                                     <Button type="submit">
@@ -402,5 +402,5 @@ export default function Sedinta({
                 </AlertDialogContent>
             </AlertDialog>
         </ContextMenu>
-    )
+    );
 }

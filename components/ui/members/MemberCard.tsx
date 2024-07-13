@@ -1,17 +1,17 @@
-import user_placeholder from '@/assets/images/user-placeholder.png'
-import { IMember } from '@/models/interfaces'
+import user_placeholder from '@/assets/images/user-placeholder.png';
+import { IMember } from '@/interfaces/member/IMember';
 import {
     faFacebook,
     faInstagram,
     faLinkedin,
     faTiktok,
-} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Badge } from '../badge'
-import { Card } from '../card'
-import { faGlobe } from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-brands-svg-icons';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Badge } from '../badge';
+import { Card } from '../card';
 
 const MemberCard = (props: IMember) => {
     const personalLinks = (
@@ -67,10 +67,10 @@ const MemberCard = (props: IMember) => {
                 </Link>
             )}
         </>
-    )
+    );
 
     return (
-        <Card className="flex flex-col shadow-md border rounded-lg flex-[1_0_300px] max-w-full overflow-hidden">
+        <Card className="flex max-w-full flex-[1_0_300px] flex-col overflow-hidden rounded-lg border shadow-md">
             <Image
                 src={props.picture || user_placeholder}
                 alt={`${props.first_name}${props.last_name} photo`}
@@ -78,13 +78,13 @@ const MemberCard = (props: IMember) => {
                 width={500}
                 loading="lazy"
             />
-            <div className="p-5 h-full flex flex-col justify-between">
+            <div className="flex h-full flex-col justify-between p-5">
                 <div>
-                    <h5 className="text-gray-900 text-2xl leading-4 tracking-tight mb-1 dark:text-white">
+                    <h5 className="mb-1 text-2xl leading-4 tracking-tight text-gray-900 dark:text-white">
                         <span className="font-bold">{props.first_name}</span>
                         {' ' + props.last_name}
                     </h5>
-                    <p className="font-normal text-gray-700 mb-3 dark:text-gray-500 capitalize flex flex-col gap-2">
+                    <p className="mb-3 flex flex-col gap-2 font-normal capitalize text-gray-700 dark:text-gray-500">
                         {props.role}
                         {props.start_mandate && (
                             <Badge className="w-fit text-[12px] font-semibold">
@@ -93,14 +93,14 @@ const MemberCard = (props: IMember) => {
                             </Badge>
                         )}
                     </p>
-                    <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                         {props.description}
                     </p>
                 </div>
-                <div className="flex gap-3 items-center">{personalLinks}</div>
+                <div className="flex items-center gap-3">{personalLinks}</div>
             </div>
         </Card>
-    )
-}
+    );
+};
 
-export default MemberCard
+export default MemberCard;

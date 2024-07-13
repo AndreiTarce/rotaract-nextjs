@@ -1,24 +1,20 @@
-'use client'
-import { IMember } from '@/models/interfaces'
-import MemberForm, { MemberFormSchema, memberFormStatuses } from './MemberForm'
-import { isSecretary } from '@/lib/utils'
-import Image from 'next/image'
-import { Button } from '../button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+'use client';
+import { IMember } from '@/interfaces/member/IMember';
+import Image from 'next/image';
+import { useState } from 'react';
+import MemberForm, { MemberFormSchema } from './MemberForm';
 
 export default function EditMemberForm({
     userInfo,
     readOnly,
     currentUser,
 }: {
-    userInfo: IMember
-    readOnly?: boolean
-    currentUser: IMember
+    userInfo: IMember;
+    readOnly?: boolean;
+    currentUser: IMember;
 }) {
-    const onSubmit = (values: MemberFormSchema) => {}
-    const [isReadOnly, setIsReadOnly] = useState(readOnly)
+    const onSubmit = (values: MemberFormSchema) => {};
+    const [isReadOnly, setIsReadOnly] = useState(readOnly);
 
     return (
         <>
@@ -26,7 +22,7 @@ export default function EditMemberForm({
                 {isReadOnly ? 'Informatii' : 'Editare'} membru
             </p>
             {isReadOnly && (
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                     <div className="flex flex-col">
                         <p className="text-2xl font-semibold">
                             {userInfo.first_name}
@@ -59,5 +55,5 @@ export default function EditMemberForm({
                 </Button>
             )} */}
         </>
-    )
+    );
 }

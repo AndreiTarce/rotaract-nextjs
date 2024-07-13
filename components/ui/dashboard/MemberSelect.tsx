@@ -1,17 +1,17 @@
-'use client'
-import { MEMBERS_PATH } from '@/lib/constants'
-import { IMember } from '@/models/interfaces'
-import { OptionProps } from 'react-select'
-import Select from 'react-select/async'
-import './MemberSelect.css'
+'use client';
+import { IMember } from '@/interfaces/member/IMember';
+import { MEMBERS_PATH } from '@/lib/constants';
+import { OptionProps } from 'react-select';
+import Select from 'react-select/async';
+import './MemberSelect.css';
 
 export interface IPresentMemberSelect {
-    value: IMember
-    label: string
+    value: IMember;
+    label: string;
 }
 
 const Option = (props: OptionProps<IPresentMemberSelect>) => {
-    console.log(props)
+    console.log(props);
     return (
         <div className="bg-red text-black">
             <div
@@ -22,19 +22,19 @@ const Option = (props: OptionProps<IPresentMemberSelect>) => {
                 {props.label}
             </div>
         </div>
-    )
-}
+    );
+};
 
 const getOptions = (members: IMember[]) => {
     const options = members.map((member) => ({
         value: member,
         label: `${member.first_name} ${member.last_name}`,
-    }))
-    return options
-}
+    }));
+    return options;
+};
 
 const getMembers = async (name: string) => {
-    const url = MEMBERS_PATH
+    const url = MEMBERS_PATH;
     try {
         const res = await fetch(
             url +
@@ -43,22 +43,23 @@ const getMembers = async (name: string) => {
                     name: name,
                 }),
             { cache: 'no-store' }
-        )
+        );
 
         if (!res.ok) {
-            throw new Error('Failed to fetch members')
+            throw new Error('Failed to fetch members');
         }
-        return res.json()
+        return res.json();
     } catch (error) {
-        console.log('Error loading members: ', error)
+        console.log('Error loading members: ', error);
     }
-}
+};
 
 const promiseOptions = (inputValue: string) =>
     new Promise<IPresentMemberSelect[]>(async (resolve) => {
-        const { members }: { members: IMember[] } = await getMembers(inputValue)
-        resolve(getOptions(members))
-    })
+        const { members }: { members: IMember[] } =
+            await getMembers(inputValue);
+        resolve(getOptions(members));
+    });
 
 const filterOptions = (
     option: any,
@@ -68,12 +69,12 @@ const filterOptions = (
     if (array && array.length) {
         for (let element of array) {
             if (element.label === option.label) {
-                return false
+                return false;
             }
         }
     }
-    return true
-}
+    return true;
+};
 
 export default function MemberSelect({
     presentMembers,
@@ -81,12 +82,12 @@ export default function MemberSelect({
     setFormValue,
     clearErrors,
 }: {
-    presentMembers: IPresentMemberSelect[]
+    presentMembers: IPresentMemberSelect[];
     setPresentMembers: React.Dispatch<
         React.SetStateAction<IPresentMemberSelect[]>
-    >
-    setFormValue: any
-    clearErrors: any
+    >;
+    setFormValue: any;
+    clearErrors: any;
 }) {
     return (
         <>
@@ -112,14 +113,14 @@ export default function MemberSelect({
                 isSearchable
                 defaultOptions
                 onChange={(e: any) => {
-                    setPresentMembers(e)
-                    setFormValue('presentMembers', e)
-                    if (e.length) clearErrors()
+                    setPresentMembers(e);
+                    setFormValue('presentMembers', e);
+                    if (e.length) clearErrors();
                 }}
                 filterOption={(option, __) =>
                     filterOptions(option, __, presentMembers)
                 }
             />
         </>
-    )
+    );
 }

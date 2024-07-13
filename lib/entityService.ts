@@ -1,6 +1,6 @@
 import { MEETING_TYPES } from '@/components/ui/dashboard/constants';
+import { IMember } from '@/interfaces/member/IMember';
 import CatrafusaleRegistration from '@/models/catrafusaleRegistration';
-import { IMember } from '@/models/interfaces';
 import Meeting from '@/models/meeting';
 import Member from '@/models/member';
 import WhitelistedMember, {

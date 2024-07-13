@@ -1,26 +1,20 @@
-'use client'
+'use client';
 
-import { API_KEY } from '@/lib/constants'
-import { cn } from '@/lib/utils'
-import { IMember } from '@/models/interfaces'
-import { faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useQueryClient } from '@tanstack/react-query'
-import { format } from 'date-fns'
-import { AlertOctagon, CalendarIcon } from 'lucide-react'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { Button } from '../button'
-import { Calendar } from '../calendar'
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from '../card'
+import { IMember } from '@/interfaces/member/IMember';
+import { API_KEY } from '@/lib/constants';
+import { cn } from '@/lib/utils';
+import { faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
+import { format } from 'date-fns';
+import { AlertOctagon, CalendarIcon } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '../button';
+import { Calendar } from '../calendar';
+import { Card, CardContent, CardHeader, CardTitle } from '../card';
 import {
     Form,
     FormControl,
@@ -28,9 +22,9 @@ import {
     FormField,
     FormItem,
     FormLabel,
-} from '../form'
-import { Input } from '../input'
-import { Popover, PopoverContent, PopoverTrigger } from '../popover'
+} from '../form';
+import { Input } from '../input';
+import { Popover, PopoverContent, PopoverTrigger } from '../popover';
 import {
     Select,
     SelectContent,
@@ -38,12 +32,12 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '../select'
-import { Toaster } from '../toaster'
-import { toast } from '../use-toast'
-import MemberSelect, { IPresentMemberSelect } from './MemberSelect'
-import { MEETING_TYPES } from './constants'
-import { Textarea } from '../textarea'
+} from '../select';
+import { Textarea } from '../textarea';
+import { Toaster } from '../toaster';
+import { toast } from '../use-toast';
+import MemberSelect, { IPresentMemberSelect } from './MemberSelect';
+import { MEETING_TYPES } from './constants';
 
 const formSchema = z.object({
     location: z.string().min(1, {
@@ -60,8 +54,8 @@ const formSchema = z.object({
     minuteAuthor: z.string(),
     presentMembers: z.array(z.any()).refine(
         (data) => {
-            console.log(data)
-            return data.length
+            console.log(data);
+            return data.length;
         },
         {
             message: 'At least one member must be present.',
@@ -71,23 +65,23 @@ const formSchema = z.object({
         message: 'Hour is required',
     }),
     highlights: z.string(),
-})
+});
 
-export type MeetingFormSchema = z.infer<typeof formSchema>
+export type MeetingFormSchema = z.infer<typeof formSchema>;
 
 export default function AdaugareSedinta({ user }: { user: IMember }) {
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('');
     const [presentMembers, setPresentMembers] = useState<
         IPresentMemberSelect[]
-    >([])
+    >([]);
 
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
     const statuses = {
         loading: 'loading',
         submitted: 'submitted',
         error: 'error',
-    }
+    };
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -102,17 +96,17 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
             presentMembers: [],
             highlights: '',
         },
-    })
+    });
 
     const getPresentMembersArray = (array: IPresentMemberSelect[]) =>
-        array.map((member) => member.value)
+        array.map((member) => member.value);
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        const abortLongFetch = new AbortController()
-        const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000)
+        const abortLongFetch = new AbortController();
+        const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000);
 
-        const presentMembersArray = getPresentMembersArray(presentMembers)
-        setStatus(statuses.loading)
+        const presentMembersArray = getPresentMembersArray(presentMembers);
+        setStatus(statuses.loading);
         const {
             type,
             location,
@@ -121,10 +115,10 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
             start_date,
             start_hour,
             highlights,
-        } = values
-        const [hours, minutes] = values.start_hour.split(':').map(Number)
-        start_date.setHours(hours)
-        start_date.setMinutes(minutes)
+        } = values;
+        const [hours, minutes] = values.start_hour.split(':').map(Number);
+        start_date.setHours(hours);
+        start_date.setMinutes(minutes);
 
         fetch('/api/meetings' + `?api_key=${API_KEY}`, {
             signal: abortLongFetch.signal,
@@ -144,18 +138,18 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
         })
             .then((res) => {
                 if (res.ok) {
-                    clearTimeout(abortTimeoutId)
-                    return res.json()
+                    clearTimeout(abortTimeoutId);
+                    return res.json();
                 }
-                throw new Error('Whoops! Error adding meeting.')
+                throw new Error('Whoops! Error adding meeting.');
             })
             .then((res) => {
-                setStatus(statuses.submitted)
-                form.reset()
+                setStatus(statuses.submitted);
+                form.reset();
                 queryClient.invalidateQueries({
                     queryKey: ['meetings'],
                     exact: false,
-                })
+                });
                 toast({
                     title: 'Sedinta adaugata',
                     description: (
@@ -167,12 +161,12 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                         </div>
                     ),
                     duration: 10000,
-                })
-                setPresentMembers([])
+                });
+                setPresentMembers([]);
             })
             .catch((err) => {
-                setStatus(statuses.error)
-                setPresentMembers([])
+                setStatus(statuses.error);
+                setPresentMembers([]);
                 toast({
                     title: 'Eroare la adaugare',
                     variant: 'destructive',
@@ -184,8 +178,8 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                         </div>
                     ),
                     duration: 10000,
-                })
-            })
+                });
+            });
     }
 
     return (
@@ -481,7 +475,7 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                                             xmlns="http://www.w3.org/2000/svg"
                                             height="1em"
                                             viewBox="0 0 512 512"
-                                            className="animate-spin mr-2 fill-white dark:fill-dark"
+                                            className="mr-2 animate-spin fill-white dark:fill-dark"
                                         >
                                             <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                                         </svg>
@@ -500,5 +494,5 @@ export default function AdaugareSedinta({ user }: { user: IMember }) {
                 </div>
             </CardContent>
         </Card>
-    )
+    );
 }

@@ -1,47 +1,43 @@
-'use client'
+'use client';
 
-import { IMember, IMemberLinks } from '@/models/interfaces'
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '../card'
-import { toast } from '../use-toast'
-import MemberForm, {
-    IMemberFormProps,
-    MemberFormSchema,
-    memberFormStatuses,
-} from './MemberForm'
-import { removeUndefinedLinkKeys } from './utils'
+import { IMember, IMemberLinks } from '@/interfaces/member/IMember';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '../card';
+import { toast } from '../use-toast';
+import MemberForm, { MemberFormSchema, memberFormStatuses } from './MemberForm';
+import { removeUndefinedLinkKeys } from './utils';
 
 export default function AddMemberFormCard({
     userInfo,
 }: {
-    userInfo?: IMember
+    userInfo?: IMember;
 }) {
-    const [status, setStatus] = useState<memberFormStatuses | undefined>()
+    const [status, setStatus] = useState<memberFormStatuses | undefined>();
 
     const onSubmit = async (values: MemberFormSchema) => {
-        const data: MemberFormSchema = { ...values }
-        const { picture_file } = data
-        removeUndefinedLinkKeys(data.urls as IMemberLinks)
-        if (!Object.keys(data.urls as IMemberLinks).length) delete data.urls
-        delete data.picture_file
+        const data: MemberFormSchema = { ...values };
+        const { picture_file } = data;
+        removeUndefinedLinkKeys(data.urls as IMemberLinks);
+        if (!Object.keys(data.urls as IMemberLinks).length) delete data.urls;
+        delete data.picture_file;
 
-        const formData = new FormData()
-        formData.append('member', JSON.stringify(data))
+        const formData = new FormData();
+        formData.append('member', JSON.stringify(data));
 
         if (Object.keys(picture_file as FileList).length && picture_file)
-            formData.append('picture_file', picture_file[0])
+            formData.append('picture_file', picture_file[0]);
 
-        setStatus(memberFormStatuses.LOADING)
+        setStatus(memberFormStatuses.LOADING);
 
         try {
             const response = await fetch('/api/members', {
                 method: 'POST',
                 body: formData,
-            })
+            });
 
-            setStatus(memberFormStatuses.SUBMITTED)
+            setStatus(memberFormStatuses.SUBMITTED);
             toast({
                 title: 'Membru adaugat',
                 description: (
@@ -54,10 +50,10 @@ export default function AddMemberFormCard({
                     </div>
                 ),
                 duration: 10000,
-            })
+            });
         } catch (error) {
-            console.log(error)
-            setStatus(memberFormStatuses.ERROR)
+            console.log(error);
+            setStatus(memberFormStatuses.ERROR);
             toast({
                 title: 'Eroare la adaugare',
                 variant: 'destructive',
@@ -69,9 +65,9 @@ export default function AddMemberFormCard({
                     </div>
                 ),
                 duration: 10000,
-            })
+            });
         }
-    }
+    };
 
     return (
         <Card className="h-fit">
@@ -88,5 +84,5 @@ export default function AddMemberFormCard({
                 />
             </CardContent>
         </Card>
-    )
+    );
 }

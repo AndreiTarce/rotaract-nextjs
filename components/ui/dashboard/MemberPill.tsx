@@ -1,16 +1,16 @@
-import user_placeholder from '@/assets/images/user-placeholder.png'
-import { IMember } from '@/models/interfaces'
-import Image from 'next/image'
-import { Card } from '../card'
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '../hover-card'
-import MemberInfoClient from './MemberInfoClient'
+import user_placeholder from '@/assets/images/user-placeholder.png';
+import { IMember } from '@/interfaces/member/IMember';
+import Image from 'next/image';
+import { Card } from '../card';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../hover-card';
+import MemberInfoClient from './MemberInfoClient';
 
 export default function MemberPill({ user }: { user: IMember }) {
     return (
         <HoverCard>
             <HoverCardTrigger asChild>
-                <Card className="p-1 rounded-full flex w-fit gap-1 justify-center items-center hover:cursor-pointer">
-                    <div className="h-6 w-6 relative rounded-full overflow-hidden">
+                <Card className="flex w-fit items-center justify-center gap-1 rounded-full p-1 hover:cursor-pointer">
+                    <div className="relative h-6 w-6 overflow-hidden rounded-full">
                         <Image
                             src={user.picture || user_placeholder}
                             alt="test"
@@ -31,5 +31,5 @@ export default function MemberPill({ user }: { user: IMember }) {
                 <MemberInfoClient user={user} />
             </HoverCardContent>
         </HoverCard>
-    )
+    );
 }

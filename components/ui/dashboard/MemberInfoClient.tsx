@@ -1,61 +1,60 @@
-'use client'
-import user_placeholder from '@/assets/images/user-placeholder.png'
-import { getAttendance } from '@/lib/entityService'
-import { IMember } from '@/models/interfaces'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import { Card, CardDescription, CardTitle } from '../card'
-import { useEffect, useState } from 'react'
-import { MEMBER_ATTENDANCE_PATH } from '@/lib/constants'
-import { ObjectId } from 'mongodb'
-import { Skeleton } from '../skeleton'
+'use client';
+import user_placeholder from '@/assets/images/user-placeholder.png';
+import { IMember } from '@/interfaces/member/IMember';
+import { MEMBER_ATTENDANCE_PATH } from '@/lib/constants';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ObjectId } from 'mongodb';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { Card, CardDescription, CardTitle } from '../card';
+import { Skeleton } from '../skeleton';
 
 export default function MemberInfoClient({ user }: { user: IMember }) {
-    const [attendance, setAttendance] = useState<any>()
-    const [loading, setLoading] = useState(true)
+    const [attendance, setAttendance] = useState<any>();
+    const [loading, setLoading] = useState(true);
 
     const getMemberAttendance = async (id: ObjectId) => {
-        const url = MEMBER_ATTENDANCE_PATH
+        const url = MEMBER_ATTENDANCE_PATH;
         const res = await fetch(
             url +
                 '?' +
                 new URLSearchParams({
                     id: id.toString(),
                 })
-        )
-        return res.json()
-    }
+        );
+        return res.json();
+    };
 
     const getNeededData = async () => {
-        const memberAttendance = await getMemberAttendance(user._id)
-        setAttendance(memberAttendance)
-        setLoading(false)
-    }
+        const memberAttendance = await getMemberAttendance(user._id);
+        setAttendance(memberAttendance);
+        setLoading(false);
+    };
 
     useEffect(() => {
-        getNeededData()
-    }, [])
+        getNeededData();
+    }, []);
 
     if (loading)
         return (
-            <div className="overflow-hidden p-6 relative">
-                <div className="flex gap-4 flex-wrap">
-                    <Skeleton className="rounded-full w-28 h-28 self-center" />
+            <div className="relative overflow-hidden p-6">
+                <div className="flex flex-wrap gap-4">
+                    <Skeleton className="h-28 w-28 self-center rounded-full" />
                     <div>
                         <CardTitle>
-                            <Skeleton className="w-36 h-5 mb-1" />
+                            <Skeleton className="mb-1 h-5 w-36" />
                         </CardTitle>
                         <CardDescription>
-                            <Skeleton className="w-24 h-3 mb-6" />
+                            <Skeleton className="mb-6 h-3 w-24" />
                         </CardDescription>
-                        <Skeleton className="w-16 h-3 mb-1" />
-                        <Skeleton className="w-16 h-3" />
-                        <div className="text-sm mt-4 flex gap-2 flex-wrap">
-                            <Card className="w-fit px-2 py-1 rounded-full">
+                        <Skeleton className="mb-1 h-3 w-16" />
+                        <Skeleton className="h-3 w-16" />
+                        <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                            <Card className="w-fit rounded-full px-2 py-1">
                                 <Skeleton className="h-4 w-16" />
                             </Card>
-                            <Card className="w-fit px-2 py-1 rounded-full">
+                            <Card className="w-fit rounded-full px-2 py-1">
                                 <Skeleton className="h-4 w-16" />
                             </Card>
                         </div>
@@ -63,16 +62,16 @@ export default function MemberInfoClient({ user }: { user: IMember }) {
                 </div>
                 <FontAwesomeIcon
                     icon={faUser}
-                    className="text-muted-foreground absolute top-6 right-6"
+                    className="absolute right-6 top-6 text-muted-foreground"
                 />
             </div>
-        )
+        );
 
     if (attendance)
         return (
-            <div className="overflow-hidden p-6 relative">
-                <div className="flex gap-4 flex-wrap">
-                    <div className="relative rounded-full overflow-hidden w-28 h-28 self-center">
+            <div className="relative overflow-hidden p-6">
+                <div className="flex flex-wrap gap-4">
+                    <div className="relative h-28 w-28 self-center overflow-hidden rounded-full">
                         <Image
                             src={user.picture || user_placeholder}
                             alt="Profile picture"
@@ -88,16 +87,16 @@ export default function MemberInfoClient({ user }: { user: IMember }) {
                         </CardTitle>
                         <CardDescription>{user.email}</CardDescription>
                         <div className="capitalize">{user.role}</div>
-                        <div className="text-muted-foreground text-sm capitalize">
+                        <div className="text-sm capitalize text-muted-foreground">
                             Status: {user.status}
                         </div>
-                        <div className="text-sm mt-4 flex gap-2 flex-wrap">
-                            <Card className="w-fit px-2 py-1 rounded-full">
-                                <span className="dark:text-green-500 text-green-800">
+                        <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                            <Card className="w-fit rounded-full px-2 py-1">
+                                <span className="text-green-800 dark:text-green-500">
                                     Prezențe {attendance.totalPresences}
                                 </span>
                             </Card>
-                            <Card className="w-fit px-2 py-1 rounded-full">
+                            <Card className="w-fit rounded-full px-2 py-1">
                                 <span className="text-red-700 dark:text-red-600">
                                     Absențe {attendance.totalAbsences}
                                 </span>
@@ -107,8 +106,8 @@ export default function MemberInfoClient({ user }: { user: IMember }) {
                 </div>
                 <FontAwesomeIcon
                     icon={faUser}
-                    className="text-muted-foreground absolute top-6 right-6"
+                    className="absolute right-6 top-6 text-muted-foreground"
                 />
             </div>
-        )
+        );
 }
