@@ -4,6 +4,8 @@ import MemberCard from './MemberCard';
 
 export default async function MembersList() {
     const members: MemberDto[] = await getMembers();
+    console.log(members);
+    return <>test</>;
     const activeMembers = members.filter(
         (member: MemberDto) =>
             member.status === 'activ' && member.role === 'member'
