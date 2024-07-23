@@ -63,7 +63,7 @@ export const getMembers = async () => {
 };
 
 export const getMember = async (memberEmail: string) => {
-    const url = `${API_BASE_URL + MEMBERS_PATH}/${memberEmail}`;
+    const url = `${API_BASE_URL + MEMBERS_PATH}/?email=${memberEmail}`;
     try {
         const res = await fetch(url, {
             cache: 'no-store',

@@ -1,6 +1,6 @@
 'use client';
 import user_placeholder from '@/assets/images/user-placeholder.png';
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import { MEMBER_ATTENDANCE_PATH } from '@/lib/constants';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardDescription, CardTitle } from '../card';
 import { Skeleton } from '../skeleton';
 
-export default function MemberInfoClient({ user }: { user: IMember }) {
+export default function MemberInfoClient({ user }: { user: MemberDto }) {
     const [attendance, setAttendance] = useState<any>();
     const [loading, setLoading] = useState(true);
 

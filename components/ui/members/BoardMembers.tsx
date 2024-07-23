@@ -4,7 +4,9 @@ import MemberCard from './MemberCard';
 
 export default async function BoardMembersList() {
     const boardMembers = await getBoardMembers();
-    boardMembers.sort((a, b) => (a.id && b.id ? a.id - b.id : 0));
+    boardMembers.sort((a, b) =>
+        a.custom_id && b.custom_id ? a.custom_id - b.custom_id : 0
+    );
     return boardMembers.map((member: IMember, index: number) => (
         <MemberCard key={index} {...member} />
     ));

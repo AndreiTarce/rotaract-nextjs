@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import mongoose, { Schema } from 'mongoose';
-import { IMember } from '../interfaces/member/IMember';
+import { IMemberDocument } from '../interfaces/member/IMember';
 import { memberSchema } from './member';
 
 export interface IMeeting {
@@ -13,8 +13,8 @@ export interface IMeeting {
     highlights: string;
     minuteUrl: string;
     duration: number;
-    presentMembers: IMember[];
-    absentMembers: IMember[];
+    presentMembers: IMemberDocument[];
+    absentMembers: IMemberDocument[];
 }
 
 const meetingSchema = new Schema<IMeeting>(

@@ -13,6 +13,11 @@ export class ProjectService {
         return projects;
     }
 
+    async getProjectById(id: string) {
+        const project = await this.repository.findById(id);
+        return project;
+    }
+
     async getProjectByUrl(url: string) {
         const project = await this.repository.findByUrl(url);
         return project;

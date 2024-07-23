@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import { Document, Types } from 'mongoose';
 import { z } from 'zod';
 
 export interface IMemberLinks {
@@ -30,8 +30,7 @@ export enum memberStatus {
 }
 
 export interface IMember {
-    _id: ObjectId;
-    id?: number;
+    custom_id?: number;
     first_name: string;
     last_name: string;
     picture: string;
@@ -42,6 +41,10 @@ export interface IMember {
     email: string;
     status: memberStatus;
     isBoard: boolean;
+}
+
+export interface IMemberDocument extends IMember, Document {
+    _id: Types.ObjectId;
 }
 
 export const IMemberLinksZodSchema = z.object({

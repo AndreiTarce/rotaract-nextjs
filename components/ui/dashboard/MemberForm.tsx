@@ -98,7 +98,7 @@ export default function MemberForm({
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form onSubmit={form.handleSubmit(handleSubmit)}>
                 <div
                     className={
                         fieldsContainerClassname || 'flex flex-col gap-4'
@@ -279,6 +279,7 @@ export default function MemberForm({
                                 <FormLabel>Functie</FormLabel>
                                 <FormControl>
                                     <Select
+                                        {...field}
                                         onValueChange={field.onChange}
                                         defaultValue={field.value}
                                         disabled={readOnly}
@@ -370,6 +371,7 @@ export default function MemberForm({
                                 <FormLabel>Status</FormLabel>
                                 <FormControl>
                                     <Select
+                                        {...field}
                                         onValueChange={field.onChange}
                                         defaultValue={field.value}
                                         disabled={readOnly}

@@ -1,7 +1,6 @@
 'use client';
 import { IMember } from '@/interfaces/member/IMember';
 import { MEMBERS_PATH } from '@/lib/constants';
-import { OptionProps } from 'react-select';
 import Select from 'react-select/async';
 import './MemberSelect.css';
 
@@ -9,21 +8,6 @@ export interface IPresentMemberSelect {
     value: IMember;
     label: string;
 }
-
-const Option = (props: OptionProps<IPresentMemberSelect>) => {
-    console.log(props);
-    return (
-        <div className="bg-red text-black">
-            <div
-                {...props}
-                onClick={props.innerProps.onClick}
-                className="text-red"
-            >
-                {props.label}
-            </div>
-        </div>
-    );
-};
 
 const getOptions = (members: IMember[]) => {
     const options = members.map((member) => ({
@@ -56,8 +40,7 @@ const getMembers = async (name: string) => {
 
 const promiseOptions = (inputValue: string) =>
     new Promise<IPresentMemberSelect[]>(async (resolve) => {
-        const { members }: { members: IMember[] } =
-            await getMembers(inputValue);
+        const members: IMember[] = await getMembers(inputValue);
         resolve(getOptions(members));
     });
 

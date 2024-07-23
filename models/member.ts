@@ -1,6 +1,5 @@
-import { ObjectId } from 'mongodb';
 import mongoose, { Schema } from 'mongoose';
-import { IMember, IMemberLinks } from '../interfaces/member/IMember';
+import { IMemberDocument, IMemberLinks } from '../interfaces/member/IMember';
 
 const SectionSchema = new Schema<IMemberLinks>({
     facebook: { type: String, required: false },
@@ -10,10 +9,9 @@ const SectionSchema = new Schema<IMemberLinks>({
     website: { type: String, required: false },
 });
 
-export const memberSchema = new Schema<IMember>(
+export const memberSchema = new Schema<IMemberDocument>(
     {
-        _id: ObjectId,
-        id: Number,
+        custom_id: Number,
         first_name: String,
         last_name: String,
         picture: String,

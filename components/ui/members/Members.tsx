@@ -3,7 +3,7 @@ import { getMembers } from '@/lib/entityService';
 import MemberCard from './MemberCard';
 
 export default async function MembersList() {
-    const { members }: { members: IMember[] } = await getMembers();
+    const members: IMember[] = await getMembers();
     const activeMembers = members.filter(
         (member: IMember) =>
             member.status === 'activ' && member.role === 'member'
