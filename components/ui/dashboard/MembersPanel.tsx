@@ -1,5 +1,4 @@
 import { MemberDto } from '@/dtos/member.dto';
-import { IMember } from '@/interfaces/member/IMember';
 import { getMembers } from '@/lib/entityService';
 import { Card, CardContent, CardHeader, CardTitle } from '../card';
 import { ScrollArea } from '../scroll-area';
@@ -8,7 +7,7 @@ import DashboardMemberCard from './DashboardMemberCard';
 export default async function MembersPanel({
     currentUser,
 }: {
-    currentUser: IMember;
+    currentUser: MemberDto;
 }) {
     const members: MemberDto[] = await getMembers();
     return (
