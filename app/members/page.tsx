@@ -1,6 +1,3 @@
-import BoardMembersList from '@/components/ui/members/BoardMembers';
-import MembersList from '@/components/ui/members/Members';
-import PastPresidentsList from '@/components/ui/members/PastPresidents';
 import { Separator } from '@/components/ui/separator';
 import { Metadata } from 'next';
 
@@ -19,7 +16,7 @@ export default function Members() {
             </h1>
             <Separator className="mb-4" />
             <div className="mb-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                <BoardMembersList />
+                {/* <BoardMembersList /> */}
             </div>
             <h1 className="mb-2 text-5xl font-semibold leading-none">
                 Meet our{' '}
@@ -29,7 +26,7 @@ export default function Members() {
             </h1>
             <Separator className="mb-4" />
             <div className="mb-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                <MembersList />
+                {/* <MembersList /> */}
             </div>
             <h1 className="mb-2 text-5xl font-semibold leading-none">
                 <span className="bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
@@ -38,7 +35,7 @@ export default function Members() {
             </h1>
             <Separator className="mb-4" />
             <div className="mb-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                <PastPresidentsList />
+                {/* <PastPresidentsList /> */}
             </div>
         </main>
     );
