@@ -1,14 +1,14 @@
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import { getMembers } from '@/lib/entityService';
 import MemberCard from './MemberCard';
 
 export default async function MembersList() {
-    const members: IMember[] = await getMembers();
+    const members: MemberDto[] = await getMembers();
     const activeMembers = members.filter(
-        (member: IMember) =>
+        (member: MemberDto) =>
             member.status === 'activ' && member.role === 'member'
     );
-    return activeMembers.map((member: IMember, index: number) => (
+    return activeMembers.map((member: MemberDto, index: number) => (
         <MemberCard key={index} {...member} />
     ));
 }

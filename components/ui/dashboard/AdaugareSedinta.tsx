@@ -1,6 +1,6 @@
 'use client';
 
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import { API_KEY } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -69,7 +69,7 @@ const formSchema = z.object({
 
 export type MeetingFormSchema = z.infer<typeof formSchema>;
 
-export default function AdaugareSedinta({ user }: { user: IMember }) {
+export default function AdaugareSedinta({ user }: { user: MemberDto }) {
     const [status, setStatus] = useState('');
     const [presentMembers, setPresentMembers] = useState<
         IPresentMemberSelect[]

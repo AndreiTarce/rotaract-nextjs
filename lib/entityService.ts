@@ -1,5 +1,5 @@
 import { MEETING_TYPES } from '@/components/ui/dashboard/constants';
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import CatrafusaleRegistration from '@/models/catrafusaleRegistration';
 import Meeting from '@/models/meeting';
 import Member from '@/models/member';
@@ -81,7 +81,7 @@ export const getMember = async (memberEmail: string) => {
 
 export const getBoardMembers = async () => {
     await connectMongoDB();
-    const boardMembers: IMember[] = await Member.find({
+    const boardMembers: MemberDto[] = await Member.find({
         role: { $nin: ['member', 'past president'] },
     }).lean();
     return boardMembers;
@@ -96,7 +96,7 @@ export const getMemberWhitelist = async () => {
 
 export const getPastPresidents = async () => {
     await connectMongoDB();
-    const pastPresidents: IMember[] = await Member.find({
+    const pastPresidents: MemberDto[] = await Member.find({
         role: 'past president',
     })
         .sort({ start_mandate: -1 })

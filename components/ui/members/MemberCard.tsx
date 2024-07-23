@@ -1,5 +1,5 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import {
     faFacebook,
     faInstagram,
@@ -13,7 +13,7 @@ import Link from 'next/link';
 import { Badge } from '../badge';
 import { Card } from '../card';
 
-const MemberCard = (props: IMember) => {
+const MemberCard = (props: MemberDto) => {
     const personalLinks = (
         <>
             {props.urls?.facebook && (

@@ -3,8 +3,8 @@
 import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { MemberDto } from '@/dtos/member.dto';
 import {
-    IMember,
     IMemberLinksZodSchema,
     memberRoles,
     memberStatus,
@@ -36,7 +36,7 @@ import {
 import { Textarea } from '../textarea';
 
 export interface IMemberFormProps {
-    userInfo?: IMember;
+    userInfo?: MemberDto;
     onSubmit: (values: MemberFormSchema) => Promise<void> | void;
     status: memberFormStatuses | undefined;
     fieldsContainerClassname?: string;
