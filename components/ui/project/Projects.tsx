@@ -4,6 +4,7 @@ import ProjectCard from './ProjectCard';
 
 export default async function ProjectsList() {
     const projects: IProject[] = await getProjects();
+    return <>deploy</>;
     return projects.map((project: IProject, index: number) => (
         <ProjectCard key={index} {...project} />
     ));
