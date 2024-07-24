@@ -1,6 +1,7 @@
 'use client';
 
-import { IMember, IMemberLinks } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
+import { IMemberLinks } from '@/interfaces/member/IMember';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
@@ -12,7 +13,7 @@ import { removeUndefinedLinkKeys } from './utils';
 export default function AddMemberFormCard({
     userInfo,
 }: {
-    userInfo?: IMember;
+    userInfo?: MemberDto;
 }) {
     const [status, setStatus] = useState<memberFormStatuses | undefined>();
 

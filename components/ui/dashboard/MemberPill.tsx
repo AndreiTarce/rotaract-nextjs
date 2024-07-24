@@ -1,11 +1,11 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import Image from 'next/image';
 import { Card } from '../card';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../hover-card';
 import MemberInfoClient from './MemberInfoClient';
 
-export default function MemberPill({ user }: { user: IMember }) {
+export default function MemberPill({ user }: { user: MemberDto }) {
     return (
         <HoverCard>
             <HoverCardTrigger asChild>

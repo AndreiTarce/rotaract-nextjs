@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
                     (member) =>
                         !presentMembers.some(
                             (presentMember: IMember) =>
-                                presentMember.id === member.id
+                                presentMember.custom_id === member.custom_id
                         )
                 );
 

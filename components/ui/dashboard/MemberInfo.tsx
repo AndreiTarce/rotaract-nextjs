@@ -1,12 +1,12 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import { getAttendance } from '@/lib/entityService';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { Card, CardDescription, CardTitle } from '../card';
 
-export default async function MemberInfo({ user }: { user: IMember }) {
+export default async function MemberInfo({ user }: { user: MemberDto }) {
     const attendance = await getAttendance(user._id);
     return (
         <div className="relative overflow-hidden p-6">

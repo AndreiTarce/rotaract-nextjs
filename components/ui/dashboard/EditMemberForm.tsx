@@ -1,5 +1,5 @@
 'use client';
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import Image from 'next/image';
 import { useState } from 'react';
 import MemberForm, { MemberFormSchema } from './MemberForm';
@@ -9,9 +9,9 @@ export default function EditMemberForm({
     readOnly,
     currentUser,
 }: {
-    userInfo: IMember;
+    userInfo: MemberDto;
     readOnly?: boolean;
-    currentUser: IMember;
+    currentUser: MemberDto;
 }) {
     const onSubmit = (values: MemberFormSchema) => {};
     const [isReadOnly, setIsReadOnly] = useState(readOnly);

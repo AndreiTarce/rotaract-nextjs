@@ -1,4 +1,4 @@
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import { getMembers } from '@/lib/entityService';
 import { Card, CardContent, CardHeader, CardTitle } from '../card';
 import { ScrollArea } from '../scroll-area';
@@ -7,9 +7,9 @@ import DashboardMemberCard from './DashboardMemberCard';
 export default async function MembersPanel({
     currentUser,
 }: {
-    currentUser: IMember;
+    currentUser: MemberDto;
 }) {
-    const { members }: { members: IMember[] } = await getMembers();
+    const members: MemberDto[] = await getMembers();
     return (
         <Card>
             <CardHeader className="flex flex-row justify-between pb-4">

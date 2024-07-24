@@ -1,6 +1,6 @@
 'use client';
 
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import { API_KEY } from '@/lib/constants';
 import { IMeeting } from '@/models/meeting';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
@@ -28,7 +28,7 @@ import { getMeetings } from './IstoricMinute';
 import Sedinta from './Sedinta';
 import { MEETING_TYPES } from './constants';
 
-export default function IstoricSedinte({ user }: { user: IMember }) {
+export default function IstoricSedinte({ user }: { user: MemberDto }) {
     const [year, setYear] = useState(new Date().getFullYear());
     const [type, setType] = useState(MEETING_TYPES[0].name);
     const queryClient = useQueryClient();

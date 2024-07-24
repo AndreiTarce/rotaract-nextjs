@@ -9,7 +9,7 @@ import MemberInfo from '@/components/ui/dashboard/MemberInfo';
 import MembersPanel from '@/components/ui/dashboard/MembersPanel';
 import SectionsTab from '@/components/ui/dashboard/SectionsTab';
 import { Separator } from '@/components/ui/separator';
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import { authConfig, loginIsRequiredServer } from '@/lib/auth';
 import { getMember } from '@/lib/entityService';
 import { isSecretary } from '@/lib/utils';
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default async function Dashboard() {
     await loginIsRequiredServer();
     const session = await getServerSession(authConfig);
-    const currentUser: IMember = await getMember(session?.user?.email!);
+    const currentUser: MemberDto = await getMember(session?.user?.email!);
 
     const sedinte = (
         <Card className="flex flex-col gap-4 md:grid md:grid-cols-2">

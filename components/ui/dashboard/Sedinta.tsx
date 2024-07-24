@@ -1,6 +1,6 @@
 'use client';
 
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import { API_KEY } from '@/lib/constants';
 import { isSecretary } from '@/lib/utils';
 import { IMeeting } from '@/models/meeting';
@@ -60,7 +60,7 @@ export default function Sedinta({
     user,
 }: {
     meeting: IMeeting;
-    user: IMember;
+    user: MemberDto;
 }) {
     const meetingDate = new Date(meeting.start_date);
     const [isPresentOpen, setIsPresentOpen] = useState(true);
@@ -232,7 +232,7 @@ export default function Sedinta({
                                                     ?.length &&
                                                     meeting.presentMembers.map(
                                                         (
-                                                            member: IMember,
+                                                            member: MemberDto,
                                                             index: number
                                                         ) => (
                                                             <MemberPill
@@ -272,7 +272,7 @@ export default function Sedinta({
                                                     ?.length &&
                                                     meeting.absentMembers.map(
                                                         (
-                                                            member: IMember,
+                                                            member: MemberDto,
                                                             index: number
                                                         ) => (
                                                             <MemberPill

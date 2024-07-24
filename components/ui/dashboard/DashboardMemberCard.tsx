@@ -1,5 +1,5 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
 import { getAttendance } from '@/lib/entityService';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,8 +18,8 @@ export default async function DashboardMemberCard({
     user,
     currentUser,
 }: {
-    user: IMember;
-    currentUser: IMember;
+    user: MemberDto;
+    currentUser: MemberDto;
 }) {
     const attendance = await getAttendance(user._id);
 
