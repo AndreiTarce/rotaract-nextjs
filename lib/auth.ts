@@ -1,13 +1,6 @@
-import { MemberRepository } from '@/repositories/memberRepository';
-import { MemberService } from '@/services/memberService';
 import { NextAuthOptions, getServerSession } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { redirect } from 'next/navigation';
-
-const allowedEmails = ['tarceandrei@gmail.com'];
-
-const memberRepository = new MemberRepository();
-const memberService = new MemberService(memberRepository);
 
 export const authConfig: NextAuthOptions = {
     providers: [
@@ -20,13 +13,15 @@ export const authConfig: NextAuthOptions = {
     ],
     callbacks: {
         async signIn({ user }) {
-            try {
-                await memberService.getMemberByEmail(user.email || '');
+            const response = await fetch(
+                process.env.BASE_URL + '/api/members?email=' + user.email
+            );
+
+            if (response.ok) {
                 return true;
-            } catch (error) {
-                console.log(error);
-                return false;
             }
+
+            return false;
         },
     },
 };
