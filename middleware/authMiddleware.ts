@@ -7,7 +7,10 @@ export async function authMiddleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    if (!cookies.get('next-auth.session-token')?.value?.trim()) {
+    const secureString =
+        process.env.NODE_ENV === 'production' ? '__Secure-' : '';
+
+    if (!cookies.get(secureString + 'next-auth.session-token')?.value?.trim()) {
         return new NextResponse('Unauthorized', { status: 401 });
     }
 
