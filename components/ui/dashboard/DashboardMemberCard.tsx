@@ -21,7 +21,7 @@ export default async function DashboardMemberCard({
     user: MemberDto;
     currentUser: MemberDto;
 }) {
-    const attendance = await getAttendance(user._id);
+    const attendance = await getAttendance(user.id);
 
     return (
         <Dialog>

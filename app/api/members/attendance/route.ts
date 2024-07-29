@@ -1,11 +1,21 @@
-import { getAttendance } from '@/lib/entityService'
-import connectMongoDB from '@/lib/mongodb'
-import { ObjectId } from 'mongodb'
-import { NextRequest, NextResponse } from 'next/server'
+import { getAttendance } from '@/lib/entityService';
+import connectMongoDB from '@/lib/mongodb';
+import { NextRequest, NextResponse } from 'next/server';
+import { errorHandler } from '../../utils/error-handler';
+import { ValidationError } from '../../utils/errors';
 
 export async function GET(request: NextRequest) {
-    await connectMongoDB()
-    const memberId = new ObjectId(request.nextUrl.searchParams.get('id')!)
-    const attendance = await getAttendance(memberId)
-    return NextResponse.json(attendance)
+    try {
+        await connectMongoDB();
+        const memberId = request.nextUrl.searchParams.get('id');
+
+        if (!memberId) {
+            throw new ValidationError('Member ID is required');
+        }
+
+        const attendance = await getAttendance(memberId);
+        return NextResponse.json(attendance);
+    } catch (error) {
+        return errorHandler(error);
+    }
 }
