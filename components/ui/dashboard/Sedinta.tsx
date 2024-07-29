@@ -1,9 +1,8 @@
 'use client';
 
+import { MeetingDto } from '@/dtos/meeting.dto';
 import { MemberDto } from '@/dtos/member.dto';
-import { API_KEY } from '@/lib/constants';
 import { isSecretary } from '@/lib/utils';
-import { IMeeting } from '@/models/meeting';
 import { faGoogleDrive, faReadme } from '@fortawesome/free-brands-svg-icons';
 import {
     faCalendar,
@@ -59,7 +58,7 @@ export default function Sedinta({
     meeting,
     user,
 }: {
-    meeting: IMeeting;
+    meeting: MeetingDto;
     user: MemberDto;
 }) {
     const meetingDate = new Date(meeting.start_date);
@@ -71,7 +70,7 @@ export default function Sedinta({
     const queryClient = useQueryClient();
 
     const deleteMeeting = (id: ObjectId) => {
-        fetch('/api/meetings' + `?api_key=${API_KEY}`, {
+        fetch('/api/meetings', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -82,27 +81,19 @@ export default function Sedinta({
         })
             .then((res) => {
                 if (res.ok) {
-                    return res.json();
+                    toast({
+                        title: 'Stergere sedinta',
+                        description: (
+                            <div className="flex gap-2">
+                                <FontAwesomeIcon icon={faTrash} />
+                                <span className="self-center">
+                                    Sedinta a fost stearsa cu succes!
+                                </span>
+                            </div>
+                        ),
+                        duration: 10000,
+                    });
                 }
-                throw new Error('Error deleting meeting');
-            })
-            .then((res) => {
-                queryClient.invalidateQueries({
-                    queryKey: ['meetings'],
-                    exact: false,
-                });
-                toast({
-                    title: 'Stergere sedinta',
-                    description: (
-                        <div className="flex gap-2">
-                            <FontAwesomeIcon icon={faTrash} />
-                            <span className="self-center">
-                                Sedinta a fost stearsa cu succes!
-                            </span>
-                        </div>
-                    ),
-                    duration: 10000,
-                });
             })
             .catch((err) => {
                 toast({
@@ -116,6 +107,12 @@ export default function Sedinta({
                         </div>
                     ),
                     duration: 10000,
+                });
+            })
+            .finally(() => {
+                queryClient.invalidateQueries({
+                    queryKey: ['meetings'],
+                    exact: false,
                 });
             });
     };

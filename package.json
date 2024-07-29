@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.556.0",
@@ -87,12 +88,17 @@
     "typescript": "5.1.6",
     "vanta": "^0.5.24",
     "vaul": "^0.8.0",
+    "vite-tsconfig-paths": "^4.3.2",
     "yup": "^1.2.0",
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@testing-library/react": "^16.0.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "embla-carousel": "^8.0.0-rc19",
     "encoding": "^0.1.13",
-    "prettier-plugin-tailwindcss": "^0.5.14"
+    "jsdom": "^24.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "vitest": "^2.0.4"
   }
 }

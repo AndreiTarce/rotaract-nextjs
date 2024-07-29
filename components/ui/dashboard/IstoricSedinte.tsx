@@ -1,8 +1,8 @@
 'use client';
 
+import { MeetingDto } from '@/dtos/meeting.dto';
 import { MemberDto } from '@/dtos/member.dto';
 import { API_KEY } from '@/lib/constants';
-import { IMeeting } from '@/models/meeting';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -41,7 +41,7 @@ export default function IstoricSedinte({ user }: { user: MemberDto }) {
                 year: year,
                 type: type,
             });
-            return meetings as IMeeting[];
+            return meetings as MeetingDto[];
         },
         placeholderData: keepPreviousData,
     });
@@ -112,7 +112,7 @@ export default function IstoricSedinte({ user }: { user: MemberDto }) {
                 <ScrollArea className="h-96 rounded md:pr-4">
                     <div className="grid grid-cols-responsive-grid gap-4">
                         {!isLoading ? (
-                            data!.map((meeting: IMeeting, index: number) =>
+                            data!.map((meeting: MeetingDto, index: number) =>
                                 meeting.presentMembers?.length ? (
                                     <Sedinta
                                         key={index}

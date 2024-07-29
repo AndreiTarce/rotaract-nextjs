@@ -1,4 +1,4 @@
-import { S3_BUCKET_BASE_URL } from '@/app/config/s3';
+import { S3_BUCKET_BASE_URL } from '@/config/s3';
 import { IBlobFileStorage } from '@/interfaces/IBlobFileStorage';
 import {
     DeleteObjectCommand,

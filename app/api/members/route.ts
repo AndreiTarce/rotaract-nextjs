@@ -1,5 +1,5 @@
-import { S3_BUCKET_MEMBERS_PATH } from '@/app/config/constants';
-import { s3Client } from '@/app/config/s3';
+import { S3_BUCKET_MEMBERS_PATH } from '@/config/constants';
+import { s3Client } from '@/config/s3';
 import { IMember } from '@/interfaces/member/IMember';
 import connectMongoDB from '@/lib/mongodb';
 import { S3Repository } from '@/repositories/S3Repository';
@@ -34,7 +34,6 @@ export async function GET(request: NextRequest, response: NextResponse) {
         if (emailSearchQuery) {
             const member =
                 await memberService.getMemberByEmail(emailSearchQuery);
-            console.log(member);
             return NextResponse.json(member || {}, { status: 200 });
         }
 
@@ -71,6 +70,52 @@ export async function POST(request: NextRequest, response: NextResponse) {
     }
 }
 
+export async function PUT(request: NextRequest, response: NextResponse) {
+    try {
+        await connectMongoDB();
+
+        const formData = await request.formData();
+        const { memberData, memberPictureBuffer, memberPictureType } =
+            await parseCreateMemberFormData(formData);
+
+        if (memberPictureBuffer) {
+            const memberPictureUrl = await storageService.uploadFile(
+                memberPictureBuffer,
+                `${memberData.first_name.toLowerCase()}_${memberData.last_name.toLowerCase()}`,
+                memberPictureType
+            );
+            memberData.picture = memberPictureUrl;
+        }
+
+        const member = await memberService.updateMember(memberData);
+
+        return NextResponse.json(member, { status: 200 });
+    } catch (error) {
+        return errorHandler(error);
+    }
+}
+
+export async function DELETE(request: NextRequest) {
+    try {
+        await connectMongoDB();
+        const { id } = await request.json();
+
+        if (!id) {
+            throw new ValidationError('ID is required');
+        }
+
+        const member = await memberService.deleteMemberWithReturn(id);
+        if (member) {
+            const memberPictureKey = `${member.first_name.toLowerCase()}_${member.last_name.toLowerCase()}`;
+            await storageService.deleteFile(memberPictureKey);
+        }
+
+        return new NextResponse(null, { status: 200 });
+    } catch (error) {
+        return errorHandler(error);
+    }
+}
+
 const parseCreateMemberFormData = async (formData: FormData) => {
     const basicInfo = formData.get('member');
     let buffer: Buffer | null = null;
@@ -94,24 +139,3 @@ const parseCreateMemberFormData = async (formData: FormData) => {
         memberPictureType: picture && picture.type,
     };
 };
-
-export async function DELETE(request: NextRequest) {
-    try {
-        await connectMongoDB();
-        const { id } = await request.json();
-
-        if (!id) {
-            throw new ValidationError('ID is required');
-        }
-
-        const member = await memberService.deleteMemberWithReturn(id);
-        if (member) {
-            const memberPictureKey = `${member.first_name.toLowerCase()}_${member.last_name.toLowerCase()}`;
-            await storageService.deleteFile(memberPictureKey);
-        }
-
-        return NextResponse.json(member, { status: 200 });
-    } catch (error) {
-        return errorHandler(error);
-    }
-}

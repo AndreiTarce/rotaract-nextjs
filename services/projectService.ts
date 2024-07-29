@@ -1,3 +1,5 @@
+import { NotFoundError } from '@/app/api/utils/errors';
+import { toProjectDto } from '@/dtos/project.dto';
 import { IProject } from '@/interfaces/project/IProject';
 import { IProjectRepository } from '@/interfaces/project/IProjectRepository';
 
@@ -10,27 +12,39 @@ export class ProjectService {
 
     async getAllProjects() {
         const projects = await this.repository.findAll();
-        return projects;
+        return projects.map((project) => toProjectDto(project));
     }
 
     async getProjectById(id: string) {
         const project = await this.repository.findById(id);
-        return project;
+        if (project) {
+            return toProjectDto(project);
+        }
+
+        throw new NotFoundError();
     }
 
     async getProjectByUrl(url: string) {
         const project = await this.repository.findByUrl(url);
-        return project;
+        if (project) {
+            return toProjectDto(project);
+        }
+
+        throw new NotFoundError();
     }
 
     async createProject(project: IProject) {
         const createdProject = await this.repository.create(project);
-        return createdProject;
+        return toProjectDto(createdProject);
     }
 
     async updateProject(project: IProject) {
         const updatedProject = await this.repository.update(project);
-        return updatedProject;
+        if (updatedProject) {
+            return toProjectDto(updatedProject);
+        }
+
+        throw new NotFoundError();
     }
 
     async deleteProject(id: string) {

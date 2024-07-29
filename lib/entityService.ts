@@ -3,9 +3,6 @@ import { MemberDto } from '@/dtos/member.dto';
 import CatrafusaleRegistration from '@/models/catrafusaleRegistration';
 import Meeting from '@/models/meeting';
 import Member from '@/models/member';
-import WhitelistedMember, {
-    IWhitelistedMember,
-} from '@/models/whitelistedMember';
 import { ObjectId } from 'mongodb';
 import {
     API_BASE_URL,
@@ -85,13 +82,6 @@ export const getBoardMembers = async () => {
         role: { $nin: ['member', 'past president'] },
     }).lean();
     return boardMembers;
-};
-
-export const getMemberWhitelist = async () => {
-    await connectMongoDB();
-    const whitelistedMembers: IWhitelistedMember[] =
-        await WhitelistedMember.find().lean();
-    return whitelistedMembers;
 };
 
 export const getPastPresidents = async () => {

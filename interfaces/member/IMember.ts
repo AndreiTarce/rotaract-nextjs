@@ -1,4 +1,4 @@
-import { Document, Types } from 'mongoose';
+import { Document } from 'mongoose';
 import { z } from 'zod';
 
 export interface IMemberLinks {
@@ -43,9 +43,7 @@ export interface IMember {
     isBoard: boolean;
 }
 
-export interface IMemberDocument extends IMember, Document {
-    _id: Types.ObjectId;
-}
+export interface IMemberDocument extends IMember, Document {}
 
 export const IMemberLinksZodSchema = z.object({
     facebook: z.string().optional(),

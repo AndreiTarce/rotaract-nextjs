@@ -63,5 +63,16 @@ export class MemberService {
         if (deletedMember) {
             return toMemberDto(deletedMember);
         }
+
+        throw new NotFoundError();
+    }
+
+    async updateMember(member: Partial<MemberDto>) {
+        const updatedMember = await this.repository.update(member);
+        if (updatedMember) {
+            return toMemberDto(updatedMember);
+        }
+
+        throw new NotFoundError();
     }
 }

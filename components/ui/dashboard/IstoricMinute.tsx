@@ -1,31 +1,31 @@
-'use client'
-import { API_KEY, MEETINGS_PATH } from '@/lib/constants'
-import { IMeeting } from '@/models/meeting'
-import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+'use client';
+import { MeetingDto } from '@/dtos/meeting.dto';
+import { API_KEY, MEETINGS_PATH } from '@/lib/constants';
+import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
+import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     keepPreviousData,
     useQuery,
     useQueryClient,
-} from '@tanstack/react-query'
-import { useState } from 'react'
-import { Button } from '../button'
-import { Card, CardContent, CardHeader, CardTitle } from '../card'
-import { ScrollArea } from '../scroll-area'
-import { Separator } from '../separator'
-import Minuta from './Minuta'
-import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
-import Link from 'next/link'
+} from '@tanstack/react-query';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Button } from '../button';
+import { Card, CardContent, CardHeader, CardTitle } from '../card';
+import { ScrollArea } from '../scroll-area';
+import { Separator } from '../separator';
+import Minuta from './Minuta';
 
 export const getMeetings = async (params: {
-    api_key: string
-    year: number
-    type?: string
+    api_key: string;
+    year: number;
+    type?: string;
 }) => {
-    const url = MEETINGS_PATH
-    const { year, api_key, type } = params
-    const startDate = `${year}-01-01`
-    const endDate = `${year}-12-31`
+    const url = MEETINGS_PATH;
+    const { year, api_key, type } = params;
+    const startDate = `${year}-01-01`;
+    const endDate = `${year}-12-31`;
 
     try {
         const res = await fetch(
@@ -33,26 +33,26 @@ export const getMeetings = async (params: {
                 '?' +
                 new URLSearchParams({
                     api_key: api_key,
-                    startDate: startDate,
-                    endDate: endDate,
+                    start_date: startDate,
+                    end_date: endDate,
                     type: type ? type : '',
                 }),
             { cache: 'no-store' }
-        )
+        );
 
         if (!res.ok) {
-            throw new Error('Failed to fetch meetings')
+            throw new Error('Failed to fetch meetings');
         }
 
-        return res.json()
+        return res.json();
     } catch (error) {
-        console.log('Error loading meetings: ', error)
+        console.log('Error loading meetings: ', error);
     }
-}
+};
 
 export default function IstoricMinute() {
-    const [year, setYear] = useState(new Date().getFullYear())
-    const queryClient = useQueryClient()
+    const [year, setYear] = useState(new Date().getFullYear());
+    const queryClient = useQueryClient();
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ['meetings', year],
@@ -60,23 +60,23 @@ export default function IstoricMinute() {
             const { meetings } = await getMeetings({
                 api_key: API_KEY,
                 year: year,
-            })
-            return meetings as IMeeting[]
+            });
+            return meetings as MeetingDto[];
         },
         placeholderData: keepPreviousData,
-    })
+    });
 
     const addYear = () => {
-        setYear((prevYear) => prevYear + 1)
-    }
+        setYear((prevYear) => prevYear + 1);
+    };
 
     const subtractYear = () => {
-        setYear((prevYear) => prevYear - 1)
-    }
+        setYear((prevYear) => prevYear - 1);
+    };
 
     return (
         <Card className="border-none">
-            <CardHeader className="pb-4 flex flex-row justify-between">
+            <CardHeader className="flex flex-row justify-between pb-4">
                 <CardTitle className="self-center">Istoric minute</CardTitle>
                 <Button asChild variant="outline" size="sm">
                     <Link
@@ -92,7 +92,7 @@ export default function IstoricMinute() {
                 </Button>
             </CardHeader>
             <CardContent>
-                <div className="flex justify-between md:max-w-[200px] w-full mb-2">
+                <div className="mb-2 flex w-full justify-between md:max-w-[200px]">
                     <Button
                         variant="outline"
                         size="sm"
@@ -101,17 +101,17 @@ export default function IstoricMinute() {
                     >
                         <FontAwesomeIcon icon={faCaretLeft} />
                     </Button>
-                    <div className="font-semibold flex justify-center items-center">
+                    <div className="flex items-center justify-center font-semibold">
                         {year}
                     </div>
                     <Button variant="outline" size="sm" onClick={addYear}>
                         <FontAwesomeIcon icon={faCaretRight} />
                     </Button>
                 </div>
-                <ScrollArea className="border rounded-lg h-96">
-                    <div className="p-2 md:p-4 flex flex-col">
+                <ScrollArea className="h-96 rounded-lg border">
+                    <div className="flex flex-col p-2 md:p-4">
                         {!isLoading ? (
-                            data!.map((meeting: IMeeting, index: number) => (
+                            data!.map((meeting: MeetingDto, index: number) => (
                                 <>
                                     <Minuta
                                         key={index}
@@ -125,12 +125,12 @@ export default function IstoricMinute() {
                                 </>
                             ))
                         ) : (
-                            <div className="flex items-center w-full h-full">
+                            <div className="flex h-full w-full items-center">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     height="3em"
                                     viewBox="0 0 512 512"
-                                    className="animate-spin mr-2 fill-dark dark:fill-white"
+                                    className="mr-2 animate-spin fill-dark dark:fill-white"
                                 >
                                     <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                                 </svg>
@@ -140,5 +140,5 @@ export default function IstoricMinute() {
                 </ScrollArea>
             </CardContent>
         </Card>
-    )
+    );
 }

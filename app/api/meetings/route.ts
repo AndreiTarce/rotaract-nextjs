@@ -1,82 +1,100 @@
-import { IMember } from '@/interfaces/member/IMember';
 import connectMongoDB from '@/lib/mongodb';
-import Meeting from '@/models/meeting';
-import Member from '@/models/member';
+import { MeetingRepository } from '@/repositories/meetingRepository';
+import { MemberRepository } from '@/repositories/memberRepository';
+import { MeetingService } from '@/services/meetingService';
 import { NextRequest, NextResponse } from 'next/server';
+import { errorHandler } from '../utils/error-handler';
+import { ValidationError } from '../utils/errors';
 
-export async function POST(request: NextRequest) {
-    const api_key = request.nextUrl.searchParams.get('api_key');
-    if (api_key === process.env.NEXT_PUBLIC_API_KEY) {
-        try {
-            const meeting = await request.json();
-            await connectMongoDB();
-            const { presentMembers } = meeting;
-            if (presentMembers && presentMembers.length) {
-                const completeMembers = await Member.find().lean();
-
-                const absentMembers = completeMembers.filter(
-                    (member) =>
-                        !presentMembers.some(
-                            (presentMember: IMember) =>
-                                presentMember.custom_id === member.custom_id
-                        )
-                );
-
-                await Meeting.create({ ...meeting, absentMembers });
-                return NextResponse.json(
-                    { message: 'Meeting created' },
-                    { status: 201 }
-                );
-            }
-            await Meeting.create(meeting);
-            return NextResponse.json(
-                { message: 'Meeting created' },
-                { status: 201 }
-            );
-        } catch (error) {
-            console.log(error);
-            return NextResponse.json({ message: error }, { status: 500 });
-        }
-    }
-    return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 });
-}
+const meetingRepository = new MeetingRepository();
+const memberRepository = new MemberRepository();
+const meetingService = new MeetingService(meetingRepository, memberRepository);
 
 export async function GET(request: NextRequest) {
-    const api_key = request.nextUrl.searchParams.get('api_key');
-    const type = request.nextUrl.searchParams.get('type');
-    if (api_key === process.env.NEXT_PUBLIC_API_KEY) {
-        const startDateString =
-            request.nextUrl.searchParams.get('startDate') || '2014-01-01';
-        const endDateString =
-            request.nextUrl.searchParams.get('endDate') || '2100-01-01';
-        const startDate = new Date(startDateString);
-        const endDate = new Date(endDateString);
+    try {
         await connectMongoDB();
-        if (type) {
-            const meetings = await Meeting.find({
-                start_date: { $gte: startDate, $lte: endDate },
-                type: type,
-            }).sort({ start_date: -1 });
-            return NextResponse.json({ meetings });
-        }
-        const meetings = await Meeting.find({
-            start_date: { $gte: startDate, $lte: endDate },
-        }).sort({ start_date: -1 });
-        return NextResponse.json({ meetings });
+
+        const { dates, type, sort } = parseGetMeetingSearchParams(
+            request.nextUrl.searchParams
+        );
+
+        const meetings = await meetingService.getMeetingsWithQuery(
+            dates,
+            type,
+            sort
+        );
+
+        return NextResponse.json(
+            { results: meetings.length, meetings: meetings },
+            { status: 200 }
+        );
+    } catch (error) {
+        return errorHandler(error);
     }
-    return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 });
+}
+
+export async function POST(request: NextRequest) {
+    try {
+        await connectMongoDB();
+
+        const meeting = await request.json();
+
+        if (!meeting) {
+            throw new ValidationError('Meeting is required');
+        }
+
+        const createdMeeting = await meetingService.createMeeting(meeting);
+
+        return NextResponse.json(createdMeeting, { status: 201 });
+    } catch (error) {
+        return errorHandler(error);
+    }
 }
 
 export async function DELETE(request: NextRequest) {
-    const api_key = request.nextUrl.searchParams.get('api_key');
-    if (api_key === process.env.NEXT_PUBLIC_API_KEY) {
-        const { id } = await request.json();
+    try {
         await connectMongoDB();
-        await Meeting.findByIdAndDelete(id);
-        return NextResponse.json(
-            { message: 'Meeting deleted' },
-            { status: 200 }
-        );
+
+        const { id } = await request.json();
+
+        if (!id) {
+            throw new ValidationError('ID is required');
+        }
+
+        await meetingService.deleteMeeting(id);
+
+        return new NextResponse(null, { status: 200 });
+    } catch (error) {
+        return errorHandler(error);
     }
-    return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 });
 }
+
+const parseGetMeetingSearchParams = (searchParams: URLSearchParams) => {
+    const type = searchParams.get('type');
+    const startDate = searchParams.get('start_date');
+    const endDate = searchParams.get('end_date');
+    const sort = searchParams.get('sort') as 'asc' | 'desc';
+    const dates: { startDate?: Date; endDate?: Date } = {};
+    const query: { dates?: typeof dates; type?: string; sort?: typeof sort } =
+        {};
+
+    if (startDate) {
+        dates.startDate = new Date(startDate);
+    }
+
+    if (endDate) {
+        dates.endDate = new Date(endDate);
+    }
+
+    query.dates = dates;
+
+    if (type) {
+        query.type = type;
+    }
+
+    if (sort) {
+        query.sort = sort;
+    }
+
+    return query;
+};

@@ -1,4 +1,4 @@
-import { Document, Types } from 'mongoose';
+import { Document } from 'mongoose';
 
 export interface IProjectSection {
     title: string;
@@ -26,6 +26,4 @@ export interface IProject {
     cause_link: string;
 }
 
-export interface IProjectDocument extends IProject, Document {
-    _id: Types.ObjectId;
-}
+export interface IProjectDocument extends IProject, Document {}

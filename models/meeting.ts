@@ -1,27 +1,11 @@
-import { ObjectId } from 'mongodb';
+import { IMeetingDocument } from '@/interfaces/meeting/IMeeting';
 import mongoose, { Schema } from 'mongoose';
-import { IMemberDocument } from '../interfaces/member/IMember';
 import { memberSchema } from './member';
 
-export interface IMeeting {
-    _id: ObjectId;
-    type: string;
-    start_date: Date;
-    end_date: Date;
-    location: string;
-    minuteAuthor: string;
-    highlights: string;
-    minuteUrl: string;
-    duration: number;
-    presentMembers: IMemberDocument[];
-    absentMembers: IMemberDocument[];
-}
-
-const meetingSchema = new Schema<IMeeting>(
+const meetingSchema = new Schema<IMeetingDocument>(
     {
         type: String,
         start_date: Date,
-        end_date: Date,
         location: String,
         minuteAuthor: String,
         minuteUrl: String,
