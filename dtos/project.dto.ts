@@ -1,13 +1,12 @@
 import { IProject, IProjectDocument } from '@/interfaces/project/IProject';
-import { Types } from 'mongoose';
 
 export interface ProjectDto extends IProject {
-    _id: Types.ObjectId;
+    id: string;
 }
 
 export function toProjectDto(project: IProjectDocument): ProjectDto {
     return {
-        _id: project._id,
+        id: project._id,
         title: project.title,
         shortDescription: project.shortDescription,
         description: project.description,

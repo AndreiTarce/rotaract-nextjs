@@ -1,13 +1,24 @@
-import { IMeeting, IMeetingDocument } from '@/interfaces/meeting/IMeeting';
-import { Types } from 'mongoose';
+import {
+    IMeeting,
+    IMeetingDocument,
+    IMeetingMember,
+    IMeetingMemberDocument,
+} from '@/interfaces/meeting/IMeeting';
 
-export interface MeetingDto extends IMeeting {
-    _id: Types.ObjectId;
+export interface MeetingDto
+    extends Omit<IMeeting, 'presentMembers' | 'absentMembers'> {
+    id: string;
+    presentMembers: MeetingMemberDto[];
+    absentMembers: MeetingMemberDto[];
+}
+
+export interface MeetingMemberDto extends IMeetingMember {
+    id: string;
 }
 
 export function toMeetingDto(meeting: IMeetingDocument): MeetingDto {
     return {
-        _id: meeting._id,
+        id: meeting._id,
         type: meeting.type,
         start_date: meeting.start_date,
         location: meeting.location,
@@ -15,7 +26,22 @@ export function toMeetingDto(meeting: IMeetingDocument): MeetingDto {
         highlights: meeting.highlights,
         minuteUrl: meeting.minuteUrl,
         duration: meeting.duration,
-        presentMembers: meeting.presentMembers,
-        absentMembers: meeting.absentMembers,
+        presentMembers: meeting.presentMembers.map((member) =>
+            toMeetingMemberDto(member)
+        ),
+        absentMembers: meeting.absentMembers.map((member) =>
+            toMeetingMemberDto(member)
+        ),
+    };
+}
+
+export function toMeetingMemberDto(
+    member: IMeetingMemberDocument | MeetingMemberDto
+): MeetingMemberDto {
+    return {
+        id: member.id,
+        first_name: member.first_name,
+        last_name: member.last_name,
+        picture: member.picture,
     };
 }

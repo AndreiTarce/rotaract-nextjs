@@ -1,6 +1,6 @@
 'use client';
 
-import { MeetingDto } from '@/dtos/meeting.dto';
+import { MeetingDto, MeetingMemberDto } from '@/dtos/meeting.dto';
 import { MemberDto } from '@/dtos/member.dto';
 import { isSecretary } from '@/lib/utils';
 import { faGoogleDrive, faReadme } from '@fortawesome/free-brands-svg-icons';
@@ -13,7 +13,6 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQueryClient } from '@tanstack/react-query';
 import { ChevronsUpDown } from 'lucide-react';
-import { ObjectId } from 'mongodb';
 import Link from 'next/link';
 import { useState } from 'react';
 import {
@@ -65,11 +64,11 @@ export default function Sedinta({
     const [isPresentOpen, setIsPresentOpen] = useState(true);
     const [isAbsentOpen, setIsAbsentOpen] = useState(false);
     const memberIsPresent = meeting.presentMembers?.some(
-        (presentMember) => presentMember._id === user._id
+        (presentMember) => presentMember.id === user.id
     );
     const queryClient = useQueryClient();
 
-    const deleteMeeting = (id: ObjectId) => {
+    const deleteMeeting = (id: string) => {
         fetch('/api/meetings', {
             method: 'DELETE',
             headers: {
@@ -229,7 +228,7 @@ export default function Sedinta({
                                                     ?.length &&
                                                     meeting.presentMembers.map(
                                                         (
-                                                            member: MemberDto,
+                                                            member: MeetingMemberDto,
                                                             index: number
                                                         ) => (
                                                             <MemberPill
@@ -269,7 +268,7 @@ export default function Sedinta({
                                                     ?.length &&
                                                     meeting.absentMembers.map(
                                                         (
-                                                            member: MemberDto,
+                                                            member: MeetingMemberDto,
                                                             index: number
                                                         ) => (
                                                             <MemberPill
@@ -350,7 +349,7 @@ export default function Sedinta({
                                             </AlertDialogCancel>
                                             <AlertDialogAction
                                                 onClick={() =>
-                                                    deleteMeeting(meeting._id)
+                                                    deleteMeeting(meeting.id)
                                                 }
                                             >
                                                 Sterge{' '}
@@ -390,7 +389,7 @@ export default function Sedinta({
                     <AlertDialogFooter>
                         <AlertDialogCancel>Anulare</AlertDialogCancel>
                         <AlertDialogAction
-                            onClick={() => deleteMeeting(meeting._id)}
+                            onClick={() => deleteMeeting(meeting.id)}
                         >
                             Sterge{' '}
                             <FontAwesomeIcon icon={faTrash} className="ml-2" />

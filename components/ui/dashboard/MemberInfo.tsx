@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { Card, CardDescription, CardTitle } from '../card';
 
 export default async function MemberInfo({ user }: { user: MemberDto }) {
-    const attendance = await getAttendance(user._id);
+    const attendance = await getAttendance(user.id);
     return (
         <div className="relative overflow-hidden p-6">
             <div className="flex flex-wrap gap-4">

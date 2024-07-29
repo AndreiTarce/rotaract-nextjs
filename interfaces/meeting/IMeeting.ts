@@ -1,4 +1,4 @@
-import { MemberDto } from '@/dtos/member.dto';
+import { MeetingMemberDto } from '@/dtos/meeting.dto';
 import { Document } from 'mongoose';
 
 export interface IMeeting {
@@ -9,8 +9,21 @@ export interface IMeeting {
     highlights: string;
     minuteUrl: string;
     duration: number;
-    presentMembers: MemberDto[];
-    absentMembers: MemberDto[];
+    presentMembers: MeetingMemberDto[];
+    absentMembers: MeetingMemberDto[];
 }
 
-export interface IMeetingDocument extends IMeeting, Document {}
+export interface IMeetingMember {
+    first_name: string;
+    last_name: string;
+    picture: string;
+}
+
+export interface IMeetingDocument
+    extends Omit<IMeeting, 'presentMembers' | 'absentMembers'>,
+        Document {
+    presentMembers: IMeetingMemberDocument[] | MeetingMemberDto[];
+    absentMembers: IMeetingMemberDocument[] | MeetingMemberDto[];
+}
+
+export interface IMeetingMemberDocument extends IMeetingMember, Document {}

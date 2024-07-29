@@ -1,15 +1,14 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
-import { MemberDto } from '@/dtos/member.dto';
+import { MeetingMemberDto } from '@/dtos/meeting.dto';
 import Image from 'next/image';
 import { Card } from '../card';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '../hover-card';
-import MemberInfoClient from './MemberInfoClient';
+import { HoverCard, HoverCardTrigger } from '../hover-card';
 
-export default function MemberPill({ user }: { user: MemberDto }) {
+export default function MemberPill({ user }: { user: MeetingMemberDto }) {
     return (
         <HoverCard>
             <HoverCardTrigger asChild>
-                <Card className="flex w-fit items-center justify-center gap-1 rounded-full p-1 hover:cursor-pointer">
+                <Card className="flex w-fit items-center justify-center gap-1 rounded-full px-2 py-1 hover:cursor-pointer">
                     <div className="relative h-6 w-6 overflow-hidden rounded-full">
                         <Image
                             src={user.picture || user_placeholder}
@@ -27,9 +26,9 @@ export default function MemberPill({ user }: { user: MemberDto }) {
                     </div>
                 </Card>
             </HoverCardTrigger>
-            <HoverCardContent align="start" className="w-[400px] p-0">
-                <MemberInfoClient user={user} />
-            </HoverCardContent>
+            {/* <HoverCardContent align="start" className="w-[400px] p-0">
+                <MemberInfoClient userId={user.id} />
+            </HoverCardContent> */}
         </HoverCard>
     );
 }

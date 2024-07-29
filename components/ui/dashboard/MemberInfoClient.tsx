@@ -4,7 +4,6 @@ import { MemberDto } from '@/dtos/member.dto';
 import { MEMBER_ATTENDANCE_PATH } from '@/lib/constants';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ObjectId } from 'mongodb';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Card, CardDescription, CardTitle } from '../card';
@@ -14,7 +13,7 @@ export default function MemberInfoClient({ user }: { user: MemberDto }) {
     const [attendance, setAttendance] = useState<any>();
     const [loading, setLoading] = useState(true);
 
-    const getMemberAttendance = async (id: ObjectId) => {
+    const getMemberAttendance = async (id: string) => {
         const url = MEMBER_ATTENDANCE_PATH;
         const res = await fetch(
             url +
@@ -27,7 +26,7 @@ export default function MemberInfoClient({ user }: { user: MemberDto }) {
     };
 
     const getNeededData = async () => {
-        const memberAttendance = await getMemberAttendance(user._id);
+        const memberAttendance = await getMemberAttendance(user.id);
         setAttendance(memberAttendance);
         setLoading(false);
     };

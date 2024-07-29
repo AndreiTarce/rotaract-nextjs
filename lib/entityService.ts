@@ -155,7 +155,7 @@ export const getFeaturedProject = async () => {
     }
 };
 
-export const getAttendance = async (memberId: ObjectId) => {
+export const getAttendance = async (memberId: string) => {
     const memberIdToSearch = new ObjectId(memberId);
     await connectMongoDB();
     const currentDate = new Date();
