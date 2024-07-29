@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../../utils/error-handler';
 import { ValidationError } from '../../utils/errors';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
     try {
         await connectMongoDB();
