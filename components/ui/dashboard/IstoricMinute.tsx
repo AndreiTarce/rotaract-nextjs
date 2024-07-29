@@ -119,7 +119,7 @@ export default function IstoricMinute() {
                                         author={meeting.minuteAuthor}
                                         date={meeting.start_date}
                                         url={meeting.minuteUrl}
-                                        id={meeting._id}
+                                        id={meeting.id}
                                     />
                                     <Separator className="my-1" />
                                 </>

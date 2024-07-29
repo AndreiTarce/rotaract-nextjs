@@ -51,7 +51,7 @@ export enum memberFormStatuses {
 }
 
 const formSchema = z.object({
-    id: z.number().optional(),
+    id: z.string().optional(),
     first_name: z.string().min(1, { message: 'First name is required.' }),
     last_name: z.string().min(1, { message: 'Last name is required.' }),
     picture_link: z.string().optional(),
