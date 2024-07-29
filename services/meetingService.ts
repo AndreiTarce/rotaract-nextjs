@@ -1,5 +1,9 @@
 import { NotFoundError } from '@/app/api/utils/errors';
-import { MeetingDto, toMeetingDto } from '@/dtos/meeting.dto';
+import {
+    MeetingDto,
+    toMeetingDto,
+    toMeetingMemberDto,
+} from '@/dtos/meeting.dto';
 import { IMeetingDocument } from '@/interfaces/meeting/IMeeting';
 import {
     IMeetingRepository,
@@ -62,17 +66,19 @@ export class MeetingService {
 
     async createMeeting(meeting: MeetingDto) {
         const members = await this.memberRepository.findAll();
-        const absentMembers = members.filter(
-            (member) =>
-                !meeting.presentMembers!.some(
-                    (presentMember) => presentMember.id === member.id
-                )
-        );
+        const absentMembers = members
+            .filter(
+                (member) =>
+                    !meeting.presentMembers!.some(
+                        (presentMember) => presentMember.id === member.id
+                    )
+            )
+            .map((member) => toMeetingMemberDto(member));
 
-        const meetingToCreate = {
+        const meetingToCreate = toMeetingDto({
             ...meeting,
             absentMembers,
-        };
+        });
 
         const createdMeeting =
             await this.meetingRepository.create(meetingToCreate);

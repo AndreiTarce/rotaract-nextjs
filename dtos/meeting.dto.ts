@@ -16,9 +16,11 @@ export interface MeetingMemberDto extends IMeetingMember {
     id: string;
 }
 
-export function toMeetingDto(meeting: IMeetingDocument): MeetingDto {
+export function toMeetingDto(
+    meeting: IMeetingDocument | MeetingDto
+): MeetingDto {
     return {
-        id: meeting._id,
+        id: meeting.id,
         type: meeting.type,
         start_date: meeting.start_date,
         location: meeting.location,
