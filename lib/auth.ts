@@ -21,9 +21,10 @@ export const authConfig: NextAuthOptions = {
     callbacks: {
         async signIn({ user }) {
             try {
-                // await memberService.getMemberByEmail(user.email || '');
+                await memberService.getMemberByEmail(user.email || '');
                 return true;
             } catch (error) {
+                console.log(error);
                 return false;
             }
         },
