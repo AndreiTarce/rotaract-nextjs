@@ -13,6 +13,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '../tooltip';
+import EditMemberForm from './EditMemberForm';
 
 export default async function DashboardMemberCard({
     user,
@@ -76,11 +77,11 @@ export default async function DashboardMemberCard({
                 </Card>
             </DialogTrigger>
             <DialogContent className="max-w-[90vw] rounded-xl md:w-fit">
-                {/* <EditMemberForm
+                <EditMemberForm
                     userInfo={user}
                     currentUser={currentUser}
                     readOnly
-                /> */}
+                />
             </DialogContent>
         </Dialog>
     );
