@@ -1,12 +1,12 @@
+import { MemberInteractor } from '@/interactors/memberInteractor';
 import connectMongoDB from '@/lib/mongodb';
 import { MemberRepository } from '@/repositories/memberRepository';
-import { MemberService } from '@/services/memberService';
 import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../../utils/error-handler';
 import { ValidationError } from '../../utils/errors';
 
 const memberRepository = new MemberRepository();
-const memberService = new MemberService(memberRepository);
+const memberInteractor = new MemberInteractor(memberRepository);
 
 export async function GET(
     request: NextRequest,
@@ -20,7 +20,7 @@ export async function GET(
             throw new ValidationError('ID is required');
         }
 
-        const member = await memberService.getMemberById(id);
+        const member = await memberInteractor.getMemberById(id);
         return NextResponse.json(member, { status: 200 });
     } catch (error) {
         return errorHandler(error);

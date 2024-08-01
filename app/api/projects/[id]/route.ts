@@ -1,11 +1,11 @@
+import { ProjectInteractor } from '@/interactors/projectInteractor';
 import connectMongoDB from '@/lib/mongodb';
 import { ProjectRepository } from '@/repositories/projectRepository';
-import { ProjectService } from '@/services/projectService';
 import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../../utils/error-handler';
 
 const projectRepository = new ProjectRepository();
-const projectService = new ProjectService(projectRepository);
+const projectInteractor = new ProjectInteractor(projectRepository);
 
 export async function GET(
     request: NextRequest,
@@ -14,7 +14,7 @@ export async function GET(
     try {
         await connectMongoDB();
         const { id } = params;
-        const project = await projectService.getProjectByUrl(id);
+        const project = await projectInteractor.getProjectByUrl(id);
         return NextResponse.json(project, { status: 200 });
     } catch (error) {
         return errorHandler(error);

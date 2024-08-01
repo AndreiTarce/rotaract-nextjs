@@ -1,7 +1,6 @@
 'use client';
 
 import { MemberDto } from '@/dtos/member.dto';
-import { API_KEY } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -50,11 +49,9 @@ const formSchema = z.object({
         message: 'Url is required.',
     }),
     start_date: z.date(),
-    // end_date: z.date(),
     minuteAuthor: z.string(),
     presentMembers: z.array(z.any()).refine(
         (data) => {
-            console.log(data);
             return data.length;
         },
         {
@@ -90,7 +87,6 @@ export default function AdaugareSedinta({ user }: { user: MemberDto }) {
             type: MEETING_TYPES[0].name,
             minuteUrl: '',
             start_date: new Date(),
-            // end_date: new Date(),
             start_hour: '20:00',
             minuteAuthor: `${user?.first_name} ${user?.last_name}`,
             presentMembers: [],
@@ -120,7 +116,7 @@ export default function AdaugareSedinta({ user }: { user: MemberDto }) {
         start_date.setHours(hours);
         start_date.setMinutes(minutes);
 
-        fetch('/api/meetings' + `?api_key=${API_KEY}`, {
+        fetch('/api/meetings', {
             signal: abortLongFetch.signal,
             method: 'POST',
             headers: {

@@ -1,9 +1,4 @@
-import { MEETING_TYPES } from '@/components/ui/dashboard/constants';
-import { MemberDto } from '@/dtos/member.dto';
 import CatrafusaleRegistration from '@/models/catrafusaleRegistration';
-import Meeting from '@/models/meeting';
-import Member from '@/models/member';
-import { ObjectId } from 'mongodb';
 import {
     API_BASE_URL,
     CAUSES_PATH,
@@ -15,16 +10,25 @@ import {
 } from './constants';
 import connectMongoDB from './mongodb';
 
+const getEntity = async (url: string, cookies?: string) => {
+    const headers = cookies ? { Cookie: cookies } : undefined;
+
+    const response = await fetch(url, { cache: 'no-store', headers });
+
+    if (!response.ok) {
+        throw new Error('Bad response');
+    }
+
+    return response;
+};
+
 export const getProjects = async () => {
     const url = API_BASE_URL + PROJECTS_PATH;
+
     try {
-        const res = await fetch(url, { cache: 'no-store' });
+        const projects = await getEntity(url);
 
-        if (!res.ok) {
-            throw new Error('Failed to fetch projects');
-        }
-
-        return res.json();
+        return projects.json();
     } catch (error) {
         console.log('Error loading projects: ', error);
     }
@@ -32,14 +36,11 @@ export const getProjects = async () => {
 
 export const getProject = async (projectUrl: string) => {
     const url = `${API_BASE_URL + PROJECTS_PATH}/${projectUrl}`;
+
     try {
-        const res = await fetch(url, { cache: 'no-store' });
+        const project = await getEntity(url);
 
-        if (!res.ok) {
-            throw new Error('Failed to fetch project');
-        }
-
-        return res.json();
+        return project.json();
     } catch (error) {
         console.log('Error loading project: ', error);
     }
@@ -47,62 +48,62 @@ export const getProject = async (projectUrl: string) => {
 
 export const getMembers = async () => {
     const url = API_BASE_URL + MEMBERS_PATH;
-    try {
-        const res = await fetch(url, { cache: 'no-store' });
 
-        if (!res.ok) {
-            throw new Error('Failed to fetch members');
-        }
-        return res.json();
+    try {
+        const members = await getEntity(url);
+
+        return members.json();
     } catch (error) {
         console.log('Error loading members: ', error);
     }
 };
 
-export const getMember = async (memberEmail: string) => {
+export const getMemberByEmail = async (
+    memberEmail: string,
+    cookie?: string
+) => {
     const url = `${API_BASE_URL + MEMBERS_PATH}/?email=${memberEmail}`;
+
     try {
-        const res = await fetch(url, {
-            cache: 'no-store',
-        });
+        const member = await getEntity(url, cookie);
 
-        if (!res.ok) {
-            throw new Error('Failed to fetch member');
-        }
-
-        return res.json();
+        return member.json();
     } catch (error) {
         console.log('Error loading member: ', error);
     }
 };
 
 export const getBoardMembers = async () => {
-    await connectMongoDB();
-    const boardMembers: MemberDto[] = await Member.find({
-        role: { $nin: ['member', 'past president'] },
-    }).lean();
-    return boardMembers;
+    const url = `${API_BASE_URL + MEMBERS_PATH}/?is_board=true`;
+
+    try {
+        const boardMembers = await getEntity(url);
+
+        return boardMembers.json();
+    } catch (error) {
+        console.log('Error loading board members: ', error);
+    }
 };
 
 export const getPastPresidents = async () => {
-    await connectMongoDB();
-    const pastPresidents: MemberDto[] = await Member.find({
-        role: 'past president',
-    })
-        .sort({ start_mandate: -1 })
-        .lean();
-    return pastPresidents;
+    const url = `${API_BASE_URL + MEMBERS_PATH}/?role=past president`;
+
+    try {
+        const pastPresidents = await getEntity(url);
+
+        return pastPresidents.json();
+    } catch (error) {
+        console.log('Error loading past presidents: ', error);
+    }
 };
 
 export const getCauses = async () => {
     const url = API_BASE_URL + CAUSES_PATH;
-    try {
-        const res = await fetch(url, { cache: 'no-store' });
 
-        if (!res.ok) {
-            throw new Error('Failed to fetch causes');
-        }
-        return res.json();
+    try {
+        const causes = await getEntity(url);
+
+        return causes.json();
     } catch (error) {
         console.log('Error loading causes: ', error);
     }
@@ -112,13 +113,9 @@ export const getMeetings = async () => {
     const url = API_BASE_URL + MEETINGS_PATH;
 
     try {
-        const res = await fetch(url, { cache: 'no-store' });
+        const meetings = await getEntity(url);
 
-        if (!res.ok) {
-            throw new Error('Failed to fetch meetings');
-        }
-
-        return res.json();
+        return meetings.json();
     } catch (error) {
         console.log('Error loading meetings: ', error);
     }
@@ -128,77 +125,24 @@ export const getCheckoutSession = async (session_id: string) => {
     const url = `${API_BASE_URL + CHECKOUT_PATH}?session_id=${session_id}`;
 
     try {
-        const res = await fetch(url, { cache: 'no-store' });
+        const checkoutSession = await getEntity(url);
 
-        if (!res.ok) {
-            throw new Error('Failed to fetch checkout session');
-        }
-
-        return res.json();
+        return checkoutSession.json();
     } catch (error) {
-        console.log('Error fetching checkout session', error);
+        console.log('Error loading checkout session: ', error);
     }
 };
 
 export const getFeaturedProject = async () => {
     const url = `${API_BASE_URL + FEATURED_PROJECTS_PATH}`;
+
     try {
-        const res = await fetch(url, { cache: 'no-store' });
+        const featuredProject = await getEntity(url);
 
-        if (!res.ok) {
-            throw new Error('Failed to fetch project');
-        }
-
-        return res.json();
+        return featuredProject.json();
     } catch (error) {
-        console.log('Error loading project: ', error);
+        console.log('Error loading featured project: ', error);
     }
-};
-
-export const getAttendance = async (memberId: string) => {
-    const memberIdToSearch = new ObjectId(memberId);
-    await connectMongoDB();
-    const currentDate = new Date();
-    const rotarianYearStartDate =
-        currentDate.getMonth() < 6
-            ? new Date(currentDate.getFullYear() - 1, 6, 1)
-            : new Date(currentDate.getFullYear(), 6, 1);
-    const rotarianYearEndDate =
-        currentDate.getMonth() < 6
-            ? new Date(currentDate.getFullYear(), 6, 1)
-            : new Date(currentDate.getFullYear() + 1, 6, 1);
-
-    const presences = await Meeting.aggregate()
-        .unwind('$presentMembers')
-        .match({
-            'presentMembers._id': memberIdToSearch,
-            type: MEETING_TYPES[0].name,
-            start_date: {
-                $gte: rotarianYearStartDate,
-                $lte: rotarianYearEndDate,
-            },
-        })
-        .group({ _id: null, totalPresences: { $sum: 1 } });
-
-    const meetings = await Meeting.aggregate()
-        .match({
-            type: MEETING_TYPES[0].name,
-            start_date: {
-                $gte: rotarianYearStartDate,
-                $lte: rotarianYearEndDate,
-            },
-        })
-        .group({ _id: null, totalMeetings: { $sum: 1 } });
-
-    let totalAbsences: number = meetings[0]?.totalMeetings;
-    let totalPresences = 0;
-    if (presences && presences.length) {
-        totalPresences = presences[0].totalPresences;
-        totalAbsences -= totalPresences;
-    }
-
-    const attendance = { totalPresences, totalAbsences };
-    return attendance;
 };
 
 export const getCatrafusaleRegistrations = async () => {

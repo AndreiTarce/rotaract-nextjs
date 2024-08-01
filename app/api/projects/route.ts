@@ -1,17 +1,17 @@
+import { ProjectInteractor } from '@/interactors/projectInteractor';
 import connectMongoDB from '@/lib/mongodb';
 import { ProjectRepository } from '@/repositories/projectRepository';
-import { ProjectService } from '@/services/projectService';
 import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../utils/error-handler';
 
 const projectRepository = new ProjectRepository();
-const projectService = new ProjectService(projectRepository);
+const projectInteractor = new ProjectInteractor(projectRepository);
 
 export async function POST(request: NextRequest) {
     try {
         await connectMongoDB();
         const data = await request.json();
-        const project = await projectService.createProject(data);
+        const project = await projectInteractor.createProject(data);
         return NextResponse.json(project, { status: 201 });
     } catch (error) {
         return errorHandler(error);
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
     try {
         await connectMongoDB();
-        const projects = await projectService.getAllProjects();
+        const projects = await projectInteractor.getAllProjects();
         return NextResponse.json(projects, { status: 200 });
     } catch (error) {
         return errorHandler(error);
@@ -32,7 +32,7 @@ export async function DELETE(request: NextRequest) {
     try {
         await connectMongoDB();
         const { id } = await request.json();
-        await projectService.deleteProject(id);
+        await projectInteractor.deleteProject(id);
         return new NextResponse(null, { status: 204 });
     } catch (error) {
         return errorHandler(error);

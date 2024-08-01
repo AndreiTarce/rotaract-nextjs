@@ -10,3 +10,5 @@ export const s3Client = new S3Client({
 
 export const S3_BUCKET_BASE_URL =
     'https://rotaract-visio-bucket.s3.eu-central-1.amazonaws.com';
+export const S3_BUCKET_MEMBERS_PATH = 'members';
+export const S3_BUCKET_NAME = process.env.AWS_S3_BUCKET_NAME as string;

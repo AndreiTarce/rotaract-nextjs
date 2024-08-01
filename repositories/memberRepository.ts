@@ -1,6 +1,10 @@
 import { IMemberDocument } from '@/interfaces/member/IMember';
-import { IMemberRepository } from '@/interfaces/member/IMemberRepository';
+import {
+    IMemberRepository,
+    MemberRepositoryFilterQuery,
+} from '@/interfaces/member/IMemberRepository';
 import Member from '@/models/member';
+import { SortOrder } from 'mongoose';
 import { Repository } from './repository';
 
 export class MemberRepository
@@ -41,5 +45,17 @@ export class MemberRepository
         const deletedMember = await this.findById(id);
         await this.delete(id);
         return deletedMember;
+    }
+
+    async findAllWithQuery(
+        filter: MemberRepositoryFilterQuery,
+        sort?:
+            | string
+            | { [key: string]: SortOrder | { $meta: any } }
+            | [string, SortOrder][]
+            | undefined
+            | null
+    ): Promise<IMemberDocument[] | null> {
+        return this.model.find(filter).sort(sort);
     }
 }

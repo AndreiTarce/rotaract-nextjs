@@ -6,6 +6,7 @@ export interface IMeeting {
     start_date: Date;
     location: string;
     minuteAuthor: string;
+    minuteAuthorId: string;
     highlights: string;
     minuteUrl: string;
     duration: number;

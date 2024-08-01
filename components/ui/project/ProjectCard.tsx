@@ -1,10 +1,10 @@
-import { IProject } from '@/interfaces/project/IProject';
+import { ProjectDto } from '@/dtos/project.dto';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../button';
 import { Card } from '../card';
 
-const ProjectCard = (props: IProject) => {
+const ProjectCard = (props: ProjectDto) => {
     return (
         <Card className="flex max-w-full flex-[1_0_300px] flex-col overflow-hidden rounded-lg border shadow-md">
             <Link href={`projects/${props.url}`}>

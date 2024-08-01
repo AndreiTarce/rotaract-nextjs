@@ -9,4 +9,4 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
 }
 
-export const config = { matcher: ['/api/meetings'] };
+export const config = { matcher: ['/api/meetings', '/api/members'] };

@@ -1,13 +1,13 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
 import { MemberDto } from '@/dtos/member.dto';
-import { getAttendance } from '@/lib/entityService';
+import { getMemberAttendance } from '@/use-cases/members/getMemberAttendance';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { Card, CardDescription, CardTitle } from '../card';
 
 export default async function MemberInfo({ user }: { user: MemberDto }) {
-    const attendance = await getAttendance(user.id);
+    const attendance = await getMemberAttendance(user.id);
     return (
         <div className="relative overflow-hidden p-6">
             <div className="flex flex-wrap gap-4">
@@ -33,12 +33,12 @@ export default async function MemberInfo({ user }: { user: MemberDto }) {
                     <div className="mt-4 flex flex-wrap gap-2 text-sm">
                         <Card className="w-fit rounded-full px-2 py-1">
                             <span className="text-green-800 dark:text-green-500">
-                                Prezențe {attendance.totalPresences}
+                                Prezențe {attendance.presences}
                             </span>
                         </Card>
                         <Card className="w-fit rounded-full px-2 py-1">
                             <span className="text-red-700 dark:text-red-600">
-                                Absențe {attendance.totalAbsences}
+                                Absențe {attendance.absences}
                             </span>
                         </Card>
                     </div>

@@ -25,6 +25,7 @@ export function toMeetingDto(
         start_date: meeting.start_date,
         location: meeting.location,
         minuteAuthor: meeting.minuteAuthor,
+        minuteAuthorId: meeting.minuteAuthorId,
         highlights: meeting.highlights,
         minuteUrl: meeting.minuteUrl,
         duration: meeting.duration,

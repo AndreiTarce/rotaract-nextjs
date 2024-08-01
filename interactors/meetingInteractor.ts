@@ -1,26 +1,17 @@
 import { NotFoundError } from '@/app/api/utils/errors';
-import {
-    MeetingDto,
-    toMeetingDto,
-    toMeetingMemberDto,
-} from '@/dtos/meeting.dto';
+import { MeetingDto, toMeetingDto } from '@/dtos/meeting.dto';
+import { IPeriod } from '@/interfaces/IPeriod';
 import { IMeetingDocument } from '@/interfaces/meeting/IMeeting';
 import {
     IMeetingRepository,
     MeetingRepositoryFilterQuery,
 } from '@/interfaces/meeting/IMeetingRepository';
-import { IMemberRepository } from '@/interfaces/member/IMemberRepository';
 
-export class MeetingService {
+export class MeetingInteractor {
     private meetingRepository: IMeetingRepository;
-    private memberRepository: IMemberRepository;
 
-    constructor(
-        meetingRepository: IMeetingRepository,
-        memberRepository: IMemberRepository
-    ) {
+    constructor(meetingRepository: IMeetingRepository) {
         this.meetingRepository = meetingRepository;
-        this.memberRepository = memberRepository;
     }
 
     async getAllMeetings() {
@@ -65,28 +56,25 @@ export class MeetingService {
     }
 
     async createMeeting(meeting: MeetingDto) {
-        const members = await this.memberRepository.findAll();
-        const absentMembers = members
-            .filter(
-                (member) =>
-                    !meeting.presentMembers!.some(
-                        (presentMember) => presentMember.id === member.id
-                    )
-            )
-            .map((member) => toMeetingMemberDto(member));
-
-        const meetingToCreate = toMeetingDto({
-            ...meeting,
-            absentMembers,
-        });
-
-        const createdMeeting =
-            await this.meetingRepository.create(meetingToCreate);
-
+        const createdMeeting = await this.meetingRepository.create(meeting);
         return toMeetingDto(createdMeeting);
     }
 
     async deleteMeeting(id: string) {
         await this.meetingRepository.delete(id);
+    }
+
+    async getNumberOfMeetings(type: string, period: IPeriod) {
+        return this.meetingRepository.count(type, period);
+    }
+
+    async getMemberPresences(memberId: string, type: string, period: IPeriod) {
+        const presences = await this.meetingRepository.aggregateMemberPresences(
+            memberId,
+            type,
+            period
+        );
+
+        return presences[0]?.totalPresences || 0;
     }
 }

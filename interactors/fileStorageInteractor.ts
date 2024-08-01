@@ -1,6 +1,6 @@
 import { IBlobFileStorage } from '@/interfaces/IBlobFileStorage';
 
-export class FileStorageService {
+export class FileStorageInteractor {
     private repository: IBlobFileStorage;
 
     constructor(repository: IBlobFileStorage) {

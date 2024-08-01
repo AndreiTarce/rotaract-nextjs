@@ -1,7 +1,7 @@
+import { MeetingInteractor } from '@/interactors/meetingInteractor';
 import { MemberRepository } from '@/repositories/memberRepository';
 import { describe, expect, it, vi } from 'vitest';
 import { MeetingRepository } from '../repositories/meetingRepository';
-import { MeetingService } from '../services/meetingService';
 
 describe('MeetingsService', () => {
     it('should return empty array if no meetings found', async () => {
@@ -15,11 +15,11 @@ describe('MeetingsService', () => {
             };
         });
 
-        const meetingService = new MeetingService(
+        const meetingInteractor = new MeetingInteractor(
             new MeetingRepository(),
             new MemberRepository()
         );
-        const meetings = await meetingService.getAllMeetings();
+        const meetings = await meetingInteractor.getAllMeetings();
 
         expect(meetings).toEqual([]);
     }, 3000);

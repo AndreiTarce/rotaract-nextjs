@@ -1,4 +1,5 @@
 import { FilterQuery, SortOrder } from 'mongoose';
+import { IPeriod } from '../IPeriod';
 import { IRepository } from '../IRepository';
 import { IMeetingDocument } from './IMeeting';
 
@@ -14,4 +15,11 @@ export interface IMeetingRepository extends IRepository<IMeetingDocument> {
             | undefined
             | null
     ): Promise<IMeetingDocument[] | null>;
+    count(type: string, period: IPeriod): Promise<number>;
+
+    aggregateMemberPresences(
+        memberId: string,
+        type: string,
+        period: IPeriod
+    ): Promise<{ _id: null; totalPresences: number }[]>;
 }

@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { ProjectDto } from '@/dtos/project.dto';
 import {
     IProject,
     IProjectPartner,
@@ -79,7 +80,7 @@ const ProjectImage = (props: ProjectImageProps) => (
 
 export default async function Project({ params }: { params: { id: string } }) {
     const id = params.id;
-    const project: IProject = await getProject(id);
+    const project: ProjectDto = await getProject(id);
     return (
         <main className="mx-16 mb-8 mt-5 max-md:mx-4 md:mt-12">
             <article className="flex flex-col gap-8">

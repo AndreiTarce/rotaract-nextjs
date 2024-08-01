@@ -1,6 +1,6 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
 import { MemberDto } from '@/dtos/member.dto';
-import { getAttendance } from '@/lib/entityService';
+import { getMemberAttendance } from '@/use-cases/members/getMemberAttendance';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
@@ -21,7 +21,7 @@ export default async function DashboardMemberCard({
     user: MemberDto;
     currentUser: MemberDto;
 }) {
-    const attendance = await getAttendance(user.id);
+    const attendance = await getMemberAttendance(user.id);
 
     return (
         <Dialog>
@@ -52,12 +52,12 @@ export default async function DashboardMemberCard({
                     <div className="flex w-full justify-evenly gap-2 text-xs">
                         <Card className="w-fit rounded-full px-2 py-1">
                             <span className="text-green-800 dark:text-green-500">
-                                Prezențe {attendance.totalPresences}
+                                Prezențe {attendance.presences}
                             </span>
                         </Card>
                         <Card className="w-fit rounded-full px-2 py-1">
                             <span className="text-red-700 dark:text-red-600">
-                                Absențe {attendance.totalAbsences}
+                                Absențe {attendance.absences}
                             </span>
                         </Card>
                     </div>

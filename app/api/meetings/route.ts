@@ -1,14 +1,13 @@
+import { MeetingInteractor } from '@/interactors/meetingInteractor';
 import connectMongoDB from '@/lib/mongodb';
 import { MeetingRepository } from '@/repositories/meetingRepository';
-import { MemberRepository } from '@/repositories/memberRepository';
-import { MeetingService } from '@/services/meetingService';
+import { createMeetingWithPresentMembers } from '@/use-cases/meetings/createMeetingWithPresentMembers';
 import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../utils/error-handler';
 import { ValidationError } from '../utils/errors';
 
 const meetingRepository = new MeetingRepository();
-const memberRepository = new MemberRepository();
-const meetingService = new MeetingService(meetingRepository, memberRepository);
+const meetingInteractor = new MeetingInteractor(meetingRepository);
 
 export async function GET(request: NextRequest) {
     try {
@@ -18,7 +17,7 @@ export async function GET(request: NextRequest) {
             request.nextUrl.searchParams
         );
 
-        const meetings = await meetingService.getMeetingsWithQuery(
+        const meetings = await meetingInteractor.getMeetingsWithQuery(
             dates,
             type,
             sort
@@ -43,7 +42,7 @@ export async function POST(request: NextRequest) {
             throw new ValidationError('Meeting is required');
         }
 
-        const createdMeeting = await meetingService.createMeeting(meeting);
+        const createdMeeting = await createMeetingWithPresentMembers(meeting);
 
         return NextResponse.json(createdMeeting, { status: 201 });
     } catch (error) {
@@ -61,7 +60,7 @@ export async function DELETE(request: NextRequest) {
             throw new ValidationError('ID is required');
         }
 
-        await meetingService.deleteMeeting(id);
+        await meetingInteractor.deleteMeeting(id);
 
         return new NextResponse(null, { status: 200 });
     } catch (error) {

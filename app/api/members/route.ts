@@ -1,43 +1,50 @@
-import { S3_BUCKET_MEMBERS_PATH } from '@/config/constants';
-import { s3Client } from '@/config/s3';
-import { IMember } from '@/interfaces/member/IMember';
+import { MemberDto } from '@/dtos/member.dto';
+import { MemberInteractor } from '@/interactors/memberInteractor';
 import connectMongoDB from '@/lib/mongodb';
-import { S3Repository } from '@/repositories/S3Repository';
 import { MemberRepository } from '@/repositories/memberRepository';
-import { FileStorageService } from '@/services/fileStorageService';
-import { MemberService } from '@/services/memberService';
+import { createMemberWithPicture } from '@/use-cases/members/createMemberWithPicture';
+import { deleteMemberWithPicture } from '@/use-cases/members/deleteMemberWithPicture';
+import { updateMemberWithPicture } from '@/use-cases/members/updateMemberWithPicture';
 import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../utils/error-handler';
 import { ValidationError } from '../utils/errors';
 
 const memberRepository = new MemberRepository();
-const memberService = new MemberService(memberRepository);
-const storageRepository = new S3Repository(
-    s3Client,
-    process.env.AWS_S3_BUCKET_NAME as string,
-    S3_BUCKET_MEMBERS_PATH
-);
-const storageService = new FileStorageService(storageRepository);
+const memberInteractor = new MemberInteractor(memberRepository);
 
 export async function GET(request: NextRequest, response: NextResponse) {
     try {
         await connectMongoDB();
 
+        const roleQuery = request.nextUrl.searchParams.get('role');
+        const isBoardQuery =
+            request.nextUrl.searchParams.get('is_board') === 'true'
+                ? true
+                : false;
+
+        if (isBoardQuery || roleQuery) {
+            const members = await memberInteractor.getMembersWithQuery({
+                isBoard: isBoardQuery,
+                role: roleQuery,
+            });
+            return NextResponse.json(members, { status: 200 });
+        }
+
         const nameSearchQuery = request.nextUrl.searchParams.get('name');
         if (nameSearchQuery) {
             const members =
-                await memberService.getMembersByName(nameSearchQuery);
+                await memberInteractor.getMembersByName(nameSearchQuery);
             return NextResponse.json(members, { status: 200 });
         }
 
         const emailSearchQuery = request.nextUrl.searchParams.get('email');
         if (emailSearchQuery) {
             const member =
-                await memberService.getMemberByEmail(emailSearchQuery);
+                await memberInteractor.getMemberByEmail(emailSearchQuery);
             return NextResponse.json(member || {}, { status: 200 });
         }
 
-        const members = await memberService.getAllMembers();
+        const members = await memberInteractor.getAllMembers();
 
         return NextResponse.json(members, { status: 200 });
     } catch (error) {
@@ -53,16 +60,11 @@ export async function POST(request: NextRequest, response: NextResponse) {
         const { memberData, memberPictureBuffer, memberPictureType } =
             await parseCreateMemberFormData(formData);
 
-        if (memberPictureBuffer) {
-            const memberPictureUrl = await storageService.uploadFile(
-                memberPictureBuffer,
-                `${memberData.first_name.toLowerCase()}_${memberData.last_name.toLowerCase()}`,
-                memberPictureType
-            );
-            memberData.picture = memberPictureUrl;
-        }
-
-        const member = await memberService.createMember(memberData);
+        const member = await createMemberWithPicture(
+            memberData,
+            memberPictureBuffer,
+            memberPictureType
+        );
 
         return NextResponse.json(member, { status: 201 });
     } catch (error) {
@@ -78,16 +80,11 @@ export async function PUT(request: NextRequest, response: NextResponse) {
         const { memberData, memberPictureBuffer, memberPictureType } =
             await parseCreateMemberFormData(formData);
 
-        if (memberPictureBuffer) {
-            const memberPictureUrl = await storageService.uploadFile(
-                memberPictureBuffer,
-                `${memberData.first_name.toLowerCase()}_${memberData.last_name.toLowerCase()}`,
-                memberPictureType
-            );
-            memberData.picture = memberPictureUrl;
-        }
-
-        const member = await memberService.updateMember(memberData);
+        const member = await updateMemberWithPicture(
+            memberData,
+            memberPictureBuffer,
+            memberPictureType
+        );
 
         return NextResponse.json(member, { status: 200 });
     } catch (error) {
@@ -98,17 +95,14 @@ export async function PUT(request: NextRequest, response: NextResponse) {
 export async function DELETE(request: NextRequest) {
     try {
         await connectMongoDB();
-        const { id } = await request.json();
+
+        const id = request.nextUrl.searchParams.get('id');
 
         if (!id) {
             throw new ValidationError('ID is required');
         }
 
-        const member = await memberService.deleteMemberWithReturn(id);
-        if (member) {
-            const memberPictureKey = `${member.first_name.toLowerCase()}_${member.last_name.toLowerCase()}`;
-            await storageService.deleteFile(memberPictureKey);
-        }
+        await deleteMemberWithPicture(id);
 
         return new NextResponse(null, { status: 200 });
     } catch (error) {
@@ -118,14 +112,14 @@ export async function DELETE(request: NextRequest) {
 
 const parseCreateMemberFormData = async (formData: FormData) => {
     const basicInfo = formData.get('member');
-    let buffer: Buffer | null = null;
+    let buffer: Buffer | undefined;
     const picture: File = formData.get('picture_file') as File;
 
     if (!basicInfo) {
         throw new ValidationError('Member info is required');
     }
 
-    const memberObject: IMember = JSON.parse(basicInfo.toString());
+    const memberObject: MemberDto = JSON.parse(basicInfo.toString());
 
     if (picture) {
         const blob = new Blob([picture]);
@@ -136,6 +130,6 @@ const parseCreateMemberFormData = async (formData: FormData) => {
     return {
         memberData: memberObject,
         memberPictureBuffer: buffer,
-        memberPictureType: picture && picture.type,
+        memberPictureType: picture.type,
     };
 };

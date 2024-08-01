@@ -11,10 +11,11 @@ import SectionsTab from '@/components/ui/dashboard/SectionsTab';
 import { Separator } from '@/components/ui/separator';
 import { MemberDto } from '@/dtos/member.dto';
 import { authConfig, loginIsRequiredServer } from '@/lib/auth';
-import { getMember } from '@/lib/entityService';
+import { getMemberByEmail } from '@/lib/entityService';
 import { isSecretary } from '@/lib/utils';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
+import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
     title: 'Dashboard | Rotaract Visio Cluj-Napoca',
@@ -23,7 +24,11 @@ export const metadata: Metadata = {
 export default async function Dashboard() {
     await loginIsRequiredServer();
     const session = await getServerSession(authConfig);
-    const currentUser: MemberDto = await getMember(session?.user?.email!);
+    const cookie = headers().get('cookie') || undefined;
+    const currentUser: MemberDto = await getMemberByEmail(
+        session?.user?.email!,
+        cookie
+    );
 
     const sedinte = (
         <Card className="flex flex-col gap-4 md:grid md:grid-cols-2">

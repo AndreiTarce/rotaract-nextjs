@@ -3,7 +3,7 @@ import { toProjectDto } from '@/dtos/project.dto';
 import { IProject } from '@/interfaces/project/IProject';
 import { IProjectRepository } from '@/interfaces/project/IProjectRepository';
 
-export class ProjectService {
+export class ProjectInteractor {
     private repository: IProjectRepository;
 
     constructor(repository: IProjectRepository) {

@@ -1,3 +1,5 @@
+import { MemberInteractor } from '@/interactors/memberInteractor';
+import { MemberRepository } from '@/repositories/memberRepository';
 import { NextAuthOptions, getServerSession } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { redirect } from 'next/navigation';
@@ -13,17 +15,23 @@ export const authConfig: NextAuthOptions = {
     ],
     callbacks: {
         async signIn({ user }) {
-            const response = await fetch(
-                process.env.BASE_URL + '/api/members?email=' + user.email
-            );
-
-            if (response.ok) {
-                return true;
+            if (!user.email) {
+                return false;
             }
 
-            return false;
+            try {
+                getMemberByEmail(user.email);
+                return true;
+            } catch (error) {
+                return false;
+            }
         },
     },
+};
+
+const getMemberByEmail = async (email: string) => {
+    const memberInteractor = new MemberInteractor(new MemberRepository());
+    await memberInteractor.getMemberByEmail(email);
 };
 
 export async function loginIsRequiredServer() {
