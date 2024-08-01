@@ -3,7 +3,6 @@ import { getMembers } from '@/lib/entityService';
 import { headers } from 'next/headers';
 import { Card, CardContent, CardHeader, CardTitle } from '../card';
 import { ScrollArea } from '../scroll-area';
-import DashboardMemberCard from './DashboardMemberCard';
 
 export default async function MembersPanel({
     currentUser,
@@ -21,13 +20,13 @@ export default async function MembersPanel({
             <CardContent>
                 <ScrollArea className="h-96 w-full rounded pr-4">
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-8">
-                        {members.map((member, index) => (
+                        {/* {members.map((member, index) => (
                             <DashboardMemberCard
                                 user={member}
                                 key={index}
                                 currentUser={currentUser}
                             />
-                        ))}
+                        ))} */}
                     </div>
                 </ScrollArea>
             </CardContent>
