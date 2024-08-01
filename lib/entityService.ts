@@ -73,30 +73,6 @@ export const getMemberByEmail = async (
     }
 };
 
-export const getBoardMembers = async () => {
-    const url = `${API_BASE_URL + MEMBERS_PATH}/?is_board=true`;
-
-    try {
-        const boardMembers = await getEntity(url);
-
-        return boardMembers.json();
-    } catch (error) {
-        console.log('Error loading board members: ', error);
-    }
-};
-
-export const getPastPresidents = async () => {
-    const url = `${API_BASE_URL + MEMBERS_PATH}/?role=past president`;
-
-    try {
-        const pastPresidents = await getEntity(url);
-
-        return pastPresidents.json();
-    } catch (error) {
-        console.log('Error loading past presidents: ', error);
-    }
-};
-
 export const getCauses = async () => {
     const url = API_BASE_URL + CAUSES_PATH;
 

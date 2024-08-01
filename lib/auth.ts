@@ -1,5 +1,3 @@
-import { MemberInteractor } from '@/interactors/memberInteractor';
-import { MemberRepository } from '@/repositories/memberRepository';
 import { NextAuthOptions, getServerSession } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { redirect } from 'next/navigation';
@@ -19,19 +17,19 @@ export const authConfig: NextAuthOptions = {
                 return false;
             }
 
-            try {
-                getMemberByEmail(user.email);
+            const response = await fetch(
+                process.env.BASE_URL +
+                    '/api/check_member_whitelist?email=' +
+                    user.email
+            );
+
+            if (response.ok) {
                 return true;
-            } catch (error) {
-                return false;
             }
+
+            return false;
         },
     },
-};
-
-const getMemberByEmail = async (email: string) => {
-    const memberInteractor = new MemberInteractor(new MemberRepository());
-    await memberInteractor.getMemberByEmail(email);
 };
 
 export async function loginIsRequiredServer() {
