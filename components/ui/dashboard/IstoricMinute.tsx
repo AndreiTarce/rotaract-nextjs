@@ -1,6 +1,6 @@
 'use client';
 import { MeetingDto } from '@/dtos/meeting.dto';
-import { API_KEY, MEETINGS_PATH } from '@/lib/constants';
+import { MEETINGS_PATH } from '@/lib/constants';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,13 +17,9 @@ import { ScrollArea } from '../scroll-area';
 import { Separator } from '../separator';
 import Minuta from './Minuta';
 
-export const getMeetings = async (params: {
-    api_key: string;
-    year: number;
-    type?: string;
-}) => {
+export const getMeetings = async (params: { year: number; type?: string }) => {
     const url = MEETINGS_PATH;
-    const { year, api_key, type } = params;
+    const { year, type } = params;
     const startDate = `${year}-01-01`;
     const endDate = `${year}-12-31`;
 
@@ -32,7 +28,6 @@ export const getMeetings = async (params: {
             url +
                 '?' +
                 new URLSearchParams({
-                    api_key: api_key,
                     start_date: startDate,
                     end_date: endDate,
                     type: type ? type : '',
@@ -58,7 +53,6 @@ export default function IstoricMinute() {
         queryKey: ['meetings', year],
         queryFn: async () => {
             const { meetings } = await getMeetings({
-                api_key: API_KEY,
                 year: year,
             });
             return meetings as MeetingDto[];

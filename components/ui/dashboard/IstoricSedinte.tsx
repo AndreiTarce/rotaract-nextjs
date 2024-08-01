@@ -2,7 +2,6 @@
 
 import { MeetingDto } from '@/dtos/meeting.dto';
 import { MemberDto } from '@/dtos/member.dto';
-import { API_KEY } from '@/lib/constants';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -37,7 +36,6 @@ export default function IstoricSedinte({ user }: { user: MemberDto }) {
         queryKey: ['meetings', year, type],
         queryFn: async () => {
             const { meetings } = await getMeetings({
-                api_key: API_KEY,
                 year: year,
                 type: type,
             });
