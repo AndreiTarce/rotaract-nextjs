@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function authMiddleware(request: NextRequest) {
     const cookies = request.cookies;
 
-    if (process.env.NODE_ENV === 'development') {
-        return NextResponse.next();
-    }
+    // if (process.env.NODE_ENV === 'development') {
+    //     return NextResponse.next();
+    // }
 
     const secureString =
         process.env.NODE_ENV === 'production' ? '__Secure-' : '';

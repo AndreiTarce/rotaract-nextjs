@@ -46,11 +46,11 @@ export const getProject = async (projectUrl: string) => {
     }
 };
 
-export const getMembers = async () => {
+export const getMembers = async (cookie?: string) => {
     const url = API_BASE_URL + MEMBERS_PATH;
 
     try {
-        const members = await getEntity(url);
+        const members = await getEntity(url, cookie);
 
         return members.json();
     } catch (error) {
