@@ -11,7 +11,6 @@ export default async function MembersPanel({
     currentUser: MemberDto;
 }) {
     const cookie = headers().get('cookie') || undefined;
-    console.log(cookie);
     const members: MemberDto[] = await getMembers(cookie);
     return (
         <Card>

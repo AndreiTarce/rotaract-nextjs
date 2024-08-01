@@ -21,9 +21,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Dashboard() {
+    const cookie = headers().get('cookie') || undefined;
     await loginIsRequiredServer();
     const session = await getServerSession(authConfig);
-    const cookie = headers().get('cookie') || undefined;
     const currentUser = await getMemberByEmail(session?.user?.email!, cookie);
 
     const sedinte = (

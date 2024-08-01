@@ -1,8 +1,9 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
 import { MemberDto } from '@/dtos/member.dto';
-import { getMemberAttendance } from '@/use-cases/members/getMemberAttendance';
+import { getMemberAttendance } from '@/lib/entityService';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import { Card } from '../card';
 import { Dialog, DialogContent, DialogTrigger } from '../dialog';
@@ -20,7 +21,8 @@ export default async function DashboardMemberCard({
     user: MemberDto;
     currentUser: MemberDto;
 }) {
-    const attendance = await getMemberAttendance(user.id);
+    const cookie = headers().get('cookie') || undefined;
+    const attendance = await getMemberAttendance({ memberId: user.id }, cookie);
 
     return (
         <Dialog>
