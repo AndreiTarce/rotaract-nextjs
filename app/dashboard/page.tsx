@@ -5,6 +5,8 @@ import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru';
 import ImportantLinks from '@/components/ui/dashboard/ImportantLinks';
 import IstoricMinute from '@/components/ui/dashboard/IstoricMinute';
 import IstoricSedinte from '@/components/ui/dashboard/IstoricSedinte';
+import MemberInfo from '@/components/ui/dashboard/MemberInfo';
+import MembersPanel from '@/components/ui/dashboard/MembersPanel';
 import SectionsTab from '@/components/ui/dashboard/SectionsTab';
 import { Separator } from '@/components/ui/separator';
 import { authConfig, loginIsRequiredServer } from '@/lib/auth';
@@ -34,7 +36,7 @@ export default async function Dashboard() {
 
     const membri = (
         <div className="mb-4">
-            {/* <MembersPanel currentUser={currentUser} /> */}
+            <MembersPanel currentUser={currentUser} />
         </div>
     );
 
@@ -44,7 +46,9 @@ export default async function Dashboard() {
                 Dashboard
             </h1>
             <div className="mb-4 flex flex-col gap-4 md:grid md:grid-cols-3">
-                <Card>{/* <MemberInfo user={currentUser} /> */}</Card>
+                <Card>
+                    <MemberInfo user={currentUser} />
+                </Card>
                 <ImportantLinks />
                 <CotizatieMembru />
             </div>

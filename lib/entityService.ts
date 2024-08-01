@@ -121,6 +121,42 @@ export const getFeaturedProject = async () => {
     }
 };
 
+export const getMemberAttendance = async (
+    filter: {
+        memberId: string;
+        type?: string;
+        start_date?: string;
+        end_date?: string;
+    },
+    cookie?: string
+) => {
+    const searchParams = new URLSearchParams({
+        id: filter.memberId,
+    });
+
+    if (filter.type) {
+        searchParams.append('type', filter.type);
+    }
+
+    if (filter.start_date) {
+        searchParams.append('start_date', filter.start_date);
+    }
+
+    if (filter.end_date) {
+        searchParams.append('end_date', filter.end_date);
+    }
+
+    const url = `${API_BASE_URL + MEMBERS_PATH}/attendance?${searchParams}`;
+
+    try {
+        const attendance = await getEntity(url, cookie);
+
+        return attendance.json();
+    } catch (error) {
+        console.log('Error loading member attendance: ', error);
+    }
+};
+
 export const getCatrafusaleRegistrations = async () => {
     await connectMongoDB();
     const registrations = await CatrafusaleRegistration.find();
