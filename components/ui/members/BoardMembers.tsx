@@ -3,7 +3,7 @@ import { getBoardMembers } from '@/lib/entityService';
 import MemberCard from './MemberCard';
 
 export default async function BoardMembersList() {
-    const boardMembers = await getBoardMembers();
+    const boardMembers: MemberDto[] = await getBoardMembers();
     boardMembers.sort((a, b) =>
         a.custom_id && b.custom_id ? a.custom_id - b.custom_id : 0
     );
