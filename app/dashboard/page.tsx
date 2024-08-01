@@ -1,10 +1,17 @@
 import { Card } from '@/components/ui/card';
+import AdaugareSedinta from '@/components/ui/dashboard/AdaugareSedinta';
+import AddMemberFormCard from '@/components/ui/dashboard/AddMemberFormCard';
+import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru';
+import ImportantLinks from '@/components/ui/dashboard/ImportantLinks';
 import IstoricMinute from '@/components/ui/dashboard/IstoricMinute';
 import IstoricSedinte from '@/components/ui/dashboard/IstoricSedinte';
+import MemberInfo from '@/components/ui/dashboard/MemberInfo';
 import MembersPanel from '@/components/ui/dashboard/MembersPanel';
+import SectionsTab from '@/components/ui/dashboard/SectionsTab';
 import { Separator } from '@/components/ui/separator';
 import { authConfig, loginIsRequiredServer } from '@/lib/auth';
 import { getMemberByEmail } from '@/lib/entityService';
+import { isSecretary } from '@/lib/utils';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { headers } from 'next/headers';
@@ -38,7 +45,7 @@ export default async function Dashboard() {
             <h1 className="mb-8 text-3xl font-bold tracking-tight">
                 Dashboard
             </h1>
-            {/* <div className="mb-4 flex flex-col gap-4 md:grid md:grid-cols-3">
+            <div className="mb-4 flex flex-col gap-4 md:grid md:grid-cols-3">
                 <Card>
                     <MemberInfo user={currentUser} />
                 </Card>
@@ -56,7 +63,7 @@ export default async function Dashboard() {
                         </div>
                     )
                 }
-            /> */}
+            />
         </main>
     );
 }
