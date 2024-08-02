@@ -2,6 +2,7 @@
 
 import { MemberDto } from '@/dtos/member.dto';
 import { cn } from '@/lib/utils';
+import { IMeetingFormSchema, meetingFormSchema } from '@/schemas/meetingSchema';
 import { faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -10,7 +11,6 @@ import { format } from 'date-fns';
 import { AlertOctagon, CalendarIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { Button } from '../button';
 import { Calendar } from '../calendar';
 import { Card, CardContent, CardHeader, CardTitle } from '../card';
@@ -38,34 +38,6 @@ import { toast } from '../use-toast';
 import MemberSelect, { IPresentMemberSelect } from './MemberSelect';
 import { MEETING_TYPES } from './constants';
 
-const formSchema = z.object({
-    location: z.string().min(1, {
-        message: 'Location is required.',
-    }),
-    type: z.string().min(1, {
-        message: 'Type is required.',
-    }),
-    minuteUrl: z.string().min(1, {
-        message: 'Url is required.',
-    }),
-    start_date: z.date(),
-    minuteAuthor: z.string(),
-    presentMembers: z.array(z.any()).refine(
-        (data) => {
-            return data.length;
-        },
-        {
-            message: 'At least one member must be present.',
-        }
-    ),
-    start_hour: z.string().min(1, {
-        message: 'Hour is required',
-    }),
-    highlights: z.string(),
-});
-
-export type MeetingFormSchema = z.infer<typeof formSchema>;
-
 export default function AdaugareSedinta({ user }: { user: MemberDto }) {
     const [status, setStatus] = useState('');
     const [presentMembers, setPresentMembers] = useState<
@@ -80,8 +52,8 @@ export default function AdaugareSedinta({ user }: { user: MemberDto }) {
         error: 'error',
     };
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<IMeetingFormSchema>({
+        resolver: zodResolver(meetingFormSchema),
         defaultValues: {
             location: 'Facultatea de Business',
             type: MEETING_TYPES[0].name,
@@ -89,6 +61,7 @@ export default function AdaugareSedinta({ user }: { user: MemberDto }) {
             start_date: new Date(),
             start_hour: '20:00',
             minuteAuthor: `${user?.first_name} ${user?.last_name}`,
+            minuteAuthorId: user.id,
             presentMembers: [],
             highlights: '',
         },
@@ -97,7 +70,7 @@ export default function AdaugareSedinta({ user }: { user: MemberDto }) {
     const getPresentMembersArray = (array: IPresentMemberSelect[]) =>
         array.map((member) => member.value);
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    function onSubmit(values: IMeetingFormSchema) {
         const abortLongFetch = new AbortController();
         const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000);
 

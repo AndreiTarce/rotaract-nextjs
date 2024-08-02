@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const meetingSchema = z.object({
+export const meetingFormSchema = z.object({
     type: z.string().min(1, {
         message: 'Type is required.',
     }),
@@ -9,6 +9,7 @@ export const meetingSchema = z.object({
         message: 'Location is required.',
     }),
     minuteAuthor: z.string(),
+    minuteAuthorId: z.string(),
     minuteUrl: z.string().min(1, {
         message: 'Url is required.',
     }),
@@ -25,3 +26,5 @@ export const meetingSchema = z.object({
         message: 'Hour is required',
     }),
 });
+
+export type IMeetingFormSchema = z.infer<typeof meetingFormSchema>;

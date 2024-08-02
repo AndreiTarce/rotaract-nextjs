@@ -22,12 +22,12 @@ export const FACULTY_OF_BUSINESS_WEBSITE_URL = 'https://tbs.ubbcluj.ro/';
 export const MEMBRI_ROTARACT_URL = 'https://membri.rotaract.ro/';
 export const ROTARACT_VISIO_EMAIL = 'rotaractvisiocluj@gmail.com';
 export const ROTARACT_VISIO_CONTACT_EMAIL = 'contact@rotaractvisio.com';
-export const ROTARACT_VISIO_DRIVE_URL = process.env
-    .ROTARACT_VISIO_DRIVE_URL as string;
-export const ROTARACT_VISIO_DIVERSE_DRIVE_URL = process.env
-    .ROTARACT_VISIO_DIVERSE_DRIVE_URL as string;
-export const ROTARACT_VISIO_MINUTE_DRIVE_URL = process.env
-    .ROTARACT_VISIO_MINUTE_DRIVE_URL as string;
+export const ROTARACT_VISIO_DRIVE_URL =
+    'https://drive.google.com/drive/folders/1ZWdkmv2vzPRoW67s1A-1xt5b_C0DxYZg';
+export const ROTARACT_VISIO_DIVERSE_DRIVE_URL =
+    'https://drive.google.com/drive/folders/1Xedctsv1RLFWkKn-q3XaR9_-EdIA6ic3';
+export const ROTARACT_VISIO_MINUTE_DRIVE_URL =
+    'https://drive.google.com/drive/folders/1jVd1i82MoMS16nNJGcphXd2rHUDPIeR8?usp=drive_link';
 
 //DATES
 const currentDate = new Date();
