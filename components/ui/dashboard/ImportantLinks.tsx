@@ -1,16 +1,21 @@
-import Link from 'next/link'
-import { Card, CardContent, CardHeader, CardTitle } from '../card'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+    MEMBRI_ROTARACT_URL,
+    ROTARACT_VISIO_DIVERSE_DRIVE_URL,
+    ROTARACT_VISIO_DRIVE_URL,
+} from '@/lib/constants';
+import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
 import {
     faArrowUpRightFromSquare,
     faLink,
-} from '@fortawesome/free-solid-svg-icons'
-import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
+import { Card, CardContent, CardHeader, CardTitle } from '../card';
 
 export default function ImportantLinks() {
     return (
         <Card>
-            <CardHeader className="pb-2 flex flex-row justify-between">
+            <CardHeader className="flex flex-row justify-between pb-2">
                 <CardTitle>Important links</CardTitle>
                 <FontAwesomeIcon
                     icon={faLink}
@@ -20,9 +25,9 @@ export default function ImportantLinks() {
             <CardContent>
                 <div className="flex flex-col">
                     <Link
-                        href="https://drive.google.com/drive/folders/1ZWdkmv2vzPRoW67s1A-1xt5b_C0DxYZg"
+                        href={ROTARACT_VISIO_DRIVE_URL}
                         target="_blank"
-                        className="text-muted-foreground w-fit"
+                        className="w-fit text-muted-foreground"
                     >
                         <FontAwesomeIcon
                             icon={faGoogleDrive}
@@ -36,9 +41,9 @@ export default function ImportantLinks() {
                         />
                     </Link>
                     <Link
-                        href="https://membri.rotaract.ro/"
+                        href={MEMBRI_ROTARACT_URL}
                         target="_blank"
-                        className="text-muted-foreground w-fit"
+                        className="w-fit text-muted-foreground"
                     >
                         membri.rotaract.ro
                         <FontAwesomeIcon
@@ -48,9 +53,9 @@ export default function ImportantLinks() {
                         />
                     </Link>
                     <Link
-                        href="https://drive.google.com/drive/folders/1Xedctsv1RLFWkKn-q3XaR9_-EdIA6ic3"
+                        href={ROTARACT_VISIO_DIVERSE_DRIVE_URL}
                         target="_blank"
-                        className="text-muted-foreground w-fit"
+                        className="w-fit text-muted-foreground"
                     >
                         Diverse
                         <FontAwesomeIcon
@@ -62,5 +67,5 @@ export default function ImportantLinks() {
                 </div>
             </CardContent>
         </Card>
-    )
+    );
 }

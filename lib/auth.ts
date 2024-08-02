@@ -1,6 +1,7 @@
 import { NextAuthOptions, getServerSession } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { redirect } from 'next/navigation';
+import { API_BASE_URL } from './constants';
 
 export const authConfig: NextAuthOptions = {
     providers: [
@@ -18,9 +19,7 @@ export const authConfig: NextAuthOptions = {
             }
 
             const response = await fetch(
-                process.env.BASE_URL +
-                    '/api/check_member_whitelist?email=' +
-                    user.email
+                API_BASE_URL + '/api/check_member_whitelist?email=' + user.email
             );
 
             if (response.ok) {

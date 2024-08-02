@@ -1,3 +1,4 @@
+import { ROTARACT_VISIO_EMAIL } from '@/lib/constants';
 import {
     Body,
     Container,
@@ -51,7 +52,7 @@ export const CatrafusaleFlashSaleEmail = (
                     un pachet și să completeze formularul. Ultimul pas va fi
                     pagina de plată, unde va putea introduce codul promoțional.
                     Dacă întâmpinați probleme sau aveți întrebări, vă rugăm să
-                    ne contactați la adresa de email rotaractvisiocluj@gmail.com
+                    ne contactați la adresa de email {ROTARACT_VISIO_EMAIL}
                     sau pe conturile noastre de social media.
                 </Text>
             </Container>

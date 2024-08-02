@@ -6,8 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../utils/error-handler';
 import { ValidationError } from '../utils/errors';
 
-const meetingRepository = new MeetingRepository();
-const meetingInteractor = new MeetingInteractor(meetingRepository);
+const meetingInteractor = new MeetingInteractor(new MeetingRepository());
 
 export async function GET(request: NextRequest) {
     try {

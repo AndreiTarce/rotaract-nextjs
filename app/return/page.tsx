@@ -1,30 +1,31 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { getCheckoutSession } from '@/lib/entityService'
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { redirect } from 'next/navigation'
-import Stripe from 'stripe'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import { ROTARACT_VISIO_EMAIL } from '@/lib/constants';
+import { getCheckoutSession } from '@/lib/entityService';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { redirect } from 'next/navigation';
+import Stripe from 'stripe';
 
 export default async function Return({
     searchParams,
 }: {
-    searchParams: { session_id: string }
+    searchParams: { session_id: string };
 }) {
-    const { session_id } = searchParams
+    const { session_id } = searchParams;
 
     const { session }: { session: Stripe.Checkout.Session } =
-        await getCheckoutSession(session_id)
+        await getCheckoutSession(session_id);
 
     if (session.status === 'open') {
-        return redirect('/')
+        return redirect('/');
     }
 
     if (session.status === 'complete')
         return (
-            <main className="mt-5 md:mt-12 mx-24 max-md:mx-4 mb-8 flex justify-center min-h-[58vh]">
-                <Card className="w-fit h-fit">
-                    <div className="flex justify-center mt-8">
+            <main className="mx-24 mb-8 mt-5 flex min-h-[58vh] justify-center max-md:mx-4 md:mt-12">
+                <Card className="h-fit w-fit">
+                    <div className="mt-8 flex justify-center">
                         <FontAwesomeIcon
                             icon={faCheckCircle}
                             className="text-green-500"
@@ -33,7 +34,7 @@ export default async function Return({
                     </div>
                     <CardHeader>
                         <CardTitle>
-                            <h1 className="text-5xl font-extrabold max-md:text-2xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent p-2 text-center">
+                            <h1 className="bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text p-2 text-center text-5xl font-extrabold leading-none text-transparent max-md:text-2xl">
                                 Vă mulțumim pentru donație!
                             </h1>
                         </CardTitle>
@@ -48,16 +49,16 @@ export default async function Return({
                             Dacă aveți întrebări, vă rugăm să ne contactați la
                             adresa{' '}
                             <a
-                                href="mailto:rotaractvisiocluj@gmail.com"
+                                href={`mailto:${ROTARACT_VISIO_EMAIL}`}
                                 className="text-muted-foreground"
                             >
-                                rotaractvisiocluj@gmail.com
+                                {ROTARACT_VISIO_EMAIL}
                             </a>
                         </p>
                     </CardContent>
                 </Card>
             </main>
-        )
+        );
 
-    return null
+    return null;
 }

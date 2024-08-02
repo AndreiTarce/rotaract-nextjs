@@ -1,3 +1,4 @@
+import { ROTARACT_VISIO_EMAIL } from '@/lib/constants';
 import { TicketNumbers } from '@/models/catrafusaleRaffleRegistration';
 import {
     Body,
@@ -105,7 +106,7 @@ export const CatrafusaleRaffleTicketEmail = (ticket_numbers: TicketNumbers) => (
                     Dacă te afli printre câștigători, te vom contacta în ziua
                     următoare pentru a-ți revendica premiul. Pentru alte
                     întrebări, ne poți contacta pe paginile noastre de social
-                    media sau la adresa de e-mail rotaractvisiocluj@gmail.com.
+                    media sau la adresa de e-mail {ROTARACT_VISIO_EMAIL}.
                 </Text>
                 <Text style={text}>Mult noroc! Echipa CatrafuSALE</Text>
             </Container>

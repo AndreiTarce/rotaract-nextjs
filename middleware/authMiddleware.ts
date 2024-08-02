@@ -1,11 +1,12 @@
+import { API_BASE_URL } from '@/lib/constants';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function authMiddleware(request: NextRequest) {
     const cookies = request.cookies;
 
-    // if (process.env.NODE_ENV === 'development') {
-    //     return NextResponse.next();
-    // }
+    if (process.env.NODE_ENV === 'development') {
+        return NextResponse.next();
+    }
 
     const secureString =
         process.env.NODE_ENV === 'production' ? '__Secure-' : '';
@@ -18,7 +19,7 @@ export async function authMiddleware(request: NextRequest) {
         'Content-Type': 'application/json',
         Cookie: cookies.toString(),
     };
-    const url = `${process.env.BASE_URL}/api/auth/session`;
+    const url = `${API_BASE_URL}/api/auth/session`;
 
     const response = await fetch(url, {
         headers,

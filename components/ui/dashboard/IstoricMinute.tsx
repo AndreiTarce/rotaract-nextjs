@@ -1,6 +1,9 @@
 'use client';
 import { MeetingDto } from '@/dtos/meeting.dto';
-import { MEETINGS_PATH } from '@/lib/constants';
+import {
+    MEETINGS_PATH,
+    ROTARACT_VISIO_MINUTE_DRIVE_URL,
+} from '@/lib/constants';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -74,7 +77,7 @@ export default function IstoricMinute() {
                 <CardTitle className="self-center">Istoric minute</CardTitle>
                 <Button asChild variant="outline" size="sm">
                     <Link
-                        href="https://drive.google.com/drive/folders/1jVd1i82MoMS16nNJGcphXd2rHUDPIeR8?usp=drive_link"
+                        href={ROTARACT_VISIO_MINUTE_DRIVE_URL}
                         className="!mt-0"
                         target="_blank"
                     >

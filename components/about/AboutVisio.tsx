@@ -1,5 +1,6 @@
-import clujImage from '@/assets/images/cluj4.webp'
-import clujBiserica from '@/assets/images/cluj_biserica2.webp'
+import clujImage from '@/assets/images/cluj4.webp';
+import clujBiserica from '@/assets/images/cluj_biserica2.webp';
+import { ROTARY_VISIO_WEBSITE_URL } from '@/lib/constants';
 import {
     faArrowUpRightFromSquare,
     faBrain,
@@ -8,17 +9,17 @@ import {
     faHandHoldingMedical,
     faHandshakeAngle,
     faUserGroup,
-} from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import Value from './values/Value'
-import ValuesCarousel from './values/ValuesCarousel'
-import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import Value from './values/Value';
+import ValuesCarousel from './values/ValuesCarousel';
 
 export default function AboutVisio() {
     return (
-        <Card className="overflow-hidden mt-8 shadow-md border rounded-lg relative z-0">
+        <Card className="relative z-0 mt-8 overflow-hidden rounded-lg border shadow-md">
             <div className="md:grid md:grid-cols-[50%_50%]">
                 <Image
                     src={clujImage}
@@ -35,17 +36,17 @@ export default function AboutVisio() {
 
                 <div className="h-fit">
                     <CardHeader>
-                        <CardTitle className="text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent text-end">
+                        <CardTitle className="bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-end text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
                             Despre Visio
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="relative">
-                        <div className="text-end dark:text-muted-foreground md:text-muted-foreground mb-8 relative z-10">
+                        <div className="relative z-10 mb-8 text-end dark:text-muted-foreground md:text-muted-foreground">
                             <p className="mb-4 max-md:text-justify">
                                 Clubul nostru a fost chartat în data de 12
                                 octombrie 2013, sub îndrumarea clubului{' '}
                                 <Link
-                                    href="https://rotaryvisio.ro/"
+                                    href={ROTARY_VISIO_WEBSITE_URL}
                                     target="_blank"
                                     className="underline underline-offset-4"
                                 >
@@ -114,5 +115,5 @@ export default function AboutVisio() {
                 </div>
             </div>
         </Card>
-    )
+    );
 }

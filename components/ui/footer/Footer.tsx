@@ -1,19 +1,25 @@
-import logo from '@/assets/images/visio.webp'
+import logo from '@/assets/images/visio.webp';
+import {
+    ROTARACT_VISIO_FACEBOOK_URL,
+    ROTARACT_VISIO_INSTAGRAM_URL,
+    ROTARACT_VISIO_LINKEDIN_URL,
+    ROTARACT_VISIO_TIKTOK_URL,
+} from '@/lib/constants';
 import {
     faFacebook,
     faInstagram,
     faLinkedin,
     faTiktok,
-} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Separator } from '../separator'
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Separator } from '../separator';
 
 export default function Footer() {
-    const today = new Date()
+    const today = new Date();
     return (
-        <div className="my-8 dark:text-muted-foreground bottom-0">
+        <div className="bottom-0 my-8 dark:text-muted-foreground">
             <Separator className="mb-8" />
             <div className="mx-16 max-md:mx-4">
                 <div className="grid grid-cols-3 grid-rows-1 gap-0 max-md:flex max-md:flex-col max-md:items-center max-md:gap-8">
@@ -24,7 +30,7 @@ export default function Footer() {
                         className="justify-self-start max-md:w-[40vw]"
                         quality={100}
                     />
-                    <div className="flex gap-8 justify-self-center justify-center w-full max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-0 max-md:gap-y-4">
+                    <div className="flex w-full justify-center gap-8 justify-self-center max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-0 max-md:gap-y-4">
                         <Link
                             href="/"
                             className="max-md:w-1/3 max-md:text-center"
@@ -58,28 +64,28 @@ export default function Footer() {
                     </div>
                     <div className="flex gap-4 justify-self-end">
                         <Link
-                            href="https://www.instagram.com/rotaractvisiocj/"
+                            href={ROTARACT_VISIO_INSTAGRAM_URL}
                             target="_blank"
                             aria-label="Check us out on Instagram"
                         >
                             <FontAwesomeIcon icon={faInstagram} size="xl" />
                         </Link>
                         <Link
-                            href="https://www.facebook.com/RotaractVisioClujNapoca"
+                            href={ROTARACT_VISIO_FACEBOOK_URL}
                             target="_blank"
                             aria-label="Check us out on Facebook"
                         >
                             <FontAwesomeIcon icon={faFacebook} size="xl" />
                         </Link>
                         <Link
-                            href="https://www.linkedin.com/company/rotaract-cluj-napoca-visio/"
+                            href={ROTARACT_VISIO_LINKEDIN_URL}
                             target="_blank"
                             aria-label="Check us out on Linkedin"
                         >
                             <FontAwesomeIcon icon={faLinkedin} size="xl" />
                         </Link>
                         <Link
-                            href="https://www.tiktok.com/@rotaractvisiocluj"
+                            href={ROTARACT_VISIO_TIKTOK_URL}
                             target="_blank"
                             aria-label="Check us out on TikTok"
                         >
@@ -87,7 +93,7 @@ export default function Footer() {
                         </Link>
                     </div>
                 </div>
-                <div className="flex justify-center mt-8 text-center gap-2 max-md:flex-col">
+                <div className="mt-8 flex justify-center gap-2 text-center max-md:flex-col">
                     <span>
                         Copyright © {today.getFullYear()} Rotaract Visio
                         Cluj-Napoca
@@ -97,5 +103,5 @@ export default function Footer() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

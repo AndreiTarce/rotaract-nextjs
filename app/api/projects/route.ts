@@ -4,8 +4,7 @@ import { ProjectRepository } from '@/repositories/projectRepository';
 import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../utils/error-handler';
 
-const projectRepository = new ProjectRepository();
-const projectInteractor = new ProjectInteractor(projectRepository);
+const projectInteractor = new ProjectInteractor(new ProjectRepository());
 
 export async function POST(request: NextRequest) {
     try {

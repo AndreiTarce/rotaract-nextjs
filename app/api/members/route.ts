@@ -9,8 +9,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../utils/error-handler';
 import { ValidationError } from '../utils/errors';
 
-const memberRepository = new MemberRepository();
-const memberInteractor = new MemberInteractor(memberRepository);
+const memberInteractor = new MemberInteractor(new MemberRepository());
 
 export async function GET(request: NextRequest, response: NextResponse) {
     try {

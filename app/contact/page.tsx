@@ -4,15 +4,23 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-} from '@/components/ui/card'
-import ContactForm from '@/components/ui/contact/ContactForm'
-import ContactInfoCard from '@/components/ui/contact/ContactInfoCard'
+} from '@/components/ui/card';
+import ContactForm from '@/components/ui/contact/ContactForm';
+import ContactInfoCard from '@/components/ui/contact/ContactInfoCard';
+import {
+    FACULTY_OF_BUSINESS_WEBSITE_URL,
+    ROTARACT_VISIO_EMAIL,
+    ROTARACT_VISIO_FACEBOOK_URL,
+    ROTARACT_VISIO_INSTAGRAM_URL,
+    ROTARACT_VISIO_LINKEDIN_URL,
+    ROTARACT_VISIO_TIKTOK_URL,
+} from '@/lib/constants';
 import {
     faFacebook,
     faInstagram,
     faLinkedin,
     faTiktok,
-} from '@fortawesome/free-brands-svg-icons'
+} from '@fortawesome/free-brands-svg-icons';
 import {
     faArrowUpRightFromSquare,
     faCalendar,
@@ -21,22 +29,22 @@ import {
     faEnvelope,
     faHashtag,
     faLocationDot,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Metadata } from 'next'
-import Link from 'next/link'
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Contact | Rotaract Visio Cluj-Napoca',
     description:
         'Vrei să te implici în comunitatea locală, sau pur și simplu vrei să afli mai multe despre noi? Suntem nerăbdători să auzim noi inițiative, așa că nu ezita să ne contactezi!',
-}
+};
 
 export default function Contact() {
     return (
-        <main className="mt-5 md:mt-12 mx-24 max-md:mx-4 mb-8 grid md:grid-cols-2 min-h-screen">
+        <main className="mx-24 mb-8 mt-5 grid min-h-screen max-md:mx-4 md:mt-12 md:grid-cols-2">
             <div className="mb-4">
-                <h1 className="w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-4">
+                <h1 className="mb-4 w-fit bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
                     Contactează-ne
                 </h1>
                 <p className="text-muted-foreground">
@@ -44,19 +52,19 @@ export default function Contact() {
                     vrei să afli mai multe despre noi? Suntem nerăbdători să
                     auzim noi inițiative, așa că nu ezita să ne contactezi!
                 </p>
-                <div className="grid md:grid-cols-2 gap-4 mt-8">
+                <div className="mt-8 grid gap-4 md:grid-cols-2">
                     <div className="flex flex-col gap-4">
                         <ContactInfoCard title="Email" icon={faEnvelope}>
-                            <Link href="mailto:rotaractvisiocluj@gmail.com">
+                            <Link href={`mailto:${ROTARACT_VISIO_EMAIL}`}>
                                 <p className="break-all text-muted-foreground">
-                                    rotaractvisiocluj@gmail.com
+                                    {ROTARACT_VISIO_EMAIL}
                                 </p>
                             </Link>
                         </ContactInfoCard>
                         <ContactInfoCard title="Social Media" icon={faHashtag}>
                             <div className="flex gap-4 text-muted-foreground">
                                 <Link
-                                    href="https://www.instagram.com/rotaractvisiocj/"
+                                    href={ROTARACT_VISIO_INSTAGRAM_URL}
                                     target="_blank"
                                 >
                                     <FontAwesomeIcon
@@ -65,7 +73,7 @@ export default function Contact() {
                                     />
                                 </Link>
                                 <Link
-                                    href="https://www.facebook.com/RotaractVisioClujNapoca"
+                                    href={ROTARACT_VISIO_FACEBOOK_URL}
                                     target="_blank"
                                 >
                                     <FontAwesomeIcon
@@ -74,7 +82,7 @@ export default function Contact() {
                                     />
                                 </Link>
                                 <Link
-                                    href="https://www.linkedin.com/company/rotaract-cluj-napoca-visio"
+                                    href={ROTARACT_VISIO_LINKEDIN_URL}
                                     target="_blank"
                                 >
                                     <FontAwesomeIcon
@@ -83,7 +91,7 @@ export default function Contact() {
                                     />
                                 </Link>
                                 <Link
-                                    href="https://www.tiktok.com/@rotaractvisiocluj"
+                                    href={ROTARACT_VISIO_TIKTOK_URL}
                                     target="_blank"
                                 >
                                     <FontAwesomeIcon
@@ -95,13 +103,13 @@ export default function Contact() {
                         </ContactInfoCard>
                     </div>
                     <ContactInfoCard title="Ședințe" icon={faChalkboardUser}>
-                        <div className="flex text-muted-foreground mb-2">
+                        <div className="mb-2 flex text-muted-foreground">
                             <FontAwesomeIcon
                                 icon={faLocationDot}
                                 className="mr-4 mt-1"
                             />
                             <Link
-                                href="https://tbs.ubbcluj.ro/"
+                                href={FACULTY_OF_BUSINESS_WEBSITE_URL}
                                 target="_blank"
                             >
                                 <p>
@@ -115,14 +123,14 @@ export default function Contact() {
                                 </p>
                             </Link>
                         </div>
-                        <div className="flex text-muted-foreground mb-2">
+                        <div className="mb-2 flex text-muted-foreground">
                             <FontAwesomeIcon
                                 icon={faCalendar}
                                 className="mr-4 mt-1"
                             />
                             <p>În fiecare Joi</p>
                         </div>
-                        <div className="flex text-muted-foreground mb-2">
+                        <div className="mb-2 flex text-muted-foreground">
                             <FontAwesomeIcon
                                 icon={faClock}
                                 className="mr-4 mt-1"
@@ -132,8 +140,8 @@ export default function Contact() {
                     </ContactInfoCard>
                 </div>
             </div>
-            <div className="flex justify-center md:justify-end h-fit">
-                <Card className="w-full max-w-xl shadow-md border rounded-lg">
+            <div className="flex h-fit justify-center md:justify-end">
+                <Card className="w-full max-w-xl rounded-lg border shadow-md">
                     <CardHeader>
                         <CardTitle>Intră în legătură cu noi!</CardTitle>
                         <CardDescription>
@@ -148,5 +156,5 @@ export default function Contact() {
                 </Card>
             </div>
         </main>
-    )
+    );
 }

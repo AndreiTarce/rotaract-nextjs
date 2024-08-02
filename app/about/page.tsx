@@ -1,32 +1,32 @@
-import background from '@/assets/images/bg2.webp'
-import backgroundMobile from '@/assets/images/desprenoibgmobile.webp'
-import OurCauses from '@/components/about/cause/OurCauses'
-import MemberStatistics from '@/components/about/statistics/MemberStatistics'
-import OurValues from '@/components/about/values/OurValues'
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
+import background from '@/assets/images/bg2.webp';
+import OurCauses from '@/components/about/cause/OurCauses';
+import MemberStatistics from '@/components/about/statistics/MemberStatistics';
+import OurValues from '@/components/about/values/OurValues';
+import { ROTARY_VISIO_WEBSITE_URL } from '@/lib/constants';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Despre noi | Rotaract Visio Cluj-Napoca',
     description:
         'Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea clubului Rotary Visio Cluj-Napoca  . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru.',
-}
+};
 
 export default function About() {
     return (
         <main className="mt-5 md:mt-12">
-            <div className="w-full relative h-screen flex flex-col">
-                <h1 className="mx-16 max-md:mx-4 w-fit text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent mb-4">
+            <div className="relative flex h-screen w-full flex-col">
+                <h1 className="mx-16 mb-4 w-fit bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:mx-4 max-md:text-5xl">
                     Despre noi
                 </h1>
-                <p className="mx-16 max-md:mx-4 md:w-2/3 mb-2 ">
+                <p className="mx-16 mb-2 max-md:mx-4 md:w-2/3 ">
                     Clubul nostru a fost chartat în data de 12 octombrie 2013,
                     sub îndrumarea clubului{' '}
                     <Link
-                        href="https://rotaryvisio.ro/"
+                        href={ROTARY_VISIO_WEBSITE_URL}
                         target="_blank"
                         className="underline underline-offset-4"
                     >
@@ -72,8 +72,8 @@ export default function About() {
                     />
                 </div>
             </div>
-            <div className="mx-16 max-md:mx-4 mt-16">
-                <div className="md:grid md:grid-cols-2 gap-4 max-md:flex max-md:flex-col-reverse mb-8">
+            <div className="mx-16 mt-16 max-md:mx-4">
+                <div className="mb-8 gap-4 max-md:flex max-md:flex-col-reverse md:grid md:grid-cols-2">
                     <div className="flex flex-col gap-4">
                         <MemberStatistics />
                         <OurCauses />
@@ -83,5 +83,5 @@ export default function About() {
                 {/* <Timeline /> */}
             </div>
         </main>
-    )
+    );
 }
