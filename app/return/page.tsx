@@ -14,8 +14,9 @@ export default async function Return({
 }) {
     const { session_id } = searchParams;
 
-    const { session }: { session: Stripe.Checkout.Session } =
-        await getCheckoutSession(session_id);
+    const session = (await getCheckoutSession(
+        session_id
+    )) as Stripe.Checkout.Session;
 
     if (session.status === 'open') {
         return redirect('/');

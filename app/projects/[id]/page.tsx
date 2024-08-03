@@ -11,9 +11,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { ProjectNotFound } from '@/components/projects/ProjectNotFound';
 import { ProjectDto } from '@/dtos/project.dto';
 import {
-    IProject,
     IProjectPartner,
     IProjectSection,
 } from '@/interfaces/project/IProject';
@@ -27,20 +27,22 @@ type Props = {
 export async function generateMetadata(
     { params, searchParams }: Props,
     parent: ResolvingMetadata
-): Promise<Metadata> {
+): Promise<Metadata | undefined> {
     const id = params.id;
 
-    const project: IProject = await getProject(id);
+    const project = await getProject(id);
 
     const previousImages = (await parent).openGraph?.images || [];
 
-    return {
-        title: `${project.title} | Rotaract Visio Cluj-Napoca`,
-        openGraph: {
-            images: [project.thumbnailImg, ...previousImages],
-        },
-        description: project.description,
-    };
+    if (project) {
+        return {
+            title: `${project.title} | Rotaract Visio Cluj-Napoca`,
+            openGraph: {
+                images: [project.thumbnailImg, ...previousImages],
+            },
+            description: project.description,
+        };
+    }
 }
 
 type ProjectSectionProps = IProjectSection & { key: number };
@@ -80,7 +82,12 @@ const ProjectImage = (props: ProjectImageProps) => (
 
 export default async function Project({ params }: { params: { id: string } }) {
     const id = params.id;
-    const project: ProjectDto = await getProject(id);
+    const project = (await getProject(id)) as ProjectDto;
+
+    if (!project) {
+        return <ProjectNotFound />;
+    }
+
     return (
         <main className="mx-16 mb-8 mt-5 max-md:mx-4 md:mt-12">
             <article className="flex flex-col gap-8">

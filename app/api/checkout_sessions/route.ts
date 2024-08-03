@@ -50,7 +50,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
             session_id as string
         );
 
-        return NextResponse.json({ session }, { status: 200 });
+        return NextResponse.json(session, { status: 200 });
     } catch (err) {
         return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }

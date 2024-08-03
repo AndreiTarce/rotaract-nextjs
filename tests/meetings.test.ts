@@ -1,5 +1,4 @@
 import { MeetingInteractor } from '@/interactors/meetingInteractor';
-import { MemberRepository } from '@/repositories/memberRepository';
 import { describe, expect, it, vi } from 'vitest';
 import { MeetingRepository } from '../repositories/meetingRepository';
 
@@ -16,8 +15,7 @@ describe('MeetingsService', () => {
         });
 
         const meetingInteractor = new MeetingInteractor(
-            new MeetingRepository(),
-            new MemberRepository()
+            new MeetingRepository()
         );
         const meetings = await meetingInteractor.getAllMeetings();
 

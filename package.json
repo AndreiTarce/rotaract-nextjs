@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "check-types": "tsc --noEmit",
+    "lint": "npm run check-types && next lint",
     "test": "vitest"
   },
   "dependencies": {
@@ -99,6 +100,7 @@
     "encoding": "^0.1.13",
     "jsdom": "^24.1.1",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "vitest": "^2.0.4"
+    "vitest": "^2.0.4",
+    "typescript": "5.1.6"
   }
 }

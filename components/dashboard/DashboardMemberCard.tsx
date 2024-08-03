@@ -1,5 +1,6 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
 import { MemberDto } from '@/dtos/member.dto';
+import { IMemberAttendance } from '@/interfaces/meeting/IMemberAttendance';
 import { getMemberAttendance } from '@/lib/entityService';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,7 +24,10 @@ export default async function DashboardMemberCard({
     currentUser: MemberDto;
 }) {
     const cookie = headers().get('cookie') || undefined;
-    const attendance = await getMemberAttendance({ memberId: user.id }, cookie);
+    const attendance = (await getMemberAttendance(
+        { memberId: user.id },
+        cookie
+    )) as IMemberAttendance;
 
     return (
         <Dialog>

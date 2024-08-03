@@ -2,7 +2,7 @@
 import { MemberDto } from '@/dtos/member.dto';
 import Image from 'next/image';
 import { useState } from 'react';
-import MemberForm, { MemberFormSchema } from './MemberForm';
+import MemberForm, { IClientMemberFormSchema } from './MemberForm';
 
 export default function EditMemberForm({
     userInfo,
@@ -13,7 +13,7 @@ export default function EditMemberForm({
     readOnly?: boolean;
     currentUser: MemberDto;
 }) {
-    const onSubmit = (values: MemberFormSchema) => {};
+    const onSubmit = (values: IClientMemberFormSchema) => {};
     const [isReadOnly, setIsReadOnly] = useState(readOnly);
 
     return (

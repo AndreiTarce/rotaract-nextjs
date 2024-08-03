@@ -2,6 +2,9 @@ import { MeetingDto } from '@/dtos/meeting.dto';
 import { MemberDto } from '@/dtos/member.dto';
 import { ProjectDto } from '@/dtos/project.dto';
 import { IMemberAttendance } from '@/interfaces/meeting/IMemberAttendance';
+import { ICause } from '@/models/causes';
+import { IFeaturedProject } from '@/models/featuredProject';
+import Stripe from 'stripe';
 import {
     API_BASE_URL,
     CAUSES_PATH,
@@ -111,7 +114,7 @@ export const getCauses = async () => {
     const url = API_BASE_URL + CAUSES_PATH;
 
     try {
-        const causes = await getEntity(url);
+        const causes = await getEntity<ICause[]>(url);
 
         return causes;
     } catch (error) {
@@ -146,7 +149,7 @@ export const getCheckoutSession = async (session_id: string) => {
     const url = `${API_BASE_URL + CHECKOUT_PATH}?session_id=${session_id}`;
 
     try {
-        const checkoutSession = await getEntity(url);
+        const checkoutSession = await getEntity<Stripe.Checkout.Session>(url);
 
         return checkoutSession;
     } catch (error) {
@@ -154,13 +157,13 @@ export const getCheckoutSession = async (session_id: string) => {
     }
 };
 
-export const getFeaturedProject = async () => {
+export const getFeaturedProjects = async () => {
     const url = `${API_BASE_URL + FEATURED_PROJECTS_PATH}`;
 
     try {
-        const featuredProject = await getEntity<ProjectDto>(url);
+        const featuredProjects = await getEntity<IFeaturedProject[]>(url);
 
-        return featuredProject;
+        return featuredProjects;
     } catch (error) {
         console.log('Error loading featured project: ', error);
     }
