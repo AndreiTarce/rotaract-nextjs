@@ -1,4 +1,5 @@
 import background from '@/assets/images/bg2.webp';
+import OurCauses from '@/components/about/cause/OurCauses';
 import MemberStatistics from '@/components/about/statistics/MemberStatistics';
 import OurValues from '@/components/about/values/OurValues';
 import { ROTARY_VISIO_WEBSITE_URL } from '@/lib/constants';
@@ -13,6 +14,8 @@ export const metadata: Metadata = {
     description:
         'Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea clubului Rotary Visio Cluj-Napoca  . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru.',
 };
+
+export const dynamic = 'force-dynamic';
 
 export default function About() {
     return (
@@ -75,7 +78,7 @@ export default function About() {
                 <div className="mb-8 gap-4 max-md:flex max-md:flex-col-reverse md:grid md:grid-cols-2">
                     <div className="flex flex-col gap-4">
                         <MemberStatistics />
-                        {/* <OurCauses /> */}
+                        <OurCauses />
                     </div>
                     <OurValues />
                 </div>
