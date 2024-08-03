@@ -1,5 +1,4 @@
 import background from '@/assets/images/bg2.webp';
-import OurCauses from '@/components/about/cause/OurCauses';
 import MemberStatistics from '@/components/about/statistics/MemberStatistics';
 import OurValues from '@/components/about/values/OurValues';
 import { ROTARY_VISIO_WEBSITE_URL } from '@/lib/constants';
@@ -76,7 +75,7 @@ export default function About() {
                 <div className="mb-8 gap-4 max-md:flex max-md:flex-col-reverse md:grid md:grid-cols-2">
                     <div className="flex flex-col gap-4">
                         <MemberStatistics />
-                        <OurCauses />
+                        {/* <OurCauses /> */}
                     </div>
                     <OurValues />
                 </div>
