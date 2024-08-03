@@ -6,8 +6,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { Card, CardDescription, CardTitle } from '../card';
-import { Skeleton } from '../skeleton';
+import { Card, CardDescription, CardTitle } from '../ui/card';
+import { Skeleton } from '../ui/skeleton';
 
 export default function MemberInfoClient({ user }: { user: MemberDto }) {
     const [attendance, setAttendance] = useState<any>();

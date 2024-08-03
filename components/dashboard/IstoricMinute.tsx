@@ -14,10 +14,10 @@ import {
 } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Button } from '../button';
-import { Card, CardContent, CardHeader, CardTitle } from '../card';
-import { ScrollArea } from '../scroll-area';
-import { Separator } from '../separator';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { ScrollArea } from '../ui/scroll-area';
+import { Separator } from '../ui/separator';
 import Minuta from './Minuta';
 
 export const getMeetings = async (params: { year: number; type?: string }) => {

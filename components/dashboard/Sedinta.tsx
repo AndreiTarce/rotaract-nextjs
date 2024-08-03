@@ -25,21 +25,21 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
-} from '../alert-dialog';
-import { Button } from '../button';
-import { Card, CardDescription, CardHeader, CardTitle } from '../card';
+} from '../ui/alert-dialog';
+import { Button } from '../ui/button';
+import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
-} from '../collapsible';
+} from '../ui/collapsible';
 import {
     ContextMenu,
     ContextMenuContent,
     ContextMenuItem,
     ContextMenuShortcut,
     ContextMenuTrigger,
-} from '../context-menu';
+} from '../ui/context-menu';
 import {
     Dialog,
     DialogContent,
@@ -48,9 +48,9 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from '../dialog';
-import { ScrollArea } from '../scroll-area';
-import { toast } from '../use-toast';
+} from '../ui/dialog';
+import { ScrollArea } from '../ui/scroll-area';
+import { toast } from '../ui/use-toast';
 import MemberPill from './MemberPill';
 
 export default function Sedinta({

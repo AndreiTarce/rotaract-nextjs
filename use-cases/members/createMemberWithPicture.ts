@@ -4,6 +4,7 @@ import { FileStorageInteractor } from '@/interactors/fileStorageInteractor';
 import { MemberInteractor } from '@/interactors/memberInteractor';
 import { MemberRepository } from '@/repositories/memberRepository';
 import { S3Repository } from '@/repositories/S3Repository';
+import { validateMemberFormData } from '@/schemas/memberSchema';
 
 const storageInteractor = new FileStorageInteractor(
     new S3Repository(s3Client, S3_BUCKET_NAME, S3_BUCKET_MEMBERS_PATH)
@@ -17,6 +18,9 @@ export async function createMemberWithPicture(
     pictureType?: string
 ) {
     const memberData = { ...member };
+
+    validateMemberFormData(memberData);
+
     const memberPictureKey = `${member.first_name.toLowerCase()}_${member.last_name.toLowerCase()}`;
 
     if (pictureBuffer && pictureType) {

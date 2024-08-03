@@ -1,8 +1,8 @@
 import { MemberDto } from '@/dtos/member.dto';
 import { getMembers } from '@/lib/entityService';
 import { headers } from 'next/headers';
-import { Card, CardContent, CardHeader, CardTitle } from '../card';
-import { ScrollArea } from '../scroll-area';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { ScrollArea } from '../ui/scroll-area';
 import DashboardMemberCard from './DashboardMemberCard';
 
 export default async function MembersPanel({
@@ -11,7 +11,7 @@ export default async function MembersPanel({
     currentUser: MemberDto;
 }) {
     const cookie = headers().get('cookie') || undefined;
-    const members: MemberDto[] = await getMembers(cookie);
+    const members: MemberDto[] = (await getMembers(cookie)) as MemberDto[];
     return (
         <Card>
             <CardHeader className="flex flex-row justify-between pb-4">

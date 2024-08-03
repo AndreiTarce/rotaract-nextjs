@@ -1,6 +1,7 @@
 import { MeetingInteractor } from '@/interactors/meetingInteractor';
 import connectMongoDB from '@/lib/mongodb';
 import { MeetingRepository } from '@/repositories/meetingRepository';
+import { validateMeetingFormData } from '@/schemas/meetingSchema';
 import { createMeetingWithPresentMembers } from '@/use-cases/meetings/createMeetingWithPresentMembers';
 import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../utils/error-handler';
@@ -40,6 +41,8 @@ export async function POST(request: NextRequest) {
         if (!meeting) {
             throw new ValidationError('Meeting is required');
         }
+
+        validateMeetingFormData(meeting);
 
         const createdMeeting = await createMeetingWithPresentMembers(meeting);
 

@@ -8,6 +8,7 @@ const meetingSchema = new Schema<IMeetingDocument>(
         start_date: Date,
         location: String,
         minuteAuthor: String,
+        minuteAuthorId: String,
         minuteUrl: String,
         duration: Number,
         highlights: String,

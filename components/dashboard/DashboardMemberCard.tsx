@@ -5,14 +5,14 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { headers } from 'next/headers';
 import Image from 'next/image';
-import { Card } from '../card';
-import { Dialog, DialogContent, DialogTrigger } from '../dialog';
+import { Card } from '../ui/card';
+import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-} from '../tooltip';
+} from '../ui/tooltip';
 import EditMemberForm from './EditMemberForm';
 
 export default async function DashboardMemberCard({

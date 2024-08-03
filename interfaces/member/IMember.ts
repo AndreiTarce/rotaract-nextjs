@@ -1,5 +1,4 @@
 import { Document } from 'mongoose';
-import { z } from 'zod';
 
 export interface IMemberLinks {
     facebook: string;
@@ -44,11 +43,3 @@ export interface IMember {
 }
 
 export interface IMemberDocument extends IMember, Document {}
-
-export const IMemberLinksZodSchema = z.object({
-    facebook: z.string().optional(),
-    linkedin: z.string().optional(),
-    instagram: z.string().optional(),
-    tiktok: z.string().optional(),
-    website: z.string().optional(),
-});

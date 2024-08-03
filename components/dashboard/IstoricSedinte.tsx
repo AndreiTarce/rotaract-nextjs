@@ -13,9 +13,9 @@ import {
 } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Button } from '../button';
-import { Card, CardContent, CardHeader, CardTitle } from '../card';
-import { ScrollArea } from '../scroll-area';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { ScrollArea } from '../ui/scroll-area';
 import {
     Select,
     SelectContent,
@@ -23,7 +23,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '../select';
+} from '../ui/select';
 import { getMeetings } from './IstoricMinute';
 import Sedinta from './Sedinta';
 import { MEETING_TYPES } from './constants';

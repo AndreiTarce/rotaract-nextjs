@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '../card';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 export default function ImportantLinks() {
     return (

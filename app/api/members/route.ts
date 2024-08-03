@@ -56,6 +56,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         await connectMongoDB();
 
         const formData = await request.formData();
+
         const { memberData, memberPictureBuffer, memberPictureType } =
             await parseCreateMemberFormData(formData);
 
@@ -129,6 +130,6 @@ const parseCreateMemberFormData = async (formData: FormData) => {
     return {
         memberData: memberObject,
         memberPictureBuffer: buffer,
-        memberPictureType: picture.type,
+        memberPictureType: picture?.type,
     };
 };

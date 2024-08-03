@@ -1,14 +1,15 @@
+import ImportantLinks from '@/components/dashboard/ImportantLinks';
+import IstoricMinute from '@/components/dashboard/IstoricMinute';
+import IstoricSedinte from '@/components/dashboard/IstoricSedinte';
+import AddMeetingForm from '@/components/dashboard/meetings/AddMeetingForm';
+import MemberInfo from '@/components/dashboard/MemberInfo';
+import AddMemberFormCard from '@/components/dashboard/members/AddMemberFormCard';
+import CotizatieMembru from '@/components/dashboard/members/CotizatieMembru';
+import MembersPanel from '@/components/dashboard/MembersPanel';
+import SectionsTab from '@/components/dashboard/SectionsTab';
 import { Card } from '@/components/ui/card';
-import AdaugareSedinta from '@/components/ui/dashboard/AdaugareSedinta';
-import AddMemberFormCard from '@/components/ui/dashboard/AddMemberFormCard';
-import CotizatieMembru from '@/components/ui/dashboard/CotizatieMembru';
-import ImportantLinks from '@/components/ui/dashboard/ImportantLinks';
-import IstoricMinute from '@/components/ui/dashboard/IstoricMinute';
-import IstoricSedinte from '@/components/ui/dashboard/IstoricSedinte';
-import MemberInfo from '@/components/ui/dashboard/MemberInfo';
-import MembersPanel from '@/components/ui/dashboard/MembersPanel';
-import SectionsTab from '@/components/ui/dashboard/SectionsTab';
 import { Separator } from '@/components/ui/separator';
+import { MemberDto } from '@/dtos/member.dto';
 import { authConfig, loginIsRequiredServer } from '@/lib/auth';
 import { getMemberByEmail } from '@/lib/entityService';
 import { isSecretary } from '@/lib/utils';
@@ -24,7 +25,10 @@ export default async function Dashboard() {
     const cookie = headers().get('cookie') || undefined;
     await loginIsRequiredServer();
     const session = await getServerSession(authConfig);
-    const currentUser = await getMemberByEmail(session?.user?.email!, cookie);
+    const currentUser = (await getMemberByEmail(
+        session?.user?.email!,
+        cookie
+    )) as MemberDto;
 
     const sedinte = (
         <Card className="flex flex-col gap-4 md:grid md:grid-cols-2">
@@ -58,7 +62,7 @@ export default async function Dashboard() {
                 functii_secretar={
                     isSecretary(currentUser) && (
                         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                            <AdaugareSedinta user={currentUser} />
+                            <AddMeetingForm user={currentUser} />
                             <AddMemberFormCard />
                         </div>
                     )

@@ -1,10 +1,21 @@
+import { MeetingDto } from '@/dtos/meeting.dto';
 import { z } from 'zod';
 
 export const meetingFormSchema = z.object({
     type: z.string().min(1, {
         message: 'Type is required.',
     }),
-    start_date: z.date(),
+    start_date: z.preprocess(
+        (arg) => {
+            if (typeof arg === 'string' || arg instanceof Date) {
+                return new Date(arg);
+            }
+            return arg;
+        },
+        z.date().refine((date) => !isNaN(date.getTime()), {
+            message: 'Invalid date format.',
+        })
+    ),
     location: z.string().min(1, {
         message: 'Location is required.',
     }),
@@ -26,5 +37,9 @@ export const meetingFormSchema = z.object({
         message: 'Hour is required',
     }),
 });
+
+export const validateMeetingFormData = (data: Partial<MeetingDto>) => {
+    return meetingFormSchema.parse(data);
+};
 
 export type IMeetingFormSchema = z.infer<typeof meetingFormSchema>;

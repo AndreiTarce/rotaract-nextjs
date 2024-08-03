@@ -4,17 +4,14 @@ import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { MemberDto } from '@/dtos/member.dto';
-import {
-    IMemberLinksZodSchema,
-    memberRoles,
-    memberStatus,
-} from '@/interfaces/member/IMember';
+import { memberRoles, memberStatus } from '@/interfaces/member/IMember';
+import { memberFormSchema, memberFormStatuses } from '@/schemas/memberSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertOctagon } from 'lucide-react';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Button } from '../button';
+import { Button } from '../ui/button';
 import {
     Form,
     FormControl,
@@ -22,9 +19,9 @@ import {
     FormField,
     FormItem,
     FormLabel,
-} from '../form';
-import { Input } from '../input';
-import { Label } from '../label';
+} from '../ui/form';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
 import {
     Select,
     SelectContent,
@@ -32,43 +29,23 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '../select';
-import { Textarea } from '../textarea';
+} from '../ui/select';
+import { Textarea } from '../ui/textarea';
+
+const clientMemberFormSchema = memberFormSchema.extend({
+    picture_file: z.instanceof(FileList).optional(),
+});
+
+export type IClientMemberFormSchema = z.infer<typeof clientMemberFormSchema>;
 
 export interface IMemberFormProps {
     userInfo?: MemberDto;
-    onSubmit: (values: MemberFormSchema) => Promise<void> | void;
+    onSubmit: (values: IClientMemberFormSchema) => Promise<void> | void;
     status: memberFormStatuses | undefined;
     fieldsContainerClassname?: string;
     readOnly?: boolean;
     setIsReadOnly?: Dispatch<SetStateAction<boolean | undefined>>;
 }
-
-export enum memberFormStatuses {
-    LOADING = 'loading',
-    SUBMITTED = 'submitted',
-    ERROR = 'error',
-}
-
-const formSchema = z.object({
-    id: z.string().optional(),
-    first_name: z.string().min(1, { message: 'First name is required.' }),
-    last_name: z.string().min(1, { message: 'Last name is required.' }),
-    picture_link: z.string().optional(),
-    picture_file: z.instanceof(FileList).optional(),
-    description: z.string().optional(),
-    role: z.nativeEnum(memberRoles),
-    urls: IMemberLinksZodSchema.optional(),
-    start_mandate: z.number().optional(),
-    email: z
-        .string()
-        .email('This is not a valid email')
-        .min(1, { message: 'Email is required' }),
-    status: z.nativeEnum(memberStatus),
-    isBoard: z.boolean().optional(),
-});
-
-export type MemberFormSchema = z.infer<typeof formSchema>;
 
 export default function MemberForm({
     userInfo,
@@ -78,8 +55,8 @@ export default function MemberForm({
     readOnly = false,
     setIsReadOnly,
 }: IMemberFormProps) {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<IClientMemberFormSchema>({
+        resolver: zodResolver(memberFormSchema),
         defaultValues: userInfo || {
             first_name: '',
             last_name: '',
@@ -89,7 +66,8 @@ export default function MemberForm({
         },
     });
 
-    const handleSubmit = async (values: MemberFormSchema) => {
+    const handleSubmit = async (values: IClientMemberFormSchema) => {
+        console.log(values);
         onSubmit(values);
         form.reset();
     };

@@ -1,10 +1,10 @@
-'use client'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../tabs'
+'use client';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 interface ISectionsTabProps {
-    sedinte: React.ReactNode
-    membri: React.ReactNode
-    functii_secretar?: React.ReactNode
+    sedinte: React.ReactNode;
+    membri: React.ReactNode;
+    functii_secretar?: React.ReactNode;
 }
 
 export default function SectionsTab({
@@ -31,5 +31,5 @@ export default function SectionsTab({
                 </TabsContent>
             )}
         </Tabs>
-    )
+    );
 }

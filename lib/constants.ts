@@ -1,5 +1,5 @@
 //API PATHS
-export const API_BASE_URL = process.env.API_BASE_URL;
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export const PROJECTS_PATH = '/api/projects';
 export const MEMBERS_PATH = '/api/members';
 export const CAUSES_PATH = '/api/causes';

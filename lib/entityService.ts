@@ -1,4 +1,7 @@
-import CatrafusaleRegistration from '@/models/catrafusaleRegistration';
+import { MeetingDto } from '@/dtos/meeting.dto';
+import { MemberDto } from '@/dtos/member.dto';
+import { ProjectDto } from '@/dtos/project.dto';
+import { IMemberAttendance } from '@/interfaces/meeting/IMemberAttendance';
 import {
     API_BASE_URL,
     CAUSES_PATH,
@@ -8,27 +11,43 @@ import {
     MEMBERS_PATH,
     PROJECTS_PATH,
 } from './constants';
-import connectMongoDB from './mongodb';
 
-const getEntity = async (url: string, cookies?: string) => {
+const getEntity = async <T>(url: string, cookies?: string): Promise<T> => {
     const headers = cookies ? { Cookie: cookies } : undefined;
 
     const response = await fetch(url, { cache: 'no-store', headers });
-
-    if (!response.ok) {
-        throw new Error('Bad response');
+    if (response.ok) {
+        const data = await response.json();
+        return data;
     }
 
-    return response;
+    throw new Error('Bad response');
+};
+
+const createEntity = async <T>(url: string, entity: T): Promise<T> => {
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(entity),
+    });
+
+    if (response.ok) {
+        const data: T = await response.json();
+        return data;
+    }
+
+    throw new Error('Bad response');
 };
 
 export const getProjects = async () => {
     const url = API_BASE_URL + PROJECTS_PATH;
 
     try {
-        const projects = await getEntity(url);
+        const projects = await getEntity<ProjectDto[]>(url);
 
-        return projects.json();
+        return projects;
     } catch (error) {
         console.log('Error loading projects: ', error);
     }
@@ -38,9 +57,9 @@ export const getProject = async (projectUrl: string) => {
     const url = `${API_BASE_URL + PROJECTS_PATH}/${projectUrl}`;
 
     try {
-        const project = await getEntity(url);
+        const project = await getEntity<ProjectDto>(url);
 
-        return project.json();
+        return project;
     } catch (error) {
         console.log('Error loading project: ', error);
     }
@@ -50,9 +69,9 @@ export const getMembers = async (cookie?: string) => {
     const url = API_BASE_URL + MEMBERS_PATH;
 
     try {
-        const members = await getEntity(url, cookie);
+        const members = await getEntity<MemberDto[]>(url, cookie);
 
-        return members.json();
+        return members;
     } catch (error) {
         console.log('Error loading members: ', error);
     }
@@ -65,11 +84,26 @@ export const getMemberByEmail = async (
     const url = `${API_BASE_URL + MEMBERS_PATH}/?email=${memberEmail}`;
 
     try {
-        const member = await getEntity(url, cookie);
+        const member = await getEntity<MemberDto>(url, cookie);
+        console.log(member);
 
-        return member.json();
+        return member;
     } catch (error) {
         console.log('Error loading member: ', error);
+    }
+};
+
+export const createMember = async (member: FormData) => {
+    const url = API_BASE_URL + MEMBERS_PATH;
+
+    try {
+        const createdMember = await fetch(url, {
+            method: 'POST',
+            body: member,
+        });
+        return createdMember.json();
+    } catch (error) {
+        console.log('Error creating member: ', error);
     }
 };
 
@@ -79,7 +113,7 @@ export const getCauses = async () => {
     try {
         const causes = await getEntity(url);
 
-        return causes.json();
+        return causes;
     } catch (error) {
         console.log('Error loading causes: ', error);
     }
@@ -89,11 +123,22 @@ export const getMeetings = async () => {
     const url = API_BASE_URL + MEETINGS_PATH;
 
     try {
-        const meetings = await getEntity(url);
+        const meetings = await getEntity<MeetingDto[]>(url);
 
-        return meetings.json();
+        return meetings;
     } catch (error) {
         console.log('Error loading meetings: ', error);
+    }
+};
+
+export const createMeeting = async (meeting: Partial<MeetingDto>) => {
+    const url = API_BASE_URL + MEETINGS_PATH;
+
+    try {
+        const createdMeeting = await createEntity(url, meeting);
+        return createdMeeting;
+    } catch (error) {
+        console.log('Error creating meeting: ', error);
     }
 };
 
@@ -103,7 +148,7 @@ export const getCheckoutSession = async (session_id: string) => {
     try {
         const checkoutSession = await getEntity(url);
 
-        return checkoutSession.json();
+        return checkoutSession;
     } catch (error) {
         console.log('Error loading checkout session: ', error);
     }
@@ -113,9 +158,9 @@ export const getFeaturedProject = async () => {
     const url = `${API_BASE_URL + FEATURED_PROJECTS_PATH}`;
 
     try {
-        const featuredProject = await getEntity(url);
+        const featuredProject = await getEntity<ProjectDto>(url);
 
-        return featuredProject.json();
+        return featuredProject;
     } catch (error) {
         console.log('Error loading featured project: ', error);
     }
@@ -149,16 +194,10 @@ export const getMemberAttendance = async (
     const url = `${API_BASE_URL + MEMBERS_PATH}/attendance?${searchParams}`;
 
     try {
-        const attendance = await getEntity(url, cookie);
+        const attendance = await getEntity<IMemberAttendance>(url, cookie);
 
-        return attendance.json();
+        return attendance;
     } catch (error) {
         console.log('Error loading member attendance: ', error);
     }
-};
-
-export const getCatrafusaleRegistrations = async () => {
-    await connectMongoDB();
-    const registrations = await CatrafusaleRegistration.find();
-    return registrations;
 };

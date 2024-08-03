@@ -1,14 +1,16 @@
 'use client';
 
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { toast } from '@/components/ui/use-toast';
 import { MemberDto } from '@/dtos/member.dto';
 import { IMemberLinks } from '@/interfaces/member/IMember';
+import { createMember } from '@/lib/entityService';
+import { memberFormStatuses } from '@/schemas/memberSchema';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '../card';
-import { toast } from '../use-toast';
-import MemberForm, { MemberFormSchema, memberFormStatuses } from './MemberForm';
-import { removeUndefinedLinkKeys } from './utils';
+import MemberForm, { IClientMemberFormSchema } from '../MemberForm';
+import { removeUndefinedLinkKeys } from '../utils';
 
 export default function AddMemberFormCard({
     userInfo,
@@ -17,8 +19,8 @@ export default function AddMemberFormCard({
 }) {
     const [status, setStatus] = useState<memberFormStatuses | undefined>();
 
-    const onSubmit = async (values: MemberFormSchema) => {
-        const data: MemberFormSchema = { ...values };
+    const onSubmit = async (values: IClientMemberFormSchema) => {
+        const data = { ...values };
         const { picture_file } = data;
         removeUndefinedLinkKeys(data.urls as IMemberLinks);
         if (!Object.keys(data.urls as IMemberLinks).length) delete data.urls;
@@ -32,28 +34,11 @@ export default function AddMemberFormCard({
 
         setStatus(memberFormStatuses.LOADING);
 
-        try {
-            const response = await fetch('/api/members', {
-                method: 'POST',
-                body: formData,
-            });
+        console.log(formData);
 
-            setStatus(memberFormStatuses.SUBMITTED);
-            toast({
-                title: 'Membru adaugat',
-                description: (
-                    <div className="flex gap-2">
-                        <FontAwesomeIcon icon={faCheckCircle} />
-                        <span className="self-center">
-                            Membrul {data.first_name} {data.last_name} a fost
-                            adaugat cu success!
-                        </span>
-                    </div>
-                ),
-                duration: 10000,
-            });
-        } catch (error) {
-            console.log(error);
+        const createdMember = await createMember(formData);
+
+        if (!createdMember) {
             setStatus(memberFormStatuses.ERROR);
             toast({
                 title: 'Eroare la adaugare',
@@ -67,7 +52,23 @@ export default function AddMemberFormCard({
                 ),
                 duration: 10000,
             });
+            return;
         }
+
+        setStatus(memberFormStatuses.SUBMITTED);
+        toast({
+            title: 'Membru adaugat',
+            description: (
+                <div className="flex gap-2">
+                    <FontAwesomeIcon icon={faCheckCircle} />
+                    <span className="self-center">
+                        Membrul {data.first_name} {data.last_name} a fost
+                        adaugat cu success!
+                    </span>
+                </div>
+            ),
+            duration: 10000,
+        });
     };
 
     return (

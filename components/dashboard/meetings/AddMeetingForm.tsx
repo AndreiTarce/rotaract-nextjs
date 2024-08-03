@@ -1,6 +1,9 @@
 'use client';
 
+import { toast } from '@/components/ui/use-toast';
+import { MeetingDto } from '@/dtos/meeting.dto';
 import { MemberDto } from '@/dtos/member.dto';
+import { createMeeting } from '@/lib/entityService';
 import { cn } from '@/lib/utils';
 import { IMeetingFormSchema, meetingFormSchema } from '@/schemas/meetingSchema';
 import { faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -11,9 +14,9 @@ import { format } from 'date-fns';
 import { AlertOctagon, CalendarIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button } from '../button';
-import { Calendar } from '../calendar';
-import { Card, CardContent, CardHeader, CardTitle } from '../card';
+import { Button } from '../../ui/button';
+import { Calendar } from '../../ui/calendar';
+import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
 import {
     Form,
     FormControl,
@@ -21,9 +24,9 @@ import {
     FormField,
     FormItem,
     FormLabel,
-} from '../form';
-import { Input } from '../input';
-import { Popover, PopoverContent, PopoverTrigger } from '../popover';
+} from '../../ui/form';
+import { Input } from '../../ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
 import {
     Select,
     SelectContent,
@@ -31,14 +34,13 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '../select';
-import { Textarea } from '../textarea';
-import { Toaster } from '../toaster';
-import { toast } from '../use-toast';
-import MemberSelect, { IPresentMemberSelect } from './MemberSelect';
-import { MEETING_TYPES } from './constants';
+} from '../../ui/select';
+import { Textarea } from '../../ui/textarea';
+import { Toaster } from '../../ui/toaster';
+import MemberSelect, { IPresentMemberSelect } from '../MemberSelect';
+import { MEETING_TYPES } from '../constants';
 
-export default function AdaugareSedinta({ user }: { user: MemberDto }) {
+export default function AddMeetingForm({ user }: { user: MemberDto }) {
     const [status, setStatus] = useState('');
     const [presentMembers, setPresentMembers] = useState<
         IPresentMemberSelect[]
@@ -70,86 +72,60 @@ export default function AdaugareSedinta({ user }: { user: MemberDto }) {
     const getPresentMembersArray = (array: IPresentMemberSelect[]) =>
         array.map((member) => member.value);
 
-    function onSubmit(values: IMeetingFormSchema) {
-        const abortLongFetch = new AbortController();
-        const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000);
-
-        const presentMembersArray = getPresentMembersArray(presentMembers);
-        setStatus(statuses.loading);
-        const {
-            type,
-            location,
-            minuteAuthor,
-            minuteUrl,
-            start_date,
-            start_hour,
-            highlights,
-        } = values;
-        const [hours, minutes] = values.start_hour.split(':').map(Number);
+    const onSubmit = async (values: IMeetingFormSchema) => {
+        const { start_date, start_hour } = values;
+        const [hours, minutes] = start_hour.split(':').map(Number);
         start_date.setHours(hours);
         start_date.setMinutes(minutes);
+        const presentMembersArray = getPresentMembersArray(presentMembers);
 
-        fetch('/api/meetings', {
-            signal: abortLongFetch.signal,
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                type,
-                location,
-                minuteAuthor,
-                minuteUrl,
-                start_date,
-                highlights,
-                presentMembers: presentMembersArray,
-            }),
-        })
-            .then((res) => {
-                if (res.ok) {
-                    clearTimeout(abortTimeoutId);
-                    return res.json();
-                }
-                throw new Error('Whoops! Error adding meeting.');
-            })
-            .then((res) => {
-                setStatus(statuses.submitted);
-                form.reset();
-                queryClient.invalidateQueries({
-                    queryKey: ['meetings'],
-                    exact: false,
-                });
-                toast({
-                    title: 'Sedinta adaugata',
-                    description: (
-                        <div className="flex gap-2">
-                            <FontAwesomeIcon icon={faCheckCircle} />
-                            <span className="self-center">
-                                Sedinta a fost adaugata cu succes!
-                            </span>
-                        </div>
-                    ),
-                    duration: 10000,
-                });
-                setPresentMembers([]);
-            })
-            .catch((err) => {
-                setStatus(statuses.error);
-                setPresentMembers([]);
-                toast({
-                    title: 'Eroare la adaugare',
-                    variant: 'destructive',
-                    description: (
-                        <div className="flex gap-2">
-                            <span className="self-center">
-                                Sedinta nu a fost adaugata.
-                            </span>
-                        </div>
-                    ),
-                    duration: 10000,
-                });
+        const meetingToBeCreated: Partial<MeetingDto> = {
+            ...values,
+            start_date,
+            presentMembers: presentMembersArray,
+        };
+
+        setStatus(statuses.loading);
+
+        const createdMeeting = await createMeeting(meetingToBeCreated);
+
+        if (!createdMeeting) {
+            setStatus(statuses.error);
+            toast({
+                title: 'Eroare la adaugare',
+                variant: 'destructive',
+                description: (
+                    <div className="flex gap-2">
+                        <span className="self-center">
+                            Sedinta nu a fost adaugata.
+                        </span>
+                    </div>
+                ),
+                duration: 10000,
             });
-    }
+            return;
+        }
+
+        form.reset();
+        queryClient.invalidateQueries({
+            queryKey: ['meetings'],
+            exact: false,
+        });
+        setPresentMembers([]);
+        setStatus(statuses.submitted);
+        toast({
+            title: 'Sedinta adaugata',
+            description: (
+                <div className="flex gap-2">
+                    <FontAwesomeIcon icon={faCheckCircle} />
+                    <span className="self-center">
+                        Sedinta a fost adaugata cu succes!
+                    </span>
+                </div>
+            ),
+            duration: 10000,
+        });
+    };
 
     return (
         <Card className="col-span-1 h-fit">
