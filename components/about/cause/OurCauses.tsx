@@ -3,6 +3,8 @@ import { getCauses } from '@/lib/entityService';
 import { ICause } from '@/models/causes';
 import CauseCard from './CauseCard';
 
+export const dynamic = 'force-dynamic';
+
 export default async function OurCauses() {
     const causes = (await getCauses()) as ICause[];
     return (

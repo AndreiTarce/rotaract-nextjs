@@ -4,7 +4,7 @@ import ProjectCountdown from '@/components/ui/home/ProjectCountdown';
 import { getFeaturedProjects } from '@/lib/entityService';
 import { IFeaturedProject } from '@/models/featuredProject';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -24,14 +24,16 @@ export const metadata: Metadata = {
     ],
 };
 
-const AboutRotaract = dynamic(
+const AboutRotaract = dynamicImport(
     () => import('@/components/ui/home/AboutRotaract')
 );
-
-const AboutVisio = dynamic(() => import('@/components/about/AboutVisio'));
-const SlideInWrapper = dynamic(
+const AboutVisio = dynamicImport(() => import('@/components/about/AboutVisio'));
+const SlideInWrapper = dynamicImport(
     () => import('@/components/ui/animation/SlideInWrapper')
 );
+
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
     const featuredProjects =
         (await getFeaturedProjects()) as IFeaturedProject[];
