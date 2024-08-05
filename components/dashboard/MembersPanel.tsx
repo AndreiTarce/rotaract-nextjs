@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { ScrollArea } from '../ui/scroll-area';
 import DashboardMemberCard from './DashboardMemberCard';
 
+export const dynamic = 'force-dynamic';
+
 export default async function MembersPanel({
     currentUser,
 }: {
