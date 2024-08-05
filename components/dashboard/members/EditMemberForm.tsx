@@ -17,7 +17,9 @@ export default function EditMemberForm({
     readOnly?: boolean;
     currentUser: MemberDto;
 }) {
-    const onSubmit = (values: IClientMemberFormSchema) => {};
+    const onSubmit = (values: IClientMemberFormSchema) => {
+        setIsReadOnly(true);
+    };
     const [isReadOnly, setIsReadOnly] = useState(readOnly);
 
     return (

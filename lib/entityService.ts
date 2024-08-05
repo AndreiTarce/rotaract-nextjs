@@ -88,7 +88,6 @@ export const getMemberByEmail = async (
 
     try {
         const member = await getEntity<MemberDto>(url, cookie);
-        console.log(member);
 
         return member;
     } catch (error) {
@@ -107,6 +106,20 @@ export const createMember = async (member: FormData) => {
         return createdMember.json();
     } catch (error) {
         console.log('Error creating member: ', error);
+    }
+};
+
+export const updateMember = async (member: FormData) => {
+    const url = API_BASE_URL + MEMBERS_PATH;
+
+    try {
+        const updatedMember = await fetch(url, {
+            method: 'PUT',
+            body: member,
+        });
+        return updatedMember.json();
+    } catch (error) {
+        console.log('Error updating member: ', error);
     }
 };
 
