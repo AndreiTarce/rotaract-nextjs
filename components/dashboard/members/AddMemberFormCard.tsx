@@ -34,8 +34,6 @@ export default function AddMemberFormCard({
 
         setStatus(memberFormStatuses.LOADING);
 
-        console.log(formData);
-
         const createdMember = await createMember(formData);
 
         if (!createdMember) {

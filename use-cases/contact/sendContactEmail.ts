@@ -5,7 +5,7 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 const emailService = new ResendEmailService(resend);
 
-export function sendContactEmail(subject: string, html: string) {
+export async function sendContactEmail(subject: string, html: string) {
     return emailService.sendEmail({
         to: [
             'tarceandrei@gmail.com',

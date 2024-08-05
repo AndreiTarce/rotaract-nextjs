@@ -1,8 +1,12 @@
 'use client';
+import { Button } from '@/components/ui/button';
 import { MemberDto } from '@/dtos/member.dto';
+import { isSecretary } from '@/lib/utils';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { useState } from 'react';
-import MemberForm, { IClientMemberFormSchema } from './MemberForm';
+import MemberForm, { IClientMemberFormSchema } from '../MemberForm';
 
 export default function EditMemberForm({
     userInfo,
@@ -48,12 +52,12 @@ export default function EditMemberForm({
                 readOnly={isReadOnly}
                 setIsReadOnly={setIsReadOnly}
             />
-            {/* {isSecretary(currentUser) && isReadOnly && (
+            {isSecretary(currentUser) && isReadOnly && (
                 <Button onClick={() => setIsReadOnly(false)}>
                     <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
                     Editare membru
                 </Button>
-            )} */}
+            )}
         </>
     );
 }

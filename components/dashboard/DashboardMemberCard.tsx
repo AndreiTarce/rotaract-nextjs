@@ -14,7 +14,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '../ui/tooltip';
-import EditMemberForm from './EditMemberForm';
+import EditMemberForm from './members/EditMemberForm';
 
 export default async function DashboardMemberCard({
     user,
