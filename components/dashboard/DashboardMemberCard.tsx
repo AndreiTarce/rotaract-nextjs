@@ -46,6 +46,7 @@ export default async function DashboardMemberCard({
                                 width: '100%',
                                 height: 'auto',
                             }}
+                            unoptimized
                         />
                     </div>
                     <div className="font-semibold">
