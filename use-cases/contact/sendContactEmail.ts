@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const emailService = new ResendEmailService(resend);
 
 export async function sendContactEmail(subject: string, html: string) {
-    await emailService.sendEmail({
+    return emailService.sendEmail({
         to: [
             'tarceandrei@gmail.com',
             'rotaractvisiocluj@gmail.com',
