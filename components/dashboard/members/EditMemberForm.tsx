@@ -82,6 +82,7 @@ export default function EditMemberForm({
                             height={50}
                             width={50}
                             className="rounded"
+                            unoptimized
                         />
                     </div>
                 )}
