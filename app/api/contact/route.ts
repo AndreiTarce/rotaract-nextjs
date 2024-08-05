@@ -1,10 +1,7 @@
 import { ContactFormSchema } from '@/components/ui/contact/ContactForm';
-import { ROTARACT_VISIO_CONTACT_EMAIL } from '@/lib/constants';
+import { sendContactEmail } from '@/use-cases/contact/sendContactEmail';
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import rateLimit from '../utils/rate-limiter';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 const limiter = rateLimit({
     interval: 60 * 1000 * 60 * 24,
@@ -16,18 +13,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
         await limiter.check(response, 10, 'CACHE_TOKEN');
         const body: ContactFormSchema = await request.json();
         const bodyString = `NUME: ${body.first_name} ${body.last_name}\nEMAIL: ${body.email}\nMESSAGE:${body.message}`;
-        const data = await resend.emails.send({
-            from: ROTARACT_VISIO_CONTACT_EMAIL,
-            to: [
-                'tarceandrei@gmail.com',
-                'rotaractvisiocluj@gmail.com',
-                'gabrielamusteata28@gmail.com',
-                'alexmuresan.dacian@gmail.com',
-            ],
-            subject: body.subject,
-            html: bodyString,
-        });
-        return NextResponse.json(data, { status: 200 });
+        await sendContactEmail(body.subject, bodyString);
+        return new NextResponse(null, { status: 200 });
     } catch (error) {
         return NextResponse.json(
             { error: 'Too many requests.' },
