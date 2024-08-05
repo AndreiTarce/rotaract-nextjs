@@ -22,7 +22,7 @@ export default async function MembersPanel({
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-8">
                         {members.map((member, index) => (
                             <DashboardMemberCard
-                                user={member}
+                                userId={member.id}
                                 key={index}
                                 currentUser={currentUser}
                             />

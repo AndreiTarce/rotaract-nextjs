@@ -1,7 +1,7 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
 import { MemberDto } from '@/dtos/member.dto';
 import { IMemberAttendance } from '@/interfaces/meeting/IMemberAttendance';
-import { getMemberAttendance } from '@/lib/entityService';
+import { getMemberAttendance, getMemberById } from '@/lib/entityService';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { headers } from 'next/headers';
@@ -17,13 +17,16 @@ import {
 import EditMemberForm from './members/EditMemberForm';
 
 export default async function DashboardMemberCard({
-    user,
+    userId,
     currentUser,
 }: {
-    user: MemberDto;
+    userId: string;
     currentUser: MemberDto;
 }) {
     const cookie = headers().get('cookie') || undefined;
+    const user = (await getMemberById(userId, cookie, [
+        'members',
+    ])) as MemberDto;
     const attendance = (await getMemberAttendance(
         { memberId: user.id },
         cookie
@@ -82,7 +85,7 @@ export default async function DashboardMemberCard({
             </DialogTrigger>
             <DialogContent className="max-w-[90vw] rounded-xl md:w-fit">
                 <EditMemberForm
-                    userInfo={user}
+                    userId={user.id}
                     currentUser={currentUser}
                     readOnly
                 />

@@ -65,10 +65,8 @@ export default function MemberForm({
             status: memberStatus.ASPIRANT,
         },
     });
-
     const handleSubmit = async (values: IClientMemberFormSchema) => {
-        console.log(values);
-        onSubmit(values);
+        await onSubmit(values);
         form.reset();
     };
 
@@ -543,12 +541,14 @@ export default function MemberForm({
                                 Adaugare
                             </Button>
                         )}
-                        {userInfo && setIsReadOnly && (
+                        {userInfo && (
                             <div className="flex w-full gap-2">
                                 <Button
                                     variant="secondary"
                                     className="w-full"
-                                    onClick={() => setIsReadOnly(true)}
+                                    onClick={() =>
+                                        setIsReadOnly && setIsReadOnly(true)
+                                    }
                                 >
                                     Anuleaza
                                 </Button>

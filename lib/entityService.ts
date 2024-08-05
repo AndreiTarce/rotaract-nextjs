@@ -15,10 +15,18 @@ import {
     PROJECTS_PATH,
 } from './constants';
 
-const getEntity = async <T>(url: string, cookies?: string): Promise<T> => {
+const getEntity = async <T>(
+    url: string,
+    cookies?: string,
+    tags?: string[]
+): Promise<T> => {
     const headers = cookies ? { Cookie: cookies } : undefined;
 
-    const response = await fetch(url, { cache: 'no-store', headers });
+    const response = await fetch(url, {
+        cache: 'no-store',
+        headers,
+        next: { tags },
+    });
     if (response.ok) {
         const data = await response.json();
         return data;
@@ -72,7 +80,7 @@ export const getMembers = async (cookie?: string) => {
     const url = API_BASE_URL + MEMBERS_PATH;
 
     try {
-        const members = await getEntity<MemberDto[]>(url, cookie);
+        const members = await getEntity<MemberDto[]>(url, cookie, ['members']);
 
         return members;
     } catch (error) {
@@ -88,6 +96,22 @@ export const getMemberByEmail = async (
 
     try {
         const member = await getEntity<MemberDto>(url, cookie);
+
+        return member;
+    } catch (error) {
+        console.log('Error loading member: ', error);
+    }
+};
+
+export const getMemberById = async (
+    memberId: string,
+    cookie?: string,
+    tags?: string[]
+) => {
+    const url = `${API_BASE_URL + MEMBERS_PATH}/${memberId}`;
+
+    try {
+        const member = await getEntity<MemberDto>(url, cookie, tags);
 
         return member;
     } catch (error) {

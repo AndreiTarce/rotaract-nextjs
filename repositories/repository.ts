@@ -22,7 +22,7 @@ export class Repository<T extends Document> implements IRepository<T> {
 
     async update(item: Partial<T>): Promise<T | null> {
         return this.model
-            .findByIdAndUpdate(item._id, item, { new: true })
+            .findByIdAndUpdate(item.id, item, { new: true })
             .exec();
     }
 
