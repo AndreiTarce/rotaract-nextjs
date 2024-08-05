@@ -12,6 +12,6 @@ export class ResendEmailService implements IEmailService {
     async sendEmail(
         emailData: RequireAtLeastOne<IEmailData, 'react' | 'html'>
     ): Promise<void> {
-        this.resend.sendEmail(emailData);
+        await this.resend.sendEmail(emailData);
     }
 }

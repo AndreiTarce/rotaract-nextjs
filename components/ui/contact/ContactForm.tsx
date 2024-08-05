@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 import {
     Form,
     FormControl,
@@ -13,15 +13,15 @@ import {
     FormField,
     FormItem,
     FormLabel,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AlertOctagon, MailCheck } from 'lucide-react'
-import { useState } from 'react'
-import { Textarea } from '../textarea'
-import { Toaster } from '../toaster'
-import { useToast } from '../use-toast'
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AlertOctagon, MailCheck } from 'lucide-react';
+import { useState } from 'react';
+import { Textarea } from '../textarea';
+import { Toaster } from '../toaster';
+import { useToast } from '../use-toast';
 
 const formSchema = z.object({
     first_name: z.string().min(1, {
@@ -39,20 +39,20 @@ const formSchema = z.object({
     message: z.string().min(1, {
         message: 'Message is required.',
     }),
-})
+});
 
-export type ContactFormSchema = z.infer<typeof formSchema>
+export type ContactFormSchema = z.infer<typeof formSchema>;
 
 export default function ContactForm() {
     const contactStatuses = {
         loading: 'loading',
         submitted: 'submitted',
         error: 'error',
-    }
+    };
 
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('');
 
-    const { toast } = useToast()
+    const { toast } = useToast();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -63,13 +63,13 @@ export default function ContactForm() {
             subject: '',
             message: '',
         },
-    })
+    });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        const abortLongFetch = new AbortController()
-        const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000)
+        const abortLongFetch = new AbortController();
+        const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000);
 
-        setStatus(contactStatuses.loading)
+        setStatus(contactStatuses.loading);
 
         fetch('/api/contact', {
             signal: abortLongFetch.signal,
@@ -81,31 +81,28 @@ export default function ContactForm() {
         })
             .then((res) => {
                 if (res.ok) {
-                    clearTimeout(abortTimeoutId)
-                    return res.json()
+                    clearTimeout(abortTimeoutId);
+                    setStatus(contactStatuses.submitted);
+                    form.reset();
+                    toast({
+                        title: 'Message sent',
+                        description: (
+                            <div className="flex gap-2">
+                                <MailCheck />
+                                <span className="self-center">
+                                    Your message was succesfully sent! Our team
+                                    will get back to you as soon as possible.
+                                </span>
+                            </div>
+                        ),
+                        duration: 10000,
+                    });
                 }
-                throw new Error('Whoops! Error sending email.')
-            })
-            .then((res) => {
-                setStatus(contactStatuses.submitted)
-                form.reset()
-                toast({
-                    title: 'Message sent',
-                    description: (
-                        <div className="flex gap-2">
-                            <MailCheck />
-                            <span className="self-center">
-                                Your message was succesfully sent! Our team will
-                                get back to you as soon as possible.
-                            </span>
-                        </div>
-                    ),
-                    duration: 10000,
-                })
+                throw new Error('Whoops! Error sending email.');
             })
             .catch((err) => {
-                setStatus(contactStatuses.error)
-            })
+                setStatus(contactStatuses.error);
+            });
     }
 
     return (
@@ -233,7 +230,7 @@ export default function ContactForm() {
                                 xmlns="http://www.w3.org/2000/svg"
                                 height="1em"
                                 viewBox="0 0 512 512"
-                                className="animate-spin mr-2 fill-white dark:fill-dark"
+                                className="mr-2 animate-spin fill-white dark:fill-dark"
                             >
                                 <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                             </svg>
@@ -249,5 +246,5 @@ export default function ContactForm() {
             </form>
             <Toaster />
         </Form>
-    )
+    );
 }
