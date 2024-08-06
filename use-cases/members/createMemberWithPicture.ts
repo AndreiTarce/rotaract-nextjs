@@ -2,6 +2,7 @@ import { S3_BUCKET_MEMBERS_PATH, S3_BUCKET_NAME, s3Client } from '@/config/s3';
 import { MemberDto } from '@/dtos/member.dto';
 import { FileStorageInteractor } from '@/interactors/fileStorageInteractor';
 import { MemberInteractor } from '@/interactors/memberInteractor';
+import { memberIsBoardBasedOnRole } from '@/lib/utils';
 import { MemberRepository } from '@/repositories/memberRepository';
 import { S3Repository } from '@/repositories/S3Repository';
 import { validateMemberFormData } from '@/schemas/memberSchema';
@@ -30,6 +31,11 @@ export async function createMemberWithPicture(
             pictureType
         );
         memberData.picture = memberPrictureUrl;
+    }
+
+    memberData.isBoard = false;
+    if (memberIsBoardBasedOnRole(memberData)) {
+        memberData.isBoard = true;
     }
 
     const createdMember = await memberInteractor.createMember(memberData);

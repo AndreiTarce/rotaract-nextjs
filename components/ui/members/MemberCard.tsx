@@ -1,5 +1,6 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
 import { MemberDto } from '@/dtos/member.dto';
+import { memberRoles } from '@/interfaces/member/IMember';
 import {
     faFacebook,
     faInstagram,
@@ -86,7 +87,8 @@ const MemberCard = (props: MemberDto) => {
                     </h5>
                     <p className="mb-3 flex flex-col gap-2 font-normal capitalize text-gray-700 dark:text-gray-500">
                         {props.role}
-                        {props.start_mandate && (
+                        {(props.isBoard ||
+                            props.role === memberRoles.PAST_PRESIDENT) && (
                             <Badge className="w-fit text-[12px] font-semibold">
                                 {props.start_mandate} -{' '}
                                 {props.start_mandate + 1}
