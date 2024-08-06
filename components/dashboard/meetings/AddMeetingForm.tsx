@@ -1,12 +1,13 @@
 'use client';
 
-import { toast } from '@/components/ui/use-toast';
+import { errorToast } from '@/components/toasts/error-toast';
+import { successToast } from '@/components/toasts/success-toast';
 import { MeetingDto } from '@/dtos/meeting.dto';
 import { MemberDto } from '@/dtos/member.dto';
 import { createMeeting } from '@/lib/entityService';
 import { cn } from '@/lib/utils';
 import { IMeetingFormSchema, meetingFormSchema } from '@/schemas/meetingSchema';
-import { faCheckCircle, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
@@ -36,7 +37,6 @@ import {
     SelectValue,
 } from '../../ui/select';
 import { Textarea } from '../../ui/textarea';
-import { Toaster } from '../../ui/toaster';
 import { MEETING_TYPES } from '../constants';
 import MemberSelect, { IPresentMemberSelect } from '../members/MemberSelect';
 
@@ -91,17 +91,9 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
 
         if (!createdMeeting) {
             setStatus(statuses.error);
-            toast({
-                title: 'Eroare la adaugare',
-                variant: 'destructive',
-                description: (
-                    <div className="flex gap-2">
-                        <span className="self-center">
-                            Sedinta nu a fost adaugata.
-                        </span>
-                    </div>
-                ),
-                duration: 10000,
+            errorToast({
+                title: 'Adaugare sedinta',
+                message: 'Sedinta nu a fost adaugata.',
             });
             return;
         }
@@ -113,17 +105,9 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
         });
         setPresentMembers([]);
         setStatus(statuses.submitted);
-        toast({
-            title: 'Sedinta adaugata',
-            description: (
-                <div className="flex gap-2">
-                    <FontAwesomeIcon icon={faCheckCircle} />
-                    <span className="self-center">
-                        Sedinta a fost adaugata cu succes!
-                    </span>
-                </div>
-            ),
-            duration: 10000,
+        successToast({
+            title: 'Adaugare sedinta',
+            message: 'Sedinta a fost adaugata cu succes',
         });
     };
 
@@ -434,7 +418,6 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                 </Button>
                             </div>
                         </form>
-                        <Toaster />
                     </Form>
                 </div>
             </CardContent>

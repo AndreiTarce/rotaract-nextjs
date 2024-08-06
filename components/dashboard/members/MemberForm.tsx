@@ -3,12 +3,13 @@
 import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { MemberDto } from '@/dtos/member.dto';
 import { memberRoles, memberStatus } from '@/interfaces/member/IMember';
 import { memberFormSchema, memberFormStatuses } from '@/schemas/memberSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertOctagon } from 'lucide-react';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '../../ui/button';
@@ -65,9 +66,14 @@ export default function MemberForm({
             status: memberStatus.ASPIRANT,
         },
     });
+
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleSubmit = async (values: IClientMemberFormSchema) => {
+        setIsLoading(true);
         await onSubmit(values);
         form.reset();
+        setIsLoading(false);
     };
 
     const fileRef = form.register('picture_file');
@@ -77,7 +83,7 @@ export default function MemberForm({
             <form onSubmit={form.handleSubmit(handleSubmit)}>
                 <div
                     className={
-                        fieldsContainerClassname || 'flex flex-col gap-4'
+                        fieldsContainerClassname || 'flex flex-col gap-4 '
                     }
                 >
                     {!readOnly && (
@@ -520,7 +526,7 @@ export default function MemberForm({
                     </div>
                 </div>
                 {!readOnly && (
-                    <div className="mt-4 flex w-full justify-end">
+                    <div className="mt-4 flex w-full flex-row justify-end">
                         {!userInfo && (
                             <Button type="submit">
                                 {status === memberFormStatuses.LOADING ? (
@@ -542,7 +548,7 @@ export default function MemberForm({
                             </Button>
                         )}
                         {userInfo && (
-                            <div className="flex w-full gap-2">
+                            <div className="flex w-full flex-col-reverse gap-2 md:flex-row">
                                 <Button
                                     variant="secondary"
                                     className="w-full"
@@ -553,10 +559,14 @@ export default function MemberForm({
                                     Anuleaza
                                 </Button>
                                 <Button className="w-full">
-                                    <FontAwesomeIcon
-                                        icon={faFloppyDisk}
-                                        className="mr-2"
-                                    />
+                                    {isLoading ? (
+                                        <LoadingSpinner className="mr-2" />
+                                    ) : (
+                                        <FontAwesomeIcon
+                                            icon={faFloppyDisk}
+                                            className="mr-2"
+                                        />
+                                    )}
                                     Salveaza modificarile
                                 </Button>
                             </div>

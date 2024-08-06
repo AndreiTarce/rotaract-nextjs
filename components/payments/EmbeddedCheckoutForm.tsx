@@ -1,28 +1,27 @@
-'use client'
+'use client';
 import {
     faBuildingColumns,
     faBullseye,
     faCalendarCheck,
     faClipboard,
     faHandHoldingDollar,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     EmbeddedCheckout,
     EmbeddedCheckoutProvider,
-} from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
-import { useEffect, useRef, useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import { Toaster } from '../ui/toaster'
+} from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { useEffect, useRef, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-} from '../ui/tooltip'
-import { useToast } from '../ui/use-toast'
-import DonateButton from './DonateButton'
+} from '../ui/tooltip';
+import { useToast } from '../ui/use-toast';
+import DonateButton from './DonateButton';
 import {
     STRIPE_CATRAFUSALE_DONATION,
     STRIPE_GHIOZDANOK_DONATION,
@@ -30,16 +29,16 @@ import {
     STRIPE_RECURRING_DONATION,
     STRIPE_SIMPLE_DONATION,
     STRIPE_VEDEREDECRACIUN_DONATION,
-} from './constants'
+} from './constants';
 
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-)
+);
 
 export default function EmbeddedCheckoutForm() {
-    const [clientSecret, setClientSecret] = useState<undefined | string>()
-    const myRef = useRef<null | HTMLDivElement>(null)
-    const { toast } = useToast()
+    const [clientSecret, setClientSecret] = useState<undefined | string>();
+    const myRef = useRef<null | HTMLDivElement>(null);
+    const { toast } = useToast();
 
     useEffect(() => {
         if (clientSecret)
@@ -47,14 +46,14 @@ export default function EmbeddedCheckoutForm() {
                 myRef.current?.scrollIntoView({
                     behavior: 'smooth',
                     block: 'end',
-                })
-            }, 100)
-    }, [clientSecret])
+                });
+            }, 100);
+    }, [clientSecret]);
 
     return (
         <div className="">
-            <div className="md:grid md:grid-cols-2 flex flex-col gap-4">
-                <Card className="shadow-md border rounded-lg">
+            <div className="flex flex-col gap-4 md:grid md:grid-cols-2">
+                <Card className="rounded-lg border shadow-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-lg">
                             Donație simplă
@@ -64,12 +63,12 @@ export default function EmbeddedCheckoutForm() {
                             className="h-4 w-4 text-muted-foreground"
                         />
                     </CardHeader>
-                    <CardContent className="text-muted-foreground flex flex-col">
+                    <CardContent className="flex flex-col text-muted-foreground">
                         <div className="mb-4">
                             Vom aloca această donație către un proiect din
                             cadrul clubului care necesită finanțare.
                         </div>
-                        <div className="flex gap-4 flex-wrap">
+                        <div className="flex flex-wrap gap-4">
                             <DonateButton
                                 price={STRIPE_SIMPLE_DONATION[0]}
                                 quantity={1}
@@ -105,7 +104,7 @@ export default function EmbeddedCheckoutForm() {
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="shadow-md border rounded-lg">
+                <Card className="rounded-lg border shadow-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-lg">
                             Donație recurentă
@@ -115,12 +114,12 @@ export default function EmbeddedCheckoutForm() {
                             className="h-4 w-4 text-muted-foreground"
                         />
                     </CardHeader>
-                    <CardContent className="text-muted-foreground flex flex-col">
+                    <CardContent className="flex flex-col text-muted-foreground">
                         <div className="mb-4">
                             Vrei să ne susții constant eforturile? Ai opțiunea
                             de a activa o donație recurentă lunar.
                         </div>
-                        <div className="flex gap-4 flex-wrap">
+                        <div className="flex flex-wrap gap-4">
                             <DonateButton
                                 price={STRIPE_RECURRING_DONATION[0]}
                                 quantity={1}
@@ -156,7 +155,7 @@ export default function EmbeddedCheckoutForm() {
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="shadow-md border rounded-lg">
+                <Card className="rounded-lg border shadow-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-lg">
                             Donație specifică{' '}
@@ -166,13 +165,13 @@ export default function EmbeddedCheckoutForm() {
                             className="h-4 w-4 text-muted-foreground"
                         />
                     </CardHeader>
-                    <CardContent className="text-muted-foreground flex flex-col">
+                    <CardContent className="flex flex-col text-muted-foreground">
                         <div className="mb-4">
                             Vrei să susții un proiect anume? Donează acum iar
                             noi vom aloca această donație către următoarea
                             ediție a proiectului.
                         </div>
-                        <div className="flex gap-4 flex-wrap">
+                        <div className="flex flex-wrap gap-4">
                             <DonateButton
                                 price={STRIPE_GHIOZDANOK_DONATION}
                                 quantity={1}
@@ -208,7 +207,7 @@ export default function EmbeddedCheckoutForm() {
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="shadow-md border rounded-lg">
+                <Card className="rounded-lg border shadow-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-lg">Cont bancar</CardTitle>
                         <FontAwesomeIcon
@@ -229,12 +228,12 @@ export default function EmbeddedCheckoutForm() {
                             onClick={() => {
                                 navigator.clipboard.writeText(
                                     'RO29BTRLRONCRT0662749501'
-                                )
+                                );
                                 toast({
                                     title: 'Copied to clipboard',
                                     description: 'RO29BTRLRONCRT0662749501',
                                     duration: 1000,
-                                })
+                                });
                             }}
                             className="hover:cursor-pointer"
                         >
@@ -258,7 +257,7 @@ export default function EmbeddedCheckoutForm() {
                 </Card>
             </div>
             {clientSecret && (
-                <div className="rounded-xl overflow-hidden mt-4">
+                <div className="mt-4 overflow-hidden rounded-xl">
                     <EmbeddedCheckoutProvider
                         stripe={stripePromise}
                         options={{ clientSecret }}
@@ -268,7 +267,6 @@ export default function EmbeddedCheckoutForm() {
                 </div>
             )}
             <div ref={myRef}></div>
-            <Toaster />
         </div>
-    )
+    );
 }

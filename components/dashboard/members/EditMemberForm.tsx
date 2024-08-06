@@ -1,4 +1,5 @@
 'use client';
+import { successToast } from '@/components/toasts/success-toast';
 import { Button } from '@/components/ui/button';
 import { MemberDto } from '@/dtos/member.dto';
 import { IMemberLinks } from '@/interfaces/member/IMember';
@@ -53,6 +54,10 @@ export default function EditMemberForm({
             queryClient.invalidateQueries({ queryKey: ['member', userId] });
             router.refresh();
             setIsReadOnly(true);
+            successToast({
+                title: 'Actualizare membru',
+                message: 'Membrul a fost actualizat cu succes',
+            });
         }
     };
 
@@ -62,12 +67,12 @@ export default function EditMemberForm({
 
     if (userInfo)
         return (
-            <>
-                <p className="text-4xl font-bold">
-                    {isReadOnly ? 'Informatii' : 'Editare'} membru
+            <div className="max-md:h-[80vh] max-md:overflow-auto">
+                <p className="mb-4 text-4xl font-bold">
+                    {isReadOnly ? 'Profil' : 'Editare'} membru
                 </p>
                 {isReadOnly && (
-                    <div className="flex items-center gap-4">
+                    <div className="mb-4 flex items-center gap-4">
                         <div className="flex flex-col">
                             <p className="text-2xl font-semibold">
                                 {userInfo.first_name}
@@ -96,14 +101,17 @@ export default function EditMemberForm({
                     setIsReadOnly={setIsReadOnly}
                 />
                 {isSecretary(currentUser) && isReadOnly && (
-                    <Button onClick={() => setIsReadOnly(false)}>
+                    <Button
+                        className="mt-4"
+                        onClick={() => setIsReadOnly(false)}
+                    >
                         <FontAwesomeIcon
                             icon={faPenToSquare}
-                            className="mr-2"
+                            className="mr-2 "
                         />
                         Editare membru
                     </Button>
                 )}
-            </>
+            </div>
         );
 }

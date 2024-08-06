@@ -1,13 +1,13 @@
 'use client';
 
+import { errorToast } from '@/components/toasts/error-toast';
+import { successToast } from '@/components/toasts/success-toast';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { toast } from '@/components/ui/use-toast';
 import { MemberDto } from '@/dtos/member.dto';
 import { IMemberLinks } from '@/interfaces/member/IMember';
 import { createMember } from '@/lib/entityService';
 import { memberFormStatuses } from '@/schemas/memberSchema';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { removeUndefinedLinkKeys } from '../utils';
 import MemberForm, { IClientMemberFormSchema } from './MemberForm';
@@ -18,6 +18,7 @@ export default function AddMemberFormCard({
     userInfo?: MemberDto;
 }) {
     const [status, setStatus] = useState<memberFormStatuses | undefined>();
+    const router = useRouter();
 
     const onSubmit = async (values: IClientMemberFormSchema) => {
         const data = { ...values };
@@ -38,35 +39,20 @@ export default function AddMemberFormCard({
 
         if (!createdMember) {
             setStatus(memberFormStatuses.ERROR);
-            toast({
-                title: 'Eroare la adaugare',
-                variant: 'destructive',
-                description: (
-                    <div className="flex gap-2">
-                        <span className="self-center">
-                            Membrul nu a fost adaugat.
-                        </span>
-                    </div>
-                ),
-                duration: 10000,
+            errorToast({
+                title: 'Adaugare membru',
+                message: 'Membrul nu a fost adaugat.',
             });
             return;
         }
 
         setStatus(memberFormStatuses.SUBMITTED);
-        toast({
-            title: 'Membru adaugat',
-            description: (
-                <div className="flex gap-2">
-                    <FontAwesomeIcon icon={faCheckCircle} />
-                    <span className="self-center">
-                        Membrul {data.first_name} {data.last_name} a fost
-                        adaugat cu success!
-                    </span>
-                </div>
-            ),
-            duration: 10000,
+        successToast({
+            title: 'Adaugare membru',
+            message: `Membrul ${data.first_name} ${data.last_name} a fost
+                        adaugat cu success!`,
         });
+        router.refresh();
     };
 
     return (

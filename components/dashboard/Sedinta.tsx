@@ -15,6 +15,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { ChevronsUpDown } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { errorToast } from '../toasts/error-toast';
+import { successToast } from '../toasts/success-toast';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -50,7 +52,6 @@ import {
     DialogTrigger,
 } from '../ui/dialog';
 import { ScrollArea } from '../ui/scroll-area';
-import { toast } from '../ui/use-toast';
 import MemberPill from './members/MemberPill';
 
 export default function Sedinta({
@@ -80,32 +81,17 @@ export default function Sedinta({
         })
             .then((res) => {
                 if (res.ok) {
-                    toast({
+                    successToast({
                         title: 'Stergere sedinta',
-                        description: (
-                            <div className="flex gap-2">
-                                <FontAwesomeIcon icon={faTrash} />
-                                <span className="self-center">
-                                    Sedinta a fost stearsa cu succes!
-                                </span>
-                            </div>
-                        ),
-                        duration: 10000,
+                        message: 'Sedinta a fost stearsa cu succes!',
+                        icon: <FontAwesomeIcon icon={faTrash} />,
                     });
                 }
             })
             .catch((err) => {
-                toast({
-                    title: 'Eroare la stergere',
-                    variant: 'destructive',
-                    description: (
-                        <div className="flex gap-2">
-                            <span className="self-center">
-                                Sedinta nu a fost stearsa.
-                            </span>
-                        </div>
-                    ),
-                    duration: 10000,
+                errorToast({
+                    title: 'Stergere sedinta',
+                    message: 'Sedinta nu a fost stearsa',
                 });
             })
             .finally(() => {

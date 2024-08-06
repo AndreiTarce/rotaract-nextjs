@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import Footer from '@/components/ui/footer/Footer';
 import { Navigation } from '@/components/ui/navigation/Navigation';
+import { Toaster } from '@/components/ui/toaster';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
@@ -27,6 +28,7 @@ export default function RootLayout({
                         <Navigation />
                         {children}
                         <Analytics />
+                        <Toaster />
                     </Providers>
                 </ThemeProvider>
                 <footer>

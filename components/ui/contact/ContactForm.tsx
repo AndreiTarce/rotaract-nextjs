@@ -20,7 +20,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AlertOctagon, MailCheck } from 'lucide-react';
 import { useState } from 'react';
 import { Textarea } from '../textarea';
-import { Toaster } from '../toaster';
 import { useToast } from '../use-toast';
 
 const formSchema = z.object({
@@ -244,7 +243,6 @@ export default function ContactForm() {
                     </Button>
                 </div>
             </form>
-            <Toaster />
         </Form>
     );
 }
