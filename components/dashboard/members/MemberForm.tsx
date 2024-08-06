@@ -3,12 +3,17 @@
 import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { DeleteEntityWithConfirmationButton } from '@/components/modals/DeleteEntityWithConfirmationButton';
+import { errorToast } from '@/components/toasts/error-toast';
+import { successToast } from '@/components/toasts/success-toast';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { MemberDto } from '@/dtos/member.dto';
 import { memberRoles, memberStatus } from '@/interfaces/member/IMember';
+import { deleteMember } from '@/lib/entityService';
 import { memberFormSchema, memberFormStatuses } from '@/schemas/memberSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertOctagon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -66,8 +71,10 @@ export default function MemberForm({
             status: memberStatus.ASPIRANT,
         },
     });
+    const fileRef = form.register('picture_file');
 
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async (values: IClientMemberFormSchema) => {
         setIsLoading(true);
@@ -76,7 +83,24 @@ export default function MemberForm({
         setIsLoading(false);
     };
 
-    const fileRef = form.register('picture_file');
+    const onDelete = async (memberId: string) => {
+        const response = await deleteMember(memberId);
+
+        router.refresh();
+
+        if (response.ok) {
+            successToast({
+                title: 'Stergere membru',
+                message: 'Membrul a fost sters cu succes!',
+            });
+            return;
+        }
+
+        errorToast({
+            title: 'Stergere membru',
+            message: 'Membrul nu a putut fi sters.',
+        });
+    };
 
     return (
         <Form {...form}>
@@ -558,6 +582,12 @@ export default function MemberForm({
                                 >
                                     Anuleaza
                                 </Button>
+                                <DeleteEntityWithConfirmationButton
+                                    className="w-full"
+                                    onDelete={() => onDelete(userInfo.id)}
+                                >
+                                    Sterge membrul
+                                </DeleteEntityWithConfirmationButton>
                                 <Button className="w-full">
                                     {isLoading ? (
                                         <LoadingSpinner className="mr-2" />

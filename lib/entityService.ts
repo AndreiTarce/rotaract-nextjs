@@ -147,6 +147,16 @@ export const updateMember = async (member: FormData) => {
     }
 };
 
+export const deleteMember = async (memberId: string) => {
+    const url = `${API_BASE_URL + MEMBERS_PATH}/${memberId}`;
+
+    const response = await fetch(url, {
+        method: 'DELETE',
+    });
+
+    return response;
+};
+
 export const getCauses = async () => {
     const url = API_BASE_URL + CAUSES_PATH;
 
@@ -180,6 +190,16 @@ export const createMeeting = async (meeting: Partial<MeetingDto>) => {
     } catch (error) {
         console.log('Error creating meeting: ', error);
     }
+};
+
+export const deleteMeeting = async (meetingId: string) => {
+    const url = `${API_BASE_URL + MEETINGS_PATH}/${meetingId}`;
+
+    const response = await fetch(url, {
+        method: 'DELETE',
+    });
+
+    return response;
 };
 
 export const getCheckoutSession = async (session_id: string) => {

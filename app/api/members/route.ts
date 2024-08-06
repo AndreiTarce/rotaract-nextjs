@@ -3,7 +3,6 @@ import { MemberInteractor } from '@/interactors/memberInteractor';
 import connectMongoDB from '@/lib/mongodb';
 import { MemberRepository } from '@/repositories/memberRepository';
 import { createMemberWithPicture } from '@/use-cases/members/createMemberWithPicture';
-import { deleteMemberWithPicture } from '@/use-cases/members/deleteMemberWithPicture';
 import { updateMemberWithPicture } from '@/use-cases/members/updateMemberWithPicture';
 import { NextRequest, NextResponse } from 'next/server';
 import { errorHandler } from '../utils/error-handler';
@@ -87,24 +86,6 @@ export async function PUT(request: NextRequest, response: NextResponse) {
         );
 
         return NextResponse.json(member, { status: 200 });
-    } catch (error) {
-        return errorHandler(error);
-    }
-}
-
-export async function DELETE(request: NextRequest) {
-    try {
-        await connectMongoDB();
-
-        const id = request.nextUrl.searchParams.get('id');
-
-        if (!id) {
-            throw new ValidationError('ID is required');
-        }
-
-        await deleteMemberWithPicture(id);
-
-        return new NextResponse(null, { status: 200 });
     } catch (error) {
         return errorHandler(error);
     }

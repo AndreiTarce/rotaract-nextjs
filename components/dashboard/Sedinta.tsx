@@ -2,6 +2,7 @@
 
 import { MeetingDto, MeetingMemberDto } from '@/dtos/meeting.dto';
 import { MemberDto } from '@/dtos/member.dto';
+import { deleteMeeting } from '@/lib/entityService';
 import { isSecretary } from '@/lib/utils';
 import { faGoogleDrive, faReadme } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -15,17 +16,13 @@ import { useQueryClient } from '@tanstack/react-query';
 import { ChevronsUpDown } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { DeleteEntityAlertDialog } from '../modals/DeleteEntityAlertDialog';
+import { DeleteEntityWithConfirmationButton } from '../modals/DeleteEntityWithConfirmationButton';
 import { errorToast } from '../toasts/error-toast';
 import { successToast } from '../toasts/success-toast';
 import {
     AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
     AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
     AlertDialogTrigger,
 } from '../ui/alert-dialog';
 import { Button } from '../ui/button';
@@ -69,37 +66,26 @@ export default function Sedinta({
     );
     const queryClient = useQueryClient();
 
-    const deleteMeeting = (id: string) => {
-        fetch('/api/meetings', {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id,
-            }),
-        })
-            .then((res) => {
-                if (res.ok) {
-                    successToast({
-                        title: 'Stergere sedinta',
-                        message: 'Sedinta a fost stearsa cu succes!',
-                        icon: <FontAwesomeIcon icon={faTrash} />,
-                    });
-                }
-            })
-            .catch((err) => {
-                errorToast({
-                    title: 'Stergere sedinta',
-                    message: 'Sedinta nu a fost stearsa',
-                });
-            })
-            .finally(() => {
-                queryClient.invalidateQueries({
-                    queryKey: ['meetings'],
-                    exact: false,
-                });
+    const onDelete = async (meetingId: string) => {
+        const response = await deleteMeeting(meetingId);
+        queryClient.invalidateQueries({
+            queryKey: ['meetings'],
+            exact: false,
+        });
+
+        if (response.ok) {
+            successToast({
+                title: 'Stergere sedinta',
+                message: 'Sedinta a fost stearsa cu succes!',
+                icon: <FontAwesomeIcon icon={faTrash} />,
             });
+            return;
+        }
+
+        errorToast({
+            title: 'Stergere sedinta',
+            message: 'Sedinta nu a fost stearsa',
+        });
     };
 
     return (
@@ -309,44 +295,11 @@ export default function Sedinta({
                             </Link>
 
                             {isSecretary(user) ? (
-                                <AlertDialog>
-                                    <AlertDialogTrigger asChild>
-                                        <Button variant="destructive">
-                                            <FontAwesomeIcon
-                                                icon={faTrash}
-                                                className="mr-2"
-                                            />
-                                            Sterge sedinta{' '}
-                                        </Button>
-                                    </AlertDialogTrigger>
-                                    <AlertDialogContent>
-                                        <AlertDialogHeader>
-                                            <AlertDialogTitle>
-                                                Esti sigur(ă)?
-                                            </AlertDialogTitle>
-                                            <AlertDialogDescription>
-                                                Acțiunea de ștergere este
-                                                ireversibilă
-                                            </AlertDialogDescription>
-                                        </AlertDialogHeader>
-                                        <AlertDialogFooter>
-                                            <AlertDialogCancel>
-                                                Anulare
-                                            </AlertDialogCancel>
-                                            <AlertDialogAction
-                                                onClick={() =>
-                                                    deleteMeeting(meeting.id)
-                                                }
-                                            >
-                                                Sterge{' '}
-                                                <FontAwesomeIcon
-                                                    icon={faTrash}
-                                                    className="ml-2"
-                                                />
-                                            </AlertDialogAction>
-                                        </AlertDialogFooter>
-                                    </AlertDialogContent>
-                                </AlertDialog>
+                                <DeleteEntityWithConfirmationButton
+                                    onDelete={() => onDelete(meeting.id)}
+                                >
+                                    Sterge sedinta
+                                </DeleteEntityWithConfirmationButton>
                             ) : null}
                         </div>
                     </DialogFooter>
@@ -366,21 +319,9 @@ export default function Sedinta({
                     </AlertDialogTrigger>
                 </ContextMenuContent>
                 <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>Esti sigur(ă)?</AlertDialogTitle>
-                        <AlertDialogDescription>
-                            Acțiunea de ștergere este ireversibilă
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <AlertDialogCancel>Anulare</AlertDialogCancel>
-                        <AlertDialogAction
-                            onClick={() => deleteMeeting(meeting.id)}
-                        >
-                            Sterge{' '}
-                            <FontAwesomeIcon icon={faTrash} className="ml-2" />
-                        </AlertDialogAction>
-                    </AlertDialogFooter>
+                    <DeleteEntityAlertDialog
+                        onDelete={() => onDelete(meeting.id)}
+                    />
                 </AlertDialogContent>
             </AlertDialog>
         </ContextMenu>

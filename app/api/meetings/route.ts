@@ -52,24 +52,6 @@ export async function POST(request: NextRequest) {
     }
 }
 
-export async function DELETE(request: NextRequest) {
-    try {
-        await connectMongoDB();
-
-        const { id } = await request.json();
-
-        if (!id) {
-            throw new ValidationError('ID is required');
-        }
-
-        await meetingInteractor.deleteMeeting(id);
-
-        return new NextResponse(null, { status: 200 });
-    } catch (error) {
-        return errorHandler(error);
-    }
-}
-
 const parseGetMeetingSearchParams = (searchParams: URLSearchParams) => {
     const type = searchParams.get('type');
     const startDate = searchParams.get('start_date');
