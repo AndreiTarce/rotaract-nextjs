@@ -1,12 +1,13 @@
+import DashboardCardSkeleton from '@/components/dashboard/DashboardCardSkeleton';
 import ImportantLinks from '@/components/dashboard/ImportantLinks';
 import IstoricMinute from '@/components/dashboard/IstoricMinute';
 import IstoricSedinte from '@/components/dashboard/IstoricSedinte';
+import SectionsTab from '@/components/dashboard/SectionsTab';
 import AddMeetingForm from '@/components/dashboard/meetings/AddMeetingForm';
-import MemberInfo from '@/components/dashboard/MemberInfo';
 import AddMemberFormCard from '@/components/dashboard/members/AddMemberFormCard';
 import CotizatieMembru from '@/components/dashboard/members/CotizatieMembru';
-import MembersPanel from '@/components/dashboard/MembersPanel';
-import SectionsTab from '@/components/dashboard/SectionsTab';
+import MemberInfo from '@/components/dashboard/members/MemberInfo';
+import MembersPanel from '@/components/dashboard/members/MembersPanel';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { MemberDto } from '@/dtos/member.dto';
@@ -16,6 +17,7 @@ import { isSecretary } from '@/lib/utils';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { headers } from 'next/headers';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
     title: 'Dashboard | Rotaract Visio Cluj-Napoca',
@@ -39,9 +41,11 @@ export default async function Dashboard() {
     );
 
     const membri = (
-        <div className="mb-4">
-            <MembersPanel currentUser={currentUser} />
-        </div>
+        <Suspense fallback={<DashboardCardSkeleton />}>
+            <div className="mb-4">
+                <MembersPanel currentUser={currentUser} />
+            </div>
+        </Suspense>
     );
 
     return (

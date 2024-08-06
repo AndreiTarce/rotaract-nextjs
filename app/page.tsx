@@ -100,7 +100,7 @@ export default async function Home() {
                 </SlideInWrapper>
                 {/* <SlideInWrapper>
                     <Partners />
-                </SlideInWrapper> */}
+                    </SlideInWrapper> */}
             </div>
         </main>
     );

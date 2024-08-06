@@ -1,8 +1,8 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
 import { MeetingMemberDto } from '@/dtos/meeting.dto';
 import Image from 'next/image';
-import { Card } from '../ui/card';
-import { HoverCard, HoverCardTrigger } from '../ui/hover-card';
+import { Card } from '../../ui/card';
+import { HoverCard, HoverCardTrigger } from '../../ui/hover-card';
 
 export default function MemberPill({ user }: { user: MeetingMemberDto }) {
     return (

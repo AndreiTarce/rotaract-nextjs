@@ -10,8 +10,8 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import MemberForm, { IClientMemberFormSchema } from '../MemberForm';
 import { removeUndefinedLinkKeys } from '../utils';
+import MemberForm, { IClientMemberFormSchema } from './MemberForm';
 
 export default function EditMemberForm({
     userId,

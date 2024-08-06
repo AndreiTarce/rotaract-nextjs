@@ -9,8 +9,8 @@ import { memberFormStatuses } from '@/schemas/memberSchema';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import MemberForm, { IClientMemberFormSchema } from '../MemberForm';
 import { removeUndefinedLinkKeys } from '../utils';
+import MemberForm, { IClientMemberFormSchema } from './MemberForm';
 
 export default function AddMemberFormCard({
     userInfo,

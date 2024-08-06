@@ -1,4 +1,12 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
+import { Card } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { MemberDto } from '@/dtos/member.dto';
 import { IMemberAttendance } from '@/interfaces/meeting/IMemberAttendance';
 import { getMemberAttendance, getMemberById } from '@/lib/entityService';
@@ -6,15 +14,7 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { headers } from 'next/headers';
 import Image from 'next/image';
-import { Card } from '../ui/card';
-import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from '../ui/tooltip';
-import EditMemberForm from './members/EditMemberForm';
+import EditMemberForm from './EditMemberForm';
 
 export default async function DashboardMemberCard({
     userId,

@@ -42,7 +42,8 @@ export const metadata: Metadata = {
 
 export default function Contact() {
     return (
-        <main className="mx-24 mb-8 mt-5 grid min-h-screen max-md:mx-4 md:mt-12 md:grid-cols-2">
+        // <main className="mx-24 mb-8 mt-5 grid min-h-screen max-md:mx-4 md:mt-12 md:grid-cols-2">
+        <>
             <div className="mb-4">
                 <h1 className="mb-4 w-fit bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
                     Contactează-ne
@@ -155,6 +156,7 @@ export default function Contact() {
                     </CardContent>
                 </Card>
             </div>
-        </main>
+        </>
+        // </main>
     );
 }

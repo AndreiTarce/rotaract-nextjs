@@ -11,7 +11,7 @@ import { AlertOctagon } from 'lucide-react';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import {
     Form,
     FormControl,
@@ -19,9 +19,9 @@ import {
     FormField,
     FormItem,
     FormLabel,
-} from '../ui/form';
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
+} from '../../ui/form';
+import { Input } from '../../ui/input';
+import { Label } from '../../ui/label';
 import {
     Select,
     SelectContent,
@@ -29,8 +29,8 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '../ui/select';
-import { Textarea } from '../ui/textarea';
+} from '../../ui/select';
+import { Textarea } from '../../ui/textarea';
 
 const clientMemberFormSchema = memberFormSchema.extend({
     picture_file: z.instanceof(FileList).optional(),

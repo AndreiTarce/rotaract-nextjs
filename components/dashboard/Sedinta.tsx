@@ -51,7 +51,7 @@ import {
 } from '../ui/dialog';
 import { ScrollArea } from '../ui/scroll-area';
 import { toast } from '../ui/use-toast';
-import MemberPill from './MemberPill';
+import MemberPill from './members/MemberPill';
 
 export default function Sedinta({
     meeting,

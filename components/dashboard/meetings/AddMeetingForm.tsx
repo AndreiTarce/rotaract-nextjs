@@ -37,8 +37,8 @@ import {
 } from '../../ui/select';
 import { Textarea } from '../../ui/textarea';
 import { Toaster } from '../../ui/toaster';
-import MemberSelect, { IPresentMemberSelect } from '../MemberSelect';
 import { MEETING_TYPES } from '../constants';
+import MemberSelect, { IPresentMemberSelect } from '../members/MemberSelect';
 
 export default function AddMeetingForm({ user }: { user: MemberDto }) {
     const [status, setStatus] = useState('');

@@ -1,4 +1,5 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
+import { Card, CardDescription, CardTitle } from '@/components/ui/card';
 import { MemberDto } from '@/dtos/member.dto';
 import { IMemberAttendance } from '@/interfaces/meeting/IMemberAttendance';
 import { getMemberAttendance } from '@/lib/entityService';
@@ -6,7 +7,6 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { headers } from 'next/headers';
 import Image from 'next/image';
-import { Card, CardDescription, CardTitle } from '../ui/card';
 
 export default async function MemberInfo({ user }: { user: MemberDto }) {
     const cookie = headers().get('cookie') || undefined;
