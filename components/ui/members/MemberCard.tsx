@@ -79,6 +79,7 @@ const MemberCard = (props: MemberDto) => {
                     loading="lazy"
                     fill
                     style={{ objectFit: 'cover', objectPosition: '50% 0%' }}
+                    unoptimized
                 />
             </div>
             <div className="flex h-fit flex-col p-5">
