@@ -1,12 +1,9 @@
 import { CATRAFUSALE_PACKAGES } from '@/components/payments/constants';
-import { CatrafusaleFlashSaleEmail } from '@/emails/catrafusale-flash-sale';
-import { CatrafusaleRaffleTicketEmail } from '@/emails/catrafusale-raffle-ticket';
 import CatrafusaleRaffleRegistration, {
     ICatrafusaleRaffleRegistration,
 } from '@/models/catrafusaleRaffleRegistration';
 import CatrafusaleRegistration from '@/models/catrafusaleRegistration';
 import Stripe from 'stripe';
-import { sendEmail } from '../../utils/send-email';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -45,11 +42,6 @@ const sendPromoCodeEmailToClient = async (
     console.log(
         'no promo code used, and the flash sale is active, so send them a promo code'
     );
-    await sendEmail({
-        to: [checkoutSession.customer_email as string],
-        subject: 'CATRAFU-SALE 1+1 Gratis',
-        react: CatrafusaleFlashSaleEmail(promotionCode),
-    });
 };
 
 const createPromoCode = async (checkoutSession: Stripe.Checkout.Session) => {
@@ -102,15 +94,6 @@ export const handleRaffleTicketSale = async (
         checkoutSession,
         raffleRegistrations
     );
-
-    await sendEmail({
-        to: checkoutSession.customer_details?.email as string,
-        subject: 'Bilete tombolă CATRAFU-SALE #8',
-        react: CatrafusaleRaffleTicketEmail({
-            start: raffleRegistration.ticket_numbers.start,
-            end: raffleRegistration.ticket_numbers.end,
-        }),
-    });
 };
 
 const createNewRaffleRegistration = async (
