@@ -72,14 +72,16 @@ const MemberCard = (props: MemberDto) => {
 
     return (
         <Card className="flex max-w-full flex-[1_0_300px] flex-col overflow-hidden rounded-lg border shadow-md">
-            <Image
-                src={props.picture || user_placeholder}
-                alt={`${props.first_name}${props.last_name} photo`}
-                height={500}
-                width={500}
-                loading="lazy"
-            />
-            <div className="flex h-full flex-col justify-between p-5">
+            <div className="relative h-96">
+                <Image
+                    src={props.picture || user_placeholder}
+                    alt={`${props.first_name}${props.last_name} photo`}
+                    loading="lazy"
+                    fill
+                    style={{ objectFit: 'cover', objectPosition: '50% 0%' }}
+                />
+            </div>
+            <div className="flex h-fit flex-col p-5">
                 <div>
                     <h5 className="mb-1 text-2xl leading-4 tracking-tight text-gray-900 dark:text-white">
                         <span className="font-bold">{props.first_name}</span>
