@@ -192,32 +192,6 @@ export default function MemberForm({
                             </FormItem>
                         )}
                     />
-                    {userInfo && !readOnly && (
-                        <FormField
-                            control={form.control}
-                            name="picture_link"
-                            disabled={readOnly}
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Link poza</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Link" {...field} />
-                                    </FormControl>
-                                    {form.formState.errors.picture_link && (
-                                        <FormDescription className="text-destructive">
-                                            <span className="flex gap-2">
-                                                <AlertOctagon size={20} />
-                                                {
-                                                    form.formState.errors
-                                                        .picture_link?.message
-                                                }
-                                            </span>
-                                        </FormDescription>
-                                    )}
-                                </FormItem>
-                            )}
-                        />
-                    )}
                     {!readOnly && (
                         <FormField
                             control={form.control}

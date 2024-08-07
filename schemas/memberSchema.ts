@@ -14,7 +14,6 @@ export const memberFormSchema = z.object({
     id: z.string().optional(),
     first_name: z.string().min(1, { message: 'First name is required.' }),
     last_name: z.string().min(1, { message: 'Last name is required.' }),
-    picture_link: z.string().optional(),
     picture_file: z.any().optional(),
     description: z.string().optional(),
     role: z.nativeEnum(memberRoles),
