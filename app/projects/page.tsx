@@ -12,8 +12,7 @@ export const metadata: Metadata = {
 
 export default async function Projects() {
     return (
-        // <main className="mt-5 md:mt-12 mx-16 max-md:mx-4 min-h-screen">
-        <>
+        <main className="mx-16 mt-5 min-h-screen max-md:mx-4 md:mt-12">
             <h1 className="mb-2 w-fit bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
                 Proiectele noastre
             </h1>
@@ -22,7 +21,6 @@ export default async function Projects() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <ProjectsList />
             </div>
-        </>
-        // </main>
+        </main>
     );
 }
