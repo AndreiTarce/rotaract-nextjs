@@ -7,6 +7,7 @@ export const MEETINGS_PATH = '/api/meetings';
 export const CHECKOUT_PATH = '/api/checkout_sessions';
 export const FEATURED_PROJECTS_PATH = '/api/featured_project';
 export const MEMBER_ATTENDANCE_PATH = '/api/members/attendance';
+export const PARTNERS_PATH = '/api/partners';
 
 //SOCIAL MEDIA AND WEBSITE LINKS
 export const ROTARY_VISIO_WEBSITE_URL = 'https://rotaryvisio.ro/';

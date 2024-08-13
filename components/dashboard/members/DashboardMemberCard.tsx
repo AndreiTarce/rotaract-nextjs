@@ -84,7 +84,7 @@ export default async function DashboardMemberCard({
                     </TooltipProvider>
                 </Card>
             </DialogTrigger>
-            <DialogContent className="max-w-full rounded-xl max-md:pt-16 md:w-fit">
+            <DialogContent className="max-w-[60%] rounded-lg max-md:w-[90%] max-md:max-w-[90%] max-md:pt-16">
                 <EditMemberForm
                     userId={user.id}
                     currentUser={currentUser}

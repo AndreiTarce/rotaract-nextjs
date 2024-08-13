@@ -1,22 +1,27 @@
-import { IProject, IProjectDocument } from '@/interfaces/project/IProject';
+import {
+    IProject,
+    IProjectDocument,
+    IProjectPartner,
+} from '@/interfaces/project/IProject';
 
 export interface ProjectDto extends IProject {
     id: string;
 }
 
+export interface ProjectPartnerDto extends IProjectPartner {
+    id: string;
+}
+
 export function toProjectDto(project: IProjectDocument): ProjectDto {
     return {
-        id: project._id,
-        title: project.title,
+        id: project.id,
+        name: project.name,
         shortDescription: project.shortDescription,
-        description: project.description,
+        body: project.body,
         thumbnailImg: project.thumbnailImg,
         coverImg: project.coverImg,
         images: project.images,
         url: project.url,
-        sections: project.sections,
         partners: project.partners,
-        donation_link: project.donation_link,
-        cause_link: project.cause_link,
     };
 }

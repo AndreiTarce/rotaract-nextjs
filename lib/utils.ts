@@ -9,7 +9,12 @@ export function cn(...inputs: ClassValue[]) {
 
 export const isSecretary = (user: MemberDto) => {
     if (Boolean(process.env.NEXT_PUBLIC_isAdmin)) return true;
-    return user?.role === memberRoles.SECRETARY ? true : false;
+    return user.role === memberRoles.SECRETARY ? true : false;
+};
+
+export const isPRCoordinator = (user: MemberDto) => {
+    if (Boolean(process.env.NEXT_PUBLIC_isAdmin)) return true;
+    return user.role === memberRoles.PR_COORDINATOR ? true : false;
 };
 
 export const isBoard = (user: MemberDto) => user?.isBoard === true;

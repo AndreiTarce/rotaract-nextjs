@@ -52,11 +52,11 @@ const createEntity = async <T>(url: string, entity: T): Promise<T> => {
     throw new Error('Bad response');
 };
 
-export const getProjects = async () => {
+export const getProjects = async (cookies?: string) => {
     const url = API_BASE_URL + PROJECTS_PATH;
 
     try {
-        const projects = await getEntity<ProjectDto[]>(url);
+        const projects = await getEntity<ProjectDto[]>(url, cookies);
 
         return projects;
     } catch (error) {
@@ -74,6 +74,30 @@ export const getProject = async (projectUrl: string) => {
     } catch (error) {
         console.log('Error loading project: ', error);
     }
+};
+
+export const updateProject = async (project: FormData) => {
+    const url = API_BASE_URL + PROJECTS_PATH;
+
+    try {
+        const updatedProject = await fetch(url, {
+            method: 'PUT',
+            body: project,
+        });
+        return updatedProject.json();
+    } catch (error) {
+        console.log('Error creating project: ', error);
+    }
+};
+
+export const deleteProject = async (projectId: string) => {
+    const url = `${API_BASE_URL + PROJECTS_PATH}/${projectId}`;
+
+    const response = await fetch(url, {
+        method: 'DELETE',
+    });
+
+    return response;
 };
 
 export const getMembers = async (cookie?: string) => {

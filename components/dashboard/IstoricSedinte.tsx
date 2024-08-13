@@ -6,11 +6,7 @@ import { ROTARACT_VISIO_MINUTE_DRIVE_URL } from '@/lib/constants';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    keepPreviousData,
-    useQuery,
-    useQueryClient,
-} from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '../ui/button';
@@ -32,7 +28,6 @@ import { MEETING_TYPES } from './constants';
 export default function IstoricSedinte({ user }: { user: MemberDto }) {
     const [year, setYear] = useState(new Date().getFullYear());
     const [type, setType] = useState(MEETING_TYPES[0].name);
-    const queryClient = useQueryClient();
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ['meetings', year, type],

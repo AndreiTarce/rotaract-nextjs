@@ -1,32 +1,36 @@
 import { ProjectDto } from '@/dtos/project.dto';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '../button';
-import { Card } from '../card';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
 
-const ProjectCard = (props: ProjectDto) => {
+const ProjectCard = ({ project }: { project: ProjectDto }) => {
     return (
         <Card className="flex max-w-full flex-[1_0_300px] flex-col overflow-hidden rounded-lg border shadow-md">
-            <Link href={`projects/${props.url}`}>
+            <Link href={`projects/${project.url}`}>
                 <Image
-                    src={props.thumbnailImg}
-                    alt={`${props.title} poster`}
+                    src={project.thumbnailImg}
+                    alt={`${project.name} poster`}
                     width={600}
                     height={600}
                 />
             </Link>
             <div className="flex h-full flex-col justify-between p-5">
                 <div>
-                    <Link href={`projects/${props.url}`}>
+                    <Link href={`projects/${project.name}`}>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            {props.title}
+                            {project.name}
                         </h5>
                     </Link>
                     <p className="mb-3 font-normal text-muted-foreground">
-                        {props.shortDescription}
+                        {project.shortDescription}
                     </p>
                 </div>
-                <Link href={`projects/${props.url}`} className="w-fit" passHref>
+                <Link
+                    href={`projects/${project.url}`}
+                    className="w-fit"
+                    passHref
+                >
                     <Button size="sm">
                         Citește mai mult
                         <svg
