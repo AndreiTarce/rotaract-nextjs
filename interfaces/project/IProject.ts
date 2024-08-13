@@ -1,29 +1,20 @@
+import { ProjectPartnerDto } from '@/dtos/project.dto';
 import { Document } from 'mongoose';
 
-export interface IProjectSection {
-    title: string;
-    body: string;
-    coverImg: string;
-}
-
-export interface IProjectPartner {
-    name: string;
-    logoUrl: string;
-    link: string;
-}
-
 export interface IProject {
-    title: string;
+    name: string;
     shortDescription: string;
-    description: string;
+    body: string;
     thumbnailImg: string;
     coverImg: string;
     images: string[];
     url: string;
-    sections: IProjectSection[];
-    partners: IProjectPartner[];
-    donation_link: string;
-    cause_link: string;
+    partners: ProjectPartnerDto[];
+}
+
+export interface IProjectPartner {
+    partnerId: string;
 }
 
 export interface IProjectDocument extends IProject, Document {}
+export interface IProjectPartnerDocument extends IProjectPartner, Document {}

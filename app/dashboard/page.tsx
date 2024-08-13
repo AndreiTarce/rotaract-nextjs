@@ -8,12 +8,13 @@ import AddMemberFormCard from '@/components/dashboard/members/AddMemberFormCard'
 import CotizatieMembru from '@/components/dashboard/members/CotizatieMembru';
 import MemberInfo from '@/components/dashboard/members/MemberInfo';
 import MembersPanel from '@/components/dashboard/members/MembersPanel';
+import ProjectsPanel from '@/components/dashboard/projects/ProjectsPanel';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { MemberDto } from '@/dtos/member.dto';
 import { authConfig, loginIsRequiredServer } from '@/lib/auth';
 import { getMemberByEmail } from '@/lib/entityService';
-import { isSecretary } from '@/lib/utils';
+import { isPRCoordinator, isSecretary } from '@/lib/utils';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { headers } from 'next/headers';
@@ -71,6 +72,7 @@ export default async function Dashboard() {
                         </div>
                     )
                 }
+                proiecte={isPRCoordinator(currentUser) && <ProjectsPanel />}
             />
         </main>
     );

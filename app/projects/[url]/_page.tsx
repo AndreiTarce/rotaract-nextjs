@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import ProjectImageCarousel from '@/components/ui/project/ProjectImageCarousel';
 import { Separator } from '@/components/ui/separator';
 import { getProject } from '@/lib/entityService';
 import {
@@ -11,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { ProjectArticleBody } from '@/components/projects/ProjectArticleBody';
+import ProjectImageCarousel from '@/components/projects/ProjectImageCarousel';
 import { ProjectNotFound } from '@/components/projects/ProjectNotFound';
 import { ProjectDto } from '@/dtos/project.dto';
 import {
@@ -36,11 +37,11 @@ export async function generateMetadata(
 
     if (project) {
         return {
-            title: `${project.title} | Rotaract Visio Cluj-Napoca`,
+            title: `${project.name} | Rotaract Visio Cluj-Napoca`,
             openGraph: {
                 images: [project.thumbnailImg, ...previousImages],
             },
-            description: project.description,
+            description: project.shortDescription,
         };
     }
 }
@@ -145,20 +146,8 @@ export default async function Project({ params }: { params: { id: string } }) {
                             <Separator className="mb-2" />
                         </>
                     )}
-                    <p
-                        className="text-muted-foreground lg:text-xl"
-                        dangerouslySetInnerHTML={{
-                            __html: project.description,
-                        }}
-                    ></p>
-                    {project.sections.map((section, index) => (
-                        <ProjectSection
-                            title={section.title}
-                            body={section.body}
-                            key={index}
-                            coverImg={section.coverImg}
-                        />
-                    ))}
+                    <ProjectArticleBody project={project} />
+
                     {project.partners && (
                         <Card className="mt-8 bg-dark-blue bg-opacity-20 dark:bg-light dark:bg-opacity-10">
                             <CardHeader>

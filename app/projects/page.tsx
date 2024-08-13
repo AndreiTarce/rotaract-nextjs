@@ -1,4 +1,4 @@
-import ProjectsList from '@/components/ui/project/Projects';
+import ProjectsList from '@/components/projects/Projects';
 import { Separator } from '@/components/ui/separator';
 import { Metadata } from 'next';
 

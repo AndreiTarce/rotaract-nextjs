@@ -1,6 +1,5 @@
 import { NotFoundError } from '@/app/api/utils/errors';
-import { toProjectDto } from '@/dtos/project.dto';
-import { IProject } from '@/interfaces/project/IProject';
+import { ProjectDto, toProjectDto } from '@/dtos/project.dto';
 import { IProjectRepository } from '@/interfaces/project/IProjectRepository';
 
 export class ProjectInteractor {
@@ -33,12 +32,12 @@ export class ProjectInteractor {
         throw new NotFoundError();
     }
 
-    async createProject(project: IProject) {
+    async createProject(project: Partial<ProjectDto>) {
         const createdProject = await this.repository.create(project);
         return toProjectDto(createdProject);
     }
 
-    async updateProject(project: IProject) {
+    async updateProject(project: Partial<ProjectDto>) {
         const updatedProject = await this.repository.update(project);
         if (updatedProject) {
             return toProjectDto(updatedProject);
@@ -49,5 +48,10 @@ export class ProjectInteractor {
 
     async deleteProject(id: string) {
         await this.repository.delete(id);
+    }
+
+    async deleteProjectWithReturn(id: string) {
+        const deletedProject = await this.repository.deleteWithReturn(id);
+        return deletedProject;
     }
 }
