@@ -12,15 +12,11 @@ export async function POST(request: NextRequest, response: NextResponse) {
             metadata: body.metadata || {},
             line_items: [
                 {
-                    adjustable_quantity: {
-                        enabled: body.adjustable_quantity || false,
-                    },
                     // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                     price: body.price,
                     quantity: body.quantity,
                 },
             ],
-            allow_promotion_codes: true,
             mode: body.mode,
             return_url: `${request.nextUrl.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
             automatic_tax: { enabled: true },
@@ -31,6 +27,12 @@ export async function POST(request: NextRequest, response: NextResponse) {
         };
         if (sessionObject.mode !== 'subscription') {
             sessionObject.submit_type = 'donate';
+        }
+        if (body.adjustable_quantity && sessionObject.line_items) {
+            sessionObject.line_items[0].adjustable_quantity = { enabled: true };
+        }
+        if (body.allow_promotion_codes) {
+            sessionObject.allow_promotion_codes = true;
         }
         if (body.custom_fields) {
             sessionObject.custom_fields = [...body.custom_fields];
