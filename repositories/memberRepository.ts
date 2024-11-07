@@ -37,7 +37,7 @@ export class MemberRepository
     }
 
     async findByEmail(email: string): Promise<IMemberDocument | null> {
-        const member = await this.model.findOne({ email: email });
+        const member = await this.model.findOne({ email: email }).exec();
         return member;
     }
 

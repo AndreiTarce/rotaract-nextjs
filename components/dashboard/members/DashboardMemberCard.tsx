@@ -8,13 +8,16 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { MemberDto } from '@/dtos/member.dto';
-import { IMemberAttendance } from '@/interfaces/meeting/IMemberAttendance';
-import { getMemberAttendance, getMemberById } from '@/lib/entityService';
+import { MemberInteractor } from '@/interactors/memberInteractor';
+import connectMongoDB from '@/lib/mongodb';
+import { MemberRepository } from '@/repositories/memberRepository';
+import { getMemberAttendance } from '@/use-cases/members/getMemberAttendance';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { headers } from 'next/headers';
 import Image from 'next/image';
 import EditMemberForm from './EditMemberForm';
+
+const memberInteractor = new MemberInteractor(new MemberRepository());
 
 export default async function DashboardMemberCard({
     userId,
@@ -23,14 +26,10 @@ export default async function DashboardMemberCard({
     userId: string;
     currentUser: MemberDto;
 }) {
-    const cookie = headers().get('cookie') || undefined;
-    const user = (await getMemberById(userId, cookie, [
-        'members',
-    ])) as MemberDto;
-    const attendance = (await getMemberAttendance(
-        { memberId: user.id },
-        cookie
-    )) as IMemberAttendance;
+    await connectMongoDB();
+
+    const user = await memberInteractor.getMemberById(userId);
+    const attendance = await getMemberAttendance(user.id);
 
     return (
         <Dialog>

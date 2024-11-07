@@ -5,6 +5,7 @@ import {
     IProjectDocument,
     IProjectPartner,
 } from '@/interfaces/project/IProject';
+import { flattenObject } from './utils';
 
 export interface ProjectDto extends IProject {
     id: string;
@@ -19,32 +20,33 @@ export interface FeaturedProjectDto extends IFeaturedProject {
 }
 
 export function toProjectDto(project: IProjectDocument): ProjectDto {
+    const projectObject = flattenObject(project);
+
     return {
-        id: project.id,
-        name: project.name,
-        shortDescription: project.shortDescription,
-        body: project.body,
-        thumbnailImg: project.thumbnailImg,
-        coverImg: project.coverImg,
-        images: project.images,
-        url: project.url,
-        partners: project.partners.map((partner) => ({
-            id: partner.id,
-            partnerId: partner.partnerId,
-        })),
+        id: projectObject.id,
+        name: projectObject.name,
+        shortDescription: projectObject.shortDescription,
+        body: projectObject.body,
+        thumbnailImg: projectObject.thumbnailImg,
+        coverImg: projectObject.coverImg,
+        images: projectObject.images,
+        url: projectObject.url,
+        partners: projectObject.partners,
     };
 }
 
 export function toFeaturedProjectDto(
     featuredProject: IFeaturedProjectDocument
 ): FeaturedProjectDto {
+    const featuredProjectObject = flattenObject(featuredProject);
+
     return {
-        id: featuredProject.id,
-        projectId: featuredProject.projectId,
-        cause_link: featuredProject.cause_link,
-        CTA_link: featuredProject.CTA_link,
-        start_date: featuredProject.start_date,
-        end_date: featuredProject.end_date,
-        type: featuredProject.type,
+        id: featuredProjectObject.id,
+        projectId: featuredProjectObject.projectId,
+        cause_link: featuredProjectObject.cause_link,
+        CTA_link: featuredProjectObject.CTA_link,
+        start_date: featuredProjectObject.start_date,
+        end_date: featuredProjectObject.end_date,
+        type: featuredProjectObject.type,
     };
 }

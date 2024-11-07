@@ -3,9 +3,6 @@
     color: hsl(var(--foreground));
 }
 
-.w-md-editor-toolbar {
-}
-
 .wmde-markdown {
     background-color: var(--background);
     color: hsl(var(--foreground));
