@@ -2,8 +2,8 @@ import { MeetingDto } from '@/dtos/meeting.dto';
 import { MemberDto } from '@/dtos/member.dto';
 import { ProjectDto } from '@/dtos/project.dto';
 import { IMemberAttendance } from '@/interfaces/meeting/IMemberAttendance';
+import { IFeaturedProject } from '@/interfaces/project/IProject';
 import { ICause } from '@/models/causes';
-import { IFeaturedProject } from '@/models/featuredProject';
 import Stripe from 'stripe';
 import {
     API_BASE_URL,

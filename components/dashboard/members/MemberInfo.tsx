@@ -9,6 +9,7 @@ import { headers } from 'next/headers';
 import Image from 'next/image';
 
 export default async function MemberInfo({ user }: { user: MemberDto }) {
+    console.log(user);
     const cookie = headers().get('cookie') || undefined;
     const attendance = (await getMemberAttendance(
         { memberId: user.id },

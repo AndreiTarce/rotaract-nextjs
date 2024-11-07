@@ -1,5 +1,6 @@
 'use client';
-import { IFeaturedProject } from '@/models/featuredProject';
+import { FeaturedProjectDto, ProjectDto } from '@/dtos/project.dto';
+import { FeaturedProjectActionType } from '@/interfaces/project/IProject';
 import {
     faCircleInfo,
     faMoneyCheck,
@@ -19,10 +20,12 @@ import {
 } from '../card';
 import { Separator } from '../separator';
 
-export default function ProjectCountdown({
+interface FeaturedProjectCardProps extends FeaturedProjectDto, ProjectDto {}
+
+export default function FeaturedProjectCard({
     project,
 }: {
-    project: IFeaturedProject;
+    project: FeaturedProjectCardProps;
 }) {
     const renderer = ({
         days,
@@ -75,7 +78,7 @@ export default function ProjectCountdown({
     return (
         <Card className="relative mb-8 h-fit max-w-md md:max-w-sm">
             <Image
-                src={project.coverImg}
+                src={project.thumbnailImg}
                 alt="Featured project background"
                 className="rounded-lg"
                 quality={100}
@@ -83,19 +86,18 @@ export default function ProjectCountdown({
                 height={1080}
             />
             <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
+                <CardTitle>{project.name}</CardTitle>
                 <CardDescription>Proiect în desfășurare</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="mb-4 font-semibold text-muted-foreground">
-                    Perioada de înscrieri se încheie în
+                    Perioada de{' '}
+                    {project.type === FeaturedProjectActionType.DONATION
+                        ? 'donații'
+                        : 'înscrieri'}{' '}
+                    se încheie în
                 </div>
-                <Countdown
-                    renderer={renderer}
-                    date={new Date(project.end_date).setHours(
-                        new Date(project.end_date).getHours() - 2
-                    )}
-                />
+                <Countdown renderer={renderer} date={project.end_date} />
                 <Separator className="my-4" />
                 <div className="flex flex-wrap gap-4">
                     <div className="flex w-full flex-wrap justify-between gap-4">
@@ -120,7 +122,7 @@ export default function ProjectCountdown({
                         <Button className="font-semibold" asChild size="sm">
                             <Link
                                 href={{
-                                    pathname: `/projects/${project.project_url}`,
+                                    pathname: `/projects/${project.url}`,
                                 }}
                             >
                                 Vezi descrierea proiectului{' '}
@@ -136,8 +138,11 @@ export default function ProjectCountdown({
                         asChild
                         className="w-full bg-rotaract-cranberry font-semibold text-white hover:bg-rotaract-cranberry"
                     >
-                        <Link href={project.donation_link} target="_blank">
-                            Către înscrieri
+                        <Link href={project.CTA_link} target="_blank">
+                            Către{' '}
+                            {project.type === FeaturedProjectActionType.DONATION
+                                ? 'donații'
+                                : 'înscrieri'}
                             <FontAwesomeIcon
                                 icon={faMoneyCheck}
                                 className="ml-2"
