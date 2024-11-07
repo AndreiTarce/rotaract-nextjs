@@ -1,8 +1,6 @@
 import background from '@/assets/images/home_background.webp';
+import FeaturedProject from '@/components/featured-project/FeaturedProject';
 import { Button } from '@/components/ui/button';
-import ProjectCountdown from '@/components/ui/home/ProjectCountdown';
-import { getFeaturedProjects } from '@/lib/entityService';
-import { IFeaturedProject } from '@/models/featuredProject';
 import { Metadata } from 'next';
 import dynamicImport from 'next/dynamic';
 import Image from 'next/image';
@@ -35,14 +33,6 @@ const SlideInWrapper = dynamicImport(
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-    const featuredProjects =
-        (await getFeaturedProjects()) as IFeaturedProject[];
-    const featuredProject = featuredProjects[0];
-
-    const today = new Date();
-    const featuredProjectStartDate = new Date(featuredProject.start_date);
-    const featuredProjectEndDate = new Date(featuredProject.end_date);
-
     return (
         <main className="h-fit pt-5 md:pt-12">
             <div className="relative h-fit">
@@ -77,30 +67,25 @@ export default async function Home() {
                             </Link>
                         </div>
                     </div>
-                    {today > featuredProjectStartDate &&
-                        today < featuredProjectEndDate && (
-                            <div className="max-md:hidden">
-                                <ProjectCountdown project={featuredProject} />
-                            </div>
-                        )}
+                    {true && (
+                        <div className="max-md:hidden">
+                            <FeaturedProject />
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="mx-16 max-md:mx-4">
-                {today > featuredProjectStartDate &&
-                    today < featuredProjectEndDate && (
-                        <div className="-mt-24 md:hidden">
-                            <ProjectCountdown project={featuredProject} />
-                        </div>
-                    )}
+                {true && (
+                    <div className="-mt-24 md:hidden">
+                        <FeaturedProject />
+                    </div>
+                )}
                 <SlideInWrapper>
                     <AboutRotaract />
                 </SlideInWrapper>
                 <SlideInWrapper>
                     <AboutVisio />
                 </SlideInWrapper>
-                {/* <SlideInWrapper>
-                    <Partners />
-                    </SlideInWrapper> */}
             </div>
         </main>
     );
