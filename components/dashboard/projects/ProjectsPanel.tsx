@@ -1,12 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { getProjects } from '@/lib/entityService';
-import { headers } from 'next/headers';
+import { ProjectInteractor } from '@/interactors/projectInteractor';
+import connectMongoDB from '@/lib/mongodb';
+import { ProjectRepository } from '@/repositories/projectRepository';
 import DashboardProjectCard from './DashboardProjectCard';
 
+const projectInteractor = new ProjectInteractor(new ProjectRepository());
+
 export default async function ProjectsPanel() {
-    const cookies = headers().get('cookie') || undefined;
-    const projects = await getProjects(cookies);
+    await connectMongoDB();
+
+    const projects = await projectInteractor.getAllProjects();
 
     if (!projects) return;
 

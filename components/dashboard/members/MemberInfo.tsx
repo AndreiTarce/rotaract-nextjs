@@ -1,20 +1,16 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
 import { Card, CardDescription, CardTitle } from '@/components/ui/card';
 import { MemberDto } from '@/dtos/member.dto';
-import { IMemberAttendance } from '@/interfaces/meeting/IMemberAttendance';
-import { getMemberAttendance } from '@/lib/entityService';
+import connectMongoDB from '@/lib/mongodb';
+import { getMemberAttendance } from '@/use-cases/members/getMemberAttendance';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { headers } from 'next/headers';
 import Image from 'next/image';
 
 export default async function MemberInfo({ user }: { user: MemberDto }) {
-    console.log(user);
-    const cookie = headers().get('cookie') || undefined;
-    const attendance = (await getMemberAttendance(
-        { memberId: user.id },
-        cookie
-    )) as IMemberAttendance;
+    await connectMongoDB();
+
+    const attendance = await getMemberAttendance(user.id);
 
     return (
         <div className="relative overflow-hidden p-6">

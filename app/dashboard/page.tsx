@@ -11,27 +11,30 @@ import MembersPanel from '@/components/dashboard/members/MembersPanel';
 import ProjectsPanel from '@/components/dashboard/projects/ProjectsPanel';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { MemberDto } from '@/dtos/member.dto';
+import { MemberInteractor } from '@/interactors/memberInteractor';
 import { authConfig, loginIsRequiredServer } from '@/lib/auth';
-import { getMemberByEmail } from '@/lib/entityService';
+import connectMongoDB from '@/lib/mongodb';
 import { isPRCoordinator, isSecretary } from '@/lib/utils';
+import { MemberRepository } from '@/repositories/memberRepository';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
-import { headers } from 'next/headers';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
     title: 'Dashboard | Rotaract Visio Cluj-Napoca',
 };
 
+export const dynamic = 'force-dynamic';
+
+const memberInteractor = new MemberInteractor(new MemberRepository());
+
 export default async function Dashboard() {
-    const cookie = headers().get('cookie') || undefined;
+    await connectMongoDB();
     await loginIsRequiredServer();
     const session = await getServerSession(authConfig);
-    const currentUser = (await getMemberByEmail(
-        session?.user?.email!,
-        cookie
-    )) as MemberDto;
+    const currentUser = await memberInteractor.getMemberByEmail(
+        session?.user?.email!
+    );
 
     const sedinte = (
         <Card className="flex flex-col gap-4 md:grid md:grid-cols-2">
