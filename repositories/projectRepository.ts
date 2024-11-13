@@ -12,7 +12,7 @@ export class ProjectRepository
     }
 
     async findByUrl(url: string): Promise<IProjectDocument | null> {
-        return this.model.findOne({ url: url }).lean();
+        return this.model.findOne({ url: url });
     }
 
     async deleteWithReturn(id: string): Promise<IProjectDocument | null> {
