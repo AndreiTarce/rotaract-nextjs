@@ -10,3 +10,10 @@ export class NotFoundError extends Error {
         super();
     }
 }
+
+export class RegistrationNotAvailableError extends Error {
+    constructor(message?: string, options?: ErrorOptions) {
+        super(message, options);
+        Error.captureStackTrace(this, ValidationError);
+    }
+}

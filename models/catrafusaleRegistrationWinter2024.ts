@@ -1,19 +1,8 @@
-import { ICatrafusaleRegistrationObject } from '@/components/catrafusale/CatrafusaleRegistrationForm';
-import { Schema } from 'mongoose';
-
-export interface ICatrafusaleRegistrationWinter2024 {
-    first_name: string;
-    last_name: string;
-    shop_name: string;
-    email: string;
-    phone_number: string;
-    package: string;
-    paid: boolean;
-    oneplusone: boolean;
-}
+import { ICatrafusaleRegistrationWinter2024Document } from '@/interfaces/registration/ICatrafusaleRegistration2024Winter';
+import mongoose, { Schema } from 'mongoose';
 
 export const CatrafusaleRegistrationWinter2024Schema =
-    new Schema<ICatrafusaleRegistrationObject>(
+    new Schema<ICatrafusaleRegistrationWinter2024Document>(
         {
             first_name: String,
             last_name: String,
@@ -21,17 +10,20 @@ export const CatrafusaleRegistrationWinter2024Schema =
             email: String,
             phone_number: String,
             package: String,
-            paid: Boolean,
+            payment_confirmed: Boolean,
             checkout_session_id: String,
-            oneplusone: Boolean,
+            oneplusone_promotion: Boolean,
         },
         {
             timestamps: true,
         }
     );
 
-// const CatrafusaleRegistration =
-//     mongoose.models.CatrafusaleRegistration ||
-//     mongoose.model('CatrafusaleRegistration', CatrafusaleRegistrationSchema);
+const CatrafusaleRegistrationWinter2024 =
+    mongoose.models.CatrafusaleRegistrationWinter2024 ||
+    mongoose.model(
+        'CatrafusaleRegistrationWinter2024',
+        CatrafusaleRegistrationWinter2024Schema
+    );
 
-// export default CatrafusaleRegistration;
+export default CatrafusaleRegistrationWinter2024;

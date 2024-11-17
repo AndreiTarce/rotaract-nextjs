@@ -8,12 +8,12 @@ export class RegistrationInteractor<T extends Document, S extends Model<T>> {
         this.repository = new RegistrationRepository(model);
     }
 
-    async getRegistrations() {
+    async getRegistrations(): Promise<T[] | any[]> {
         const registrations = await this.repository.findAll();
         return registrations;
     }
 
-    async createRegistration(registration: Partial<T>) {
+    async createRegistration(registration: Partial<T>): Promise<T | any> {
         const createdRegistration = await this.repository.create(registration);
         return createdRegistration;
     }
