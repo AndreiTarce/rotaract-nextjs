@@ -3,6 +3,7 @@ import CatrafusaleRegistration from '@/models/catrafusaleRegistration';
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import {
+    confirmCatrafusale2024WinterEditionRegistrationPayment,
     handleFlashSaleActive,
     handleRaffleTicketSale,
 } from './catrafusale/logic';
@@ -12,8 +13,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET;
 
 export async function POST(request: NextRequest, response: NextResponse) {
-    const body = await request.text();
     await connectMongoDB();
+    const body = await request.text();
 
     const sig = request.headers.get('stripe-signature');
 
@@ -36,7 +37,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
     switch (event.type) {
         case 'checkout.session.completed':
             const checkoutSession = event.data.object;
+
             console.log(checkoutSession);
+
             if (checkoutSession.metadata?.catrafusale_registration === 'true') {
                 await CatrafusaleRegistration.findOneAndUpdate(
                     {
@@ -52,6 +55,15 @@ export async function POST(request: NextRequest, response: NextResponse) {
                 //add tickets to db
                 //send client ticket numbers through email
                 await handleRaffleTicketSale(checkoutSession);
+            }
+
+            if (
+                checkoutSession.metadata?.catrafusale_2024_winter_edition ===
+                'true'
+            ) {
+                await confirmCatrafusale2024WinterEditionRegistrationPayment(
+                    checkoutSession
+                );
             }
 
             break;

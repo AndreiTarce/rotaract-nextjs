@@ -4,16 +4,19 @@ import table from '@/assets/images/masa.png';
 import mixt from '@/assets/images/masa_stander.png';
 import single from '@/assets/images/single.png';
 import { useState } from 'react';
-import { CATRAFUSALE_PACKAGES } from '../payments/constants';
+import { getStripePrices } from '../payments/constants';
 import { CatrafusaleRegistrationForm } from './CatrafusaleRegistrationForm';
 import { CatrafusalePackageCard } from './PackageCard';
 
 export default function CatrafusalePackages({
-    singlePackageRegistrations,
+    remainingStanders,
+    remainingTables,
 }: {
-    singlePackageRegistrations?: number;
+    remainingStanders: number;
+    remainingTables: number;
 }) {
     const [productId, setProductId] = useState<string | undefined>();
+    const { CATRAFUSALE_2024_WINTER_EDITION_PACKAGES } = getStripePrices();
 
     if (productId) return <CatrafusaleRegistrationForm productId={productId} />;
 
@@ -25,7 +28,7 @@ export default function CatrafusalePackages({
                     <span>
                         1 stander
                         <br />
-                        50 price tags
+                        25 price tags
                         <br />
                         10 umerașe
                     </span>
@@ -40,9 +43,10 @@ export default function CatrafusalePackages({
                         Lungime: 120cm
                     </span>
                 }
-                productId={CATRAFUSALE_PACKAGES.SINGLE}
+                productId={CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE}
                 setProductId={setProductId}
                 image={single}
+                sold_out={!remainingStanders}
             />
             <CatrafusalePackageCard
                 title="DOUBLE"
@@ -50,7 +54,7 @@ export default function CatrafusalePackages({
                     <span>
                         2 standere
                         <br />
-                        100 price tags
+                        50 price tags
                         <br />
                         20 umerașe
                     </span>
@@ -65,9 +69,10 @@ export default function CatrafusalePackages({
                         Lungime: 120cm
                     </span>
                 }
-                productId={CATRAFUSALE_PACKAGES.DOUBLE}
+                productId={CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.DOUBLE}
                 setProductId={setProductId}
                 image={double}
+                sold_out={remainingStanders < 2}
             />
             <CatrafusalePackageCard
                 title="SINGLE TABLE"
@@ -75,7 +80,7 @@ export default function CatrafusalePackages({
                     <span>
                         1 masă (tip cocktail)
                         <br />
-                        50 price tags
+                        25 price tags
                     </span>
                 }
                 price={150}
@@ -88,10 +93,12 @@ export default function CatrafusalePackages({
                         Înălțime: 110cm
                     </span>
                 }
-                productId={CATRAFUSALE_PACKAGES.SINGLE_TABLE}
+                productId={
+                    CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE_TABLE
+                }
                 setProductId={setProductId}
                 image={table}
-                sold_out={(singlePackageRegistrations as number) > 5}
+                sold_out={!remainingTables}
             />
             <CatrafusalePackageCard
                 title="MIXT"
@@ -101,7 +108,7 @@ export default function CatrafusalePackages({
                         <br />
                         1 masă (tip cocktail)
                         <br />
-                        100 price tags
+                        50 price tags
                         <br />
                         10 umerașe
                     </span>
@@ -122,10 +129,10 @@ export default function CatrafusalePackages({
                         Înălțime: 110cm
                     </span>
                 }
-                productId={CATRAFUSALE_PACKAGES.MIXT}
+                productId={CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.MIXT}
                 setProductId={setProductId}
                 image={mixt}
-                sold_out={(singlePackageRegistrations as number) > 5}
+                sold_out={!remainingTables || !remainingStanders}
             />
         </div>
     );

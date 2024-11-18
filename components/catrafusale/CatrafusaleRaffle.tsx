@@ -3,7 +3,7 @@
 import { CHECKOUT_PATH } from '@/lib/constants';
 import { useState } from 'react';
 import EmbeddedCheckoutCatrafusale from '../payments/EmbeddedCheckoutCatrafusale';
-import { CATRAFUSALE_RAFFLE_TICKET } from '../payments/constants';
+import { getStripePrices } from '../payments/constants';
 import {
     Accordion,
     AccordionContent,
@@ -15,6 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 export default function CatrafusaleRaffle() {
     const [clientSecret, setClientSecret] = useState<string | undefined>();
+    const { CATRAFUSALE_RAFFLE_TICKET } = getStripePrices();
 
     const getClientSecret = async () => {
         const response = await fetch(CHECKOUT_PATH, {

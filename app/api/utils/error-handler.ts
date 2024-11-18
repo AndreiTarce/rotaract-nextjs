@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
-import { NotFoundError, ValidationError } from './errors';
+import {
+    NotFoundError,
+    RegistrationNotAvailableError,
+    ValidationError,
+} from './errors';
 
 export const errorHandler = (error: unknown) => {
     console.log(error);
@@ -22,6 +26,10 @@ export const errorHandler = (error: unknown) => {
 
     if (error instanceof NotFoundError) {
         return new NextResponse(null, { status: 404 });
+    }
+
+    if (error instanceof RegistrationNotAvailableError) {
+        return NextResponse.json({ message: error.message }, { status: 409 });
     }
 
     return NextResponse.json({ message: 'Server error' }, { status: 500 });

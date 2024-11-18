@@ -21,9 +21,8 @@ export interface FeaturedProjectDto extends IFeaturedProject {
 
 export function toProjectDto(project: IProjectDocument): ProjectDto {
     const projectObject = flattenObject(project);
-
     return {
-        id: projectObject.id,
+        id: projectObject._id,
         name: projectObject.name,
         shortDescription: projectObject.shortDescription,
         body: projectObject.body,
@@ -41,7 +40,7 @@ export function toFeaturedProjectDto(
     const featuredProjectObject = flattenObject(featuredProject);
 
     return {
-        id: featuredProjectObject.id,
+        id: featuredProjectObject._id,
         projectId: featuredProjectObject.projectId,
         cause_link: featuredProjectObject.cause_link,
         CTA_link: featuredProjectObject.CTA_link,

@@ -1,13 +1,10 @@
-'use client'
-import EmbeddedCheckoutMindMatters from '@/components/payments/EmbeddedCheckoutMindMatters'
-import {
-    MIND_MATTERS_MINDACCESS,
-    MIND_MATTERS_MINDFUEL,
-} from '@/components/payments/constants'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Checkbox } from '@/components/ui/checkbox'
+'use client';
+import { getStripePrices } from '@/components/payments/constants';
+import EmbeddedCheckoutMindMatters from '@/components/payments/EmbeddedCheckoutMindMatters';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
     Form,
     FormControl,
@@ -15,9 +12,9 @@ import {
     FormField,
     FormItem,
     FormLabel,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { CHECKOUT_PATH } from '@/lib/constants'
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { CHECKOUT_PATH } from '@/lib/constants';
 import {
     faAppleWhole,
     faArrowUpRightFromSquare,
@@ -26,32 +23,35 @@ import {
     faCreditCard,
     faGift,
     faLocationPin,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { AlertOctagon } from 'lucide-react'
-import Link from 'next/link'
-import React, { Dispatch, SetStateAction, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { AlertOctagon } from 'lucide-react';
+import Link from 'next/link';
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 interface IPricingCardProps {
-    title: string
-    description: string
-    recommended?: boolean
-    price: number
-    lunchIncluded?: boolean
-    productId: string
-    setPackageChosen: Dispatch<SetStateAction<string | undefined>>
-    setProductId: Dispatch<SetStateAction<string>>
+    title: string;
+    description: string;
+    recommended?: boolean;
+    price: number;
+    lunchIncluded?: boolean;
+    productId: string;
+    setPackageChosen: Dispatch<SetStateAction<string | undefined>>;
+    setProductId: Dispatch<SetStateAction<string>>;
 }
 
 export default function MindMatters() {
-    const [packageChosen, setPackageChosen] = useState<string>()
+    const [packageChosen, setPackageChosen] = useState<string>();
     const [renderStripeCheckout, setRenderStripeCheckout] =
-        useState<boolean>(false)
-    const [clientSecret, setClientSecret] = useState<undefined | string>()
-    const [productId, setProductId] = useState<string>('')
+        useState<boolean>(false);
+    const [clientSecret, setClientSecret] = useState<undefined | string>();
+    const [productId, setProductId] = useState<string>('');
+
+    const { MIND_MATTERS_MINDACCESS, MIND_MATTERS_MINDFUEL } =
+        getStripePrices();
 
     const PricingCard = ({
         title,
@@ -64,30 +64,30 @@ export default function MindMatters() {
         setProductId,
     }: IPricingCardProps) => (
         <Card
-            className={`w-full relative h-full flex flex-col items-center p-6 mx-auto text-center text-gray-900 rounded-lg border xl:p-8 dark:text-white ${
+            className={`relative mx-auto flex h-full w-full flex-col items-center rounded-lg border p-6 text-center text-gray-900 dark:text-white xl:p-8 ${
                 recommended
                     ? 'border-[#48bfe3] dark:border-[#48bfe3] max-md:order-1'
                     : 'border-gray-100 shadow dark:border-gray-600 max-md:order-2'
             }`}
         >
             {recommended && (
-                <Badge className="w-fit mb-4">Recomandarea noastră</Badge>
+                <Badge className="mb-4 w-fit">Recomandarea noastră</Badge>
             )}
             <h3 className="mb-4 text-4xl font-semibold">{title}</h3>
-            <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <p className="font-light text-gray-500 dark:text-gray-400 sm:text-lg">
                 {description}
             </p>
-            <div className="flex justify-center items-baseline my-8">
+            <div className="my-8 flex items-baseline justify-center">
                 <span className="mr-2 text-5xl font-extrabold">
                     {price} RON
                 </span>
             </div>
-            <ul className="flex flex-col gap-2 w-fit">
+            <ul className="flex w-fit flex-col gap-2">
                 <li className="flex items-center space-x-3">
                     <FontAwesomeIcon icon={faChalkboardUser} size="1x" />
                     <span>Acces la workshopuri</span>
                 </li>
-                <li className="flex text-start space-x-3 items-start">
+                <li className="flex items-start space-x-3 text-start">
                     <FontAwesomeIcon
                         icon={faGift}
                         size="1x"
@@ -96,9 +96,9 @@ export default function MindMatters() {
                     <span>Pachete surpriză de la partenerii noștri</span>
                 </li>
                 <li
-                    className={`flex space-x-3 items-start ${
+                    className={`flex items-start space-x-3 ${
                         !lunchIncluded &&
-                        'text-muted-foreground line-through text-center'
+                        'text-center text-muted-foreground line-through'
                     }`}
                 >
                     <FontAwesomeIcon
@@ -106,7 +106,7 @@ export default function MindMatters() {
                         size="1x"
                         className="mt-[2px]"
                     />
-                    <span className="text-start max-w-[180px]">
+                    <span className="max-w-[180px] text-start">
                         Masa de prânz inclusă{' '}
                         {lunchIncluded && (
                             <span className="text-muted-foreground">
@@ -125,30 +125,30 @@ export default function MindMatters() {
                     </span>
                 </li>
             </ul>
-            <div className="h-full w-full flex justify-end items-end mt-8">
+            <div className="mt-8 flex h-full w-full items-end justify-end">
                 <Button
-                    className="font-semibold w-full bg-[#48bfe3] text-base"
+                    className="w-full bg-[#48bfe3] text-base font-semibold"
                     onClick={() => {
-                        setPackageChosen(title)
-                        setProductId(productId)
+                        setPackageChosen(title);
+                        setProductId(productId);
                     }}
                 >
                     Înscrie-te
                 </Button>
             </div>
         </Card>
-    )
+    );
 
     return (
-        <main className="mt-5 md:mt-12 mx-24 max-md:mx-4 mb-8">
+        <main className="mx-24 mb-8 mt-5 max-md:mx-4 md:mt-12">
             <div className="flex flex-col items-center">
-                <p className="text-8xl font-extrabold max-md:text-6xl leading-none mb-4">
+                <p className="mb-4 text-8xl font-extrabold leading-none max-md:text-6xl">
                     Pachete
                 </p>
-                <p className="text-5xl font-extrabold max-md:text-3xl leading-none bg-gradient-to-r from-[#48bfe3] to-[#44afd0] bg-clip-text text-transparent mb-2 text-center">
+                <p className="mb-2 bg-gradient-to-r from-[#48bfe3] to-[#44afd0] bg-clip-text text-center text-5xl font-extrabold leading-none text-transparent max-md:text-3xl">
                     Healthy Vision: Mind Matters
                 </p>
-                <div className="flex gap-6 text-muted-foreground mb-4">
+                <div className="mb-4 flex gap-6 text-muted-foreground">
                     <p>
                         <FontAwesomeIcon icon={faCalendar} className="mr-2" />
                         20 aprilie
@@ -156,7 +156,7 @@ export default function MindMatters() {
                     <p>
                         <Link
                             href="https://maps.app.goo.gl/Umx1A68Qecu8iRCF7"
-                            className="flex justify-center items-center"
+                            className="flex items-center justify-center"
                         >
                             <FontAwesomeIcon
                                 icon={faLocationPin}
@@ -171,7 +171,7 @@ export default function MindMatters() {
                         </Link>
                     </p>
                 </div>
-                <p className="text-muted-foreground text-center">
+                <p className="text-center text-muted-foreground">
                     Toți banii strânși vor fi donați către{' '}
                     <Link
                         href={
@@ -186,7 +186,7 @@ export default function MindMatters() {
                     </Link>
                 </p>
                 {!packageChosen && false && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 w-full md:w-1/2 gap-8 md:gap-8 mt-12">
+                    <div className="mt-12 grid w-full grid-cols-1 gap-8 md:w-1/2 md:grid-cols-2 md:gap-8">
                         <PricingCard
                             title="MindAccess"
                             description="Pachet redus"
@@ -207,12 +207,12 @@ export default function MindMatters() {
                         />
                     </div>
                 )}
-                <div className="flex mt-8">
+                <div className="mt-8 flex">
                     <Card
-                        className={`w-full relative h-full flex flex-col items-center p-4 mx-auto text-center  rounded-lg border xl:p-8 border-[#48bfe3] dark:border-[#48bfe3] max-md:order-1`}
+                        className={`relative mx-auto flex h-full w-full flex-col items-center rounded-lg border  border-[#48bfe3] p-4 text-center dark:border-[#48bfe3] max-md:order-1 xl:p-8`}
                     >
                         <div className="text-gray-900 dark:text-white">
-                            <p className="text-2xl font-bold mb-4">
+                            <p className="mb-4 text-2xl font-bold">
                                 Perioada de înscrieri a fost închisă.
                             </p>
                             <p>Vă mulțumim tuturor pentru susținere!</p>
@@ -221,8 +221,8 @@ export default function MindMatters() {
                 </div>
             </div>
             {packageChosen && !renderStripeCheckout && (
-                <div className="flex justify-center mt-12">
-                    <Card className="w-full max-w-xl shadow-md border rounded-lg">
+                <div className="mt-12 flex justify-center">
+                    <Card className="w-full max-w-xl rounded-lg border shadow-md">
                         <CardHeader>
                             <CardTitle>
                                 Mai avem nevoie doar de câteva date
@@ -242,10 +242,10 @@ export default function MindMatters() {
                 </div>
             )}
             {renderStripeCheckout && !clientSecret && (
-                <div role="status" className="flex w-full justify-center mt-12">
+                <div role="status" className="mt-12 flex w-full justify-center">
                     <svg
                         aria-hidden="true"
-                        className="w-48 h-48 text-gray-200 animate-spin dark:text-gray-600 fill-[#48bfe3]"
+                        className="h-48 w-48 animate-spin fill-[#48bfe3] text-gray-200 dark:text-gray-600"
                         viewBox="0 0 100 101"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -267,7 +267,7 @@ export default function MindMatters() {
             )}
             {!packageChosen && (
                 <div className="mt-8 flex flex-col items-center">
-                    <p className="text-muted-foreground text-center mb-4">
+                    <p className="mb-4 text-center text-muted-foreground">
                         Nu poți ajunge la eveniment, dar vrei să ajuți? Poți
                         dona direct către cauza noastră.
                     </p>
@@ -277,7 +277,7 @@ export default function MindMatters() {
                 </div>
             )}
         </main>
-    )
+    );
 }
 
 const formSchema = z.object({
@@ -293,15 +293,15 @@ const formSchema = z.object({
     phone_number: z.string().min(1, { message: 'Phone number is required' }),
     package: z.string(),
     agree_to_terms_and_conditions: z.boolean().default(false),
-})
+});
 
-export type CheckoutFormSchema = z.infer<typeof formSchema>
+export type CheckoutFormSchema = z.infer<typeof formSchema>;
 
 interface CheckoutFormProps {
-    packageChosen: string
-    setRenderStripeCheckout: Dispatch<SetStateAction<boolean>>
-    setClientSecret: Dispatch<SetStateAction<string | undefined>>
-    productId: string
+    packageChosen: string;
+    setRenderStripeCheckout: Dispatch<SetStateAction<boolean>>;
+    setClientSecret: Dispatch<SetStateAction<string | undefined>>;
+    productId: string;
 }
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({
@@ -310,15 +310,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     setClientSecret,
     productId,
 }) => {
-    const [loading, setLoading] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false);
 
     const checkoutStatuses = {
         loading: 'loading',
         submitted: 'submitted',
         error: 'error',
-    }
+    };
 
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('');
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -330,13 +330,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
             package: packageChosen,
             agree_to_terms_and_conditions: false,
         },
-    })
+    });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        const abortLongFetch = new AbortController()
-        const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000)
+        const abortLongFetch = new AbortController();
+        const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000);
 
-        setStatus(checkoutStatuses.loading)
+        setStatus(checkoutStatuses.loading);
 
         fetch('/api/mindmatters', {
             signal: abortLongFetch.signal,
@@ -348,19 +348,19 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         })
             .then((res) => {
                 if (res.ok) {
-                    clearTimeout(abortTimeoutId)
-                    return res.json()
+                    clearTimeout(abortTimeoutId);
+                    return res.json();
                 }
-                throw new Error('Whoops! Error sending email.')
+                throw new Error('Whoops! Error sending email.');
             })
             .then((res) => {
-                setStatus(checkoutStatuses.submitted)
-                setRenderStripeCheckout(true)
-                getCheckoutSession(productId, 1, 'payment', values.email)
+                setStatus(checkoutStatuses.submitted);
+                setRenderStripeCheckout(true);
+                getCheckoutSession(productId, 1, 'payment', values.email);
             })
             .catch((err) => {
-                setStatus(checkoutStatuses.error)
-            })
+                setStatus(checkoutStatuses.error);
+            });
     }
 
     const getCheckoutSession = async (
@@ -371,8 +371,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         interval?: string,
         currency?: string
     ) => {
-        setClientSecret(undefined)
-        setLoading(true)
+        setClientSecret(undefined);
+        setLoading(true);
         fetch(CHECKOUT_PATH, {
             method: 'POST',
             body: JSON.stringify({
@@ -386,10 +386,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         })
             .then((res) => res.json())
             .then((data) => {
-                setClientSecret(data.clientSecret)
-                setLoading(false)
-            })
-    }
+                setClientSecret(data.clientSecret);
+                setLoading(false);
+            });
+    };
 
     return (
         <Form {...form}>
@@ -493,7 +493,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                     control={form.control}
                     name="agree_to_terms_and_conditions"
                     render={({ field }) => (
-                        <FormItem className="mb-4 pt-2 flex items-start">
+                        <FormItem className="mb-4 flex items-start pt-2">
                             <FormControl>
                                 <Checkbox
                                     required
@@ -526,7 +526,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                                 xmlns="http://www.w3.org/2000/svg"
                                 height="1em"
                                 viewBox="0 0 512 512"
-                                className="animate-spin mr-2 fill-white dark:fill-dark"
+                                className="mr-2 animate-spin fill-white dark:fill-dark"
                             >
                                 <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                             </svg>
@@ -541,5 +541,5 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                 </div>
             </form>
         </Form>
-    )
-}
+    );
+};

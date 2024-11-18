@@ -1,11 +1,18 @@
-import { CATRAFUSALE_PACKAGES } from '@/components/payments/constants';
+import { getStripePrices } from '@/components/payments/constants';
+import { CatrafusaleRegistrationInteractor } from '@/interactors/catrafusaleRegistrationInteractor';
 import CatrafusaleRaffleRegistration, {
     ICatrafusaleRaffleRegistration,
 } from '@/models/catrafusaleRaffleRegistration';
 import CatrafusaleRegistration from '@/models/catrafusaleRegistration';
+import {
+    getPackageStandersAndTablesFromProductId,
+    reserveStandersOrTables,
+} from '@/use-cases/registrations/CatrafusaleRegistration2024Winter';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
+const { CATRAFUSALE_PACKAGES } = getStripePrices();
 
 export const handleFlashSaleActive = async (
     checkoutSession: Stripe.Checkout.Session
@@ -156,4 +163,16 @@ const createRaffleTicket = async (
     const successfulRegistration =
         await CatrafusaleRaffleRegistration.create(raffleRegistration);
     return successfulRegistration;
+};
+
+export const confirmCatrafusale2024WinterEditionRegistrationPayment = async (
+    checkoutSession: Stripe.Checkout.Session
+) => {
+    const registrationInteractor = new CatrafusaleRegistrationInteractor();
+    const standersAndTablesObject = getPackageStandersAndTablesFromProductId(
+        checkoutSession.metadata?.productId as string
+    );
+    await reserveStandersOrTables(standersAndTablesObject);
+
+    await registrationInteractor.confirmRegistrationPayment(checkoutSession.id);
 };

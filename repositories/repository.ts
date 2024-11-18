@@ -16,6 +16,10 @@ export class Repository<T extends Document> implements IRepository<T> {
         return this.model.findById(id).exec();
     }
 
+    async findOne(): Promise<T | null> {
+        return this.model.findOne().exec();
+    }
+
     async create(item: Partial<T>): Promise<T> {
         return this.model.create(item);
     }
