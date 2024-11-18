@@ -1,3 +1,5 @@
+import catrafusale_white from '@/assets/images/catrafusale_white.png';
+import vederedecraciun_white from '@/assets/images/vederedecraciun_white.png';
 import CatrafusaleFAQ from '@/components/catrafusale/CatrafusaleFAQ';
 import CatrafusalePackages from '@/components/catrafusale/Packages';
 import { CatrafusaleRegistrationLimitInteractor } from '@/interactors/catrafusaleRegistrationInteractor';
@@ -11,6 +13,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -82,6 +85,19 @@ export default async function Catrafusale() {
                     <br /> Alege unul dintre pachetele de donații de mai jos, și
                     înscrie-te la ediția de anul acesta!{' '}
                 </p>
+
+                <div className="mb-8 flex items-center justify-center gap-4">
+                    <Image
+                        src={catrafusale_white}
+                        alt="catrafusale"
+                        className="h-[30px] w-[30px] md:h-[50px] md:w-[50px]"
+                    />
+                    <Image
+                        src={vederedecraciun_white}
+                        alt="catrafusale"
+                        className="h-[30px] w-[30px] md:h-[50px] md:w-[50px]"
+                    />
+                </div>
 
                 <CatrafusaleFAQ />
 
