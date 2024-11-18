@@ -22,14 +22,7 @@ import {
 } from '../ui/tooltip';
 import { useToast } from '../ui/use-toast';
 import DonateButton from './DonateButton';
-import {
-    STRIPE_CATRAFUSALE_DONATION,
-    STRIPE_GHIOZDANOK_DONATION,
-    STRIPE_HEALTHYVISION_DONATION,
-    STRIPE_RECURRING_DONATION,
-    STRIPE_SIMPLE_DONATION,
-    STRIPE_VEDEREDECRACIUN_DONATION,
-} from './constants';
+import { getStripePrices } from './constants';
 
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -39,6 +32,14 @@ export default function EmbeddedCheckoutForm() {
     const [clientSecret, setClientSecret] = useState<undefined | string>();
     const myRef = useRef<null | HTMLDivElement>(null);
     const { toast } = useToast();
+    const {
+        STRIPE_SIMPLE_DONATION,
+        STRIPE_RECURRING_DONATION,
+        STRIPE_VEDEREDECRACIUN_DONATION,
+        STRIPE_GHIOZDANOK_DONATION,
+        STRIPE_CATRAFUSALE_DONATION,
+        STRIPE_HEALTHYVISION_DONATION,
+    } = getStripePrices();
 
     useEffect(() => {
         if (clientSecret)

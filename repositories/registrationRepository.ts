@@ -1,5 +1,5 @@
 import { IRepository } from '@/interfaces/IRepository';
-import { Document, Model } from 'mongoose';
+import { Document, FilterQuery, Model, UpdateQuery } from 'mongoose';
 import { Repository } from './repository';
 
 export class RegistrationRepository<T extends Document, S extends Model<T>>
@@ -8,5 +8,12 @@ export class RegistrationRepository<T extends Document, S extends Model<T>>
 {
     constructor(model: S) {
         super(model);
+    }
+
+    async findOneAndUpdate(
+        filter?: FilterQuery<T> | undefined,
+        update?: UpdateQuery<T> | undefined
+    ) {
+        return await this.model.findOneAndUpdate(filter, update);
     }
 }

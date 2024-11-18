@@ -1,4 +1,5 @@
 import { RegistrationNotAvailableError } from '@/app/api/utils/errors';
+import { getStripePrices } from '@/components/payments/constants';
 import { CatrafusaleRegistrationWinter2024Dto } from '@/dtos/registration.dto';
 import {
     CatrafusaleRegistrationInteractor,
@@ -50,6 +51,23 @@ const getPackageStandersAndTables = (packageName: string) => {
     }
 };
 
+export const getPackageStandersAndTablesFromProductId = (productId: string) => {
+    const { CATRAFUSALE_2024_WINTER_EDITION_PACKAGES } = getStripePrices();
+
+    switch (productId) {
+        case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE:
+            return { standers: 1, tables: 0 };
+        case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.DOUBLE:
+            return { standers: 2, tables: 0 };
+        case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE_TABLE:
+            return { standers: 0, tables: 1 };
+        case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.MIXT:
+            return { standers: 1, tables: 1 };
+        default:
+            return { standers: 1, tables: 0 };
+    }
+};
+
 const checkStandersOrTablesAreAvailableForPurchase =
     async (packageStandersAndTablesObject: {
         standers: number;
@@ -80,10 +98,15 @@ const checkStandersOrTablesAreAvailableForPurchase =
         return true;
     };
 
-const reserveStandersOrTables = async (packageStandersAndTablesObject: {
+export const reserveStandersOrTables = async (packageStandersAndTablesObject: {
     standers: number;
     tables: number;
 }) => {
+    const registrationLimitInteractor =
+        new CatrafusaleRegistrationLimitInteractor(
+            new Repository(CatrafusaleRegistrationWinter2024Limit)
+        );
+
     if (packageStandersAndTablesObject.standers) {
         await registrationLimitInteractor.incrementCurrentStanders(
             packageStandersAndTablesObject.standers

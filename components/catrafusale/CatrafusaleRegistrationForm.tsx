@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import EmbeddedCheckoutCatrafusale from '../payments/EmbeddedCheckoutCatrafusale';
-import { CATRAFUSALE_PACKAGES } from '../payments/constants';
+import { getStripePrices } from '../payments/constants';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Checkbox } from '../ui/checkbox';
@@ -52,6 +52,8 @@ export interface ICatrafusaleRegistrationObject
     checkout_session_id?: string;
 }
 
+const { CATRAFUSALE_PACKAGES } = getStripePrices();
+
 export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
     productId,
 }) => {
@@ -86,7 +88,7 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
             1,
             'payment',
             registration.email,
-            { catrafusale_registration: true, productId }
+            { catrafusale_2024_winter_edition: true, productId }
         );
 
         registration.checkout_session_id = checkoutSession.id;
@@ -142,14 +144,16 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
             });
 
     const getPackageName = (productId: string) => {
+        const { CATRAFUSALE_2024_WINTER_EDITION_PACKAGES } = getStripePrices();
+
         switch (productId) {
-            case CATRAFUSALE_PACKAGES.SINGLE:
+            case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE:
                 return 'single';
-            case CATRAFUSALE_PACKAGES.DOUBLE:
+            case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.DOUBLE:
                 return 'double';
-            case CATRAFUSALE_PACKAGES.SINGLE_TABLE:
+            case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE_TABLE:
                 return 'table';
-            case CATRAFUSALE_PACKAGES.MIXT:
+            case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.MIXT:
                 return 'mixt';
             default:
                 return '';

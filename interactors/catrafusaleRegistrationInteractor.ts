@@ -37,6 +37,19 @@ export class CatrafusaleRegistrationInteractor extends RegistrationInteractor<
         const newRegistration = await this.repository.create(registration);
         return toCatrafusaleRegistrationWinter2024Dto(newRegistration);
     }
+
+    async confirmRegistrationPayment(checkoutSessionId: string) {
+        await this.repository.findOneAndUpdate(
+            {
+                checkout_session_id: checkoutSessionId,
+            },
+            {
+                $set: {
+                    payment_confirmed: true,
+                },
+            }
+        );
+    }
 }
 
 export class CatrafusaleRegistrationLimitInteractor {
@@ -62,8 +75,10 @@ export class CatrafusaleRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        return toCatrafusaleRegistrationWinter2024LimitDto(limitDocument)
-            .currentStanders;
+        const limitObject =
+            toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
+
+        return limitObject.maxStanders - limitObject.currentStanders;
     }
 
     async getRemainingTables() {
@@ -73,8 +88,10 @@ export class CatrafusaleRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        return toCatrafusaleRegistrationWinter2024LimitDto(limitDocument)
-            .currentTables;
+        const limitObject =
+            toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
+
+        return limitObject.maxTables - limitObject.currentTables;
     }
 
     async incrementCurrentStanders(number: number) {
