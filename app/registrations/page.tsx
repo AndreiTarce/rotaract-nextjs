@@ -1,11 +1,13 @@
 import { CatrafusaleRegistrationInteractor } from '@/interactors/catrafusaleRegistrationInteractor';
 import { loginIsRequiredServer } from '@/lib/auth';
+import connectMongoDB from '@/lib/mongodb';
 import { columns } from './columns';
 import { DataTable } from './data-table';
 
 const registrationInteractor = new CatrafusaleRegistrationInteractor();
 
 export default async function Registrations() {
+    await connectMongoDB();
     const registrations = await registrationInteractor.getRegistrations();
     const newRegistrations = registrations.map((registration, index) => ({
         ...registration,
