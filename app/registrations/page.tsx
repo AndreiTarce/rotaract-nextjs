@@ -10,8 +10,8 @@ export default async function Registrations() {
     await connectMongoDB();
     const registrations = await registrationInteractor.getRegistrations();
     const newRegistrations = registrations.map((registration, index) => ({
-        ...registration,
         position: index + 1,
+        ...registration,
     }));
 
     await loginIsRequiredServer();
