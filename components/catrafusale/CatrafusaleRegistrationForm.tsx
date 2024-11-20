@@ -135,6 +135,7 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                 interval: interval,
                 currency: currency,
                 customer_email: email,
+                allow_promotion_codes: true,
                 metadata: metadata,
             }),
         })
