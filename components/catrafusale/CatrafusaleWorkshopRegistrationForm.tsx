@@ -218,32 +218,6 @@ export const CatrafusaleWorkshopRegistrationForm: React.FC<
                 />
                 <FormField
                     control={form.control}
-                    name="shop_name"
-                    render={({ field }) => (
-                        <FormItem className="mb-4">
-                            <FormLabel>Numele magazinului tău</FormLabel>
-                            <FormControl className="border-none dark:bg-foreground">
-                                <Input
-                                    placeholder="Alege un nume sugestiv și atrăgător"
-                                    {...field}
-                                />
-                            </FormControl>
-                            {form.formState.errors.shop_name && (
-                                <FormDescription className="text-destructive">
-                                    <span className="flex gap-2">
-                                        <AlertOctagon size={20} />
-                                        {
-                                            form.formState.errors.shop_name
-                                                ?.message
-                                        }
-                                    </span>
-                                </FormDescription>
-                            )}
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
                     name="email"
                     render={({ field }) => (
                         <FormItem className="mb-4">

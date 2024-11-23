@@ -25,7 +25,7 @@ export default function CatrafusaleWorkshop() {
                 <p className="mb-4 text-foreground dark:text-background">
                     Informatii despre workshop aici
                 </p>
-                <Separator className="mb-4" />
+                <Separator className="mb-4 bg-foreground dark:bg-card" />
                 <Collapsible
                     open={isOpen}
                     onOpenChange={() => setIsOpen(!isOpen)}
