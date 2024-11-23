@@ -1,6 +1,7 @@
 import catrafusale_white from '@/assets/images/catrafusale_white.png';
 import vederedecraciun_white from '@/assets/images/vederedecraciun_white.png';
 import CatrafusaleFAQ from '@/components/catrafusale/CatrafusaleFAQ';
+import CatrafusaleWorkshop from '@/components/catrafusale/CatrafusaleWorkshop';
 import CatrafusalePackages from '@/components/catrafusale/Packages';
 import { CatrafusaleRegistrationLimitInteractor } from '@/interactors/catrafusaleRegistrationInteractor';
 import connectMongoDB from '@/lib/mongodb';
@@ -100,6 +101,8 @@ export default async function Catrafusale() {
                 </div>
 
                 <CatrafusaleFAQ />
+
+                <CatrafusaleWorkshop />
 
                 <CatrafusalePackages
                     remainingStanders={remainingStanders}
