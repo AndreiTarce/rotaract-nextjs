@@ -96,11 +96,19 @@ const STRIPE_PRODUCTION_PRICES = {
     CATRAFUSALE_RAFFLE_TICKET: 'price_1PLR5FH1rXnXzXAp3myMbK3q',
 
     CATRAFUSALE_2024_WINTER_WORKSHOPS: [
-        { name: 'Pictură pe lumânări', productId: 'id1', id: 1 },
-        { name: 'Personalizare globuri', productId: 'id2', id: 2 },
+        {
+            name: 'Pictură pe lumânări',
+            productId: 'price_1QQEacH1rXnXzXApdVOhpmmr',
+            id: 1,
+        },
+        {
+            name: 'Personalizare globuri',
+            productId: 'price_1QQEbeH1rXnXzXApGarrzI5H',
+            id: 2,
+        },
         {
             name: 'Modelare și pictare ornament lut',
-            productId: 'id3',
+            productId: 'price_1QQEcIH1rXnXzXApf11YDzJt',
             id: 3,
         },
     ],

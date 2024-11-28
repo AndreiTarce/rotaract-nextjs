@@ -70,7 +70,6 @@ export const CatrafusaleWorkshopRegistrationForm = (
             email: '',
             phone_number: '',
             agree_to_terms_and_conditions: false,
-            package: CATRAFUSALE_2024_WINTER_WORKSHOPS[0],
         },
     });
 
@@ -161,11 +160,28 @@ export const CatrafusaleWorkshopRegistrationForm = (
     };
 
     if (clientSecret)
-        return (
-            <div className="md:w-3/4">
-                <EmbeddedCheckoutCatrafusale clientSecret={clientSecret} />
-            </div>
-        );
+        return <EmbeddedCheckoutCatrafusale clientSecret={clientSecret} />;
+
+    const updatePackage = (productId: string) => {
+        switch (productId) {
+            case CATRAFUSALE_2024_WINTER_WORKSHOPS[0].productId:
+                return form.setValue(
+                    'package',
+                    CATRAFUSALE_2024_WINTER_WORKSHOPS[0],
+                    {}
+                );
+            case CATRAFUSALE_2024_WINTER_WORKSHOPS[1].productId:
+                return form.setValue(
+                    'package',
+                    CATRAFUSALE_2024_WINTER_WORKSHOPS[1]
+                );
+            case CATRAFUSALE_2024_WINTER_WORKSHOPS[2].productId:
+                return form.setValue(
+                    'package',
+                    CATRAFUSALE_2024_WINTER_WORKSHOPS[2]
+                );
+        }
+    };
 
     return (
         <Form {...form}>
@@ -176,7 +192,11 @@ export const CatrafusaleWorkshopRegistrationForm = (
                     render={({ field }) => (
                         <FormItem className="mb-4">
                             <FormLabel>Atelier</FormLabel>
-                            <Select>
+                            <Select
+                                onValueChange={(productId) =>
+                                    updatePackage(productId)
+                                }
+                            >
                                 <FormControl>
                                     <SelectTrigger className="h-9 w-fit border-none dark:bg-foreground">
                                         <SelectValue placeholder="Alege atelierul la care vrei să participi" />
