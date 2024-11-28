@@ -22,10 +22,10 @@ const STRIPE_DEVELOPMENT_PRICES = {
     MIND_MATTERS_MINDFUEL: 'price_1OyfxoH1rXnXzXAptsqOPQCq',
 
     CATRAFUSALE_PACKAGES: {
-        SINGLE: 'price_1PFHbyH1rXnXzXApNJslmKJj',
-        DOUBLE: 'price_1PFHd7H1rXnXzXApRMfKkOCQ',
-        MIXT: 'price_1PFHeKH1rXnXzXApPeRJ1aLt',
-        SINGLE_TABLE: 'price_1PFHdkH1rXnXzXApjHFj8INf',
+        SINGLE: 'price_1O8qR1H1rXnXzXAp0L7rLSUk',
+        DOUBLE: 'price_1O8qR1H1rXnXzXAp0L7rLSUk',
+        MIXT: 'price_1O8qR1H1rXnXzXAp0L7rLSUk',
+        SINGLE_TABLE: 'price_1O8qR1H1rXnXzXAp0L7rLSUk',
     },
 
     CATRAFUSALE_2024_WINTER_EDITION_PACKAGES: {
@@ -36,6 +36,24 @@ const STRIPE_DEVELOPMENT_PRICES = {
     },
 
     CATRAFUSALE_RAFFLE_TICKET: 'price_1PLR5FH1rXnXzXAp3myMbK3q',
+
+    CATRAFUSALE_2024_WINTER_WORKSHOPS: [
+        {
+            name: 'Pictură pe lumânări',
+            productId: 'price_1O8OR1H1rXnXzXAphxmN3uIh',
+            id: 1,
+        },
+        {
+            name: 'Personalizare globuri',
+            productId: 'price_1PFHbyH1rXnXzXApNJslmKJj2',
+            id: 2,
+        },
+        {
+            name: 'Modelare și pictare ornament lut',
+            productId: 'price_1PFHbyH1rXnXzXApNJslmKJj3',
+            id: 3,
+        },
+    ],
 };
 
 const STRIPE_PRODUCTION_PRICES = {
@@ -76,6 +94,16 @@ const STRIPE_PRODUCTION_PRICES = {
     },
 
     CATRAFUSALE_RAFFLE_TICKET: 'price_1PLR5FH1rXnXzXAp3myMbK3q',
+
+    CATRAFUSALE_2024_WINTER_WORKSHOPS: [
+        { name: 'Pictură pe lumânări', productId: 'id1', id: 1 },
+        { name: 'Personalizare globuri', productId: 'id2', id: 2 },
+        {
+            name: 'Modelare și pictare ornament lut',
+            productId: 'id3',
+            id: 3,
+        },
+    ],
 };
 
 const getStripePrices = () => {

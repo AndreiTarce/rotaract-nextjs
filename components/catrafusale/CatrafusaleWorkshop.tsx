@@ -11,11 +11,11 @@ import {
 } from '../ui/collapsible';
 import { Separator } from '../ui/separator';
 import CatrafusaleWorkshopCard, {
-    CatrafusaleWorkshopProps,
+    CatrafusaleWorkshopCardProps,
 } from './CatrafusaleWorkshopCard';
 import { CatrafusaleWorkshopRegistrationForm } from './CatrafusaleWorkshopRegistrationForm';
 
-const workshops: CatrafusaleWorkshopProps[] = [
+const workshops: CatrafusaleWorkshopCardProps[] = [
     {
         title: 'Pictură pe lumânări',
         image: 'https://rotaract-visio-bucket.s3.eu-central-1.amazonaws.com/assets/close-up-hand-using-glass-water-painting_23-2148263441.jpg',
@@ -25,6 +25,7 @@ Te așteptăm la micul și frumosul nostru workshop de picturã pe lumânări, c
 
 Daca dorești să ornezi casa în preajma sărbătorilor de iarnă sau să oferi o micuță atenție cuiva drag, noi îți oferim toate materiale necesare (2 lumânări - cu care mergi acasă, acuarele, pensule), tu trebuie sa vii doar cu voie bună.
 Te așteptăm să te înscrii la workshop-ul nostru, acesta are loc în data de 8 Decembrie la Casino - în Parcul Central, în cadrul CatrafuSALE și promitem că va fi un moment unic de la care vei pleca cu o mare bucurie pentru tine sau pentru cineva drag.`,
+        price: 35,
     },
     {
         title: 'Personalizare globuri',
@@ -34,15 +35,23 @@ Te așteptăm să te înscrii la workshop-ul nostru, acesta are loc în data de 
 Te așteptăm pe 8 decembrie, la Casino, în Parcul Central. Grăbește-te să te înscrii, deoarece locurile sunt limitate – doar 60 disponibile!
 
 Taxa de participare este de 25 de lei.`,
+        price: 25,
     },
     {
         title: 'Modelare și pictare ornamente lut',
         image: 'https://rotaract-visio-bucket.s3.eu-central-1.amazonaws.com/assets/close-up-hand-holding-painting-brush.jpg',
         description: `Workshop-ul are ca scop invatarea tehnicilor de baza de modelat lutul cu racire la aer si de pictarea acestuia pentru a realiza ornamente de Craciun personalizate. Participantii vor avea ocazia sa creeze 3 ornamente de agatat in brad, dupa bunul plac, pe care sa le ia apoi acasa.`,
+        price: 60,
     },
 ];
 
-export default function CatrafusaleWorkshop() {
+export interface CatrafusaleWorkshopProps {
+    remainingCandles: number;
+    remainingGlobes: number;
+    remainingClay: number;
+}
+
+export default function CatrafusaleWorkshop(props: CatrafusaleWorkshopProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -98,7 +107,7 @@ export default function CatrafusaleWorkshop() {
                         </CardTitle>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                        <CatrafusaleWorkshopRegistrationForm productId="asd" />
+                        <CatrafusaleWorkshopRegistrationForm {...props} />
                     </CollapsibleContent>
                 </Collapsible>
             </CardContent>

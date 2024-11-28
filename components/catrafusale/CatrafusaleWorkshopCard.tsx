@@ -6,7 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Button } from '../ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from '../ui/dialog';
 import {
     Drawer,
     DrawerClose,
@@ -17,14 +23,15 @@ import {
     DrawerTitle,
 } from '../ui/drawer';
 
-export interface CatrafusaleWorkshopProps {
+export interface CatrafusaleWorkshopCardProps {
     title: string;
     image: string;
     description: string;
+    price: number;
 }
 
 export default function CatrafusaleWorkshopCard(
-    props: CatrafusaleWorkshopProps
+    props: CatrafusaleWorkshopCardProps
 ) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
     const [open, setOpen] = useState(false);
@@ -51,6 +58,10 @@ export default function CatrafusaleWorkshopCard(
                         className="absolute right-4 top-4 z-10 text-white"
                     />
                     <div className="absolute top-0 h-1/2 w-full rounded-lg bg-gradient-to-b from-black to-transparent opacity-60"></div>
+                    <div className="absolute left-4 top-3 rounded-lg text-2xl font-bold text-card dark:text-foreground">
+                        {props.price}
+                        RON
+                    </div>
                 </div>
                 <p className="mt-2 text-lg font-semibold leading-none text-foreground dark:text-card md:text-base">
                     {props.title}
@@ -61,9 +72,12 @@ export default function CatrafusaleWorkshopCard(
                     <DialogContent>
                         <DialogHeader>
                             <DialogTitle>{props.title}</DialogTitle>
-                            <DrawerDescription className="text-justify text-base">
+                            <DialogDescription className="text-justify text-base">
+                                <div className="mb-4 font-semibold">
+                                    Preț: {props.price}RON
+                                </div>
                                 {props.description}
-                            </DrawerDescription>
+                            </DialogDescription>
                         </DialogHeader>
                     </DialogContent>
                 </Dialog>
@@ -77,6 +91,9 @@ export default function CatrafusaleWorkshopCard(
                                 {props.title}
                             </DrawerTitle>
                             <DrawerDescription className="text-justify text-base">
+                                <div className="mb-4 font-semibold">
+                                    Preț: {props.price}RON
+                                </div>
                                 {props.description}
                             </DrawerDescription>
                         </DrawerHeader>

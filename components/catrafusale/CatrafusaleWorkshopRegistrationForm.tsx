@@ -1,7 +1,7 @@
 'use client';
 
+import { ICatrafusaleWorkshopRegistrationWinter2024 } from '@/interfaces/registration/ICatrafusaleRegistration2024Winter';
 import { CHECKOUT_PATH } from '@/lib/constants';
-import { ICatrafusaleRegistration } from '@/models/catrafusaleRegistration';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,6 +9,7 @@ import { AlertOctagon } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Stripe from 'stripe';
 import { z } from 'zod';
 import EmbeddedCheckoutCatrafusale from '../payments/EmbeddedCheckoutCatrafusale';
 import { getStripePrices } from '../payments/constants';
@@ -23,6 +24,15 @@ import {
     FormLabel,
 } from '../ui/form';
 import { Input } from '../ui/input';
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '../ui/select';
+import { CatrafusaleWorkshopProps } from './CatrafusaleWorkshop';
 
 const formSchema = z.object({
     first_name: z.string().min(1, {
@@ -31,63 +41,59 @@ const formSchema = z.object({
     last_name: z.string().min(1, {
         message: 'Last name is required.',
     }),
-    shop_name: z.string(),
     email: z.string().min(1, { message: 'Email is required' }).email({
         message: 'Email must be valid. (e.g. example@gmail.com)',
     }),
     phone_number: z.string().min(1, { message: 'Phone number is required' }),
-    package: z.string().optional(),
+    package: z.object({
+        name: z.string(),
+        id: z.number(),
+        productId: z.string(),
+    }),
     agree_to_terms_and_conditions: z.boolean().default(false),
 });
 
-interface CheckoutFormProps {
-    productId: string;
-}
-
 export type CatrafusaleFormSchema = z.infer<typeof formSchema>;
 
-export interface ICatrafusaleRegistrationObject
-    extends ICatrafusaleRegistration {
-    checkout_session_id?: string;
-}
-
-const { CATRAFUSALE_PACKAGES } = getStripePrices();
-
-export const CatrafusaleWorkshopRegistrationForm: React.FC<
-    CheckoutFormProps
-> = ({ productId }) => {
-    const [clientSecret, setClientSecret] = useState<string>();
+export const CatrafusaleWorkshopRegistrationForm = (
+    props: CatrafusaleWorkshopProps
+) => {
+    const [clientSecret, setClientSecret] = useState<string | null>();
     const [loading, setLoading] = useState(false);
+    const { CATRAFUSALE_2024_WINTER_WORKSHOPS } = getStripePrices();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             first_name: '',
             last_name: '',
-            shop_name: '',
             email: '',
             phone_number: '',
             agree_to_terms_and_conditions: false,
+            package: CATRAFUSALE_2024_WINTER_WORKSHOPS[0],
         },
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setLoading(true);
-        const packageName = getPackageName(productId);
 
-        const registration: ICatrafusaleRegistrationObject = {
+        const registration = {
             ...values,
-            package: packageName,
-            paid: false,
-            oneplusone: false,
+            package: values.package.name,
+            payment_confirmed: false,
+            checkout_session_id: '',
         };
 
         const checkoutSession = await getCheckoutSession(
-            productId,
+            values.package.productId,
             1,
             'payment',
             registration.email,
-            { catrafusale_2024_winter_edition: true, productId }
+            {
+                catrafusale_workshop_2024_winter_edition: true,
+                productId: values.package.productId,
+            },
+            values.package.productId
         );
 
         registration.checkout_session_id = checkoutSession.id;
@@ -97,12 +103,12 @@ export const CatrafusaleWorkshopRegistrationForm: React.FC<
     };
 
     const sendRegistration = async (
-        registration: ICatrafusaleRegistrationObject
+        registration: ICatrafusaleWorkshopRegistrationWinter2024
     ) => {
         const abortLongFetch = new AbortController();
         const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000);
         try {
-            const response = await fetch('/api/catrafusale', {
+            const response = await fetch('/api/catrafusale_workshop', {
                 signal: abortLongFetch.signal,
                 method: 'POST',
                 headers: {
@@ -139,24 +145,18 @@ export const CatrafusaleWorkshopRegistrationForm: React.FC<
             }),
         })
             .then((res) => res.json())
-            .then((data) => {
+            .then((data: Stripe.Checkout.Session) => {
                 return data;
             });
 
-    const getPackageName = (productId: string) => {
-        const { CATRAFUSALE_2024_WINTER_EDITION_PACKAGES } = getStripePrices();
-
+    const isPackageDisabled = (productId: string) => {
         switch (productId) {
-            case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE:
-                return 'single';
-            case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.DOUBLE:
-                return 'double';
-            case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE_TABLE:
-                return 'table';
-            case CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.MIXT:
-                return 'mixt';
-            default:
-                return '';
+            case CATRAFUSALE_2024_WINTER_WORKSHOPS[0].productId:
+                return !Boolean(props.remainingCandles);
+            case CATRAFUSALE_2024_WINTER_WORKSHOPS[1].productId:
+                return !Boolean(props.remainingGlobes);
+            case CATRAFUSALE_2024_WINTER_WORKSHOPS[2].productId:
+                return !Boolean(props.remainingClay);
         }
     };
 
@@ -170,6 +170,45 @@ export const CatrafusaleWorkshopRegistrationForm: React.FC<
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
+                <FormField
+                    control={form.control}
+                    name="package"
+                    render={({ field }) => (
+                        <FormItem className="mb-4">
+                            <FormLabel>Atelier</FormLabel>
+                            <Select>
+                                <FormControl>
+                                    <SelectTrigger className="h-9 w-fit border-none dark:bg-foreground">
+                                        <SelectValue placeholder="Alege atelierul la care vrei să participi" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent className="border-none dark:bg-foreground dark:text-card">
+                                    <SelectGroup>
+                                        {CATRAFUSALE_2024_WINTER_WORKSHOPS.map(
+                                            (workshop) => (
+                                                <SelectItem
+                                                    disabled={isPackageDisabled(
+                                                        workshop.productId
+                                                    )}
+                                                    value={workshop.productId}
+                                                    key={workshop.id}
+                                                >
+                                                    {workshop.name}{' '}
+                                                    {isPackageDisabled(
+                                                        workshop.productId
+                                                    )
+                                                        ? ' - SOLD OUT'
+                                                        : ''}
+                                                </SelectItem>
+                                            )
+                                        )}
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </FormItem>
+                    )}
+                />
+
                 <FormField
                     control={form.control}
                     name="first_name"
@@ -193,6 +232,7 @@ export const CatrafusaleWorkshopRegistrationForm: React.FC<
                         </FormItem>
                     )}
                 />
+
                 <FormField
                     control={form.control}
                     name="last_name"
@@ -216,6 +256,7 @@ export const CatrafusaleWorkshopRegistrationForm: React.FC<
                         </FormItem>
                     )}
                 />
+
                 <FormField
                     control={form.control}
                     name="email"
@@ -239,6 +280,7 @@ export const CatrafusaleWorkshopRegistrationForm: React.FC<
                         </FormItem>
                     )}
                 />
+
                 <FormField
                     control={form.control}
                     name="phone_number"
@@ -265,6 +307,7 @@ export const CatrafusaleWorkshopRegistrationForm: React.FC<
                         </FormItem>
                     )}
                 />
+
                 <FormField
                     control={form.control}
                     name="agree_to_terms_and_conditions"
@@ -295,11 +338,9 @@ export const CatrafusaleWorkshopRegistrationForm: React.FC<
                         </FormItem>
                     )}
                 />
+
                 <div className="flex w-full justify-end">
-                    <Button
-                        type="submit"
-                        onClick={() => console.log('clicked')}
-                    >
+                    <Button type="submit">
                         {loading ? (
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

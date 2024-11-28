@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import {
     confirmCatrafusale2024WinterEditionRegistrationPayment,
+    confirmCatrafusaleWorkshop2024WinterEditionRegistrationPayment,
     handleFlashSaleActive,
     handleRaffleTicketSale,
 } from './catrafusale/logic';
@@ -62,6 +63,15 @@ export async function POST(request: NextRequest, response: NextResponse) {
                 'true'
             ) {
                 await confirmCatrafusale2024WinterEditionRegistrationPayment(
+                    checkoutSession
+                );
+            }
+
+            if (
+                checkoutSession.metadata
+                    ?.catrafusale_workshop_2024_winter_edition === 'true'
+            ) {
+                await confirmCatrafusaleWorkshop2024WinterEditionRegistrationPayment(
                     checkoutSession
                 );
             }
