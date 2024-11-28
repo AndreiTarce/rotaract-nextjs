@@ -167,8 +167,7 @@ export const CatrafusaleWorkshopRegistrationForm = (
             case CATRAFUSALE_2024_WINTER_WORKSHOPS[0].productId:
                 return form.setValue(
                     'package',
-                    CATRAFUSALE_2024_WINTER_WORKSHOPS[0],
-                    {}
+                    CATRAFUSALE_2024_WINTER_WORKSHOPS[0]
                 );
             case CATRAFUSALE_2024_WINTER_WORKSHOPS[1].productId:
                 return form.setValue(
@@ -180,6 +179,17 @@ export const CatrafusaleWorkshopRegistrationForm = (
                     'package',
                     CATRAFUSALE_2024_WINTER_WORKSHOPS[2]
                 );
+        }
+    };
+
+    const getPackagePrice = (productId: string) => {
+        switch (productId) {
+            case CATRAFUSALE_2024_WINTER_WORKSHOPS[0].productId:
+                return 35;
+            case CATRAFUSALE_2024_WINTER_WORKSHOPS[1].productId:
+                return 25;
+            case CATRAFUSALE_2024_WINTER_WORKSHOPS[2].productId:
+                return 60;
         }
     };
 
@@ -218,7 +228,7 @@ export const CatrafusaleWorkshopRegistrationForm = (
                                                         workshop.productId
                                                     )
                                                         ? ' - SOLD OUT'
-                                                        : ''}
+                                                        : ` - ${getPackagePrice(workshop.productId)} RON`}
                                                 </SelectItem>
                                             )
                                         )}
