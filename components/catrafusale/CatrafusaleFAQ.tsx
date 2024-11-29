@@ -87,8 +87,8 @@ export default function CatrafusaleFAQ() {
                         Dacă, pe de altă parte, vrei să-ți dai un refresh
                         garderobei sau să cauți cele mai bune oferte la
                         catrafuse, atunci ești un <b>CATRAFU-BUYER</b>! Și cel
-                        mai bun lucru? Participarea ca și CATRAFU-BUYER este
-                        gratuită!
+                        mai bun lucru? Participarea ca și <b>CATRAFU-BUYER</b>{' '}
+                        este gratuită!
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="intrebari" className="border-b-0">

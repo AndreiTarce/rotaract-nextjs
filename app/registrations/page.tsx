@@ -1,10 +1,17 @@
-import { CatrafusaleRegistrationInteractor } from '@/interactors/catrafusaleRegistrationInteractor';
+import { Separator } from '@/components/ui/separator';
+import {
+    CatrafusaleRegistrationInteractor,
+    CatrafusaleWorkshopRegistrationInteractor,
+} from '@/interactors/catrafusaleRegistrationInteractor';
 import { loginIsRequiredServer } from '@/lib/auth';
 import connectMongoDB from '@/lib/mongodb';
-import { columns } from './columns';
+import { catrafusaleColumns } from './catrafusaleColumns';
+import { catrafusaleWorkshopColumns } from './catrafusaleWorkshopColumns';
 import { DataTable } from './data-table';
 
 const registrationInteractor = new CatrafusaleRegistrationInteractor();
+const workshopRegistrationInteractor =
+    new CatrafusaleWorkshopRegistrationInteractor();
 
 export default async function Registrations() {
     await connectMongoDB();
@@ -13,6 +20,14 @@ export default async function Registrations() {
         position: index + 1,
         ...registration,
     }));
+    const workshopRegistrations =
+        await workshopRegistrationInteractor.getRegistrations();
+    const newWorkshopRegistrations = workshopRegistrations.map(
+        (registration, index) => ({
+            position: index + 1,
+            ...registration,
+        })
+    );
 
     await loginIsRequiredServer();
 
@@ -27,7 +42,14 @@ export default async function Registrations() {
                 </div>
             </div>
 
-            <DataTable columns={columns} data={newRegistrations} />
+            <h2 className="mb-2">Înregistrări CATRAFUSALE</h2>
+            <DataTable columns={catrafusaleColumns} data={newRegistrations} />
+            <Separator className="my-4" />
+            <h2 className="mb-2">Înregistrări Workshops</h2>
+            <DataTable
+                columns={catrafusaleWorkshopColumns}
+                data={newWorkshopRegistrations}
+            />
         </main>
     );
 }

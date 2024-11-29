@@ -1,10 +1,15 @@
 import catrafusale_white from '@/assets/images/catrafusale_white.png';
 import vederedecraciun_white from '@/assets/images/vederedecraciun_white.png';
 import CatrafusaleFAQ from '@/components/catrafusale/CatrafusaleFAQ';
+import CatrafusaleWorkshop from '@/components/catrafusale/CatrafusaleWorkshop';
 import CatrafusalePackages from '@/components/catrafusale/Packages';
-import { CatrafusaleRegistrationLimitInteractor } from '@/interactors/catrafusaleRegistrationInteractor';
+import {
+    CatrafusaleRegistrationLimitInteractor,
+    CatrafusaleWorkshopRegistrationLimitInteractor,
+} from '@/interactors/catrafusaleRegistrationInteractor';
 import connectMongoDB from '@/lib/mongodb';
 import CatrafusaleRegistrationWinter2024Limit from '@/models/catrafusaleRegistrationWinter2024Limit';
+import CatrafusaleWorkshopRegistrationWinter2024Limit from '@/models/catrafusaleWorkshopRegistrationWinter2024Limit';
 import { Repository } from '@/repositories/repository';
 import {
     faArrowUpRightFromSquare,
@@ -23,6 +28,10 @@ export const metadata: Metadata = {
 const registrationLimitInteractor = new CatrafusaleRegistrationLimitInteractor(
     new Repository(CatrafusaleRegistrationWinter2024Limit)
 );
+const workshopRegistrationLimitInteractor =
+    new CatrafusaleWorkshopRegistrationLimitInteractor(
+        new Repository(CatrafusaleWorkshopRegistrationWinter2024Limit)
+    );
 
 export default async function Catrafusale() {
     await connectMongoDB();
@@ -30,6 +39,12 @@ export default async function Catrafusale() {
         await registrationLimitInteractor.getRemainingStanders();
     const remainingTables =
         await registrationLimitInteractor.getRemainingTables();
+    const remainingCandles =
+        await workshopRegistrationLimitInteractor.getRemainingCandles();
+    const remainingGlobes =
+        await workshopRegistrationLimitInteractor.getRemainingGlobes();
+    const remainingClay =
+        await workshopRegistrationLimitInteractor.getRemainingClay();
 
     return (
         <main className="mx-24 mb-8 mt-5 max-md:mx-4 md:mt-12">
@@ -100,6 +115,12 @@ export default async function Catrafusale() {
                 </div>
 
                 <CatrafusaleFAQ />
+
+                <CatrafusaleWorkshop
+                    remainingCandles={remainingCandles}
+                    remainingGlobes={remainingGlobes}
+                    remainingClay={remainingClay}
+                />
 
                 <CatrafusalePackages
                     remainingStanders={remainingStanders}
