@@ -1,17 +1,17 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
 
-import logo from '../../../assets/images/visio.webp'
-import { ModeToggle } from '../ModeToggle'
-import { Separator } from '../separator'
-import HamburgerMenu from './HamburgerMenu'
-import NavLink from './NavLink'
-import UserMenu from './UserMenu'
+import logo from '../../../assets/images/visio.webp';
+import { ModeToggle } from '../ModeToggle';
+import { Separator } from '../separator';
+import HamburgerMenu from './HamburgerMenu';
+import NavLink from './NavLink';
+import UserMenu from './UserMenu';
 
 export function Navigation() {
     return (
-        <nav className="sticky bg-inherit top-0 z-10 w-full">
-            <div className="flex justify-between py-3 mx-16 max-md:mx-4">
+        <nav className="sticky top-0 z-50 w-full bg-inherit">
+            <div className="mx-16 flex justify-between py-3 max-md:mx-4">
                 <Link href="/">
                     <Image
                         src={logo}
@@ -50,5 +50,5 @@ export function Navigation() {
             </div>
             <Separator />
         </nav>
-    )
+    );
 }
