@@ -27,10 +27,10 @@ export default function RootLayout({
                 <ThemeProvider attribute="class" defaultTheme="system">
                     <Providers>
                         <Navigation />
+                        <ScrollProgress />
                         {children}
                         <Analytics />
                         <Toaster />
-                        <ScrollProgress />
                     </Providers>
                 </ThemeProvider>
                 <footer>
