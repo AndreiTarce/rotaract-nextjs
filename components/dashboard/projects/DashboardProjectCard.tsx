@@ -15,7 +15,7 @@ export default async function DashboardProjectCard({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Card className="relative flex flex-col items-center justify-center px-2 py-4 hover:cursor-pointer hover:bg-black hover:bg-opacity-10 dark:hover:bg-gray-50 dark:hover:bg-opacity-10">
+                <Card className="relative flex flex-col items-center justify-center px-2 py-4 hover:cursor-pointer hover:bg-black/10 dark:hover:bg-gray-50/10">
                     <Image
                         src={project.thumbnailImg}
                         alt="Profile picture"

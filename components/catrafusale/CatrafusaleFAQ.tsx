@@ -47,12 +47,12 @@ const renderAccordionItems = (items: accordionItem[]) =>
         <AccordionItem
             value={`item-${index}`}
             key={`item-${index}`}
-            className="data-[state=open]:rounded-lg data-[state=open]:bg-black data-[state=open]:bg-opacity-5 dark:data-[state=open]:bg-gray-100 dark:data-[state=open]:bg-opacity-5"
+            className="data-[state=open]:rounded-lg data-[state=open]:bg-black/5 dark:data-[state=open]:bg-gray-100/5"
         >
             <AccordionTrigger className="px-4 text-start">
                 {item.question}
             </AccordionTrigger>
-            <AccordionContent className="px-4 text-muted-foreground">
+            <AccordionContent className="text-muted-foreground px-4">
                 {item.answer}
             </AccordionContent>
         </AccordionItem>
@@ -71,7 +71,7 @@ export default function CatrafusaleFAQ() {
                     <AccordionTrigger className="text-lg font-semibold">
                         Modalități de participare
                     </AccordionTrigger>
-                    <AccordionContent className="px-4 text-muted-foreground">
+                    <AccordionContent className="text-muted-foreground px-4">
                         În cadrul proiectului CATRAFU-SALE, există două
                         modalități de participare: <b>CATRAFU-SELLER </b>
                         și <b>CATRAFU-BUYER</b>
@@ -102,7 +102,7 @@ export default function CatrafusaleFAQ() {
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
-            <p className="text-center text-muted-foreground">
+            <p className="text-muted-foreground text-center">
                 Pentru orice alte întrebări nu ezitați să ne{' '}
                 <Link
                     href="/contact"
