@@ -14,14 +14,12 @@ const projectInteractor = new ProjectInteractor(new ProjectRepository());
 const partnerInteractor = new PartnerInteractor(new PartnerRepository());
 
 type Props = {
-    params: { url: string };
-    searchParams: { [key: string]: string | string[] | undefined };
+    params: Promise<{ url: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(
-    { params, searchParams }: Props,
-    parent: ResolvingMetadata
-): Promise<Metadata | undefined> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata | undefined> {
+    const params = await props.params;
     const url = params.url;
 
     const project = await projectInteractor.getProjectByUrl(url);
@@ -39,7 +37,8 @@ export async function generateMetadata(
     }
 }
 
-export default async function Project({ params }: { params: { url: string } }) {
+export default async function Project(props: { params: Promise<{ url: string }> }) {
+    const params = await props.params;
     await connectMongoDB();
     const project = await projectInteractor.getProjectByUrl(params.url);
     const projectPartnerIds = project.partners.map(

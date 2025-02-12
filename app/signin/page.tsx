@@ -19,15 +19,15 @@ export const metadata: Metadata = {
 
 
 type Props = {
-    params: {}
-    searchParams: { [key: string]: string | string[] | undefined | boolean }
+    params: Promise<{}>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined | boolean }>
 }
 
 export default async function SignIn(props: Props) {
     const isWhitelisted =
-        props.searchParams.whitelisted === 'true' ? true : false
+        (await props.searchParams).whitelisted === 'true' ? true : false
 
-    if (!isWhitelisted && props.searchParams.whitelisted)
+    if (!isWhitelisted && (await props.searchParams).whitelisted)
         return (
             <main className="mt-12 overflow-hidden mx-16 max-md:mx-4 flex justify-center align-middle flex-col gap-8 lg:gap-8 h-full">
                 <Alert className="max-w-lg self-center">

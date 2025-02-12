@@ -7,7 +7,7 @@ export interface IToastProps {
     title: string;
     message: string;
     duration?: number;
-    icon?: React.ReactElement | React.ReactNode;
+    icon?: React.ReactElement<any> | React.ReactNode;
 }
 
 export const successToast = ({
