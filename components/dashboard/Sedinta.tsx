@@ -123,7 +123,7 @@ export default function Sedinta({
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            className="bg-[hsl(var(--accent))]"
+                                            className="bg-[var(--accent)]"
                                         >
                                             <FontAwesomeIcon
                                                 icon={faCircle}
