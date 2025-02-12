@@ -53,7 +53,7 @@ export default async function Catrafusale() {
                     Pachete
                 </h1>
 
-                <h2 className="mb-1 bg-gradient-to-r from-[#ffe4d2] to-[#ee8984] bg-clip-text text-3xl font-extrabold leading-none text-transparent md:text-6xl">
+                <h2 className="mb-1 bg-linear-to-r from-[#ffe4d2] to-[#ee8984] bg-clip-text text-3xl font-extrabold leading-none text-transparent md:text-6xl">
                     CATRAFU-SALE #9
                 </h2>
                 <div className="mb-2 text-xl font-semibold">Winter Edition</div>

@@ -79,7 +79,7 @@ export default function IstoricMinute() {
                 <Button asChild variant="outline" size="sm">
                     <Link
                         href={ROTARACT_VISIO_MINUTE_DRIVE_URL}
-                        className="!mt-0"
+                        className="mt-0!"
                         target="_blank"
                     >
                         <FontAwesomeIcon

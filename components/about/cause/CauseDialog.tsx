@@ -125,7 +125,7 @@ export default function CauseDialog(props: ICauseProps) {
                                 </Button>
                                 <FontAwesomeIcon
                                     icon={faDownload}
-                                    className="md:!hidden absolute top-4 left-4 !my-0 text-[rgb(248, 250, 252)] opacity-70"
+                                    className="md:hidden! absolute top-4 left-4 my-0! text-[rgb(248, 250, 252)] opacity-70"
                                     onClick={() =>
                                         downloadFile(
                                             props.downloadUrl,

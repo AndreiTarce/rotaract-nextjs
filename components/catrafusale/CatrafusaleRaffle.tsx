@@ -41,7 +41,7 @@ export default function CatrafusaleRaffle() {
         );
 
     return (
-        <Card className="mb-4 flex grow flex-col rounded-lg border bg-gradient-to-tr from-[#ffe4d2] to-[#ee8984] shadow-md md:w-1/2">
+        <Card className="mb-4 flex grow flex-col rounded-lg border bg-linear-to-tr from-[#ffe4d2] to-[#ee8984] shadow-md md:w-1/2">
             <CardHeader className="pb-4">
                 <CardTitle className="text-5xl font-extrabold text-foreground dark:text-background max-md:text-5xl">
                     Tombolă caritabilă

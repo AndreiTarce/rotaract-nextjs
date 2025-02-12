@@ -25,7 +25,7 @@ export default function RedirectioneazaImpozit() {
                 <>
                     <Spotlight />
                     <div className="relative mx-auto flex w-full flex-col items-center py-8">
-                        <h1 className="bg-opacity-50 bg-gradient-to-b from-foreground to-slate-700 bg-clip-text text-center text-4xl font-bold text-transparent dark:from-neutral-50 dark:to-neutral-400 md:text-7xl">
+                        <h1 className="bg-opacity-50 bg-linear-to-b from-foreground to-slate-700 bg-clip-text text-center text-4xl font-bold text-transparent dark:from-neutral-50 dark:to-neutral-400 md:text-7xl">
                             <ColourfulText
                                 text="Redirecționează"
                                 className="text-4xl md:text-8xl"

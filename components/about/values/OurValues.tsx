@@ -14,7 +14,7 @@ export default function OurValues() {
     return (
         <Card className="flex flex-col">
             <CardHeader className="pb-4">
-                <CardTitle className="text-7xl font-extrabold max-md:text-5xl leading-none bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
+                <CardTitle className="text-7xl font-extrabold max-md:text-5xl leading-none bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
                     Valorile noastre
                 </CardTitle>
             </CardHeader>

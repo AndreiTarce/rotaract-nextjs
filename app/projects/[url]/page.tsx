@@ -80,7 +80,7 @@ export default async function Project(props: { params: Promise<{ url: string }> 
                                                 href={partner.link}
                                                 target="_blank"
                                                 key={index}
-                                                className="relative flex flex-col items-center justify-center gap-4 self-center rounded-lg p-3 hover:bg-black hover:!bg-opacity-10 hover:dark:bg-white"
+                                                className="relative flex flex-col items-center justify-center gap-4 self-center rounded-lg p-3 hover:bg-black hover:bg-opacity-10! dark:hover:bg-white"
                                             >
                                                 {partner.logoUrl ? (
                                                     <div className="grow">

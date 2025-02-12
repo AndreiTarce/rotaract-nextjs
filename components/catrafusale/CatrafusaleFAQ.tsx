@@ -47,7 +47,7 @@ const renderAccordionItems = (items: accordionItem[]) =>
         <AccordionItem
             value={`item-${index}`}
             key={`item-${index}`}
-            className="data-[state=open]:rounded-lg data-[state=open]:bg-black data-[state=open]:bg-opacity-5 data-[state=open]:dark:bg-gray-100 data-[state=open]:dark:bg-opacity-5"
+            className="data-[state=open]:rounded-lg data-[state=open]:bg-black data-[state=open]:bg-opacity-5 dark:data-[state=open]:bg-gray-100 dark:data-[state=open]:bg-opacity-5"
         >
             <AccordionTrigger className="px-4 text-start">
                 {item.question}

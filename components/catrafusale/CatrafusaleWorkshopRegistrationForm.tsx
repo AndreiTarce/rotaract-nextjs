@@ -351,7 +351,7 @@ export const CatrafusaleWorkshopRegistrationForm = (
                                     className="mr-1"
                                 />
                             </FormControl>
-                            <FormLabel className="!mt-0 leading-5">
+                            <FormLabel className="mt-0! leading-5">
                                 Prin bifarea căsuței alăturate îmi exprim în mod
                                 expres consimţământul că sunt de acord cu
                                 prelucrarea datelor cu caracter personal conform{' '}

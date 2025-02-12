@@ -36,7 +36,7 @@ export default function AboutVisio() {
 
                 <div className="h-fit">
                     <CardHeader>
-                        <CardTitle className="bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-end text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
+                        <CardTitle className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-end text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
                             Despre Visio
                         </CardTitle>
                     </CardHeader>

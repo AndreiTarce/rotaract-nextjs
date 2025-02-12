@@ -36,7 +36,7 @@ export default function Minuta(props: {
         <Link
             href={props.url}
             target="_blank"
-            className="rounded p-1 hover:cursor-pointer hover:bg-black hover:!bg-opacity-10 dark:hover:bg-white md:p-2"
+            className="rounded p-1 hover:cursor-pointer hover:bg-black hover:bg-opacity-10! dark:hover:bg-white md:p-2"
         >
             <div className="flex justify-between">
                 <div className="flex flex-col">

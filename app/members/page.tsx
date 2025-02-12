@@ -13,7 +13,7 @@ export default function Members() {
         <main className="mx-16 mb-8 mt-5 max-md:mx-4 md:mt-12 xl:mx-48">
             <h1 className="mb-2 text-5xl font-semibold leading-none">
                 Meet our{' '}
-                <span className="bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
+                <span className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
                     Board!
                 </span>
             </h1>
@@ -23,7 +23,7 @@ export default function Members() {
             </div>
             <h1 className="mb-2 text-5xl font-semibold leading-none">
                 Meet our{' '}
-                <span className="bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
+                <span className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
                     members!
                 </span>
             </h1>
@@ -32,7 +32,7 @@ export default function Members() {
                 <MembersList />
             </div>
             <h1 className="mb-2 text-5xl font-semibold leading-none">
-                <span className="bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
+                <span className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
                     Past Presidents
                 </span>
             </h1>
