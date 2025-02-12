@@ -10,8 +10,12 @@ const limiter = rateLimit({
 
 export async function POST(request: NextRequest, response: NextResponse) {
     try {
-        await limiter.check(/* @next-codemod-error 'response' is passed as an argument. Any asynchronous properties of 'props' must be awaited when accessed. */
-        response, 10, 'CACHE_TOKEN');
+        await limiter.check(
+            /* @next-codemod-ignore 'response' is passed as an argument. Any asynchronous properties of 'props' must be awaited when accessed. */
+            response,
+            10,
+            'CACHE_TOKEN'
+        );
         const body: ContactFormSchema = await request.json();
         const bodyString = `NUME: ${body.first_name} ${body.last_name}\nEMAIL: ${body.email}\nMESSAGE:${body.message}`;
         await sendContactEmail(body.subject, bodyString);
