@@ -64,12 +64,6 @@ export default function ProjectForm({
             })),
             thumbnailImg: undefined,
             coverImg: undefined,
-        } || {
-            name: '',
-            shortDescription: '',
-            body: '',
-            url: '',
-            partners: [],
         },
     });
     const thumbnailRef = form.register('thumbnailImg');
