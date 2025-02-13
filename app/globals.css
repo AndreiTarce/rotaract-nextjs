@@ -321,3 +321,8 @@
     background-color: #d41367;
     border-radius: 100vw;
 }
+
+[role='button'],
+button {
+    cursor: pointer;
+}
