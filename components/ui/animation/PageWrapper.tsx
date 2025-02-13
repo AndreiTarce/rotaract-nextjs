@@ -1,15 +1,16 @@
-'use client'
-import { usePathname } from 'next/navigation'
+'use client';
+import { usePathname } from 'next/navigation';
 
-import { m } from 'framer-motion'
+// import { m } from 'framer-motion'
+import { m } from 'motion/react';
 
 const PageWrapper = ({
     children,
 }: {
-    children: React.ReactNode
-    className?: string
+    children: React.ReactNode;
+    className?: string;
 }) => {
-    const path = usePathname()
+    const path = usePathname();
     return (
         <m.div
             key={path}
@@ -19,7 +20,7 @@ const PageWrapper = ({
         >
             {children}
         </m.div>
-    )
-}
+    );
+};
 
-export default PageWrapper
+export default PageWrapper;

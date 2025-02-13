@@ -1,5 +1,5 @@
-'use client'
-import { m } from 'framer-motion'
+'use client';
+import { m } from 'motion/react';
 
 export default function SlideInWrapper(props: { children: React.ReactNode }) {
     return (
@@ -14,5 +14,5 @@ export default function SlideInWrapper(props: { children: React.ReactNode }) {
         >
             {props.children}
         </m.div>
-    )
+    );
 }
