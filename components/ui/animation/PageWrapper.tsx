@@ -1,7 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
 
-// import { m } from 'framer-motion'
 import { m } from 'motion/react';
 
 const PageWrapper = ({
