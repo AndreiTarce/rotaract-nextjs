@@ -11,6 +11,7 @@ export function MarkdownEditor(
 ) {
     return (
         <MDEditor
+            overflow={false}
             {...props}
             commands={[
                 commands.bold,
