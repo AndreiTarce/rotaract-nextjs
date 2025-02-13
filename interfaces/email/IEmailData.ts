@@ -5,5 +5,5 @@ export interface IEmailData {
     to: string[];
     subject: string;
     html?: string;
-    react?: React.ReactElement | React.ReactNode | null;
+    react?: React.ReactElement<any> | React.ReactNode | null;
 }

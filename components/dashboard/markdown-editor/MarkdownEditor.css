@@ -1,12 +1,12 @@
 .w-md-editor {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: var(--background);
+    color: var(--foreground);
 }
 
 .wmde-markdown {
     background-color: var(--background);
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     padding: 8px;
-    border: solid 1px hsl(var(--border));
+    border: solid 1px var(--border);
     border-radius: var(--radius);
 }

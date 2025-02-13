@@ -67,7 +67,7 @@ export default function MindMatters() {
             className={`relative mx-auto flex h-full w-full flex-col items-center rounded-lg border p-6 text-center text-gray-900 dark:text-white xl:p-8 ${
                 recommended
                     ? 'border-[#48bfe3] dark:border-[#48bfe3] max-md:order-1'
-                    : 'border-gray-100 shadow dark:border-gray-600 max-md:order-2'
+                    : 'border-gray-100 shadow-sm dark:border-gray-600 max-md:order-2'
             }`}
         >
             {recommended && (
@@ -145,7 +145,7 @@ export default function MindMatters() {
                 <p className="mb-4 text-8xl font-extrabold leading-none max-md:text-6xl">
                     Pachete
                 </p>
-                <p className="mb-2 bg-gradient-to-r from-[#48bfe3] to-[#44afd0] bg-clip-text text-center text-5xl font-extrabold leading-none text-transparent max-md:text-3xl">
+                <p className="mb-2 bg-linear-to-r from-[#48bfe3] to-[#44afd0] bg-clip-text text-center text-5xl font-extrabold leading-none text-transparent max-md:text-3xl">
                     Healthy Vision: Mind Matters
                 </p>
                 <div className="mb-4 flex gap-6 text-muted-foreground">
@@ -502,7 +502,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                                     className="mr-1"
                                 />
                             </FormControl>
-                            <FormLabel className="!mt-0 leading-5">
+                            <FormLabel className="mt-0! leading-5">
                                 Prin bifarea căsuței alăturate îmi exprim în mod
                                 expres consimţământul că sunt de acord cu
                                 prelucrarea datelor cu caracter personal conform{' '}

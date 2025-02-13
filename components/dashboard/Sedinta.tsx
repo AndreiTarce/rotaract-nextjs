@@ -93,7 +93,7 @@ export default function Sedinta({
             <Dialog>
                 <DialogTrigger asChild>
                     <ContextMenuTrigger>
-                        <Card className="min-h-fit max-w-[300px] hover:scale-105 hover:cursor-pointer hover:bg-dark hover:bg-opacity-10">
+                        <Card className="hover:bg-dark/10 min-h-fit max-w-[300px] hover:scale-105 hover:cursor-pointer">
                             <CardHeader>
                                 <CardTitle>{meeting.type}</CardTitle>
                                 <CardDescription className="flex flex-col">
@@ -123,14 +123,14 @@ export default function Sedinta({
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            className="bg-[hsl(var(--accent))]"
+                                            className="bg-[var(--accent)]"
                                         >
                                             <FontAwesomeIcon
                                                 icon={faCircle}
                                                 className={
                                                     memberIsPresent
-                                                        ? 'mr-2 text-green-500 '
-                                                        : 'mr-2 text-red-600 '
+                                                        ? 'mr-2 text-green-500'
+                                                        : 'mr-2 text-red-600'
                                                 }
                                             />
                                             {memberIsPresent
@@ -173,7 +173,7 @@ export default function Sedinta({
                     </DialogHeader>
                     {meeting.presentMembers?.length &&
                     meeting.absentMembers?.length ? (
-                        <div className="flex flex-col flex-wrap md:flex-row  md:gap-4">
+                        <div className="flex flex-col flex-wrap md:flex-row md:gap-4">
                             <Collapsible
                                 open={isPresentOpen}
                                 onOpenChange={setIsPresentOpen}
@@ -193,7 +193,7 @@ export default function Sedinta({
                                     </div>
                                 </CollapsibleTrigger>
                                 <CollapsibleContent>
-                                    <Card className="bg-green-600 bg-opacity-10 p-2 md:w-96">
+                                    <Card className="bg-green-600/10 p-2 md:w-96">
                                         <ScrollArea className="h-[100px] md:h-[300px]">
                                             <div className="mt-2 flex flex-wrap gap-2">
                                                 {meeting.presentMembers
@@ -233,7 +233,7 @@ export default function Sedinta({
                                     </div>
                                 </CollapsibleTrigger>
                                 <CollapsibleContent>
-                                    <Card className="bg-red-600 bg-opacity-10 p-2 md:w-96">
+                                    <Card className="bg-red-600/10 p-2 md:w-96">
                                         <ScrollArea className="h-[100px] md:h-[300px]">
                                             <div className="mt-2 flex flex-wrap gap-2">
                                                 {meeting.absentMembers

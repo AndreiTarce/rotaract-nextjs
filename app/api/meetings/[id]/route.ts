@@ -7,10 +7,8 @@ import { ValidationError } from '../../utils/errors';
 
 const meetingInteractor = new MeetingInteractor(new MeetingRepository());
 
-export async function DELETE(
-    request: NextRequest,
-    { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     try {
         await connectMongoDB();
 

@@ -18,7 +18,7 @@ export default function SupportUs() {
             {isTaxRedirectEnabled ? (
                 <RedirectioneazaImpozit />
             ) : (
-                <Card className="mb-4 flex grow flex-col rounded-lg border bg-gradient-to-tr from-rotaract-cranberry to-rose-500 shadow-md">
+                <Card className="mb-4 flex grow flex-col rounded-lg border bg-linear-to-tr from-rotaract-cranberry to-rose-500 shadow-md">
                     <CardHeader className="pb-4">
                         <CardTitle className="text-7xl font-extrabold text-white max-md:text-5xl">
                             Donează

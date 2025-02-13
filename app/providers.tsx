@@ -1,12 +1,11 @@
-'use client'
-import { LazyMotion, domAnimation } from 'framer-motion'
-import { Next13ProgressBar } from 'next13-progressbar'
-import React from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+'use client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { LazyMotion, domAnimation } from 'motion/react';
+import { Next13ProgressBar } from 'next13-progressbar';
+import React from 'react';
 
-
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -22,7 +21,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                 showOnShallow
             />
         </>
-    )
-}
+    );
+};
 
-export default Providers
+export default Providers;

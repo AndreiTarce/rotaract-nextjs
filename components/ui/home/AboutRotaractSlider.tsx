@@ -13,7 +13,7 @@ export default function AboutRotaractSlider(props: any) {
             pagination
             slidesPerView={1}
             loop
-            className="w-full md:!hidden"
+            className="w-full md:hidden!"
             autoplay={{
                 delay: 10000,
             }}

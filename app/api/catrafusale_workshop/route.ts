@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const registrationInteractor = new CatrafusaleWorkshopRegistrationInteractor();
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
     try {
         await connectMongoDB();
         const registration = await request.json();

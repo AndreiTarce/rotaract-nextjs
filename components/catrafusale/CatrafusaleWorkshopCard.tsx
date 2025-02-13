@@ -39,7 +39,7 @@ export default function CatrafusaleWorkshopCard(
     return (
         <div>
             <div
-                className="relative rounded-lg p-2 lg:hover:scale-105 lg:hover:cursor-pointer lg:hover:bg-black lg:hover:!bg-opacity-10 lg:hover:shadow-lg"
+                className="relative rounded-lg p-2 lg:hover:scale-105 lg:hover:cursor-pointer lg:hover:bg-black/10 lg:hover:shadow-lg"
                 onClick={() => setOpen(true)}
             >
                 <div className="relative aspect-square">
@@ -55,15 +55,15 @@ export default function CatrafusaleWorkshopCard(
                     />
                     <FontAwesomeIcon
                         icon={faExpand}
-                        className="absolute right-4 top-4 z-10 text-white"
+                        className="absolute top-4 right-4 z-10 text-white"
                     />
-                    <div className="absolute top-0 h-1/2 w-full rounded-lg bg-gradient-to-b from-black to-transparent opacity-60"></div>
-                    <div className="absolute left-4 top-3 rounded-lg text-2xl font-bold text-card dark:text-foreground">
+                    <div className="absolute top-0 h-1/2 w-full rounded-lg bg-linear-to-b from-black to-transparent opacity-60"></div>
+                    <div className="text-card dark:text-foreground absolute top-3 left-4 rounded-lg text-2xl font-bold">
                         {props.price}
                         RON
                     </div>
                 </div>
-                <p className="mt-2 text-lg font-semibold leading-none text-foreground dark:text-card md:text-base">
+                <p className="text-foreground dark:text-card mt-2 text-lg leading-none font-semibold md:text-base">
                     {props.title}
                 </p>
             </div>

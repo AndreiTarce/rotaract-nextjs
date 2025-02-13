@@ -3,7 +3,7 @@ import { Stripe } from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
     const body = await request.json();
     try {
         // Create Checkout Sessions from body params.
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     }
 }
 
-export async function GET(request: NextRequest, response: NextResponse) {
+export async function GET(request: NextRequest) {
     const session_id = request.nextUrl.searchParams.get('session_id');
     try {
         const session = await stripe.checkout.sessions.retrieve(

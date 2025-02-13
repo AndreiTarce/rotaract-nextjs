@@ -10,7 +10,7 @@ import { ValidationError } from '../utils/errors';
 
 const memberInteractor = new MemberInteractor(new MemberRepository());
 
-export async function GET(request: NextRequest, response: NextResponse) {
+export async function GET(request: NextRequest) {
     try {
         await connectMongoDB();
 
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
     }
 }
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
     try {
         await connectMongoDB();
 
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     }
 }
 
-export async function PUT(request: NextRequest, response: NextResponse) {
+export async function PUT(request: NextRequest) {
     try {
         await connectMongoDB();
 

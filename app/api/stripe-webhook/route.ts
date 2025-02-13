@@ -13,7 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET;
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
     await connectMongoDB();
     const body = await request.text();
 

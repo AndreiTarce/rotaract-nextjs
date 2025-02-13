@@ -16,7 +16,7 @@ const MemberStatistic = (props: {
         <div>
             <FontAwesomeIcon
                 icon={props.icon}
-                className="!h-full w-auto text-muted-foreground"
+                className="h-full! w-auto text-muted-foreground"
             />
         </div>
         <div className="flex flex-col w-fit">
@@ -32,11 +32,11 @@ export default function MemberStatistics() {
     return (
         <Card className="shadow-md border rounded-lg">
             <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle className="text-2xl text-rotaract-cranberry font-extrabold bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
+                <CardTitle className="text-2xl text-rotaract-cranberry font-extrabold bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
                     Membri curenți
                 </CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-[repeat(5,_auto)] grid-flow-col-dense">
+            <CardContent className="grid grid-cols-[repeat(5,auto)] grid-flow-col-dense">
                 <MemberStatistic type="activi" icon={faUserCheck} amount={16} />
                 <div className="h-full flex justify-center max-md:invisible">
                     <div className="w-[2px] bg-border rounded-lg"></div>
