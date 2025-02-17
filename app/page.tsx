@@ -26,6 +26,8 @@ export const metadata: Metadata = {
                 url: 'https://rotaract-visio-bucket.s3.eu-central-1.amazonaws.com/test/scubica',
             },
         ],
+        siteName: 'Rotaract Visio Cluj-Napoca',
+        url: 'https://rotaractvisio.com',
     },
 };
 
