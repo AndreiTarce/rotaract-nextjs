@@ -4,10 +4,10 @@ import {
     ROTARACT_VISIO_DRIVE_URL,
 } from '@/lib/constants';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
-import { faArrowUpRightFromSquare, faLink } from '@fortawesome/free-solid-svg-icons';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import ExternalLinkWithPreview from '../ui/external-link';
 
 export default function ImportantLinks() {
     return (
@@ -17,44 +17,25 @@ export default function ImportantLinks() {
                 <FontAwesomeIcon icon={faLink} className="text-muted-foreground" />
             </CardHeader>
             <CardContent>
-                <div className="flex flex-col">
-                    <Link
-                        href={ROTARACT_VISIO_DRIVE_URL}
-                        target="_blank"
-                        className="text-muted-foreground w-fit"
+                <div className="text-muted-foreground flex flex-col">
+                    <ExternalLinkWithPreview
+                        url={ROTARACT_VISIO_DRIVE_URL}
+                        showIcon
+                        preview={false}
                     >
                         <FontAwesomeIcon icon={faGoogleDrive} className="mr-1" />
                         Drive Visio
-                        <FontAwesomeIcon
-                            icon={faArrowUpRightFromSquare}
-                            size="xs"
-                            className="ml-1 opacity-50"
-                        />
-                    </Link>
-                    <Link
-                        href={MEMBRI_ROTARACT_URL}
-                        target="_blank"
-                        className="text-muted-foreground w-fit"
-                    >
+                    </ExternalLinkWithPreview>
+                    <ExternalLinkWithPreview url={MEMBRI_ROTARACT_URL} showIcon>
                         membri.rotaract.ro
-                        <FontAwesomeIcon
-                            icon={faArrowUpRightFromSquare}
-                            size="xs"
-                            className="ml-1 opacity-50"
-                        />
-                    </Link>
-                    <Link
-                        href={ROTARACT_VISIO_DIVERSE_DRIVE_URL}
-                        target="_blank"
-                        className="text-muted-foreground w-fit"
+                    </ExternalLinkWithPreview>
+                    <ExternalLinkWithPreview
+                        url={ROTARACT_VISIO_DIVERSE_DRIVE_URL}
+                        showIcon
+                        preview={false}
                     >
                         Diverse
-                        <FontAwesomeIcon
-                            icon={faArrowUpRightFromSquare}
-                            size="xs"
-                            className="ml-1 opacity-50"
-                        />
-                    </Link>
+                    </ExternalLinkWithPreview>
                 </div>
             </CardContent>
         </Card>

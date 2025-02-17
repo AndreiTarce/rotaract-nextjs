@@ -2,7 +2,6 @@ import clujImage from '@/assets/images/cluj4.webp';
 import clujBiserica from '@/assets/images/cluj_biserica2.webp';
 import { ROTARY_VISIO_WEBSITE_URL } from '@/lib/constants';
 import {
-    faArrowUpRightFromSquare,
     faBrain,
     faCircleNodes,
     faHandFist,
@@ -10,10 +9,9 @@ import {
     faHandshakeAngle,
     faUserGroup,
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import ExternalLinkWithPreview from '../ui/external-link';
 import Value from './values/Value';
 import ValuesCarousel from './values/ValuesCarousel';
 
@@ -45,14 +43,13 @@ export default function AboutVisio() {
                             <p className="mb-4 max-md:text-justify">
                                 Clubul nostru a fost chartat în data de 12 octombrie 2013, sub
                                 îndrumarea clubului{' '}
-                                <Link
-                                    href={ROTARY_VISIO_WEBSITE_URL}
-                                    target="_blank"
-                                    className="underline underline-offset-4"
+                                <ExternalLinkWithPreview
+                                    url={ROTARY_VISIO_WEBSITE_URL}
+                                    underline
+                                    showIcon
                                 >
-                                    Rotary Visio Cluj-Napoca{' '}
-                                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
-                                </Link>
+                                    Rotary Visio Cluj-Napoca
+                                </ExternalLinkWithPreview>
                                 . Cu o istorie de implicare comunitară de peste un deceniu, ne
                                 străduim să aducem schimbări pozitive în orașul nostru și în lumea
                                 din jurul nostru.

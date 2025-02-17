@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { encode } from 'qss';
 import React from 'react';
 
-type LinkPreviewProps = {
+export type LinkPreviewProps = {
     children: React.ReactNode;
     url: string;
     className?: string;
@@ -15,6 +15,7 @@ type LinkPreviewProps = {
     height?: number;
     quality?: number;
     layout?: string;
+    target?: React.HTMLAttributeAnchorTarget;
 } & ({ isStatic: true; imageSrc: string } | { isStatic?: false; imageSrc?: never });
 
 export const LinkPreview = ({
@@ -27,6 +28,7 @@ export const LinkPreview = ({
     layout = 'fixed',
     isStatic = false,
     imageSrc = '',
+    target,
 }: LinkPreviewProps) => {
     let src;
     if (!isStatic) {
@@ -69,7 +71,7 @@ export const LinkPreview = ({
     return (
         <>
             {isMounted ? (
-                <div className="hidden">
+                <span className="hidden">
                     <Image
                         src={src}
                         width={width}
@@ -79,7 +81,7 @@ export const LinkPreview = ({
                         priority={true}
                         alt="hidden image"
                     />
-                </div>
+                </span>
             ) : null}
 
             <HoverCardPrimitive.Root
@@ -91,21 +93,22 @@ export const LinkPreview = ({
             >
                 <HoverCardPrimitive.Trigger
                     onMouseMove={handleMouseMove}
-                    className={cn('text-black dark:text-white', className)}
+                    className={cn(className)}
                     href={url}
+                    target={target}
                 >
                     {children}
                 </HoverCardPrimitive.Trigger>
 
                 <HoverCardPrimitive.Content
-                    className="[transform-origin:var(--radix-hover-card-content-transform-origin)]"
+                    className="z-50 [transform-origin:var(--radix-hover-card-content-transform-origin)]"
                     side="top"
                     align="center"
                     sideOffset={10}
                 >
                     <AnimatePresence>
                         {isOpen && (
-                            <motion.div
+                            <motion.span
                                 initial={{ opacity: 0, y: 20, scale: 0.6 }}
                                 animate={{
                                     opacity: 1,
@@ -127,6 +130,7 @@ export const LinkPreview = ({
                                     href={url}
                                     className="block rounded-xl border-2 border-transparent bg-white p-1 shadow hover:border-neutral-200 dark:hover:border-neutral-800"
                                     style={{ fontSize: 0 }}
+                                    target={target}
                                 >
                                     <Image
                                         src={isStatic ? imageSrc : src}
@@ -139,7 +143,7 @@ export const LinkPreview = ({
                                         alt="preview image"
                                     />
                                 </Link>
-                            </motion.div>
+                            </motion.span>
                         )}
                     </AnimatePresence>
                 </HoverCardPrimitive.Content>

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import ContactForm from '@/components/ui/contact/ContactForm';
 import ContactInfoCard from '@/components/ui/contact/ContactInfoCard';
+import ExternalLinkWithPreview from '@/components/ui/external-link';
 import {
     FACULTY_OF_BUSINESS_WEBSITE_URL,
     ROTARACT_VISIO_EMAIL,
@@ -11,7 +12,6 @@ import {
 } from '@/lib/constants';
 import { faFacebook, faInstagram, faLinkedin, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import {
-    faArrowUpRightFromSquare,
     faCalendar,
     faChalkboardUser,
     faClock,
@@ -70,16 +70,9 @@ export default function Contact() {
                     <ContactInfoCard title="Ședințe" icon={faChalkboardUser}>
                         <div className="text-muted-foreground mb-2 flex">
                             <FontAwesomeIcon icon={faLocationDot} className="mt-1 mr-4" />
-                            <Link href={FACULTY_OF_BUSINESS_WEBSITE_URL} target="_blank">
-                                <p>
-                                    Facultatea de Business, Universitatea Babeș-Bolyai Cluj-Napoca{' '}
-                                    <FontAwesomeIcon
-                                        icon={faArrowUpRightFromSquare}
-                                        size="xs"
-                                        className="opacity-50"
-                                    />
-                                </p>
-                            </Link>
+                            <ExternalLinkWithPreview url={FACULTY_OF_BUSINESS_WEBSITE_URL} showIcon>
+                                Facultatea de Business, Universitatea Babeș-Bolyai Cluj-Napoca{' '}
+                            </ExternalLinkWithPreview>
                         </div>
                         <div className="text-muted-foreground mb-2 flex">
                             <FontAwesomeIcon icon={faCalendar} className="mt-1 mr-4" />
