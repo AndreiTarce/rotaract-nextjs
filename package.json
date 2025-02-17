@@ -10,7 +10,8 @@
         "lint": "npm run check-types && next lint",
         "test": "vitest",
         "prettier": "prettier --check '**/**/*.{js,jsx,ts,tsx,css}'",
-        "prettier:fix": "prettier --write '**/**/*.{js,jsx,ts,tsx,css}'"
+        "prettier:fix": "prettier --write '**/**/*.{js,jsx,ts,tsx,css}'",
+        "prepare": "husky"
     },
     "dependencies": {
         "@aws-sdk/client-s3": "^3.749.0",
@@ -105,7 +106,9 @@
         "embla-carousel": "^8.5.2",
         "encoding": "^0.1.13",
         "eslint-config-next": "15.1.7",
+        "husky": "^9.1.7",
         "jsdom": "^26.0.0",
+        "lint-staged": "^15.4.3",
         "prettier": "^3.5.1",
         "prettier-plugin-tailwindcss": "^0.6.11",
         "sass": "^1.85.0",
@@ -115,5 +118,12 @@
     "overrides": {
         "@types/react": "19.0.10",
         "@types/react-dom": "19.0.4"
+    },
+    "lint-staged": {
+        "*.js": "prettier --write",
+        "*.jsx": "prettier --write",
+        "*.ts": "prettier --write",
+        "*.tsx": "prettier --write",
+        "*.json": "prettier --write"
     }
 }
