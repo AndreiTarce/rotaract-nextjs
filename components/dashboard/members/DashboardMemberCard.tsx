@@ -34,7 +34,7 @@ export default async function DashboardMemberCard({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Card className="relative flex flex-col items-center justify-center px-2 py-4 hover:cursor-pointer hover:bg-black hover:bg-opacity-10 dark:hover:bg-gray-50 dark:hover:bg-opacity-10">
+                <Card className="relative flex flex-col items-center justify-center px-2 py-4 hover:cursor-pointer hover:bg-black/10 dark:hover:bg-gray-50/10">
                     <div className="relative h-[50px] w-[50px] overflow-hidden rounded-full">
                         <Image
                             src={user.picture || user_placeholder}
@@ -51,11 +51,11 @@ export default async function DashboardMemberCard({
                     <div className="font-semibold">
                         {user.first_name} {user.last_name}
                     </div>
-                    <div className="mb-2 text-xs text-muted-foreground">
+                    <div className="text-muted-foreground mb-2 text-xs">
                         {user.email}
                     </div>
                     <div className="capitalize">{user.role}</div>
-                    <div className="mb-2 text-sm capitalize text-muted-foreground">
+                    <div className="text-muted-foreground mb-2 text-sm capitalize">
                         Status: {user.status}
                     </div>
                     <div className="flex w-full justify-evenly gap-2 text-xs">
@@ -75,7 +75,7 @@ export default async function DashboardMemberCard({
                             <TooltipTrigger asChild>
                                 <FontAwesomeIcon
                                     icon={faEye}
-                                    className="absolute right-3 top-3 text-muted-foreground hover:cursor-pointer"
+                                    className="text-muted-foreground absolute top-3 right-3 hover:cursor-pointer"
                                 />
                             </TooltipTrigger>
                             <TooltipContent>View member</TooltipContent>

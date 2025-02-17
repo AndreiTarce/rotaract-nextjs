@@ -5,9 +5,9 @@ import { Card } from '../ui/card';
 
 interface IPackageCard {
     title: string;
-    description: string | ReactElement;
+    description: string | ReactElement<any>;
     price: number;
-    dimensions: string | ReactElement;
+    dimensions: string | ReactElement<any>;
     productId: string;
     setProductId: Dispatch<SetStateAction<string | undefined>>;
     image: StaticImageData;

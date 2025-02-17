@@ -21,7 +21,7 @@ export default function About() {
     return (
         <main className="mt-5 md:mt-12">
             <div className="relative flex h-screen w-full flex-col">
-                <h1 className="mx-16 mb-4 w-fit bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:mx-4 max-md:text-5xl">
+                <h1 className="mx-16 mb-4 w-fit bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:mx-4 max-md:text-5xl">
                     Despre noi
                 </h1>
                 <p className="mx-16 mb-2 max-md:mx-4 md:w-2/3 ">

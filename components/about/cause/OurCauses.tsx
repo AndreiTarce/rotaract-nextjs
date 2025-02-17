@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export default async function OurCauses() {
     const causes = (await getCauses()) as ICause[];
     return (
-        <Card className="flex grow flex-col rounded-lg border bg-gradient-to-tr from-rotaract-cranberry to-rose-500 shadow-md">
+        <Card className="flex grow flex-col rounded-lg border bg-linear-to-tr from-rotaract-cranberry to-rose-500 shadow-md">
             <CardHeader className="pb-4">
                 <CardTitle className="text-7xl font-extrabold text-white max-md:text-5xl">
                     Cauze

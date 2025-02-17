@@ -89,8 +89,8 @@ export function DataTable<TData, TValue>({
                                     }
                                     className={
                                         row.getValue('payment_confirmed')
-                                            ? 'bg-green-500 bg-opacity-60'
-                                            : 'bg-red-500 bg-opacity-60'
+                                            ? 'bg-green-500/60'
+                                            : 'bg-red-500/60'
                                     }
                                 >
                                     {row.getVisibleCells().map((cell) => (

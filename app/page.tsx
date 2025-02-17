@@ -51,7 +51,7 @@ export default async function Home() {
                 <div className="mr-16 flex justify-between">
                     <div className="mb-8 grid h-screen grid-cols-1 grid-rows-[75%_25%] gap-0 pb-28">
                         <div className="mx-16 max-md:mx-4">
-                            <h1 className="w-fit bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
+                            <h1 className="w-fit bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
                                 Rotaract Visio
                             </h1>
                             <span className="text-5xl font-normal max-md:text-4xl">

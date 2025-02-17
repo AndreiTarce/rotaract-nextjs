@@ -14,14 +14,15 @@ const projectInteractor = new ProjectInteractor(new ProjectRepository());
 const partnerInteractor = new PartnerInteractor(new PartnerRepository());
 
 type Props = {
-    params: { url: string };
-    searchParams: { [key: string]: string | string[] | undefined };
+    params: Promise<{ url: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata(
-    { params, searchParams }: Props,
+    props: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata | undefined> {
+    const params = await props.params;
     const url = params.url;
 
     const project = await projectInteractor.getProjectByUrl(url);
@@ -39,7 +40,10 @@ export async function generateMetadata(
     }
 }
 
-export default async function Project({ params }: { params: { url: string } }) {
+export default async function Project(props: {
+    params: Promise<{ url: string }>;
+}) {
+    const params = await props.params;
     await connectMongoDB();
     const project = await projectInteractor.getProjectByUrl(params.url);
     const projectPartnerIds = project.partners.map(
@@ -49,10 +53,10 @@ export default async function Project({ params }: { params: { url: string } }) {
         await partnerInteractor.getPartnersByIds(projectPartnerIds);
 
     return (
-        <main className="mx-16 mb-8 mt-5 max-md:mx-4 md:mt-12">
+        <main className="mx-16 mt-5 mb-8 max-md:mx-4 md:mt-12">
             <article className="flex flex-col gap-8">
                 <div className="lg:mx-48 xl:mx-72">
-                    <h1 className="mb-4 break-keep text-4xl font-bold md:text-5xl lg:text-7xl">
+                    <h1 className="mb-4 text-4xl font-bold break-keep md:text-5xl lg:text-7xl">
                         {project.name}
                     </h1>
                     <Image
@@ -67,7 +71,7 @@ export default async function Project({ params }: { params: { url: string } }) {
                     <ProjectArticleBody body={project.body} />
 
                     {projectPartners && (
-                        <Card className="mt-8 bg-dark-blue bg-opacity-20 dark:bg-light dark:bg-opacity-10">
+                        <Card className="bg-dark-blue/20 dark:bg-light/10 mt-8">
                             <CardHeader>
                                 <CardTitle className="text-3xl font-bold">
                                     Parteneri
@@ -81,7 +85,7 @@ export default async function Project({ params }: { params: { url: string } }) {
                                                 href={partner.link}
                                                 target="_blank"
                                                 key={index}
-                                                className="relative flex flex-col items-center justify-center gap-4 self-center rounded-lg p-3 hover:bg-black hover:!bg-opacity-10 hover:dark:bg-white"
+                                                className="relative flex flex-col items-center justify-center gap-4 self-center rounded-lg p-3 hover:bg-black/10 dark:hover:bg-white/10"
                                             >
                                                 {partner.logoUrl ? (
                                                     <div className="grow">

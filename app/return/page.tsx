@@ -7,11 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
 
-export default async function Return({
-    searchParams,
-}: {
-    searchParams: { session_id: string };
-}) {
+export default async function Return(
+    props: {
+        searchParams: Promise<{ session_id: string }>;
+    }
+) {
+    const searchParams = await props.searchParams;
     const { session_id } = searchParams;
 
     const session = (await getCheckoutSession(
@@ -35,7 +36,7 @@ export default async function Return({
                     </div>
                     <CardHeader>
                         <CardTitle>
-                            <h1 className="bg-gradient-to-r from-rotaract-cranberry to-rose-500 bg-clip-text p-2 text-center text-5xl font-extrabold leading-none text-transparent max-md:text-2xl">
+                            <h1 className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text p-2 text-center text-5xl font-extrabold leading-none text-transparent max-md:text-2xl">
                                 Vă mulțumim pentru donație!
                             </h1>
                         </CardTitle>
