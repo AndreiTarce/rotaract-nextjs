@@ -36,36 +36,31 @@ export default function AboutVisio() {
 
                 <div className="h-fit">
                     <CardHeader>
-                        <CardTitle className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-end text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
+                        <CardTitle className="from-rotaract-cranberry bg-linear-to-r to-rose-500 bg-clip-text text-end text-7xl leading-none font-extrabold text-transparent max-md:text-5xl">
                             Despre Visio
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="relative">
-                        <div className="relative z-10 mb-8 text-end dark:text-muted-foreground md:text-muted-foreground">
+                        <div className="dark:text-muted-foreground md:text-muted-foreground relative z-10 mb-8 text-end">
                             <p className="mb-4 max-md:text-justify">
-                                Clubul nostru a fost chartat în data de 12
-                                octombrie 2013, sub îndrumarea clubului{' '}
+                                Clubul nostru a fost chartat în data de 12 octombrie 2013, sub
+                                îndrumarea clubului{' '}
                                 <Link
                                     href={ROTARY_VISIO_WEBSITE_URL}
                                     target="_blank"
                                     className="underline underline-offset-4"
                                 >
                                     Rotary Visio Cluj-Napoca{' '}
-                                    <FontAwesomeIcon
-                                        icon={faArrowUpRightFromSquare}
-                                        size="xs"
-                                    />
+                                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
                                 </Link>
-                                . Cu o istorie de implicare comunitară de peste
-                                un deceniu, ne străduim să aducem schimbări
-                                pozitive în orașul nostru și în lumea din jurul
-                                nostru.
+                                . Cu o istorie de implicare comunitară de peste un deceniu, ne
+                                străduim să aducem schimbări pozitive în orașul nostru și în lumea
+                                din jurul nostru.
                             </p>
                             <p className="max-md:text-justify">
-                                Misiunea noastră este de a inspira și mobiliza
-                                tinerii din Cluj-Napoca pentru a se implica
-                                activ în proiecte de voluntariat, dezvoltând
-                                astfel lideri viitori și promovând serviciul în
+                                Misiunea noastră este de a inspira și mobiliza tinerii din
+                                Cluj-Napoca pentru a se implica activ în proiecte de voluntariat,
+                                dezvoltând astfel lideri viitori și promovând serviciul în
                                 comunitate.
                             </p>
                         </div>

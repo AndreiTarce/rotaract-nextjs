@@ -24,15 +24,13 @@ export const CatrafusalePackageCard = ({
     image,
     sold_out = false,
 }: IPackageCard) => (
-    <Card className="relative mx-auto flex h-full w-full flex-col items-center rounded-lg border p-6 text-center text-gray-900 dark:text-white xl:p-8">
+    <Card className="relative mx-auto flex h-full w-full flex-col items-center rounded-lg border p-6 text-center text-gray-900 xl:p-8 dark:text-white">
         <h3 className="mb-4 text-4xl font-semibold">{title}</h3>
-        <p className="mb-4 text-gray-500 dark:text-gray-400 sm:text-lg">
+        <p className="mb-4 text-gray-500 sm:text-lg dark:text-gray-400">
             {description}
             <br />
         </p>
-        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-            {dimensions}
-        </p>
+        <p className="text-sm font-light text-gray-500 dark:text-gray-400">{dimensions}</p>
         <Image
             src={image}
             alt="package picture"

@@ -1,17 +1,10 @@
 'use client';
 import { MeetingDto } from '@/dtos/meeting.dto';
-import {
-    MEETINGS_PATH,
-    ROTARACT_VISIO_MINUTE_DRIVE_URL,
-} from '@/lib/constants';
+import { MEETINGS_PATH, ROTARACT_VISIO_MINUTE_DRIVE_URL } from '@/lib/constants';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    keepPreviousData,
-    useQuery,
-    useQueryClient,
-} from '@tanstack/react-query';
+import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '../ui/button';
@@ -77,15 +70,8 @@ export default function IstoricMinute() {
             <CardHeader className="flex flex-row justify-between pb-4">
                 <CardTitle className="self-center">Istoric minute</CardTitle>
                 <Button asChild variant="outline" size="sm">
-                    <Link
-                        href={ROTARACT_VISIO_MINUTE_DRIVE_URL}
-                        className="mt-0!"
-                        target="_blank"
-                    >
-                        <FontAwesomeIcon
-                            icon={faGoogleDrive}
-                            className="text-muted-foreground"
-                        />
+                    <Link href={ROTARACT_VISIO_MINUTE_DRIVE_URL} className="mt-0!" target="_blank">
+                        <FontAwesomeIcon icon={faGoogleDrive} className="text-muted-foreground" />
                     </Link>
                 </Button>
             </CardHeader>
@@ -99,9 +85,7 @@ export default function IstoricMinute() {
                     >
                         <FontAwesomeIcon icon={faCaretLeft} />
                     </Button>
-                    <div className="flex items-center justify-center font-semibold">
-                        {year}
-                    </div>
+                    <div className="flex items-center justify-center font-semibold">{year}</div>
                     <Button variant="outline" size="sm" onClick={addYear}>
                         <FontAwesomeIcon icon={faCaretRight} />
                     </Button>

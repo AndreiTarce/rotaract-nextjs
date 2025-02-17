@@ -1,4 +1,4 @@
-import AccountInfo from "./AccountInfo"
+import AccountInfo from './AccountInfo';
 
 export default function AccountPage() {
     return (
@@ -6,5 +6,5 @@ export default function AccountPage() {
             <AccountInfo />
             <h1>Test</h1>
         </>
-    )
-};
+    );
+}

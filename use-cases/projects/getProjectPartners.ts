@@ -5,12 +5,9 @@ import { PartnerRepository } from '@/repositories/partnerRepository';
 const partnerInteractor = new PartnerInteractor(new PartnerRepository());
 
 export async function getProjectPartners(projectPartners: ProjectPartnerDto[]) {
-    const projectPartnerIds = projectPartners.map(
-        (projectPartner) => projectPartner.partnerId
-    );
+    const projectPartnerIds = projectPartners.map((projectPartner) => projectPartner.partnerId);
 
-    const partners =
-        await partnerInteractor.getPartnersByIds(projectPartnerIds);
+    const partners = await partnerInteractor.getPartnersByIds(projectPartnerIds);
 
     return partners;
 }

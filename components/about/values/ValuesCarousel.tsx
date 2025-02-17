@@ -1,10 +1,10 @@
-'use client'
-import { Autoplay, Navigation, Pagination, Mousewheel } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/scrollbar'
+'use client';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import { Autoplay, Mousewheel, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function ValuesCarousel(props: any) {
     return (
@@ -28,13 +28,10 @@ export default function ValuesCarousel(props: any) {
             mousewheel
         >
             {props.children.map((element: any, index: number) => (
-                <SwiperSlide
-                    key={index}
-                    className="pb-16 flex justify-center items-center"
-                >
+                <SwiperSlide key={index} className="flex items-center justify-center pb-16">
                     {element}
                 </SwiperSlide>
             ))}
         </Swiper>
-    )
+    );
 }

@@ -22,15 +22,11 @@ const ProjectCard = ({ project }: { project: ProjectDto }) => {
                             {project.name}
                         </h5>
                     </Link>
-                    <p className="mb-3 font-normal text-muted-foreground">
+                    <p className="text-muted-foreground mb-3 font-normal">
                         {project.shortDescription}
                     </p>
                 </div>
-                <Link
-                    href={`projects/${project.url}`}
-                    className="w-fit"
-                    passHref
-                >
+                <Link href={`projects/${project.url}`} className="w-fit" passHref>
                     <Button size="sm">
                         Citește mai mult
                         <svg

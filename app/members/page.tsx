@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function Members() {
     return (
-        <main className="mx-16 mb-8 mt-5 max-md:mx-4 md:mt-12 xl:mx-48">
-            <h1 className="mb-2 text-5xl font-semibold leading-none">
+        <main className="mx-16 mt-5 mb-8 max-md:mx-4 md:mt-12 xl:mx-48">
+            <h1 className="mb-2 text-5xl leading-none font-semibold">
                 Meet our{' '}
-                <span className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
+                <span className="from-rotaract-cranberry bg-linear-to-r to-rose-500 bg-clip-text font-extrabold text-transparent">
                     Board!
                 </span>
             </h1>
@@ -21,9 +21,9 @@ export default function Members() {
             <div className="mb-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <BoardMembersList />
             </div>
-            <h1 className="mb-2 text-5xl font-semibold leading-none">
+            <h1 className="mb-2 text-5xl leading-none font-semibold">
                 Meet our{' '}
-                <span className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
+                <span className="from-rotaract-cranberry bg-linear-to-r to-rose-500 bg-clip-text font-extrabold text-transparent">
                     members!
                 </span>
             </h1>
@@ -31,8 +31,8 @@ export default function Members() {
             <div className="mb-16 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <MembersList />
             </div>
-            <h1 className="mb-2 text-5xl font-semibold leading-none">
-                <span className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text font-extrabold text-transparent">
+            <h1 className="mb-2 text-5xl leading-none font-semibold">
+                <span className="from-rotaract-cranberry bg-linear-to-r to-rose-500 bg-clip-text font-extrabold text-transparent">
                     Past Presidents
                 </span>
             </h1>

@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { signIn, signOut } from 'next-auth/react'
-import { Button } from '../button'
+import { signIn, signOut } from 'next-auth/react';
+import { Button } from '../button';
 
 export function GoogleSignInButton() {
     const handleClick = () => {
         signIn('google', {
             redirect: true,
             callbackUrl: '/dashboard',
-        })
-    }
+        });
+    };
 
     return (
         <Button onClick={handleClick} size="sm">
@@ -34,13 +34,13 @@ export function GoogleSignInButton() {
             </svg>{' '}
             Continue with Google
         </Button>
-    )
+    );
 }
 
 export function GoogleSignOutButton() {
     const handleClick = () => {
-        signOut({ redirect: true, callbackUrl: '/' })
-    }
+        signOut({ redirect: true, callbackUrl: '/' });
+    };
 
     return (
         <Button onClick={handleClick} size="sm">
@@ -65,5 +65,5 @@ export function GoogleSignOutButton() {
             </svg>{' '}
             Sign out
         </Button>
-    )
+    );
 }

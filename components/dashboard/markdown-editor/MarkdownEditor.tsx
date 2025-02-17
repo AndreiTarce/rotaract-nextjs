@@ -1,14 +1,8 @@
 'use client';
-import MDEditor, {
-    commands,
-    MDEditorProps,
-    RefMDEditor,
-} from '@uiw/react-md-editor';
+import MDEditor, { commands, MDEditorProps, RefMDEditor } from '@uiw/react-md-editor';
 import './MarkdownEditor.css';
 
-export function MarkdownEditor(
-    props: MDEditorProps & React.RefAttributes<RefMDEditor>
-) {
+export function MarkdownEditor(props: MDEditorProps & React.RefAttributes<RefMDEditor>) {
     return (
         <MDEditor
             overflow={false}

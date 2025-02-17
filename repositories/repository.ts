@@ -25,9 +25,7 @@ export class Repository<T extends Document> implements IRepository<T> {
     }
 
     async update(item: Partial<T>): Promise<T | null> {
-        return this.model
-            .findByIdAndUpdate(item.id, item, { new: true })
-            .exec();
+        return this.model.findByIdAndUpdate(item.id, item, { new: true }).exec();
     }
 
     async delete(id: string): Promise<void> {

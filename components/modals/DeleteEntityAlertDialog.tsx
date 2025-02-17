@@ -13,9 +13,7 @@ interface IDeleteEntityAlertDialogProps {
     onDelete: () => void;
 }
 
-export const DeleteEntityAlertDialog = ({
-    onDelete,
-}: IDeleteEntityAlertDialogProps) => {
+export const DeleteEntityAlertDialog = ({ onDelete }: IDeleteEntityAlertDialogProps) => {
     return (
         <>
             <AlertDialogHeader>

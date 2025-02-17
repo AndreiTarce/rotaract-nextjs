@@ -7,9 +7,7 @@ export interface ProjectArticleDto extends IProjectArticle {
     id: string;
 }
 
-export function toProjectArticleDto(
-    projectArticle: IProjectArticleDocument
-): ProjectArticleDto {
+export function toProjectArticleDto(projectArticle: IProjectArticleDocument): ProjectArticleDto {
     return {
         id: projectArticle.id,
         projectId: projectArticle.projectId,

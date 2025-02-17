@@ -1,12 +1,7 @@
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from '../ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 
 interface accordionItem {
     question: string;
@@ -49,9 +44,7 @@ const renderAccordionItems = (items: accordionItem[]) =>
             key={`item-${index}`}
             className="data-[state=open]:rounded-lg data-[state=open]:bg-black/5 dark:data-[state=open]:bg-gray-100/5"
         >
-            <AccordionTrigger className="px-4 text-start">
-                {item.question}
-            </AccordionTrigger>
+            <AccordionTrigger className="px-4 text-start">{item.question}</AccordionTrigger>
             <AccordionContent className="text-muted-foreground px-4">
                 {item.answer}
             </AccordionContent>
@@ -61,34 +54,25 @@ const renderAccordionItems = (items: accordionItem[]) =>
 export default function CatrafusaleFAQ() {
     return (
         <div className="mb-4 flex w-full flex-col gap-2 md:w-1/2">
-            <Accordion
-                type="single"
-                collapsible
-                className="w-full"
-                orientation="horizontal"
-            >
+            <Accordion type="single" collapsible className="w-full" orientation="horizontal">
                 <AccordionItem value="modalitati">
                     <AccordionTrigger className="text-lg font-semibold">
                         Modalități de participare
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground px-4">
-                        În cadrul proiectului CATRAFU-SALE, există două
-                        modalități de participare: <b>CATRAFU-SELLER </b>
+                        În cadrul proiectului CATRAFU-SALE, există două modalități de participare:{' '}
+                        <b>CATRAFU-SELLER </b>
                         și <b>CATRAFU-BUYER</b>
                         <br />
                         <br />
-                        Dacă vrei să îți vinzi articolele vestimentare și să
-                        faci parte din efortul nostru de a susține
-                        sustenabilitatea, devino un <b>CATRAFU-SELLER</b>!
-                        Pentru a te înscrie, alege unul dintre pachetele de
-                        donații de mai jos!
+                        Dacă vrei să îți vinzi articolele vestimentare și să faci parte din efortul
+                        nostru de a susține sustenabilitatea, devino un <b>CATRAFU-SELLER</b>!
+                        Pentru a te înscrie, alege unul dintre pachetele de donații de mai jos!
                         <br />
                         <br />
-                        Dacă, pe de altă parte, vrei să-ți dai un refresh
-                        garderobei sau să cauți cele mai bune oferte la
-                        catrafuse, atunci ești un <b>CATRAFU-BUYER</b>! Și cel
-                        mai bun lucru? Participarea ca și <b>CATRAFU-BUYER</b>{' '}
-                        este gratuită!
+                        Dacă, pe de altă parte, vrei să-ți dai un refresh garderobei sau să cauți
+                        cele mai bune oferte la catrafuse, atunci ești un <b>CATRAFU-BUYER</b>! Și
+                        cel mai bun lucru? Participarea ca și <b>CATRAFU-BUYER</b> este gratuită!
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="intrebari" className="border-b-0">
@@ -110,11 +94,7 @@ export default function CatrafusaleFAQ() {
                     target="_blank"
                 >
                     contactați!
-                    <FontAwesomeIcon
-                        icon={faArrowUpRightFromSquare}
-                        size="xs"
-                        className="ml-1"
-                    />
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" className="ml-1" />
                 </Link>
             </p>
         </div>

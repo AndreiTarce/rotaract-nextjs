@@ -21,13 +21,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const { CATRAFUSALE_PACKAGES } = getStripePrices();
 
-export const handleFlashSaleActive = async (
-    checkoutSession: Stripe.Checkout.Session
-) => {
-    if (
-        isFlashSaleActive() &&
-        !checkoutSession.total_details?.amount_discount
-    ) {
+export const handleFlashSaleActive = async (checkoutSession: Stripe.Checkout.Session) => {
+    if (isFlashSaleActive() && !checkoutSession.total_details?.amount_discount) {
         const promotionCode = await createPromoCode(checkoutSession);
         await sendPromoCodeEmailToClient(checkoutSession, promotionCode);
         await CatrafusaleRegistration.findOneAndUpdate(
@@ -53,9 +48,7 @@ const sendPromoCodeEmailToClient = async (
     checkoutSession: Stripe.Checkout.Session,
     promotionCode: Stripe.PromotionCode
 ) => {
-    console.log(
-        'no promo code used, and the flash sale is active, so send them a promo code'
-    );
+    console.log('no promo code used, and the flash sale is active, so send them a promo code');
 };
 
 const createPromoCode = async (checkoutSession: Stripe.Checkout.Session) => {
@@ -98,9 +91,7 @@ const generateCouponProductsArray = (productId: string) => {
     }
 };
 
-export const handleRaffleTicketSale = async (
-    checkoutSession: Stripe.Checkout.Session
-) => {
+export const handleRaffleTicketSale = async (checkoutSession: Stripe.Checkout.Session) => {
     const raffleRegistrations: ICatrafusaleRaffleRegistration[] =
         await CatrafusaleRaffleRegistration.find();
 
@@ -143,8 +134,7 @@ const createFirstRaffleTicket = async (
         tickets: ticketsBought,
         ticket_numbers: { start: 1001, end: 1000 + ticketsBought },
     };
-    const successfulRegistration =
-        await CatrafusaleRaffleRegistration.create(raffleRegistration);
+    const successfulRegistration = await CatrafusaleRaffleRegistration.create(raffleRegistration);
     return successfulRegistration;
 };
 
@@ -153,8 +143,7 @@ const createRaffleTicket = async (
     raffleRegistrations: ICatrafusaleRaffleRegistration[],
     ticketsBought: number
 ) => {
-    const lastRaffleTicket =
-        raffleRegistrations[raffleRegistrations.length - 1].ticket_numbers.end;
+    const lastRaffleTicket = raffleRegistrations[raffleRegistrations.length - 1].ticket_numbers.end;
 
     const raffleRegistration: ICatrafusaleRaffleRegistration = {
         email: checkoutSession.customer_details?.email as string,
@@ -167,8 +156,7 @@ const createRaffleTicket = async (
         },
     };
 
-    const successfulRegistration =
-        await CatrafusaleRaffleRegistration.create(raffleRegistration);
+    const successfulRegistration = await CatrafusaleRaffleRegistration.create(raffleRegistration);
     return successfulRegistration;
 };
 
@@ -184,19 +172,15 @@ export const confirmCatrafusale2024WinterEditionRegistrationPayment = async (
     await registrationInteractor.confirmRegistrationPayment(checkoutSession.id);
 };
 
-export const confirmCatrafusaleWorkshop2024WinterEditionRegistrationPayment =
-    async (checkoutSession: Stripe.Checkout.Session) => {
-        const registrationInteractor =
-            new CatrafusaleWorkshopRegistrationInteractor();
+export const confirmCatrafusaleWorkshop2024WinterEditionRegistrationPayment = async (
+    checkoutSession: Stripe.Checkout.Session
+) => {
+    const registrationInteractor = new CatrafusaleWorkshopRegistrationInteractor();
 
-        const packageName = getPackageNameFromProductId(
-            checkoutSession.metadata?.productId as string
-        );
+    const packageName = getPackageNameFromProductId(checkoutSession.metadata?.productId as string);
 
-        if (packageName) {
-            await reserveWorkshop(packageName);
-            await registrationInteractor.confirmRegistrationPayment(
-                checkoutSession.id
-            );
-        }
-    };
+    if (packageName) {
+        await reserveWorkshop(packageName);
+        await registrationInteractor.confirmRegistrationPayment(checkoutSession.id);
+    }
+};

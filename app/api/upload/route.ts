@@ -7,10 +7,7 @@ export async function POST(request: NextRequest) {
         console.log(request.headers.get('cookie'));
         const session = await getServerSession(authConfig);
         console.log(session);
-        return NextResponse.json(
-            { message: 'Project created' },
-            { status: 201 }
-        );
+        return NextResponse.json({ message: 'Project created' }, { status: 201 });
     } catch (err) {
         console.log(err);
     }

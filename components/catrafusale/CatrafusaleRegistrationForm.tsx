@@ -15,14 +15,7 @@ import { getStripePrices } from '../payments/constants';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Checkbox } from '../ui/checkbox';
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-} from '../ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '../ui/form';
 import { Input } from '../ui/input';
 
 const formSchema = z.object({
@@ -47,16 +40,13 @@ interface CheckoutFormProps {
 
 export type CatrafusaleFormSchema = z.infer<typeof formSchema>;
 
-export interface ICatrafusaleRegistrationObject
-    extends ICatrafusaleRegistration {
+export interface ICatrafusaleRegistrationObject extends ICatrafusaleRegistration {
     checkout_session_id?: string;
 }
 
 const { CATRAFUSALE_PACKAGES } = getStripePrices();
 
-export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
-    productId,
-}) => {
+export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({ productId }) => {
     const [clientSecret, setClientSecret] = useState<string>();
     const [loading, setLoading] = useState(false);
 
@@ -97,9 +87,7 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
         setClientSecret(checkoutSession.client_secret);
     };
 
-    const sendRegistration = async (
-        registration: ICatrafusaleRegistrationObject
-    ) => {
+    const sendRegistration = async (registration: ICatrafusaleRegistrationObject) => {
         const abortLongFetch = new AbortController();
         const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000);
         try {
@@ -184,19 +172,13 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                     <FormItem className="mb-4">
                                         <FormLabel>Prenume</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                placeholder="Prenumele tău"
-                                                {...field}
-                                            />
+                                            <Input placeholder="Prenumele tău" {...field} />
                                         </FormControl>
                                         {form.formState.errors.first_name && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .first_name?.message
-                                                    }
+                                                    {form.formState.errors.first_name?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -210,19 +192,13 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                     <FormItem className="mb-4">
                                         <FormLabel>Nume</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                placeholder="Numele tău"
-                                                {...field}
-                                            />
+                                            <Input placeholder="Numele tău" {...field} />
                                         </FormControl>
                                         {form.formState.errors.last_name && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .last_name?.message
-                                                    }
+                                                    {form.formState.errors.last_name?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -234,14 +210,11 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                 name="shop_name"
                                 render={({ field }) => (
                                     <FormItem className="mb-4">
-                                        <FormLabel>
-                                            Numele magazinului tău
-                                        </FormLabel>
+                                        <FormLabel>Numele magazinului tău</FormLabel>
                                         <FormDescription>
-                                            Acesta va apărea pe printurile din
-                                            ziua evenimentul. Dacă lași acest
-                                            câmp gol, vom folosi numele și
-                                            prenumele tău.
+                                            Acesta va apărea pe printurile din ziua evenimentul.
+                                            Dacă lași acest câmp gol, vom folosi numele și prenumele
+                                            tău.
                                         </FormDescription>
                                         <FormControl>
                                             <Input
@@ -253,10 +226,7 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .shop_name?.message
-                                                    }
+                                                    {form.formState.errors.shop_name?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -270,19 +240,13 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                     <FormItem className="mb-4">
                                         <FormLabel>Email</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                placeholder="Adresa ta de email"
-                                                {...field}
-                                            />
+                                            <Input placeholder="Adresa ta de email" {...field} />
                                         </FormControl>
                                         {form.formState.errors.email && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .email?.message
-                                                    }
+                                                    {form.formState.errors.email?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -305,11 +269,7 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .phone_number
-                                                            ?.message
-                                                    }
+                                                    {form.formState.errors.phone_number?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -330,10 +290,9 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                             />
                                         </FormControl>
                                         <FormLabel className="mt-0! leading-5">
-                                            Prin bifarea căsuței alăturate îmi
-                                            exprim în mod expres consimţământul
-                                            că sunt de acord cu prelucrarea
-                                            datelor cu caracter personal conform{' '}
+                                            Prin bifarea căsuței alăturate îmi exprim în mod expres
+                                            consimţământul că sunt de acord cu prelucrarea datelor
+                                            cu caracter personal conform{' '}
                                             <Link
                                                 href={
                                                     'https://docs.google.com/document/d/1M3xy8RK_zEyt8c3Pkl75QcB-whuD8fE4LjKHkmfCuDY'
@@ -348,24 +307,18 @@ export const CatrafusaleRegistrationForm: React.FC<CheckoutFormProps> = ({
                                 )}
                             />
                             <div className="flex w-full justify-end">
-                                <Button
-                                    type="submit"
-                                    onClick={() => console.log('clicked')}
-                                >
+                                <Button type="submit" onClick={() => console.log('clicked')}>
                                     {loading ? (
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             height="1em"
                                             viewBox="0 0 512 512"
-                                            className="mr-2 animate-spin fill-white dark:fill-dark"
+                                            className="dark:fill-dark mr-2 animate-spin fill-white"
                                         >
                                             <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                                         </svg>
                                     ) : (
-                                        <FontAwesomeIcon
-                                            icon={faCreditCard}
-                                            className="mr-2"
-                                        />
+                                        <FontAwesomeIcon icon={faCreditCard} className="mr-2" />
                                     )}
                                     Continuă spre plată
                                 </Button>

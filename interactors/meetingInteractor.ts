@@ -17,9 +17,7 @@ export class MeetingInteractor {
     async getAllMeetings() {
         const meetings = await this.meetingRepository.findAll();
 
-        return meetings.map((meeting: IMeetingDocument) =>
-            toMeetingDto(meeting)
-        );
+        return meetings.map((meeting: IMeetingDocument) => toMeetingDto(meeting));
     }
 
     async getMeetingsWithQuery(
@@ -41,15 +39,10 @@ export class MeetingInteractor {
             query.type = type;
         }
 
-        const meetings = await this.meetingRepository.findAllWithQuery(
-            query,
-            sort
-        );
+        const meetings = await this.meetingRepository.findAllWithQuery(query, sort);
 
         if (meetings) {
-            return meetings.map((meeting: IMeetingDocument) =>
-                toMeetingDto(meeting)
-            );
+            return meetings.map((meeting: IMeetingDocument) => toMeetingDto(meeting));
         }
 
         throw new NotFoundError();

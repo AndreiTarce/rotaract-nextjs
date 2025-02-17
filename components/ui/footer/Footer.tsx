@@ -5,12 +5,7 @@ import {
     ROTARACT_VISIO_LINKEDIN_URL,
     ROTARACT_VISIO_TIKTOK_URL,
 } from '@/lib/constants';
-import {
-    faFacebook,
-    faInstagram,
-    faLinkedin,
-    faTiktok,
-} from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faLinkedin, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,7 +14,7 @@ import { Separator } from '../separator';
 export default function Footer() {
     const today = new Date();
     return (
-        <div className="bottom-0 my-8 dark:text-muted-foreground">
+        <div className="dark:text-muted-foreground bottom-0 my-8">
             <Separator className="mb-8" />
             <div className="mx-16 max-md:mx-4">
                 <div className="grid grid-cols-3 grid-rows-1 gap-0 max-md:flex max-md:flex-col max-md:items-center max-md:gap-8">
@@ -31,34 +26,19 @@ export default function Footer() {
                         quality={100}
                     />
                     <div className="flex w-full justify-center gap-8 justify-self-center max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-0 max-md:gap-y-4">
-                        <Link
-                            href="/"
-                            className="max-md:w-1/3 max-md:text-center"
-                        >
+                        <Link href="/" className="max-md:w-1/3 max-md:text-center">
                             Home
                         </Link>
-                        <Link
-                            href="/about"
-                            className="max-md:w-1/3 max-md:text-center"
-                        >
+                        <Link href="/about" className="max-md:w-1/3 max-md:text-center">
                             About us
                         </Link>
-                        <Link
-                            href="/projects"
-                            className="max-md:w-1/3 max-md:text-center"
-                        >
+                        <Link href="/projects" className="max-md:w-1/3 max-md:text-center">
                             Projects
                         </Link>
-                        <Link
-                            href="/members"
-                            className="max-md:w-1/3 max-md:text-center"
-                        >
+                        <Link href="/members" className="max-md:w-1/3 max-md:text-center">
                             Members
                         </Link>
-                        <Link
-                            href="/contact"
-                            className="max-md:w-1/3 max-md:text-center"
-                        >
+                        <Link href="/contact" className="max-md:w-1/3 max-md:text-center">
                             Contact
                         </Link>
                     </div>
@@ -94,10 +74,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="mt-8 flex justify-center gap-2 text-center max-md:flex-col">
-                    <span>
-                        Copyright © {today.getFullYear()} Rotaract Visio
-                        Cluj-Napoca
-                    </span>
+                    <span>Copyright © {today.getFullYear()} Rotaract Visio Cluj-Napoca</span>
                     <span className="max-md:hidden">|</span>
                     <span>All Rights Reserved</span>
                 </div>

@@ -15,14 +15,7 @@ import EmbeddedCheckoutCatrafusale from '../payments/EmbeddedCheckoutCatrafusale
 import { getStripePrices } from '../payments/constants';
 import { Button } from '../ui/button';
 import { Checkbox } from '../ui/checkbox';
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-} from '../ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '../ui/form';
 import { Input } from '../ui/input';
 import {
     Select,
@@ -55,9 +48,7 @@ const formSchema = z.object({
 
 export type CatrafusaleFormSchema = z.infer<typeof formSchema>;
 
-export const CatrafusaleWorkshopRegistrationForm = (
-    props: CatrafusaleWorkshopProps
-) => {
+export const CatrafusaleWorkshopRegistrationForm = (props: CatrafusaleWorkshopProps) => {
     const [clientSecret, setClientSecret] = useState<string | null>();
     const [loading, setLoading] = useState(false);
     const { CATRAFUSALE_2024_WINTER_WORKSHOPS } = getStripePrices();
@@ -101,9 +92,7 @@ export const CatrafusaleWorkshopRegistrationForm = (
         setClientSecret(checkoutSession.client_secret);
     };
 
-    const sendRegistration = async (
-        registration: ICatrafusaleWorkshopRegistrationWinter2024
-    ) => {
+    const sendRegistration = async (registration: ICatrafusaleWorkshopRegistrationWinter2024) => {
         const abortLongFetch = new AbortController();
         const abortTimeoutId = setTimeout(() => abortLongFetch.abort(), 7000);
         try {
@@ -159,26 +148,16 @@ export const CatrafusaleWorkshopRegistrationForm = (
         }
     };
 
-    if (clientSecret)
-        return <EmbeddedCheckoutCatrafusale clientSecret={clientSecret} />;
+    if (clientSecret) return <EmbeddedCheckoutCatrafusale clientSecret={clientSecret} />;
 
     const updatePackage = (productId: string) => {
         switch (productId) {
             case CATRAFUSALE_2024_WINTER_WORKSHOPS[0].productId:
-                return form.setValue(
-                    'package',
-                    CATRAFUSALE_2024_WINTER_WORKSHOPS[0]
-                );
+                return form.setValue('package', CATRAFUSALE_2024_WINTER_WORKSHOPS[0]);
             case CATRAFUSALE_2024_WINTER_WORKSHOPS[1].productId:
-                return form.setValue(
-                    'package',
-                    CATRAFUSALE_2024_WINTER_WORKSHOPS[1]
-                );
+                return form.setValue('package', CATRAFUSALE_2024_WINTER_WORKSHOPS[1]);
             case CATRAFUSALE_2024_WINTER_WORKSHOPS[2].productId:
-                return form.setValue(
-                    'package',
-                    CATRAFUSALE_2024_WINTER_WORKSHOPS[2]
-                );
+                return form.setValue('package', CATRAFUSALE_2024_WINTER_WORKSHOPS[2]);
         }
     };
 
@@ -202,36 +181,26 @@ export const CatrafusaleWorkshopRegistrationForm = (
                     render={({ field }) => (
                         <FormItem className="mb-4">
                             <FormLabel>Atelier</FormLabel>
-                            <Select
-                                onValueChange={(productId) =>
-                                    updatePackage(productId)
-                                }
-                            >
+                            <Select onValueChange={(productId) => updatePackage(productId)}>
                                 <FormControl>
-                                    <SelectTrigger className="h-9 w-fit border-none dark:bg-foreground">
+                                    <SelectTrigger className="dark:bg-foreground h-9 w-fit border-none">
                                         <SelectValue placeholder="Alege atelierul la care vrei să participi" />
                                     </SelectTrigger>
                                 </FormControl>
-                                <SelectContent className="border-none dark:bg-foreground dark:text-card">
+                                <SelectContent className="dark:bg-foreground dark:text-card border-none">
                                     <SelectGroup>
-                                        {CATRAFUSALE_2024_WINTER_WORKSHOPS.map(
-                                            (workshop) => (
-                                                <SelectItem
-                                                    disabled={isPackageDisabled(
-                                                        workshop.productId
-                                                    )}
-                                                    value={workshop.productId}
-                                                    key={workshop.id}
-                                                >
-                                                    {workshop.name}{' '}
-                                                    {isPackageDisabled(
-                                                        workshop.productId
-                                                    )
-                                                        ? ' - SOLD OUT'
-                                                        : ` - ${getPackagePrice(workshop.productId)} RON`}
-                                                </SelectItem>
-                                            )
-                                        )}
+                                        {CATRAFUSALE_2024_WINTER_WORKSHOPS.map((workshop) => (
+                                            <SelectItem
+                                                disabled={isPackageDisabled(workshop.productId)}
+                                                value={workshop.productId}
+                                                key={workshop.id}
+                                            >
+                                                {workshop.name}{' '}
+                                                {isPackageDisabled(workshop.productId)
+                                                    ? ' - SOLD OUT'
+                                                    : ` - ${getPackagePrice(workshop.productId)} RON`}
+                                            </SelectItem>
+                                        ))}
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
@@ -245,17 +214,14 @@ export const CatrafusaleWorkshopRegistrationForm = (
                     render={({ field }) => (
                         <FormItem className="mb-4">
                             <FormLabel>Prenume</FormLabel>
-                            <FormControl className="border-none dark:bg-foreground">
+                            <FormControl className="dark:bg-foreground border-none">
                                 <Input placeholder="Prenumele tău" {...field} />
                             </FormControl>
                             {form.formState.errors.first_name && (
                                 <FormDescription className="text-destructive">
                                     <span className="flex gap-2">
                                         <AlertOctagon size={20} />
-                                        {
-                                            form.formState.errors.first_name
-                                                ?.message
-                                        }
+                                        {form.formState.errors.first_name?.message}
                                     </span>
                                 </FormDescription>
                             )}
@@ -269,17 +235,14 @@ export const CatrafusaleWorkshopRegistrationForm = (
                     render={({ field }) => (
                         <FormItem className="mb-4">
                             <FormLabel>Nume</FormLabel>
-                            <FormControl className="border-none dark:bg-foreground">
+                            <FormControl className="dark:bg-foreground border-none">
                                 <Input placeholder="Numele tău" {...field} />
                             </FormControl>
                             {form.formState.errors.last_name && (
                                 <FormDescription className="text-destructive">
                                     <span className="flex gap-2">
                                         <AlertOctagon size={20} />
-                                        {
-                                            form.formState.errors.last_name
-                                                ?.message
-                                        }
+                                        {form.formState.errors.last_name?.message}
                                     </span>
                                 </FormDescription>
                             )}
@@ -293,11 +256,8 @@ export const CatrafusaleWorkshopRegistrationForm = (
                     render={({ field }) => (
                         <FormItem className="mb-4">
                             <FormLabel>Email</FormLabel>
-                            <FormControl className="border-none dark:bg-foreground">
-                                <Input
-                                    placeholder="Adresa ta de email"
-                                    {...field}
-                                />
+                            <FormControl className="dark:bg-foreground border-none">
+                                <Input placeholder="Adresa ta de email" {...field} />
                             </FormControl>
                             {form.formState.errors.email && (
                                 <FormDescription className="text-destructive">
@@ -317,20 +277,14 @@ export const CatrafusaleWorkshopRegistrationForm = (
                     render={({ field }) => (
                         <FormItem className="mb-4">
                             <FormLabel>Număr de telefon</FormLabel>
-                            <FormControl className="border-none dark:bg-foreground">
-                                <Input
-                                    placeholder="Numărul tău de telefon"
-                                    {...field}
-                                />
+                            <FormControl className="dark:bg-foreground border-none">
+                                <Input placeholder="Numărul tău de telefon" {...field} />
                             </FormControl>
                             {form.formState.errors.phone_number && (
                                 <FormDescription className="text-destructive">
                                     <span className="flex gap-2">
                                         <AlertOctagon size={20} />
-                                        {
-                                            form.formState.errors.phone_number
-                                                ?.message
-                                        }
+                                        {form.formState.errors.phone_number?.message}
                                     </span>
                                 </FormDescription>
                             )}
@@ -343,7 +297,7 @@ export const CatrafusaleWorkshopRegistrationForm = (
                     name="agree_to_terms_and_conditions"
                     render={({ field }) => (
                         <FormItem className="mb-4 flex items-start pt-2">
-                            <FormControl className="border-none dark:bg-foreground">
+                            <FormControl className="dark:bg-foreground border-none">
                                 <Checkbox
                                     required
                                     checked={field.value}
@@ -352,9 +306,9 @@ export const CatrafusaleWorkshopRegistrationForm = (
                                 />
                             </FormControl>
                             <FormLabel className="mt-0! leading-5">
-                                Prin bifarea căsuței alăturate îmi exprim în mod
-                                expres consimţământul că sunt de acord cu
-                                prelucrarea datelor cu caracter personal conform{' '}
+                                Prin bifarea căsuței alăturate îmi exprim în mod expres
+                                consimţământul că sunt de acord cu prelucrarea datelor cu caracter
+                                personal conform{' '}
                                 <Link
                                     href={
                                         'https://docs.google.com/document/d/1M3xy8RK_zEyt8c3Pkl75QcB-whuD8fE4LjKHkmfCuDY'
@@ -376,15 +330,12 @@ export const CatrafusaleWorkshopRegistrationForm = (
                                 xmlns="http://www.w3.org/2000/svg"
                                 height="1em"
                                 viewBox="0 0 512 512"
-                                className="mr-2 animate-spin fill-white dark:fill-dark"
+                                className="dark:fill-dark mr-2 animate-spin fill-white"
                             >
                                 <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                             </svg>
                         ) : (
-                            <FontAwesomeIcon
-                                icon={faCreditCard}
-                                className="mr-2"
-                            />
+                            <FontAwesomeIcon icon={faCreditCard} className="mr-2" />
                         )}
                         Continuă spre plată
                     </Button>

@@ -5,11 +5,7 @@ import { getProjectPartners } from '@/use-cases/projects/getProjectPartners';
 import Image from 'next/image';
 import DashboardProjectDetails from './DashboardProjectDetails';
 
-export default async function DashboardProjectCard({
-    project,
-}: {
-    project: ProjectDto;
-}) {
+export default async function DashboardProjectCard({ project }: { project: ProjectDto }) {
     const partners = await getProjectPartners(project.partners);
 
     return (
@@ -31,10 +27,7 @@ export default async function DashboardProjectCard({
                 </Card>
             </DialogTrigger>
             <DialogContent className="max-w-[60%] rounded-lg max-md:w-[90%] max-md:max-w-[90%]">
-                <DashboardProjectDetails
-                    project={project}
-                    partners={partners}
-                />
+                <DashboardProjectDetails project={project} partners={partners} />
             </DialogContent>
         </Dialog>
     );

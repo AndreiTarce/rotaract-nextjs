@@ -19,11 +19,7 @@ export class S3Repository implements IBlobFileStorage {
         this.basePath = basePath;
     }
 
-    async upload(
-        fileBuffer: Buffer,
-        name: string,
-        contentType: string
-    ): Promise<string> {
+    async upload(fileBuffer: Buffer, name: string, contentType: string): Promise<string> {
         const params: PutObjectCommandInput = {
             Bucket: this.bucketName,
             Key: `${this.basePath}/${name}`,

@@ -13,20 +13,11 @@ export async function GET(request: NextRequest) {
     try {
         await connectMongoDB();
 
-        const { dates, type, sort } = parseGetMeetingSearchParams(
-            request.nextUrl.searchParams
-        );
+        const { dates, type, sort } = parseGetMeetingSearchParams(request.nextUrl.searchParams);
 
-        const meetings = await meetingInteractor.getMeetingsWithQuery(
-            dates,
-            type,
-            sort
-        );
+        const meetings = await meetingInteractor.getMeetingsWithQuery(dates, type, sort);
 
-        return NextResponse.json(
-            { results: meetings.length, meetings: meetings },
-            { status: 200 }
-        );
+        return NextResponse.json({ results: meetings.length, meetings: meetings }, { status: 200 });
     } catch (error) {
         return errorHandler(error);
     }
@@ -58,8 +49,7 @@ const parseGetMeetingSearchParams = (searchParams: URLSearchParams) => {
     const endDate = searchParams.get('end_date');
     const sort = searchParams.get('sort') as 'asc' | 'desc';
     const dates: { startDate?: Date; endDate?: Date } = {};
-    const query: { dates?: typeof dates; type?: string; sort?: typeof sort } =
-        {};
+    const query: { dates?: typeof dates; type?: string; sort?: typeof sort } = {};
 
     if (startDate) {
         dates.startDate = new Date(startDate);

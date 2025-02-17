@@ -18,14 +18,7 @@ import { useForm } from 'react-hook-form';
 import { Button } from '../../ui/button';
 import { Calendar } from '../../ui/calendar';
 import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-} from '../../ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '../../ui/form';
 import { Input } from '../../ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
 import {
@@ -42,9 +35,7 @@ import MemberSelect, { IPresentMemberSelect } from '../members/MemberSelect';
 
 export default function AddMeetingForm({ user }: { user: MemberDto }) {
     const [status, setStatus] = useState('');
-    const [presentMembers, setPresentMembers] = useState<
-        IPresentMemberSelect[]
-    >([]);
+    const [presentMembers, setPresentMembers] = useState<IPresentMemberSelect[]>([]);
 
     const queryClient = useQueryClient();
 
@@ -137,21 +128,14 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                             </FormControl>
                                             <SelectContent>
                                                 <SelectGroup>
-                                                    {MEETING_TYPES.map(
-                                                        (
-                                                            meeting,
-                                                            index: number
-                                                        ) => (
-                                                            <SelectItem
-                                                                value={
-                                                                    meeting.name
-                                                                }
-                                                                key={meeting.id}
-                                                            >
-                                                                {meeting.name}
-                                                            </SelectItem>
-                                                        )
-                                                    )}
+                                                    {MEETING_TYPES.map((meeting, index: number) => (
+                                                        <SelectItem
+                                                            value={meeting.name}
+                                                            key={meeting.id}
+                                                        >
+                                                            {meeting.name}
+                                                        </SelectItem>
+                                                    ))}
                                                 </SelectGroup>
                                             </SelectContent>
                                         </Select>
@@ -159,10 +143,7 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .type?.message
-                                                    }
+                                                    {form.formState.errors.type?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -176,19 +157,13 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                     <FormItem className="mb-4">
                                         <FormLabel>Locatie</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                placeholder="Locatie"
-                                                {...field}
-                                            />
+                                            <Input placeholder="Locatie" {...field} />
                                         </FormControl>
                                         {form.formState.errors.location && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .location?.message
-                                                    }
+                                                    {form.formState.errors.location?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -202,21 +177,13 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                     <FormItem className="mb-4">
                                         <FormLabel>Autorul minutei</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                disabled
-                                                placeholder="Autor"
-                                                {...field}
-                                            />
+                                            <Input disabled placeholder="Autor" {...field} />
                                         </FormControl>
                                         {form.formState.errors.minuteAuthor && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .minuteAuthor
-                                                            ?.message
-                                                    }
+                                                    {form.formState.errors.minuteAuthor?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -236,38 +203,26 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                                         variant={'outline'}
                                                         className={cn(
                                                             'w-[240px] pl-3 text-left font-normal',
-                                                            !field.value &&
-                                                                'text-muted-foreground'
+                                                            !field.value && 'text-muted-foreground'
                                                         )}
                                                     >
                                                         {field.value ? (
-                                                            format(
-                                                                field.value,
-                                                                'PPP'
-                                                            )
+                                                            format(field.value, 'PPP')
                                                         ) : (
-                                                            <span>
-                                                                Alege o data
-                                                            </span>
+                                                            <span>Alege o data</span>
                                                         )}
                                                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
-                                            <PopoverContent
-                                                className="w-auto p-0"
-                                                align="start"
-                                            >
+                                            <PopoverContent className="w-auto p-0" align="start">
                                                 <Calendar
                                                     mode="single"
                                                     selected={field.value}
                                                     onSelect={field.onChange}
                                                     disabled={(date) =>
                                                         date > new Date() ||
-                                                        date <
-                                                            new Date(
-                                                                '1900-01-01'
-                                                            )
+                                                        date < new Date('1900-01-01')
                                                     }
                                                     initialFocus
                                                 />
@@ -277,10 +232,7 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .start_date?.message
-                                                    }
+                                                    {form.formState.errors.start_date?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -294,19 +246,13 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                     <FormItem className="mb-4">
                                         <FormLabel>Ora</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                placeholder="(HH:MM)"
-                                                {...field}
-                                            />
+                                            <Input placeholder="(HH:MM)" {...field} />
                                         </FormControl>
                                         {form.formState.errors.start_hour && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .start_hour?.message
-                                                    }
+                                                    {form.formState.errors.start_hour?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -320,19 +266,13 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                     <FormItem className="mb-4">
                                         <FormLabel>Link minuta</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                placeholder="Link"
-                                                {...field}
-                                            />
+                                            <Input placeholder="Link" {...field} />
                                         </FormControl>
                                         {form.formState.errors.minuteUrl && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .minuteUrl?.message
-                                                    }
+                                                    {form.formState.errors.minuteUrl?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -347,22 +287,15 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                         <FormLabel>Membri prezenti</FormLabel>
                                         <MemberSelect
                                             presentMembers={presentMembers!}
-                                            setPresentMembers={
-                                                setPresentMembers
-                                            }
+                                            setPresentMembers={setPresentMembers}
                                             setFormValue={form.setValue}
                                             clearErrors={form.clearErrors}
                                         />
-                                        {form.formState.errors
-                                            .presentMembers && (
+                                        {form.formState.errors.presentMembers && (
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .presentMembers
-                                                            ?.message
-                                                    }
+                                                    {form.formState.errors.presentMembers?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -386,10 +319,7 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                             <FormDescription className="text-destructive">
                                                 <span className="flex gap-2">
                                                     <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .highlights?.message
-                                                    }
+                                                    {form.formState.errors.highlights?.message}
                                                 </span>
                                             </FormDescription>
                                         )}
@@ -404,15 +334,12 @@ export default function AddMeetingForm({ user }: { user: MemberDto }) {
                                             xmlns="http://www.w3.org/2000/svg"
                                             height="1em"
                                             viewBox="0 0 512 512"
-                                            className="mr-2 animate-spin fill-white dark:fill-dark"
+                                            className="dark:fill-dark mr-2 animate-spin fill-white"
                                         >
                                             <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                                         </svg>
                                     ) : (
-                                        <FontAwesomeIcon
-                                            icon={faPlus}
-                                            className="mr-2"
-                                        />
+                                        <FontAwesomeIcon icon={faPlus} className="mr-2" />
                                     )}
                                     Adaugare
                                 </Button>

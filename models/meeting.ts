@@ -20,7 +20,6 @@ const meetingSchema = new Schema<IMeetingDocument>(
     }
 );
 
-const Meeting =
-    mongoose.models.Meeting || mongoose.model('Meeting', meetingSchema);
+const Meeting = mongoose.models.Meeting || mongoose.model('Meeting', meetingSchema);
 
 export default Meeting;

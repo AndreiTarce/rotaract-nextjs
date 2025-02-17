@@ -4,9 +4,7 @@ export interface PartnerDto extends IPartner {
     id: string;
 }
 
-export function toPartnerDto(
-    partner: IPartnerDocument | PartnerDto
-): PartnerDto {
+export function toPartnerDto(partner: IPartnerDocument | PartnerDto): PartnerDto {
     return {
         id: partner.id,
         name: partner.name,

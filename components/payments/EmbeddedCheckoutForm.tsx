@@ -7,26 +7,16 @@ import {
     faHandHoldingDollar,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    EmbeddedCheckout,
-    EmbeddedCheckoutProvider,
-} from '@stripe/react-stripe-js';
+import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from '../ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
 import { useToast } from '../ui/use-toast';
 import DonateButton from './DonateButton';
 import { getStripePrices } from './constants';
 
-const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 export default function EmbeddedCheckoutForm() {
     const [clientSecret, setClientSecret] = useState<undefined | string>();
@@ -56,18 +46,16 @@ export default function EmbeddedCheckoutForm() {
             <div className="flex flex-col gap-4 md:grid md:grid-cols-2">
                 <Card className="rounded-lg border shadow-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-lg">
-                            Donație simplă
-                        </CardTitle>
+                        <CardTitle className="text-lg">Donație simplă</CardTitle>
                         <FontAwesomeIcon
                             icon={faHandHoldingDollar}
-                            className="h-4 w-4 text-muted-foreground"
+                            className="text-muted-foreground h-4 w-4"
                         />
                     </CardHeader>
-                    <CardContent className="flex flex-col text-muted-foreground">
+                    <CardContent className="text-muted-foreground flex flex-col">
                         <div className="mb-4">
-                            Vom aloca această donație către un proiect din
-                            cadrul clubului care necesită finanțare.
+                            Vom aloca această donație către un proiect din cadrul clubului care
+                            necesită finanțare.
                         </div>
                         <div className="flex flex-wrap gap-4">
                             <DonateButton
@@ -107,18 +95,16 @@ export default function EmbeddedCheckoutForm() {
                 </Card>
                 <Card className="rounded-lg border shadow-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-lg">
-                            Donație recurentă
-                        </CardTitle>
+                        <CardTitle className="text-lg">Donație recurentă</CardTitle>
                         <FontAwesomeIcon
                             icon={faCalendarCheck}
-                            className="h-4 w-4 text-muted-foreground"
+                            className="text-muted-foreground h-4 w-4"
                         />
                     </CardHeader>
-                    <CardContent className="flex flex-col text-muted-foreground">
+                    <CardContent className="text-muted-foreground flex flex-col">
                         <div className="mb-4">
-                            Vrei să ne susții constant eforturile? Ai opțiunea
-                            de a activa o donație recurentă lunar.
+                            Vrei să ne susții constant eforturile? Ai opțiunea de a activa o donație
+                            recurentă lunar.
                         </div>
                         <div className="flex flex-wrap gap-4">
                             <DonateButton
@@ -158,19 +144,16 @@ export default function EmbeddedCheckoutForm() {
                 </Card>
                 <Card className="rounded-lg border shadow-md">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-lg">
-                            Donație specifică{' '}
-                        </CardTitle>
+                        <CardTitle className="text-lg">Donație specifică </CardTitle>
                         <FontAwesomeIcon
                             icon={faBullseye}
-                            className="h-4 w-4 text-muted-foreground"
+                            className="text-muted-foreground h-4 w-4"
                         />
                     </CardHeader>
-                    <CardContent className="flex flex-col text-muted-foreground">
+                    <CardContent className="text-muted-foreground flex flex-col">
                         <div className="mb-4">
-                            Vrei să susții un proiect anume? Donează acum iar
-                            noi vom aloca această donație către următoarea
-                            ediție a proiectului.
+                            Vrei să susții un proiect anume? Donează acum iar noi vom aloca această
+                            donație către următoarea ediție a proiectului.
                         </div>
                         <div className="flex flex-wrap gap-4">
                             <DonateButton
@@ -213,7 +196,7 @@ export default function EmbeddedCheckoutForm() {
                         <CardTitle className="text-lg">Cont bancar</CardTitle>
                         <FontAwesomeIcon
                             icon={faBuildingColumns}
-                            className="h-4 w-4 text-muted-foreground"
+                            className="text-muted-foreground h-4 w-4"
                         />
                     </CardHeader>
                     <CardContent className="text-muted-foreground">
@@ -227,9 +210,7 @@ export default function EmbeddedCheckoutForm() {
                         </p>
                         <p
                             onClick={() => {
-                                navigator.clipboard.writeText(
-                                    'RO29BTRLRONCRT0662749501'
-                                );
+                                navigator.clipboard.writeText('RO29BTRLRONCRT0662749501');
                                 toast({
                                     title: 'Copied to clipboard',
                                     description: 'RO29BTRLRONCRT0662749501',
@@ -243,14 +224,9 @@ export default function EmbeddedCheckoutForm() {
                             <TooltipProvider>
                                 <Tooltip delayDuration={100}>
                                     <TooltipTrigger asChild>
-                                        <FontAwesomeIcon
-                                            icon={faClipboard}
-                                            className="ml-1"
-                                        />
+                                        <FontAwesomeIcon icon={faClipboard} className="ml-1" />
                                     </TooltipTrigger>
-                                    <TooltipContent>
-                                        Copy to clipboard
-                                    </TooltipContent>
+                                    <TooltipContent>Copy to clipboard</TooltipContent>
                                 </Tooltip>
                             </TooltipProvider>
                         </p>
@@ -259,10 +235,7 @@ export default function EmbeddedCheckoutForm() {
             </div>
             {clientSecret && (
                 <div className="mt-4 overflow-hidden rounded-xl">
-                    <EmbeddedCheckoutProvider
-                        stripe={stripePromise}
-                        options={{ clientSecret }}
-                    >
+                    <EmbeddedCheckoutProvider stripe={stripePromise} options={{ clientSecret }}>
                         <EmbeddedCheckout className="embedded-checkout" />
                     </EmbeddedCheckoutProvider>
                 </div>

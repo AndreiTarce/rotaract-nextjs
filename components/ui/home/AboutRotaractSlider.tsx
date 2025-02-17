@@ -1,10 +1,10 @@
-'use client'
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/scrollbar'
+'use client';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function AboutRotaractSlider(props: any) {
     return (
@@ -25,5 +25,5 @@ export default function AboutRotaractSlider(props: any) {
                 </SwiperSlide>
             ))}
         </Swiper>
-    )
+    );
 }

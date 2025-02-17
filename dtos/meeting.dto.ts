@@ -5,8 +5,7 @@ import {
     IMeetingMemberDocument,
 } from '@/interfaces/meeting/IMeeting';
 
-export interface MeetingDto
-    extends Omit<IMeeting, 'presentMembers' | 'absentMembers'> {
+export interface MeetingDto extends Omit<IMeeting, 'presentMembers' | 'absentMembers'> {
     id: string;
     presentMembers: MeetingMemberDto[];
     absentMembers: MeetingMemberDto[];
@@ -16,9 +15,7 @@ export interface MeetingMemberDto extends IMeetingMember {
     id: string;
 }
 
-export function toMeetingDto(
-    meeting: IMeetingDocument | MeetingDto
-): MeetingDto {
+export function toMeetingDto(meeting: IMeetingDocument | MeetingDto): MeetingDto {
     return {
         id: meeting.id,
         type: meeting.type,
@@ -29,12 +26,8 @@ export function toMeetingDto(
         highlights: meeting.highlights,
         minuteUrl: meeting.minuteUrl,
         duration: meeting.duration,
-        presentMembers: meeting.presentMembers.map((member) =>
-            toMeetingMemberDto(member)
-        ),
-        absentMembers: meeting.absentMembers.map((member) =>
-            toMeetingMemberDto(member)
-        ),
+        presentMembers: meeting.presentMembers.map((member) => toMeetingMemberDto(member)),
+        absentMembers: meeting.absentMembers.map((member) => toMeetingMemberDto(member)),
     };
 }
 

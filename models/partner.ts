@@ -7,7 +7,6 @@ const partnerSchema = new Schema<IPartnerDocument>({
     link: String,
 });
 
-const Partner =
-    mongoose.models.Partner || mongoose.model('Partner', partnerSchema);
+const Partner = mongoose.models.Partner || mongoose.model('Partner', partnerSchema);
 
 export default Partner;

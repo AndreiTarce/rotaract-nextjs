@@ -10,24 +10,12 @@ export interface IToastProps {
     icon?: React.ReactElement<any> | React.ReactNode;
 }
 
-export const successToast = ({
-    title,
-    message,
-    duration = 5000,
-    icon,
-}: IToastProps) =>
+export const successToast = ({ title, message, duration = 5000, icon }: IToastProps) =>
     toast({
         title,
         description: (
             <div className="flex gap-2">
-                {icon ? (
-                    icon
-                ) : (
-                    <FontAwesomeIcon
-                        icon={faCheckCircle}
-                        className="text-green-500"
-                    />
-                )}
+                {icon ? icon : <FontAwesomeIcon icon={faCheckCircle} className="text-green-500" />}
                 <span className="self-center">{message}</span>
             </div>
         ),

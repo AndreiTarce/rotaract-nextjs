@@ -7,17 +7,13 @@ import { MemberRepository } from '@/repositories/memberRepository';
 const memberInteractor = new MemberInteractor(new MemberRepository());
 const meetingInteractor = new MeetingInteractor(new MeetingRepository());
 
-export async function createMeetingWithPresentMembers(
-    meeting: MeetingDto
-): Promise<MeetingDto> {
+export async function createMeetingWithPresentMembers(meeting: MeetingDto): Promise<MeetingDto> {
     const members = await memberInteractor.getAllMembers();
 
     const absentMembers = members
         .filter(
             (member) =>
-                !meeting.presentMembers.some(
-                    (presentMember) => presentMember.id === member.id
-                )
+                !meeting.presentMembers.some((presentMember) => presentMember.id === member.id)
         )
         .map((member) => member);
 
@@ -26,7 +22,6 @@ export async function createMeetingWithPresentMembers(
         absentMembers,
     });
 
-    const createdMeeting =
-        await meetingInteractor.createMeeting(meetingToCreate);
+    const createdMeeting = await meetingInteractor.createMeeting(meetingToCreate);
     return createdMeeting;
 }

@@ -8,11 +8,7 @@ export class FileStorageInteractor {
     }
 
     async uploadFile(fileBuffer: Buffer, name: string, type: string) {
-        const fileUrl = await this.repository.upload(
-            fileBuffer,
-            name.replace(/\s/g, ''),
-            type
-        );
+        const fileUrl = await this.repository.upload(fileBuffer, name.replace(/\s/g, ''), type);
         return fileUrl;
     }
 

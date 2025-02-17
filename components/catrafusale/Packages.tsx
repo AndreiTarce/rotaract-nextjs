@@ -93,9 +93,7 @@ export default function CatrafusalePackages({
                         Înălțime: 110cm
                     </span>
                 }
-                productId={
-                    CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE_TABLE
-                }
+                productId={CATRAFUSALE_2024_WINTER_EDITION_PACKAGES.SINGLE_TABLE}
                 setProductId={setProductId}
                 image={table}
                 sold_out={!remainingTables}

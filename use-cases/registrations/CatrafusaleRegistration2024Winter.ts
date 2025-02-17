@@ -13,17 +13,11 @@ const registrationLimitInteractor = new CatrafusaleRegistrationLimitInteractor(
     new Repository(CatrafusaleRegistrationWinter2024Limit)
 );
 
-export async function createRegistration(
-    registration: CatrafusaleRegistrationWinter2024Dto
-) {
-    const packageStandersAndTables = getPackageStandersAndTables(
-        registration.package
-    );
+export async function createRegistration(registration: CatrafusaleRegistrationWinter2024Dto) {
+    const packageStandersAndTables = getPackageStandersAndTables(registration.package);
 
     const shouldContinueToReservation =
-        await checkStandersOrTablesAreAvailableForPurchase(
-            packageStandersAndTables
-        );
+        await checkStandersOrTablesAreAvailableForPurchase(packageStandersAndTables);
 
     if (!shouldContinueToReservation) {
         throw new RegistrationNotAvailableError(
@@ -68,44 +62,40 @@ export const getPackageStandersAndTablesFromProductId = (productId: string) => {
     }
 };
 
-const checkStandersOrTablesAreAvailableForPurchase =
-    async (packageStandersAndTablesObject: {
-        standers: number;
-        tables: number;
-    }) => {
-        const registrationLimit =
-            await registrationLimitInteractor.getRegistrationNumbers();
+const checkStandersOrTablesAreAvailableForPurchase = async (packageStandersAndTablesObject: {
+    standers: number;
+    tables: number;
+}) => {
+    const registrationLimit = await registrationLimitInteractor.getRegistrationNumbers();
 
-        if (
-            !(
-                packageStandersAndTablesObject.standers <=
-                registrationLimit.maxStanders -
-                    registrationLimit.currentStanders
-            )
-        ) {
-            return false;
-        }
+    if (
+        !(
+            packageStandersAndTablesObject.standers <=
+            registrationLimit.maxStanders - registrationLimit.currentStanders
+        )
+    ) {
+        return false;
+    }
 
-        if (
-            !(
-                packageStandersAndTablesObject.tables <=
-                registrationLimit.maxTables - registrationLimit.currentTables
-            )
-        ) {
-            return false;
-        }
+    if (
+        !(
+            packageStandersAndTablesObject.tables <=
+            registrationLimit.maxTables - registrationLimit.currentTables
+        )
+    ) {
+        return false;
+    }
 
-        return true;
-    };
+    return true;
+};
 
 export const reserveStandersOrTables = async (packageStandersAndTablesObject: {
     standers: number;
     tables: number;
 }) => {
-    const registrationLimitInteractor =
-        new CatrafusaleRegistrationLimitInteractor(
-            new Repository(CatrafusaleRegistrationWinter2024Limit)
-        );
+    const registrationLimitInteractor = new CatrafusaleRegistrationLimitInteractor(
+        new Repository(CatrafusaleRegistrationWinter2024Limit)
+    );
 
     if (packageStandersAndTablesObject.standers) {
         await registrationLimitInteractor.incrementCurrentStanders(

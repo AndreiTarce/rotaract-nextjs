@@ -4,12 +4,7 @@ import { CHECKOUT_PATH } from '@/lib/constants';
 import { useState } from 'react';
 import EmbeddedCheckoutCatrafusale from '../payments/EmbeddedCheckoutCatrafusale';
 import { getStripePrices } from '../payments/constants';
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from '../ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
@@ -43,26 +38,23 @@ export default function CatrafusaleRaffle() {
     return (
         <Card className="mb-4 flex grow flex-col rounded-lg border bg-linear-to-tr from-[#ffe4d2] to-[#ee8984] shadow-md md:w-1/2">
             <CardHeader className="pb-4">
-                <CardTitle className="text-5xl font-extrabold text-foreground dark:text-background max-md:text-5xl">
+                <CardTitle className="text-foreground dark:text-background text-5xl font-extrabold max-md:text-5xl">
                     Tombolă caritabilă
                 </CardTitle>
             </CardHeader>
             <CardContent>
                 <p className="text-foreground dark:text-background">
-                    În cadrul proiectului CATRAFU-SALE #8 vom avea o tombolă
-                    caritabilă, cu diverse premii de la sponsorii noștri dragi.
-                    Extragerea câștigătorilor va avea loc în data de 2 Iunie, în
-                    cadrul evenimentului, unde te așteptăm cu multe activități
+                    În cadrul proiectului CATRAFU-SALE #8 vom avea o tombolă caritabilă, cu diverse
+                    premii de la sponsorii noștri dragi. Extragerea câștigătorilor va avea loc în
+                    data de 2 Iunie, în cadrul evenimentului, unde te așteptăm cu multe activități
                     și surprize!
                     <br />
                     <br />
-                    Vrei să participi la tombolă sau să susții cauza noastră,
-                    dar nu poți ajunge în ziua evenimentului? Well, we have some
-                    good news! Participarea fizică nu este obligatorie, așadar
-                    poți achiziționa bilete la tombolă online, iar noi vom face
-                    extragerea fizic. Toți câștigătorii vor fi contactați
-                    ulterior, iar noi ne vom asigura că premiile ajung la voi
-                    după eveniment.
+                    Vrei să participi la tombolă sau să susții cauza noastră, dar nu poți ajunge în
+                    ziua evenimentului? Well, we have some good news! Participarea fizică nu este
+                    obligatorie, așadar poți achiziționa bilete la tombolă online, iar noi vom face
+                    extragerea fizic. Toți câștigătorii vor fi contactați ulterior, iar noi ne vom
+                    asigura că premiile ajung la voi după eveniment.
                     <Accordion
                         type="single"
                         collapsible
@@ -77,46 +69,33 @@ export default function CatrafusaleRaffle() {
                                 <ul className="list-disc">
                                     <li>Un abonament la Untold.</li>
                                     <li>
-                                        10 pachete de vouchere cu reducere
-                                        individuala/pachet de minim 300€ pentru
-                                        vacanțe pe velier de la Dream Sales.
+                                        10 pachete de vouchere cu reducere individuala/pachet de
+                                        minim 300€ pentru vacanțe pe velier de la Dream Sales.
                                     </li>
                                     <li>
-                                        Voucher de cazare pentru 2 persoane 1
-                                        noapte de weekend în regim Bed &
-                                        Breakfast la Double Tree by Hilton
-                                        Cluj-Napoca.
+                                        Voucher de cazare pentru 2 persoane 1 noapte de weekend în
+                                        regim Bed & Breakfast la Double Tree by Hilton Cluj-Napoca.
                                     </li>
                                     <li>
-                                        Voucher Day Pass la Salute per Aqua
-                                        pentru 2 persons, în incinta Double Tree
-                                        by Hilton Cluj-Napoca.
+                                        Voucher Day Pass la Salute per Aqua pentru 2 persons, în
+                                        incinta Double Tree by Hilton Cluj-Napoca.
+                                    </li>
+                                    <li>Un voucher de 300 de lei pentru o masă la Livada.</li>
+                                    <li>Un voucher pentru tuns și aranjat la Vestige.</li>
+                                    <li>
+                                        1 voucher de 50% reducere pentru 2 ore de joc, 8 persoane,
+                                        la LaserTag Fonix Cluj.
                                     </li>
                                     <li>
-                                        Un voucher de 300 de lei pentru o masă
-                                        la Livada.
+                                        2 vouchere de 50% reducere pentru 1 ore de joc, 8 persoane,
+                                        la LaserTag Fonix Cluj.
                                     </li>
                                     <li>
-                                        Un voucher pentru tuns și aranjat la
-                                        Vestige.
+                                        3 abonamente duble la Transylvania International Spoken Word
+                                        Festival.
                                     </li>
                                     <li>
-                                        1 voucher de 50% reducere pentru 2 ore
-                                        de joc, 8 persoane, la LaserTag Fonix
-                                        Cluj.
-                                    </li>
-                                    <li>
-                                        2 vouchere de 50% reducere pentru 1 ore
-                                        de joc, 8 persoane, la LaserTag Fonix
-                                        Cluj.
-                                    </li>
-                                    <li>
-                                        3 abonamente duble la Transylvania
-                                        International Spoken Word Festival.
-                                    </li>
-                                    <li>
-                                        3 vouchere pentru 1 luna de cafea
-                                        gratuită la Ted’s Coffee.
+                                        3 vouchere pentru 1 luna de cafea gratuită la Ted’s Coffee.
                                     </li>
                                     <li>O periuța de dinți electrică</li>
                                 </ul>

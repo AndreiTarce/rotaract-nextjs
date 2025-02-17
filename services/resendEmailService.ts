@@ -11,9 +11,7 @@ export class ResendEmailService implements IEmailService {
         this.resend = resend;
     }
 
-    async sendEmail(
-        emailData: RequireAtLeastOne<IEmailData, 'react' | 'html'>
-    ): Promise<void> {
+    async sendEmail(emailData: RequireAtLeastOne<IEmailData, 'react' | 'html'>): Promise<void> {
         await this.resend.emails.send(emailData);
     }
 
@@ -22,9 +20,7 @@ export class ResendEmailService implements IEmailService {
             audienceId: contactAudienceId,
         });
 
-        const contactAudienceEmails = contactAudience.data?.data.map(
-            (contact) => contact.email
-        );
+        const contactAudienceEmails = contactAudience.data?.data.map((contact) => contact.email);
 
         if (contactAudienceEmails) {
             return contactAudienceEmails;

@@ -66,17 +66,13 @@ export class CatrafusaleRegistrationInteractor extends RegistrationInteractor<
 export class CatrafusaleRegistrationLimitInteractor {
     private repository: IRepository<ICatrafusaleRegistrationWinter2024LimitDocument>;
 
-    constructor(
-        repository: IRepository<ICatrafusaleRegistrationWinter2024LimitDocument>
-    ) {
+    constructor(repository: IRepository<ICatrafusaleRegistrationWinter2024LimitDocument>) {
         this.repository = repository;
     }
 
     async getRegistrationNumbers() {
         const registrationNumbers = await this.repository.findAll();
-        return toCatrafusaleRegistrationWinter2024LimitDto(
-            registrationNumbers[0]
-        );
+        return toCatrafusaleRegistrationWinter2024LimitDto(registrationNumbers[0]);
     }
 
     async getRemainingStanders() {
@@ -86,8 +82,7 @@ export class CatrafusaleRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
 
         return limitObject.maxStanders - limitObject.currentStanders;
     }
@@ -99,8 +94,7 @@ export class CatrafusaleRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
 
         return limitObject.maxTables - limitObject.currentTables;
     }
@@ -112,8 +106,7 @@ export class CatrafusaleRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
         const newLimitObject = incrementStanders(limitObject, number);
         await this.repository.update(newLimitObject);
     }
@@ -125,8 +118,7 @@ export class CatrafusaleRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleRegistrationWinter2024LimitDto(limitDocument);
         const newLimitObject = incrementTables(limitObject, number);
         await this.repository.update(newLimitObject);
     }
@@ -140,9 +132,7 @@ export class CatrafusaleWorkshopRegistrationInteractor extends RegistrationInter
         super(CatrafusaleWorkshopRegistrationWinter2024);
     }
 
-    async getRegistrations(): Promise<
-        CatrafusaleWorkshopRegistrationWinter2024Dto[]
-    > {
+    async getRegistrations(): Promise<CatrafusaleWorkshopRegistrationWinter2024Dto[]> {
         const registrations = await this.repository.findAll();
         return registrations.map((registration) =>
             toCatrafusaleWorkshopRegistrationWinter2024Dto(registration)
@@ -173,17 +163,13 @@ export class CatrafusaleWorkshopRegistrationInteractor extends RegistrationInter
 export class CatrafusaleWorkshopRegistrationLimitInteractor {
     private repository: IRepository<ICatrafusaleWorkshopRegistrationWinter2024LimitDocument>;
 
-    constructor(
-        repository: IRepository<ICatrafusaleWorkshopRegistrationWinter2024LimitDocument>
-    ) {
+    constructor(repository: IRepository<ICatrafusaleWorkshopRegistrationWinter2024LimitDocument>) {
         this.repository = repository;
     }
 
     async getRegistrationNumbers() {
         const registrationNumbers = await this.repository.findAll();
-        return toCatrafusaleWorkshopRegistrationWinter2024LimitDto(
-            registrationNumbers[0]
-        );
+        return toCatrafusaleWorkshopRegistrationWinter2024LimitDto(registrationNumbers[0]);
     }
 
     async incrementCurrentCandles(number: number) {
@@ -193,8 +179,7 @@ export class CatrafusaleWorkshopRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
         const newLimitObject = incrementCandles(limitObject, number);
         await this.repository.update(newLimitObject);
     }
@@ -206,8 +191,7 @@ export class CatrafusaleWorkshopRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
         const newLimitObject = incrementGlobes(limitObject, number);
         await this.repository.update(newLimitObject);
     }
@@ -219,8 +203,7 @@ export class CatrafusaleWorkshopRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
         const newLimitObject = incrementClay(limitObject, number);
         await this.repository.update(newLimitObject);
     }
@@ -232,8 +215,7 @@ export class CatrafusaleWorkshopRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
 
         return limitObject.maxCandles - limitObject.currentCandles;
     }
@@ -245,8 +227,7 @@ export class CatrafusaleWorkshopRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
 
         return limitObject.maxGlobes - limitObject.currentGlobes;
     }
@@ -258,8 +239,7 @@ export class CatrafusaleWorkshopRegistrationLimitInteractor {
             throw new NotFoundError();
         }
 
-        const limitObject =
-            toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
+        const limitObject = toCatrafusaleWorkshopRegistrationWinter2024LimitDto(limitDocument);
 
         return limitObject.maxClay - limitObject.currentClay;
     }

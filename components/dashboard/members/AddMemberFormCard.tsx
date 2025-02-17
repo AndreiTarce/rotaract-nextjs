@@ -12,11 +12,7 @@ import { useState } from 'react';
 import { removeUndefinedLinkKeys } from '../utils';
 import MemberForm, { IClientMemberFormSchema } from './MemberForm';
 
-export default function AddMemberFormCard({
-    userInfo,
-}: {
-    userInfo?: MemberDto;
-}) {
+export default function AddMemberFormCard({ userInfo }: { userInfo?: MemberDto }) {
     const [status, setStatus] = useState<memberFormStatuses | undefined>();
     const router = useRouter();
 
@@ -58,16 +54,10 @@ export default function AddMemberFormCard({
     return (
         <Card className="h-fit">
             <CardHeader className="pb-4">
-                <CardTitle>
-                    {userInfo ? 'Editare' : 'Adaugare'} membru
-                </CardTitle>
+                <CardTitle>{userInfo ? 'Editare' : 'Adaugare'} membru</CardTitle>
             </CardHeader>
             <CardContent>
-                <MemberForm
-                    userInfo={userInfo}
-                    onSubmit={onSubmit}
-                    status={status}
-                />
+                <MemberForm userInfo={userInfo} onSubmit={onSubmit} status={status} />
             </CardContent>
         </Card>
     );

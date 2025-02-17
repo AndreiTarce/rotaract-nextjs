@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 export default async function Projects() {
     return (
         <main className="mx-16 mt-5 min-h-screen max-md:mx-4 md:mt-12">
-            <h1 className="mb-2 w-fit bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
+            <h1 className="from-rotaract-cranberry mb-2 w-fit bg-linear-to-r to-rose-500 bg-clip-text text-7xl leading-none font-extrabold text-transparent max-md:text-5xl">
                 Proiectele noastre
             </h1>
             <p className="text-muted-foreground md:w-2/3">{description}</p>
-            <Separator className="mb-8 mt-4" />
+            <Separator className="mt-4 mb-8" />
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <ProjectsList />
             </div>

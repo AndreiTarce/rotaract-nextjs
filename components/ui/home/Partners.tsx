@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle } from '../card'
+import { Card, CardHeader, CardTitle } from '../card';
 
 export default async function Partners() {
     return (
@@ -7,5 +7,5 @@ export default async function Partners() {
                 <CardTitle>Parteneri</CardTitle>
             </CardHeader>
         </Card>
-    )
+    );
 }

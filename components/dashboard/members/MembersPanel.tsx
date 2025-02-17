@@ -10,11 +10,7 @@ export const dynamic = 'force-dynamic';
 
 const memberInteractor = new MemberInteractor(new MemberRepository());
 
-export default async function MembersPanel({
-    currentUser,
-}: {
-    currentUser: MemberDto;
-}) {
+export default async function MembersPanel({ currentUser }: { currentUser: MemberDto }) {
     await connectMongoDB();
 
     const members = await memberInteractor.getAllMembers();

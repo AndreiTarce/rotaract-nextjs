@@ -1,12 +1,7 @@
 import user_placeholder from '@/assets/images/user-placeholder.png';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { MemberDto } from '@/dtos/member.dto';
 import { MemberInteractor } from '@/interactors/memberInteractor';
 import connectMongoDB from '@/lib/mongodb';
@@ -51,9 +46,7 @@ export default async function DashboardMemberCard({
                     <div className="font-semibold">
                         {user.first_name} {user.last_name}
                     </div>
-                    <div className="text-muted-foreground mb-2 text-xs">
-                        {user.email}
-                    </div>
+                    <div className="text-muted-foreground mb-2 text-xs">{user.email}</div>
                     <div className="capitalize">{user.role}</div>
                     <div className="text-muted-foreground mb-2 text-sm capitalize">
                         Status: {user.status}
@@ -84,11 +77,7 @@ export default async function DashboardMemberCard({
                 </Card>
             </DialogTrigger>
             <DialogContent className="max-w-[60%] rounded-lg max-md:w-[90%] max-md:max-w-[90%] max-md:pt-16">
-                <EditMemberForm
-                    userId={user.id}
-                    currentUser={currentUser}
-                    readOnly
-                />
+                <EditMemberForm userId={user.id} currentUser={currentUser} readOnly />
             </DialogContent>
         </Dialog>
     );

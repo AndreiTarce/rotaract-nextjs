@@ -13,12 +13,7 @@ export function Navigation() {
         <nav className="sticky top-0 z-50 w-full bg-inherit">
             <div className="mx-16 flex justify-between py-3 max-md:mx-4">
                 <Link href="/">
-                    <Image
-                        src={logo}
-                        alt="Rotaract logo"
-                        height={40}
-                        quality={100}
-                    />
+                    <Image src={logo} alt="Rotaract logo" height={40} quality={100} />
                 </Link>
                 <ul className="flex flex-row gap-1">
                     <li className="max-md:hidden">

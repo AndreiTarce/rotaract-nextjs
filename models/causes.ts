@@ -1,11 +1,11 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 export interface ICause {
-    _id?: number,
-    title: string,
-    description: string,
-    images: string[],
-    downloadUrl: string,
+    _id?: number;
+    title: string;
+    description: string;
+    images: string[];
+    downloadUrl: string;
 }
 
 const causeSchema = new Schema<ICause>(
@@ -20,6 +20,6 @@ const causeSchema = new Schema<ICause>(
     }
 );
 
-const Cause = mongoose.models.Cause || mongoose.model("Cause", causeSchema);
+const Cause = mongoose.models.Cause || mongoose.model('Cause', causeSchema);
 
 export default Cause;

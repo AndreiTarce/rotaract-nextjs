@@ -5,12 +5,7 @@ import { MemberDto } from '@/dtos/member.dto';
 import { deleteMeeting } from '@/lib/entityService';
 import { isSecretary } from '@/lib/utils';
 import { faGoogleDrive, faReadme } from '@fortawesome/free-brands-svg-icons';
-import {
-    faCalendar,
-    faCircle,
-    faLocationPin,
-    faTrash,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faCircle, faLocationPin, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQueryClient } from '@tanstack/react-query';
 import { ChevronsUpDown } from 'lucide-react';
@@ -20,18 +15,10 @@ import { DeleteEntityAlertDialog } from '../modals/DeleteEntityAlertDialog';
 import { DeleteEntityWithConfirmationButton } from '../modals/DeleteEntityWithConfirmationButton';
 import { errorToast } from '../toasts/error-toast';
 import { successToast } from '../toasts/success-toast';
-import {
-    AlertDialog,
-    AlertDialogContent,
-    AlertDialogTrigger,
-} from '../ui/alert-dialog';
+import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from '../ui/alert-dialog';
 import { Button } from '../ui/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from '../ui/collapsible';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible';
 import {
     ContextMenu,
     ContextMenuContent,
@@ -51,13 +38,7 @@ import {
 import { ScrollArea } from '../ui/scroll-area';
 import MemberPill from './members/MemberPill';
 
-export default function Sedinta({
-    meeting,
-    user,
-}: {
-    meeting: MeetingDto;
-    user: MemberDto;
-}) {
+export default function Sedinta({ meeting, user }: { meeting: MeetingDto; user: MemberDto }) {
     const meetingDate = new Date(meeting.start_date);
     const [isPresentOpen, setIsPresentOpen] = useState(true);
     const [isAbsentOpen, setIsAbsentOpen] = useState(false);
@@ -98,10 +79,7 @@ export default function Sedinta({
                                 <CardTitle>{meeting.type}</CardTitle>
                                 <CardDescription className="flex flex-col">
                                     <div>
-                                        <FontAwesomeIcon
-                                            icon={faCalendar}
-                                            className="mr-2"
-                                        />
+                                        <FontAwesomeIcon icon={faCalendar} className="mr-2" />
                                         {meetingDate.toLocaleDateString('RO', {
                                             year: 'numeric',
                                             month: 'long',
@@ -111,10 +89,7 @@ export default function Sedinta({
                                         })}
                                     </div>
                                     <div>
-                                        <FontAwesomeIcon
-                                            icon={faLocationPin}
-                                            className="mr-2"
-                                        />
+                                        <FontAwesomeIcon icon={faLocationPin} className="mr-2" />
                                         {meeting.location}
                                     </div>
                                 </CardDescription>
@@ -133,9 +108,7 @@ export default function Sedinta({
                                                         : 'mr-2 text-red-600'
                                                 }
                                             />
-                                            {memberIsPresent
-                                                ? 'Prezent'
-                                                : 'Absent'}
+                                            {memberIsPresent ? 'Prezent' : 'Absent'}
                                         </Button>
                                     </div>
                                 ) : null}
@@ -145,15 +118,10 @@ export default function Sedinta({
                 </DialogTrigger>
                 <DialogContent className="max-w-[60%] rounded-lg max-md:w-[90%] max-md:max-w-[90%]">
                     <DialogHeader>
-                        <DialogTitle className="text-4xl">
-                            {meeting.type}
-                        </DialogTitle>
+                        <DialogTitle className="text-4xl">{meeting.type}</DialogTitle>
                         <DialogDescription>
                             <div>
-                                <FontAwesomeIcon
-                                    icon={faCalendar}
-                                    className="mr-2"
-                                />
+                                <FontAwesomeIcon icon={faCalendar} className="mr-2" />
                                 {meetingDate.toLocaleDateString('RO', {
                                     year: 'numeric',
                                     month: 'long',
@@ -163,28 +131,17 @@ export default function Sedinta({
                                 })}
                             </div>
                             <div>
-                                <FontAwesomeIcon
-                                    icon={faLocationPin}
-                                    className="mr-2"
-                                />
+                                <FontAwesomeIcon icon={faLocationPin} className="mr-2" />
                                 {meeting.location}
                             </div>
                         </DialogDescription>
                     </DialogHeader>
-                    {meeting.presentMembers?.length &&
-                    meeting.absentMembers?.length ? (
+                    {meeting.presentMembers?.length && meeting.absentMembers?.length ? (
                         <div className="flex flex-col flex-wrap md:flex-row md:gap-4">
-                            <Collapsible
-                                open={isPresentOpen}
-                                onOpenChange={setIsPresentOpen}
-                            >
+                            <Collapsible open={isPresentOpen} onOpenChange={setIsPresentOpen}>
                                 <CollapsibleTrigger asChild className="md:mb-2">
                                     <div className="w-fit">
-                                        <Button
-                                            variant="ghost"
-                                            size="sm"
-                                            className="-ml-2 px-2"
-                                        >
+                                        <Button variant="ghost" size="sm" className="-ml-2 px-2">
                                             <span className="text-lg font-semibold">
                                                 Membri prezenti
                                             </span>
@@ -196,17 +153,13 @@ export default function Sedinta({
                                     <Card className="bg-green-600/10 p-2 md:w-96">
                                         <ScrollArea className="h-[100px] md:h-[300px]">
                                             <div className="mt-2 flex flex-wrap gap-2">
-                                                {meeting.presentMembers
-                                                    ?.length &&
+                                                {meeting.presentMembers?.length &&
                                                     meeting.presentMembers.map(
                                                         (
                                                             member: MeetingMemberDto,
                                                             index: number
                                                         ) => (
-                                                            <MemberPill
-                                                                user={member}
-                                                                key={index}
-                                                            />
+                                                            <MemberPill user={member} key={index} />
                                                         )
                                                     )}
                                             </div>
@@ -214,17 +167,10 @@ export default function Sedinta({
                                     </Card>
                                 </CollapsibleContent>
                             </Collapsible>
-                            <Collapsible
-                                open={isAbsentOpen}
-                                onOpenChange={setIsAbsentOpen}
-                            >
+                            <Collapsible open={isAbsentOpen} onOpenChange={setIsAbsentOpen}>
                                 <CollapsibleTrigger asChild className="md:mb-2">
                                     <div className="w-fit">
-                                        <Button
-                                            variant="ghost"
-                                            size="sm"
-                                            className="-ml-2 px-2"
-                                        >
+                                        <Button variant="ghost" size="sm" className="-ml-2 px-2">
                                             <span className="text-lg font-semibold">
                                                 Membri absenti
                                             </span>
@@ -236,17 +182,13 @@ export default function Sedinta({
                                     <Card className="bg-red-600/10 p-2 md:w-96">
                                         <ScrollArea className="h-[100px] md:h-[300px]">
                                             <div className="mt-2 flex flex-wrap gap-2">
-                                                {meeting.absentMembers
-                                                    ?.length &&
+                                                {meeting.absentMembers?.length &&
                                                     meeting.absentMembers.map(
                                                         (
                                                             member: MeetingMemberDto,
                                                             index: number
                                                         ) => (
-                                                            <MemberPill
-                                                                user={member}
-                                                                key={index}
-                                                            />
+                                                            <MemberPill user={member} key={index} />
                                                         )
                                                     )}
                                             </div>
@@ -262,20 +204,14 @@ export default function Sedinta({
                             <Dialog>
                                 <DialogTrigger asChild>
                                     <Button type="submit">
-                                        <FontAwesomeIcon
-                                            icon={faReadme}
-                                            className="mr-2"
-                                        />
+                                        <FontAwesomeIcon icon={faReadme} className="mr-2" />
                                         Vezi minuta{' '}
                                     </Button>
                                 </DialogTrigger>
                                 <DialogContent className="h-[90%] max-w-[95%] rounded-lg">
                                     <div className="pt-4">
                                         <iframe
-                                            src={meeting.minuteUrl.replace(
-                                                /\/view\b/g,
-                                                '/preview'
-                                            )}
+                                            src={meeting.minuteUrl.replace(/\/view\b/g, '/preview')}
                                             width="100%"
                                             height="100%"
                                             allow="autoplay"
@@ -286,10 +222,7 @@ export default function Sedinta({
 
                             <Link href={meeting.minuteUrl} target="_blank">
                                 <Button type="submit">
-                                    <FontAwesomeIcon
-                                        icon={faGoogleDrive}
-                                        className="mr-2"
-                                    />
+                                    <FontAwesomeIcon icon={faGoogleDrive} className="mr-2" />
                                     Link minuta{' '}
                                 </Button>
                             </Link>
@@ -319,9 +252,7 @@ export default function Sedinta({
                     </AlertDialogTrigger>
                 </ContextMenuContent>
                 <AlertDialogContent>
-                    <DeleteEntityAlertDialog
-                        onDelete={() => onDelete(meeting.id)}
-                    />
+                    <DeleteEntityAlertDialog onDelete={() => onDelete(meeting.id)} />
                 </AlertDialogContent>
             </AlertDialog>
         </ContextMenu>

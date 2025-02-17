@@ -7,17 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
 
-export default async function Return(
-    props: {
-        searchParams: Promise<{ session_id: string }>;
-    }
-) {
+export default async function Return(props: { searchParams: Promise<{ session_id: string }> }) {
     const searchParams = await props.searchParams;
     const { session_id } = searchParams;
 
-    const session = (await getCheckoutSession(
-        session_id
-    )) as Stripe.Checkout.Session;
+    const session = (await getCheckoutSession(session_id)) as Stripe.Checkout.Session;
 
     if (session.status === 'open') {
         return redirect('/');
@@ -25,7 +19,7 @@ export default async function Return(
 
     if (session.status === 'complete')
         return (
-            <main className="mx-24 mb-8 mt-5 flex min-h-[58vh] justify-center max-md:mx-4 md:mt-12">
+            <main className="mx-24 mt-5 mb-8 flex min-h-[58vh] justify-center max-md:mx-4 md:mt-12">
                 <Card className="h-fit w-fit">
                     <div className="mt-8 flex justify-center">
                         <FontAwesomeIcon
@@ -36,7 +30,7 @@ export default async function Return(
                     </div>
                     <CardHeader>
                         <CardTitle>
-                            <h1 className="bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text p-2 text-center text-5xl font-extrabold leading-none text-transparent max-md:text-2xl">
+                            <h1 className="from-rotaract-cranberry bg-linear-to-r to-rose-500 bg-clip-text p-2 text-center text-5xl leading-none font-extrabold text-transparent max-md:text-2xl">
                                 Vă mulțumim pentru donație!
                             </h1>
                         </CardTitle>
@@ -48,8 +42,7 @@ export default async function Return(
                         </p>
                         <Separator className="my-2" />
                         <p>
-                            Dacă aveți întrebări, vă rugăm să ne contactați la
-                            adresa{' '}
+                            Dacă aveți întrebări, vă rugăm să ne contactați la adresa{' '}
                             <a
                                 href={`mailto:${ROTARACT_VISIO_EMAIL}`}
                                 className="text-muted-foreground"

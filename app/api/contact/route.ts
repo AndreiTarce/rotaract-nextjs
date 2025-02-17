@@ -16,9 +16,6 @@ export async function POST(request: NextRequest) {
         await sendContactEmail(body.subject, bodyString);
         return new NextResponse(null, { status: 200 });
     } catch (error) {
-        return NextResponse.json(
-            { error: 'Too many requests.' },
-            { status: 429 }
-        );
+        return NextResponse.json({ error: 'Too many requests.' }, { status: 429 });
     }
 }

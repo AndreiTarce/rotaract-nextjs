@@ -16,7 +16,6 @@ const projectArticleSchema = new Schema<IProjectArticleDocument>({
 });
 
 const ProjectArticle =
-    mongoose.models.ProjectArticle ||
-    mongoose.model('ProjectArticle', projectArticleSchema);
+    mongoose.models.ProjectArticle || mongoose.model('ProjectArticle', projectArticleSchema);
 
 export default ProjectArticle;

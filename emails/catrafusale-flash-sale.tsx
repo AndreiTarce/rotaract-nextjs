@@ -12,13 +12,9 @@ import {
 } from '@react-email/components';
 import Stripe from 'stripe';
 
-const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : '';
+const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '';
 
-export const CatrafusaleFlashSaleEmail = (
-    promotionCode: Stripe.PromotionCode
-) => (
+export const CatrafusaleFlashSaleEmail = (promotionCode: Stripe.PromotionCode) => (
     <Html>
         <Head />
         <Preview>Îți mulțumim pentru donație!</Preview>
@@ -34,25 +30,21 @@ export const CatrafusaleFlashSaleEmail = (
                 </Section>
                 <Heading style={h1}>Îți mulțumim pentru donație!</Heading>
                 <Text style={heroText}>
-                    Te așteptăm cu mare drag, în data de 2 iunie la CATRAFU-SALE
-                    #8! De asemenea, ai mai jos un cod de reducere 100%
-                    (aplicabil pachetelor cu valoare mai mică sau egală cu cel
-                    achiziționat), pe care îl poți trimite unui prieten!
+                    Te așteptăm cu mare drag, în data de 2 iunie la CATRAFU-SALE #8! De asemenea, ai
+                    mai jos un cod de reducere 100% (aplicabil pachetelor cu valoare mai mică sau
+                    egală cu cel achiziționat), pe care îl poți trimite unui prieten!
                 </Text>
 
                 <Section style={codeBox}>
-                    <Text style={confirmationCodeText}>
-                        {promotionCode.code}
-                    </Text>
+                    <Text style={confirmationCodeText}>{promotionCode.code}</Text>
                 </Section>
 
                 <Text style={text}>
-                    Pentru ca prietenul tău să poată beneficia de această
-                    ofertă, va trebui să acceseze pagina de înscrieri, să aleagă
-                    un pachet și să completeze formularul. Ultimul pas va fi
-                    pagina de plată, unde va putea introduce codul promoțional.
-                    Dacă întâmpinați probleme sau aveți întrebări, vă rugăm să
-                    ne contactați la adresa de email {ROTARACT_VISIO_EMAIL}
+                    Pentru ca prietenul tău să poată beneficia de această ofertă, va trebui să
+                    acceseze pagina de înscrieri, să aleagă un pachet și să completeze formularul.
+                    Ultimul pas va fi pagina de plată, unde va putea introduce codul promoțional.
+                    Dacă întâmpinați probleme sau aveți întrebări, vă rugăm să ne contactați la
+                    adresa de email {ROTARACT_VISIO_EMAIL}
                     sau pe conturile noastre de social media.
                 </Text>
             </Container>

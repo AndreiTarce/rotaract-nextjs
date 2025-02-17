@@ -31,16 +31,10 @@ const downloadExcel = (data: unknown[]) => {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
     const date = new Date();
-    XLSX.writeFile(
-        workbook,
-        `catrafusale-registrations-${date.toLocaleDateString()}.xlsx`
-    );
+    XLSX.writeFile(workbook, `catrafusale-registrations-${date.toLocaleDateString()}.xlsx`);
 };
 
-export function DataTable<TData, TValue>({
-    columns,
-    data,
-}: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
     const table = useReactTable({
         data,
         columns,
@@ -51,11 +45,7 @@ export function DataTable<TData, TValue>({
     return (
         <div>
             <Button className="mb-4" onClick={() => downloadExcel(data)}>
-                <FontAwesomeIcon
-                    icon={faFileExcel}
-                    size="1x"
-                    className="mr-2"
-                />
+                <FontAwesomeIcon icon={faFileExcel} size="1x" className="mr-2" />
                 Download
             </Button>
             <div className="rounded-md border">
@@ -69,8 +59,7 @@ export function DataTable<TData, TValue>({
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
-                                                      header.column.columnDef
-                                                          .header,
+                                                      header.column.columnDef.header,
                                                       header.getContext()
                                                   )}
                                         </TableHead>
@@ -84,9 +73,7 @@ export function DataTable<TData, TValue>({
                             table.getRowModel().rows.map((row) => (
                                 <TableRow
                                     key={row.id}
-                                    data-state={
-                                        row.getIsSelected() && 'selected'
-                                    }
+                                    data-state={row.getIsSelected() && 'selected'}
                                     className={
                                         row.getValue('payment_confirmed')
                                             ? 'bg-green-500/60'
@@ -105,10 +92,7 @@ export function DataTable<TData, TValue>({
                             ))
                         ) : (
                             <TableRow>
-                                <TableCell
-                                    colSpan={columns.length}
-                                    className="h-24 text-center"
-                                >
+                                <TableCell colSpan={columns.length} className="h-24 text-center">
                                     No results.
                                 </TableCell>
                             </TableRow>

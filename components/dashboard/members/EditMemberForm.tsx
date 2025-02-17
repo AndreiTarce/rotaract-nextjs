@@ -74,12 +74,8 @@ export default function EditMemberForm({
                 {isReadOnly && (
                     <div className="mb-4 flex items-center gap-4">
                         <div className="flex flex-col">
-                            <p className="text-2xl font-semibold">
-                                {userInfo.first_name}
-                            </p>
-                            <p className="text-2xl font-light">
-                                {userInfo.last_name}
-                            </p>
+                            <p className="text-2xl font-semibold">{userInfo.first_name}</p>
+                            <p className="text-2xl font-light">{userInfo.last_name}</p>
                         </div>
                         <Image
                             src={userInfo.picture}
@@ -101,14 +97,8 @@ export default function EditMemberForm({
                     setIsReadOnly={setIsReadOnly}
                 />
                 {isSecretary(currentUser) && isReadOnly && (
-                    <Button
-                        className="mt-4"
-                        onClick={() => setIsReadOnly(false)}
-                    >
-                        <FontAwesomeIcon
-                            icon={faPenToSquare}
-                            className="mr-2 "
-                        />
+                    <Button className="mt-4" onClick={() => setIsReadOnly(false)}>
+                        <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
                         Editare membru
                     </Button>
                 )}

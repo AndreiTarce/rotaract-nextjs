@@ -45,13 +45,11 @@ interface IPricingCardProps {
 
 export default function MindMatters() {
     const [packageChosen, setPackageChosen] = useState<string>();
-    const [renderStripeCheckout, setRenderStripeCheckout] =
-        useState<boolean>(false);
+    const [renderStripeCheckout, setRenderStripeCheckout] = useState<boolean>(false);
     const [clientSecret, setClientSecret] = useState<undefined | string>();
     const [productId, setProductId] = useState<string>('');
 
-    const { MIND_MATTERS_MINDACCESS, MIND_MATTERS_MINDFUEL } =
-        getStripePrices();
+    const { MIND_MATTERS_MINDACCESS, MIND_MATTERS_MINDFUEL } = getStripePrices();
 
     const PricingCard = ({
         title,
@@ -64,23 +62,17 @@ export default function MindMatters() {
         setProductId,
     }: IPricingCardProps) => (
         <Card
-            className={`relative mx-auto flex h-full w-full flex-col items-center rounded-lg border p-6 text-center text-gray-900 dark:text-white xl:p-8 ${
+            className={`relative mx-auto flex h-full w-full flex-col items-center rounded-lg border p-6 text-center text-gray-900 xl:p-8 dark:text-white ${
                 recommended
-                    ? 'border-[#48bfe3] dark:border-[#48bfe3] max-md:order-1'
-                    : 'border-gray-100 shadow-sm dark:border-gray-600 max-md:order-2'
+                    ? 'border-[#48bfe3] max-md:order-1 dark:border-[#48bfe3]'
+                    : 'border-gray-100 shadow-sm max-md:order-2 dark:border-gray-600'
             }`}
         >
-            {recommended && (
-                <Badge className="mb-4 w-fit">Recomandarea noastră</Badge>
-            )}
+            {recommended && <Badge className="mb-4 w-fit">Recomandarea noastră</Badge>}
             <h3 className="mb-4 text-4xl font-semibold">{title}</h3>
-            <p className="font-light text-gray-500 dark:text-gray-400 sm:text-lg">
-                {description}
-            </p>
+            <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">{description}</p>
             <div className="my-8 flex items-baseline justify-center">
-                <span className="mr-2 text-5xl font-extrabold">
-                    {price} RON
-                </span>
+                <span className="mr-2 text-5xl font-extrabold">{price} RON</span>
             </div>
             <ul className="flex w-fit flex-col gap-2">
                 <li className="flex items-center space-x-3">
@@ -88,24 +80,15 @@ export default function MindMatters() {
                     <span>Acces la workshopuri</span>
                 </li>
                 <li className="flex items-start space-x-3 text-start">
-                    <FontAwesomeIcon
-                        icon={faGift}
-                        size="1x"
-                        className="mt-[2px]"
-                    />
+                    <FontAwesomeIcon icon={faGift} size="1x" className="mt-[2px]" />
                     <span>Pachete surpriză de la partenerii noștri</span>
                 </li>
                 <li
                     className={`flex items-start space-x-3 ${
-                        !lunchIncluded &&
-                        'text-center text-muted-foreground line-through'
+                        !lunchIncluded && 'text-muted-foreground text-center line-through'
                     }`}
                 >
-                    <FontAwesomeIcon
-                        icon={faAppleWhole}
-                        size="1x"
-                        className="mt-[2px]"
-                    />
+                    <FontAwesomeIcon icon={faAppleWhole} size="1x" className="mt-[2px]" />
                     <span className="max-w-[180px] text-start">
                         Masa de prânz inclusă{' '}
                         {lunchIncluded && (
@@ -140,15 +123,13 @@ export default function MindMatters() {
     );
 
     return (
-        <main className="mx-24 mb-8 mt-5 max-md:mx-4 md:mt-12">
+        <main className="mx-24 mt-5 mb-8 max-md:mx-4 md:mt-12">
             <div className="flex flex-col items-center">
-                <p className="mb-4 text-8xl font-extrabold leading-none max-md:text-6xl">
-                    Pachete
-                </p>
-                <p className="mb-2 bg-linear-to-r from-[#48bfe3] to-[#44afd0] bg-clip-text text-center text-5xl font-extrabold leading-none text-transparent max-md:text-3xl">
+                <p className="mb-4 text-8xl leading-none font-extrabold max-md:text-6xl">Pachete</p>
+                <p className="mb-2 bg-linear-to-r from-[#48bfe3] to-[#44afd0] bg-clip-text text-center text-5xl leading-none font-extrabold text-transparent max-md:text-3xl">
                     Healthy Vision: Mind Matters
                 </p>
-                <div className="mb-4 flex gap-6 text-muted-foreground">
+                <div className="text-muted-foreground mb-4 flex gap-6">
                     <p>
                         <FontAwesomeIcon icon={faCalendar} className="mr-2" />
                         20 aprilie
@@ -158,10 +139,7 @@ export default function MindMatters() {
                             href="https://maps.app.goo.gl/Umx1A68Qecu8iRCF7"
                             className="flex items-center justify-center"
                         >
-                            <FontAwesomeIcon
-                                icon={faLocationPin}
-                                className="mr-2"
-                            />
+                            <FontAwesomeIcon icon={faLocationPin} className="mr-2" />
                             ABC Incubator
                             <FontAwesomeIcon
                                 icon={faArrowUpRightFromSquare}
@@ -171,18 +149,11 @@ export default function MindMatters() {
                         </Link>
                     </p>
                 </div>
-                <p className="text-center text-muted-foreground">
+                <p className="text-muted-foreground text-center">
                     Toți banii strânși vor fi donați către{' '}
-                    <Link
-                        href={
-                            'about?cause=Școala+Gimnazială+"Iuliu+Hațieganu"+Panticeu'
-                        }
-                    >
+                    <Link href={'about?cause=Școala+Gimnazială+"Iuliu+Hațieganu"+Panticeu'}>
                         <b>cauza proiectului </b>
-                        <FontAwesomeIcon
-                            icon={faArrowUpRightFromSquare}
-                            size="xs"
-                        />
+                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
                     </Link>
                 </p>
                 {!packageChosen && false && (
@@ -209,7 +180,7 @@ export default function MindMatters() {
                 )}
                 <div className="mt-8 flex">
                     <Card
-                        className={`relative mx-auto flex h-full w-full flex-col items-center rounded-lg border  border-[#48bfe3] p-4 text-center dark:border-[#48bfe3] max-md:order-1 xl:p-8`}
+                        className={`relative mx-auto flex h-full w-full flex-col items-center rounded-lg border border-[#48bfe3] p-4 text-center max-md:order-1 xl:p-8 dark:border-[#48bfe3]`}
                     >
                         <div className="text-gray-900 dark:text-white">
                             <p className="mb-4 text-2xl font-bold">
@@ -224,16 +195,12 @@ export default function MindMatters() {
                 <div className="mt-12 flex justify-center">
                     <Card className="w-full max-w-xl rounded-lg border shadow-md">
                         <CardHeader>
-                            <CardTitle>
-                                Mai avem nevoie doar de câteva date
-                            </CardTitle>
+                            <CardTitle>Mai avem nevoie doar de câteva date</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <CheckoutForm
                                 packageChosen={packageChosen}
-                                setRenderStripeCheckout={() =>
-                                    setRenderStripeCheckout(true)
-                                }
+                                setRenderStripeCheckout={() => setRenderStripeCheckout(true)}
                                 setClientSecret={setClientSecret}
                                 productId={productId}
                             />
@@ -262,14 +229,12 @@ export default function MindMatters() {
                     <span className="sr-only">Loading...</span>
                 </div>
             )}
-            {renderStripeCheckout && (
-                <EmbeddedCheckoutMindMatters clientSecret={clientSecret} />
-            )}
+            {renderStripeCheckout && <EmbeddedCheckoutMindMatters clientSecret={clientSecret} />}
             {!packageChosen && (
                 <div className="mt-8 flex flex-col items-center">
-                    <p className="mb-4 text-center text-muted-foreground">
-                        Nu poți ajunge la eveniment, dar vrei să ajuți? Poți
-                        dona direct către cauza noastră.
+                    <p className="text-muted-foreground mb-4 text-center">
+                        Nu poți ajunge la eveniment, dar vrei să ajuți? Poți dona direct către cauza
+                        noastră.
                     </p>
                     <Link href="https://donate.stripe.com/cN28y60DKcMmeMo3ce">
                         <Button>Donează aici</Button>
@@ -407,10 +372,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                                 <FormDescription className="text-destructive">
                                     <span className="flex gap-2">
                                         <AlertOctagon size={20} />
-                                        {
-                                            form.formState.errors.first_name
-                                                ?.message
-                                        }
+                                        {form.formState.errors.first_name?.message}
                                     </span>
                                 </FormDescription>
                             )}
@@ -430,10 +392,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                                 <FormDescription className="text-destructive">
                                     <span className="flex gap-2">
                                         <AlertOctagon size={20} />
-                                        {
-                                            form.formState.errors.last_name
-                                                ?.message
-                                        }
+                                        {form.formState.errors.last_name?.message}
                                     </span>
                                 </FormDescription>
                             )}
@@ -447,10 +406,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                         <FormItem className="mb-4">
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input
-                                    placeholder="Adresa ta de email"
-                                    {...field}
-                                />
+                                <Input placeholder="Adresa ta de email" {...field} />
                             </FormControl>
                             {form.formState.errors.email && (
                                 <FormDescription className="text-destructive">
@@ -470,19 +426,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                         <FormItem className="mb-4">
                             <FormLabel>Număr de telefon</FormLabel>
                             <FormControl>
-                                <Input
-                                    placeholder="Numărul tău de telefon"
-                                    {...field}
-                                />
+                                <Input placeholder="Numărul tău de telefon" {...field} />
                             </FormControl>
                             {form.formState.errors.phone_number && (
                                 <FormDescription className="text-destructive">
                                     <span className="flex gap-2">
                                         <AlertOctagon size={20} />
-                                        {
-                                            form.formState.errors.phone_number
-                                                ?.message
-                                        }
+                                        {form.formState.errors.phone_number?.message}
                                     </span>
                                 </FormDescription>
                             )}
@@ -503,9 +453,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                                 />
                             </FormControl>
                             <FormLabel className="mt-0! leading-5">
-                                Prin bifarea căsuței alăturate îmi exprim în mod
-                                expres consimţământul că sunt de acord cu
-                                prelucrarea datelor cu caracter personal conform{' '}
+                                Prin bifarea căsuței alăturate îmi exprim în mod expres
+                                consimţământul că sunt de acord cu prelucrarea datelor cu caracter
+                                personal conform{' '}
                                 <Link
                                     href={
                                         'https://docs.google.com/document/d/1cHIhz_7jpLmBqSonGUYP-psbQUy0DgtE'
@@ -526,15 +476,12 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
                                 xmlns="http://www.w3.org/2000/svg"
                                 height="1em"
                                 viewBox="0 0 512 512"
-                                className="mr-2 animate-spin fill-white dark:fill-dark"
+                                className="dark:fill-dark mr-2 animate-spin fill-white"
                             >
                                 <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                             </svg>
                         ) : (
-                            <FontAwesomeIcon
-                                icon={faCreditCard}
-                                className="mr-2"
-                            />
+                            <FontAwesomeIcon icon={faCreditCard} className="mr-2" />
                         )}
                         Continuă spre plată
                     </Button>

@@ -32,9 +32,7 @@ export default async function Dashboard() {
     await connectMongoDB();
     await loginIsRequiredServer();
     const session = await getServerSession(authConfig);
-    const currentUser = await memberInteractor.getMemberByEmail(
-        session?.user?.email!
-    );
+    const currentUser = await memberInteractor.getMemberByEmail(session?.user?.email!);
 
     const sedinte = (
         <Card className="flex flex-col gap-4 md:grid md:grid-cols-2">
@@ -54,9 +52,7 @@ export default async function Dashboard() {
 
     return (
         <main className="mx-16 mt-5 max-md:mx-4 md:mt-12">
-            <h1 className="mb-8 text-3xl font-bold tracking-tight">
-                Dashboard
-            </h1>
+            <h1 className="mb-8 text-3xl font-bold tracking-tight">Dashboard</h1>
             <div className="mb-4 flex flex-col gap-4 md:grid md:grid-cols-3">
                 <Card>
                     <MemberInfo user={currentUser} />
