@@ -18,7 +18,7 @@ export function ScrollProgress({ className }: ScrollProgressProps) {
     return (
         <motion.div
             className={cn(
-                'fixed inset-x-0 z-1000 h-1 origin-left bg-linear-to-r from-rotaract-cranberry to-rose-500',
+                'from-rotaract-cranberry fixed inset-x-0 z-40 h-1 origin-left bg-linear-to-r to-rose-500',
                 className
             )}
             style={{
