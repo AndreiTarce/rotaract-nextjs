@@ -20,6 +20,13 @@ export const metadata: Metadata = {
         'caritate',
         'district2241',
     ],
+    openGraph: {
+        images: [
+            {
+                url: 'https://rotaract-visio-bucket.s3.eu-central-1.amazonaws.com/test/scubica',
+            },
+        ],
+    },
 };
 
 const AboutRotaract = dynamicImport(
@@ -51,7 +58,7 @@ export default async function Home() {
                 <div className="mr-16 flex justify-between">
                     <div className="mb-8 grid h-screen grid-cols-1 grid-rows-[75%_25%] gap-0 pb-28">
                         <div className="mx-16 max-md:mx-4">
-                            <h1 className="w-fit bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:text-5xl">
+                            <h1 className="from-rotaract-cranberry w-fit bg-linear-to-r to-rose-500 bg-clip-text text-7xl leading-none font-extrabold text-transparent max-md:text-5xl">
                                 Rotaract Visio
                             </h1>
                             <span className="text-5xl font-normal max-md:text-4xl">
@@ -61,7 +68,7 @@ export default async function Home() {
                         <div className="mx-16 flex flex-col gap-2 text-4xl text-white max-md:mx-4">
                             <span>Vrei să te implici?</span>
                             <Link href="/contact" className="h-fit w-fit">
-                                <Button className="w-fit bg-rotaract-cranberry text-lg text-white hover:bg-[#020817BB]">
+                                <Button className="bg-rotaract-cranberry w-fit text-lg text-white hover:bg-[#020817BB]">
                                     Contactează-ne
                                 </Button>
                             </Link>
