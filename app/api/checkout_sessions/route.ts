@@ -48,9 +48,7 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
     const session_id = request.nextUrl.searchParams.get('session_id');
     try {
-        const session = await stripe.checkout.sessions.retrieve(
-            session_id as string
-        );
+        const session = await stripe.checkout.sessions.retrieve(session_id as string);
 
         return NextResponse.json(session, { status: 200 });
     } catch (err) {

@@ -1,18 +1,12 @@
 import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
-import {
-    NotFoundError,
-    RegistrationNotAvailableError,
-    ValidationError,
-} from './errors';
+import { NotFoundError, RegistrationNotAvailableError, ValidationError } from './errors';
 
 export const errorHandler = (error: unknown) => {
     console.log(error);
 
     if (error instanceof ZodError) {
-        const messages = error.errors.map(
-            (error) => `${error.path}:${error.message}`
-        );
+        const messages = error.errors.map((error) => `${error.path}:${error.message}`);
         return NextResponse.json({ message: messages }, { status: 400 });
     }
 

@@ -15,10 +15,7 @@ export async function GET(request: NextRequest) {
         await connectMongoDB();
 
         const roleQuery = request.nextUrl.searchParams.get('role');
-        const isBoardQuery =
-            request.nextUrl.searchParams.get('is_board') === 'true'
-                ? true
-                : false;
+        const isBoardQuery = request.nextUrl.searchParams.get('is_board') === 'true' ? true : false;
 
         if (isBoardQuery || roleQuery) {
             const members = await memberInteractor.getMembersWithQuery({
@@ -30,15 +27,13 @@ export async function GET(request: NextRequest) {
 
         const nameSearchQuery = request.nextUrl.searchParams.get('name');
         if (nameSearchQuery) {
-            const members =
-                await memberInteractor.getMembersByName(nameSearchQuery);
+            const members = await memberInteractor.getMembersByName(nameSearchQuery);
             return NextResponse.json(members, { status: 200 });
         }
 
         const emailSearchQuery = request.nextUrl.searchParams.get('email');
         if (emailSearchQuery) {
-            const member =
-                await memberInteractor.getMemberByEmail(emailSearchQuery);
+            const member = await memberInteractor.getMemberByEmail(emailSearchQuery);
             return NextResponse.json(member || {}, { status: 200 });
         }
 

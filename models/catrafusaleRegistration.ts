@@ -12,23 +12,22 @@ export interface ICatrafusaleRegistration {
     oneplusone: boolean;
 }
 
-export const CatrafusaleRegistrationSchema =
-    new Schema<ICatrafusaleRegistrationObject>(
-        {
-            first_name: String,
-            last_name: String,
-            shop_name: String,
-            email: String,
-            phone_number: String,
-            package: String,
-            paid: Boolean,
-            checkout_session_id: String,
-            oneplusone: Boolean,
-        },
-        {
-            timestamps: true,
-        }
-    );
+export const CatrafusaleRegistrationSchema = new Schema<ICatrafusaleRegistrationObject>(
+    {
+        first_name: String,
+        last_name: String,
+        shop_name: String,
+        email: String,
+        phone_number: String,
+        package: String,
+        paid: Boolean,
+        checkout_session_id: String,
+        oneplusone: Boolean,
+    },
+    {
+        timestamps: true,
+    }
+);
 
 const CatrafusaleRegistration =
     mongoose.models.CatrafusaleRegistration ||

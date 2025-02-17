@@ -62,7 +62,7 @@ export default function DashboardProjectDetails({
             />
             {readOnly && (
                 <Button className="mt-4" onClick={() => setReadOnly(false)}>
-                    <FontAwesomeIcon icon={faPenToSquare} className="mr-2 " />
+                    <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
                     Editare proiect
                 </Button>
             )}

@@ -1,7 +1,4 @@
-import {
-    IProjectDocument,
-    IProjectPartner,
-} from '@/interfaces/project/IProject';
+import { IProjectDocument, IProjectPartner } from '@/interfaces/project/IProject';
 import mongoose, { Schema } from 'mongoose';
 
 export const projectPartnerSchema = new Schema<IProjectPartner>({
@@ -19,7 +16,6 @@ const projectSchema = new Schema<IProjectDocument>({
     partners: [projectPartnerSchema],
 });
 
-const Project =
-    mongoose.models.Project || mongoose.model('Project', projectSchema);
+const Project = mongoose.models.Project || mongoose.model('Project', projectSchema);
 
 export default Project;

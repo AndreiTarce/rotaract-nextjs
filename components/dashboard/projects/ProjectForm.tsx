@@ -22,14 +22,7 @@ import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-} from '../../ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '../../ui/form';
 import { MarkdownEditor } from '../markdown-editor/MarkdownEditor';
 
 const clientProjectFormSchema = projectFormSchema.extend({
@@ -119,10 +112,7 @@ export default function ProjectForm({
                                     <FormDescription className="text-destructive">
                                         <span className="flex gap-2">
                                             <AlertOctagon size={20} />
-                                            {
-                                                form.formState.errors.name
-                                                    ?.message
-                                            }
+                                            {form.formState.errors.name?.message}
                                         </span>
                                     </FormDescription>
                                 )}
@@ -211,19 +201,13 @@ export default function ProjectForm({
                             <FormItem>
                                 <FormLabel>Scurta descriere</FormLabel>
                                 <FormControl>
-                                    <Textarea
-                                        placeholder="Scurta descriere"
-                                        {...field}
-                                    />
+                                    <Textarea placeholder="Scurta descriere" {...field} />
                                 </FormControl>
                                 {form.formState.errors.shortDescription && (
                                     <FormDescription className="text-destructive">
                                         <span className="flex gap-2">
                                             <AlertOctagon size={20} />
-                                            {
-                                                form.formState.errors
-                                                    .shortDescription?.message
-                                            }
+                                            {form.formState.errors.shortDescription?.message}
                                         </span>
                                     </FormDescription>
                                 )}
@@ -248,9 +232,7 @@ export default function ProjectForm({
                                 ) : (
                                     <MarkdownEditor
                                         {...field}
-                                        onChange={(value) =>
-                                            form.setValue('body', value)
-                                        }
+                                        onChange={(value) => form.setValue('body', value)}
                                     />
                                 )}
                             </FormControl>
@@ -278,10 +260,7 @@ export default function ProjectForm({
                                 {isLoading ? (
                                     <LoadingSpinner className="mr-2" />
                                 ) : (
-                                    <FontAwesomeIcon
-                                        icon={faFloppyDisk}
-                                        className="mr-2"
-                                    />
+                                    <FontAwesomeIcon icon={faFloppyDisk} className="mr-2" />
                                 )}
                                 Salveaza modificarile
                             </Button>

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
     faBrain,
     faCircleNodes,
@@ -6,25 +6,24 @@ import {
     faHandHoldingMedical,
     faHandshakeAngle,
     faUserGroup,
-} from '@fortawesome/free-solid-svg-icons'
-import Value from './Value'
-import ValuesCarousel from './ValuesCarousel'
+} from '@fortawesome/free-solid-svg-icons';
+import Value from './Value';
+import ValuesCarousel from './ValuesCarousel';
 
 export default function OurValues() {
     return (
         <Card className="flex flex-col">
             <CardHeader className="pb-4">
-                <CardTitle className="text-7xl font-extrabold max-md:text-5xl leading-none bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-transparent">
+                <CardTitle className="from-rotaract-cranberry bg-linear-to-r to-rose-500 bg-clip-text text-7xl leading-none font-extrabold text-transparent max-md:text-5xl">
                     Valorile noastre
                 </CardTitle>
             </CardHeader>
-            <CardContent className="grow flex flex-col justify-between">
-                <p className="text-justify text-muted-foreground mb-4 max-md:text-justify">
-                    Acestea ne ghidează și ne definesc, punând temelia pentru
-                    fiecare pas pe care îl facem în slujba comunității. Ne
-                    propunem să rămânem fideli valorilor noastre, astfel
-                    asigurându-ne că fiecare acțiune pe care o întreprindem are
-                    o bază solidă și un scop autentic.
+            <CardContent className="flex grow flex-col justify-between">
+                <p className="text-muted-foreground mb-4 text-justify max-md:text-justify">
+                    Acestea ne ghidează și ne definesc, punând temelia pentru fiecare pas pe care îl
+                    facem în slujba comunității. Ne propunem să rămânem fideli valorilor noastre,
+                    astfel asigurându-ne că fiecare acțiune pe care o întreprindem are o bază solidă
+                    și un scop autentic.
                 </p>
                 <ValuesCarousel>
                     <Value
@@ -60,5 +59,5 @@ export default function OurValues() {
                 </ValuesCarousel>
             </CardContent>
         </Card>
-    )
+    );
 }

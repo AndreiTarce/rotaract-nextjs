@@ -1,10 +1,10 @@
-'use client'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/scrollbar'
-import { Navigation, Pagination, Autoplay, Mousewheel } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+'use client';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import { Autoplay, Mousewheel, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function CauseImageCarousel(props: any) {
     return (
@@ -15,7 +15,7 @@ export default function CauseImageCarousel(props: any) {
             mousewheel
             slidesPerView={2}
             autoplay={{ delay: 5000 }}
-            className="w-full h-fit"
+            className="h-fit w-full"
             spaceBetween={20}
             breakpoints={{
                 728: {
@@ -26,11 +26,11 @@ export default function CauseImageCarousel(props: any) {
             {props.children.map((item: any, index: number) => (
                 <SwiperSlide
                     key={index}
-                    className="flex justify-center items-center max-md:pb-12 max-md:-mb-4"
+                    className="flex items-center justify-center max-md:-mb-4 max-md:pb-12"
                 >
                     {item}
                 </SwiperSlide>
             ))}
         </Swiper>
-    )
+    );
 }

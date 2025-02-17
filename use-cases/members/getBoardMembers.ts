@@ -13,10 +13,8 @@ export async function getOrderedBoardMembers() {
     });
 
     boardMembers.sort((a, b) => {
-        const aWeight =
-            boardRolesWeights.find((role) => role.role === a.role)?.weight || 0;
-        const bWeight =
-            boardRolesWeights.find((role) => role.role === b.role)?.weight || 0;
+        const aWeight = boardRolesWeights.find((role) => role.role === a.role)?.weight || 0;
+        const bWeight = boardRolesWeights.find((role) => role.role === b.role)?.weight || 0;
 
         return aWeight - bWeight;
     });

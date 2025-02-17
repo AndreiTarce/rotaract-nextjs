@@ -21,9 +21,6 @@ export const CatrafusaleRegistrationWinter2024Schema =
 
 const CatrafusaleRegistrationWinter2024 =
     mongoose.models.CatrafusaleRegistrationWinter2024 ||
-    mongoose.model(
-        'CatrafusaleRegistrationWinter2024',
-        CatrafusaleRegistrationWinter2024Schema
-    );
+    mongoose.model('CatrafusaleRegistrationWinter2024', CatrafusaleRegistrationWinter2024Schema);
 
 export default CatrafusaleRegistrationWinter2024;

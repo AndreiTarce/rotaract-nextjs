@@ -11,14 +11,11 @@ export const PARTNERS_PATH = '/api/partners';
 
 //SOCIAL MEDIA AND WEBSITE LINKS
 export const ROTARY_VISIO_WEBSITE_URL = 'https://rotaryvisio.ro/';
-export const ROTARACT_VISIO_INSTAGRAM_URL =
-    'https://www.instagram.com/rotaractvisiocj/';
-export const ROTARACT_VISIO_FACEBOOK_URL =
-    'https://www.facebook.com/RotaractVisioClujNapoca';
+export const ROTARACT_VISIO_INSTAGRAM_URL = 'https://www.instagram.com/rotaractvisiocj/';
+export const ROTARACT_VISIO_FACEBOOK_URL = 'https://www.facebook.com/RotaractVisioClujNapoca';
 export const ROTARACT_VISIO_LINKEDIN_URL =
     'https://www.linkedin.com/company/rotaract-cluj-napoca-visio';
-export const ROTARACT_VISIO_TIKTOK_URL =
-    'https://www.tiktok.com/@rotaractvisiocj';
+export const ROTARACT_VISIO_TIKTOK_URL = 'https://www.tiktok.com/@rotaractvisiocj';
 export const FACULTY_OF_BUSINESS_WEBSITE_URL = 'https://tbs.ubbcluj.ro/';
 export const MEMBRI_ROTARACT_URL = 'https://membri.rotaract.ro/';
 export const ROTARACT_VISIO_EMAIL = 'rotaractvisiocluj@gmail.com';

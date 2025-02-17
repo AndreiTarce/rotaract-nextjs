@@ -1,8 +1,8 @@
 interface Dictionary {
     home: {
-        CTAtext: string
+        CTAtext: string;
         CTAbutton: string;
-    }
+    };
 }
 
 type DictionaryLoader = () => Promise<Dictionary>;

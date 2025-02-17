@@ -18,14 +18,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '../../ui/button';
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-} from '../../ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '../../ui/form';
 import { Input } from '../../ui/input';
 import { Label } from '../../ui/label';
 import {
@@ -105,11 +98,7 @@ export default function MemberForm({
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)}>
-                <div
-                    className={
-                        fieldsContainerClassname || 'flex flex-col gap-4 '
-                    }
-                >
+                <div className={fieldsContainerClassname || 'flex flex-col gap-4'}>
                     {!readOnly && (
                         <FormField
                             control={form.control}
@@ -125,10 +114,7 @@ export default function MemberForm({
                                         <FormDescription className="text-destructive">
                                             <span className="flex gap-2">
                                                 <AlertOctagon size={20} />
-                                                {
-                                                    form.formState.errors
-                                                        .last_name?.message
-                                                }
+                                                {form.formState.errors.last_name?.message}
                                             </span>
                                         </FormDescription>
                                     )}
@@ -145,19 +131,13 @@ export default function MemberForm({
                                 <FormItem>
                                     <FormLabel>Prenume</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            placeholder="Prenume"
-                                            {...field}
-                                        />
+                                        <Input placeholder="Prenume" {...field} />
                                     </FormControl>
                                     {form.formState.errors.first_name && (
                                         <FormDescription className="text-destructive">
                                             <span className="flex gap-2">
                                                 <AlertOctagon size={20} />
-                                                {
-                                                    form.formState.errors
-                                                        .first_name?.message
-                                                }
+                                                {form.formState.errors.first_name?.message}
                                             </span>
                                         </FormDescription>
                                     )}
@@ -182,10 +162,7 @@ export default function MemberForm({
                                     <FormDescription className="text-destructive">
                                         <span className="flex gap-2">
                                             <AlertOctagon size={20} />
-                                            {
-                                                form.formState.errors.email
-                                                    ?.message
-                                            }
+                                            {form.formState.errors.email?.message}
                                         </span>
                                     </FormDescription>
                                 )}
@@ -212,10 +189,7 @@ export default function MemberForm({
                                         <FormDescription className="text-destructive">
                                             <span className="flex gap-2">
                                                 <AlertOctagon size={20} />
-                                                {
-                                                    form.formState.errors
-                                                        .picture_file?.message
-                                                }
+                                                {form.formState.errors.picture_file?.message}
                                             </span>
                                         </FormDescription>
                                     )}
@@ -231,19 +205,13 @@ export default function MemberForm({
                             <FormItem>
                                 <FormLabel>Descriere personala</FormLabel>
                                 <FormControl>
-                                    <Textarea
-                                        placeholder="Descriere..."
-                                        {...field}
-                                    />
+                                    <Textarea placeholder="Descriere..." {...field} />
                                 </FormControl>
                                 {form.formState.errors.description && (
                                     <FormDescription className="text-destructive">
                                         <span className="flex gap-2">
                                             <AlertOctagon size={20} />
-                                            {
-                                                form.formState.errors
-                                                    .description?.message
-                                            }
+                                            {form.formState.errors.description?.message}
                                         </span>
                                     </FormDescription>
                                 )}
@@ -269,16 +237,11 @@ export default function MemberForm({
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectGroup>
-                                                {Object.values(memberRoles).map(
-                                                    (item) => (
-                                                        <SelectItem
-                                                            value={item}
-                                                            key={item}
-                                                        >
-                                                            {item}
-                                                        </SelectItem>
-                                                    )
-                                                )}
+                                                {Object.values(memberRoles).map((item) => (
+                                                    <SelectItem value={item} key={item}>
+                                                        {item}
+                                                    </SelectItem>
+                                                ))}
                                             </SelectGroup>
                                         </SelectContent>
                                     </Select>
@@ -287,61 +250,44 @@ export default function MemberForm({
                                     <FormDescription className="text-destructive">
                                         <span className="flex gap-2">
                                             <AlertOctagon size={20} />
-                                            {
-                                                form.formState.errors.role
-                                                    ?.message
-                                            }
+                                            {form.formState.errors.role?.message}
                                         </span>
                                     </FormDescription>
                                 )}
                             </FormItem>
                         )}
                     />
-                    {form.getValues('role') &&
-                        form.watch('role') !== 'member' && (
-                            <FormField
-                                control={form.control}
-                                name="start_mandate"
-                                disabled={readOnly}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>An start mandat</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                type="number"
-                                                placeholder="Start mandat"
-                                                {...field}
-                                                {...form.register(
-                                                    'start_mandate',
-                                                    {
-                                                        setValueAs: (v) =>
-                                                            v === ''
-                                                                ? undefined
-                                                                : parseInt(
-                                                                      v,
-                                                                      10
-                                                                  ),
-                                                    }
-                                                )}
-                                            />
-                                        </FormControl>
-                                        {form.formState.errors
-                                            .start_mandate && (
-                                            <FormDescription className="text-destructive">
-                                                <span className="flex gap-2">
-                                                    <AlertOctagon size={20} />
-                                                    {
-                                                        form.formState.errors
-                                                            .start_mandate
-                                                            ?.message
-                                                    }
-                                                </span>
-                                            </FormDescription>
-                                        )}
-                                    </FormItem>
-                                )}
-                            />
-                        )}
+                    {form.getValues('role') && form.watch('role') !== 'member' && (
+                        <FormField
+                            control={form.control}
+                            name="start_mandate"
+                            disabled={readOnly}
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>An start mandat</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            type="number"
+                                            placeholder="Start mandat"
+                                            {...field}
+                                            {...form.register('start_mandate', {
+                                                setValueAs: (v) =>
+                                                    v === '' ? undefined : parseInt(v, 10),
+                                            })}
+                                        />
+                                    </FormControl>
+                                    {form.formState.errors.start_mandate && (
+                                        <FormDescription className="text-destructive">
+                                            <span className="flex gap-2">
+                                                <AlertOctagon size={20} />
+                                                {form.formState.errors.start_mandate?.message}
+                                            </span>
+                                        </FormDescription>
+                                    )}
+                                </FormItem>
+                            )}
+                        />
+                    )}
                     <FormField
                         control={form.control}
                         name="status"
@@ -361,13 +307,8 @@ export default function MemberForm({
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectGroup>
-                                                {Object.values(
-                                                    memberStatus
-                                                ).map((item) => (
-                                                    <SelectItem
-                                                        value={item}
-                                                        key={item}
-                                                    >
+                                                {Object.values(memberStatus).map((item) => (
+                                                    <SelectItem value={item} key={item}>
                                                         {item}
                                                     </SelectItem>
                                                 ))}
@@ -379,10 +320,7 @@ export default function MemberForm({
                                     <FormDescription className="text-destructive">
                                         <span className="flex gap-2">
                                             <AlertOctagon size={20} />
-                                            {
-                                                form.formState.errors.status
-                                                    ?.message
-                                            }
+                                            {form.formState.errors.status?.message}
                                         </span>
                                     </FormDescription>
                                 )}
@@ -398,19 +336,13 @@ export default function MemberForm({
                             render={({ field }) => (
                                 <FormItem className="mb-2 pt-2">
                                     <FormControl>
-                                        <Input
-                                            placeholder="Facebook"
-                                            {...field}
-                                        />
+                                        <Input placeholder="Facebook" {...field} />
                                     </FormControl>
                                     {form.formState.errors.urls?.facebook && (
                                         <FormDescription className="text-destructive">
                                             <span className="flex gap-2">
                                                 <AlertOctagon size={20} />
-                                                {
-                                                    form.formState.errors.urls
-                                                        .facebook?.message
-                                                }
+                                                {form.formState.errors.urls.facebook?.message}
                                             </span>
                                         </FormDescription>
                                     )}
@@ -424,19 +356,13 @@ export default function MemberForm({
                             render={({ field }) => (
                                 <FormItem className="mb-2">
                                     <FormControl>
-                                        <Input
-                                            placeholder="Instagram"
-                                            {...field}
-                                        />
+                                        <Input placeholder="Instagram" {...field} />
                                     </FormControl>
                                     {form.formState.errors.urls?.instagram && (
                                         <FormDescription className="text-destructive">
                                             <span className="flex gap-2">
                                                 <AlertOctagon size={20} />
-                                                {
-                                                    form.formState.errors.urls
-                                                        .instagram?.message
-                                                }
+                                                {form.formState.errors.urls.instagram?.message}
                                             </span>
                                         </FormDescription>
                                     )}
@@ -450,19 +376,13 @@ export default function MemberForm({
                             render={({ field }) => (
                                 <FormItem className="mb-2">
                                     <FormControl>
-                                        <Input
-                                            placeholder="Linkedin"
-                                            {...field}
-                                        />
+                                        <Input placeholder="Linkedin" {...field} />
                                     </FormControl>
                                     {form.formState.errors.urls?.linkedin && (
                                         <FormDescription className="text-destructive">
                                             <span className="flex gap-2">
                                                 <AlertOctagon size={20} />
-                                                {
-                                                    form.formState.errors.urls
-                                                        .linkedin?.message
-                                                }
+                                                {form.formState.errors.urls.linkedin?.message}
                                             </span>
                                         </FormDescription>
                                     )}
@@ -476,19 +396,13 @@ export default function MemberForm({
                             render={({ field }) => (
                                 <FormItem className="mb-2">
                                     <FormControl>
-                                        <Input
-                                            placeholder="Tiktok"
-                                            {...field}
-                                        />
+                                        <Input placeholder="Tiktok" {...field} />
                                     </FormControl>
                                     {form.formState.errors.urls?.tiktok && (
                                         <FormDescription className="text-destructive">
                                             <span className="flex gap-2">
                                                 <AlertOctagon size={20} />
-                                                {
-                                                    form.formState.errors.urls
-                                                        .tiktok?.message
-                                                }
+                                                {form.formState.errors.urls.tiktok?.message}
                                             </span>
                                         </FormDescription>
                                     )}
@@ -502,19 +416,13 @@ export default function MemberForm({
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Input
-                                            placeholder="Website"
-                                            {...field}
-                                        />
+                                        <Input placeholder="Website" {...field} />
                                     </FormControl>
                                     {form.formState.errors.urls?.website && (
                                         <FormDescription className="text-destructive">
                                             <span className="flex gap-2">
                                                 <AlertOctagon size={20} />
-                                                {
-                                                    form.formState.errors.urls
-                                                        .website?.message
-                                                }
+                                                {form.formState.errors.urls.website?.message}
                                             </span>
                                         </FormDescription>
                                     )}
@@ -532,15 +440,12 @@ export default function MemberForm({
                                         xmlns="http://www.w3.org/2000/svg"
                                         height="1em"
                                         viewBox="0 0 512 512"
-                                        className="mr-2 animate-spin fill-white dark:fill-dark"
+                                        className="dark:fill-dark mr-2 animate-spin fill-white"
                                     >
                                         <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
                                     </svg>
                                 ) : (
-                                    <FontAwesomeIcon
-                                        icon={faPlus}
-                                        className="mr-2"
-                                    />
+                                    <FontAwesomeIcon icon={faPlus} className="mr-2" />
                                 )}
                                 Adaugare
                             </Button>
@@ -550,9 +455,7 @@ export default function MemberForm({
                                 <Button
                                     variant="secondary"
                                     className="w-full"
-                                    onClick={() =>
-                                        setIsReadOnly && setIsReadOnly(true)
-                                    }
+                                    onClick={() => setIsReadOnly && setIsReadOnly(true)}
                                 >
                                     Anuleaza
                                 </Button>
@@ -566,10 +469,7 @@ export default function MemberForm({
                                     {isLoading ? (
                                         <LoadingSpinner className="mr-2" />
                                     ) : (
-                                        <FontAwesomeIcon
-                                            icon={faFloppyDisk}
-                                            className="mr-2"
-                                        />
+                                        <FontAwesomeIcon icon={faFloppyDisk} className="mr-2" />
                                     )}
                                     Salveaza modificarile
                                 </Button>

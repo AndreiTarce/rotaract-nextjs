@@ -7,10 +7,7 @@ import Member from '@/models/member';
 import { SortOrder } from 'mongoose';
 import { Repository } from './repository';
 
-export class MemberRepository
-    extends Repository<IMemberDocument>
-    implements IMemberRepository
-{
+export class MemberRepository extends Repository<IMemberDocument> implements IMemberRepository {
     constructor() {
         super(Member);
     }

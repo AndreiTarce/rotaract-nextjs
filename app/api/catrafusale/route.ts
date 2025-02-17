@@ -9,8 +9,7 @@ export async function POST(request: NextRequest) {
         await connectMongoDB();
         const registration = await request.json();
 
-        const newRegistration =
-            await registrationInteractor.createRegistration(registration);
+        const newRegistration = await registrationInteractor.createRegistration(registration);
         return NextResponse.json(newRegistration, { status: 200 });
     } catch (error) {
         console.log(error);

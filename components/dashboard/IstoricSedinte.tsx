@@ -53,15 +53,8 @@ export default function IstoricSedinte({ user }: { user: MemberDto }) {
             <CardHeader className="flex flex-row justify-between pb-4">
                 <CardTitle className="self-center">Istoric sedinte</CardTitle>
                 <Button asChild variant="outline" size="sm">
-                    <Link
-                        href={ROTARACT_VISIO_MINUTE_DRIVE_URL}
-                        className="mt-0!"
-                        target="_blank"
-                    >
-                        <FontAwesomeIcon
-                            icon={faGoogleDrive}
-                            className="text-muted-foreground"
-                        />
+                    <Link href={ROTARACT_VISIO_MINUTE_DRIVE_URL} className="mt-0!" target="_blank">
+                        <FontAwesomeIcon icon={faGoogleDrive} className="text-muted-foreground" />
                     </Link>
                 </Button>
             </CardHeader>
@@ -76,27 +69,19 @@ export default function IstoricSedinte({ user }: { user: MemberDto }) {
                         >
                             <FontAwesomeIcon icon={faCaretLeft} />
                         </Button>
-                        <div className="flex items-center justify-center font-semibold">
-                            {year}
-                        </div>
+                        <div className="flex items-center justify-center font-semibold">{year}</div>
                         <Button variant="outline" size="sm" onClick={addYear}>
                             <FontAwesomeIcon icon={faCaretRight} />
                         </Button>
                     </div>
-                    <Select
-                        defaultValue={type}
-                        onValueChange={(e) => setType(e)}
-                    >
+                    <Select defaultValue={type} onValueChange={(e) => setType(e)}>
                         <SelectTrigger className="h-9 w-fit">
                             <SelectValue placeholder="Tipul sedintei" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
                                 {MEETING_TYPES.map((meeting, index: number) => (
-                                    <SelectItem
-                                        value={meeting.name}
-                                        key={meeting.id}
-                                    >
+                                    <SelectItem value={meeting.name} key={meeting.id}>
                                         {meeting.name}
                                     </SelectItem>
                                 ))}
@@ -105,15 +90,11 @@ export default function IstoricSedinte({ user }: { user: MemberDto }) {
                     </Select>
                 </div>
                 <ScrollArea className="h-96 rounded md:pr-4">
-                    <div className="grid grid-cols-responsive-grid gap-4">
+                    <div className="grid-cols-responsive-grid grid gap-4">
                         {!isLoading ? (
                             data!.map((meeting: MeetingDto, index: number) =>
                                 meeting.presentMembers?.length ? (
-                                    <Sedinta
-                                        key={index}
-                                        meeting={meeting}
-                                        user={user}
-                                    />
+                                    <Sedinta key={index} meeting={meeting} user={user} />
                                 ) : null
                             )
                         ) : (

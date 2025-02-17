@@ -12,8 +12,7 @@ export async function GET(request: NextRequest) {
 
         const nameSearchQuery = request.nextUrl.searchParams.get('name');
         if (nameSearchQuery) {
-            const partners =
-                await partnerInteractor.getPartnersByName(nameSearchQuery);
+            const partners = await partnerInteractor.getPartnersByName(nameSearchQuery);
             return NextResponse.json(partners, { status: 200 });
         }
 

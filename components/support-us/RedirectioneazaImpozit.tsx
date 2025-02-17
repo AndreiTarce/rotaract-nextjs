@@ -34,9 +34,8 @@ export default function RedirectioneazaImpozit() {
                             3.5% din impozit
                         </h1>
                         <p className="text-muted-foreground mx-auto mt-4 max-w-lg text-center text-base font-normal">
-                            Dăruiește 3.5% din impozitul tău pe venit deja virat
-                            statului. Poți depune Declarația 230 până pe 26 Mai
-                            2025.
+                            Dăruiește 3.5% din impozitul tău pe venit deja virat statului. Poți
+                            depune Declarația 230 până pe 26 Mai 2025.
                         </p>
                         <ShimmerButton
                             className="mt-8 w-fit shadow-2xl"

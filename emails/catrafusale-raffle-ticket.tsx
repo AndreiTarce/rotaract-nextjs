@@ -12,9 +12,7 @@ import {
     Text,
 } from '@react-email/components';
 
-const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : '';
+const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '';
 
 export const CatrafusaleRaffleTicketEmail = (ticket_numbers: TicketNumbers) => (
     <Html>
@@ -31,68 +29,53 @@ export const CatrafusaleRaffleTicketEmail = (ticket_numbers: TicketNumbers) => (
                     />
                 </Section>
                 <Heading style={h1}>
-                    Mulțumim pentru achiziționarea unui bilet în cadrul tombolei
-                    noastre!
+                    Mulțumim pentru achiziționarea unui bilet în cadrul tombolei noastre!
                 </Heading>
                 <Text style={heroText}>
-                    Îți amintim cu această ocazie că toate fondurile acumulate
-                    în urma tombolei sunt direcționate către cauza noastră,
-                    îmbunătățirea condițiilor generale din cadrul școlii “Iuliu
-                    Hațieganu” din Panticeu. Așadar îți mulțumim pentru aportul
-                    tău în încurajarea parcursului școlar al acestor copii.
+                    Îți amintim cu această ocazie că toate fondurile acumulate în urma tombolei sunt
+                    direcționate către cauza noastră, îmbunătățirea condițiilor generale din cadrul
+                    școlii “Iuliu Hațieganu” din Panticeu. Așadar îți mulțumim pentru aportul tău în
+                    încurajarea parcursului școlar al acestor copii.
                 </Text>
                 <Text style={text}>
-                    Extragerea câștigătorilor are loc în data de 2 Iunie, în
-                    cadrul evenimentului nostru CatrafuSALE, unde te așteptăm cu
-                    multe activități și surprize! Premiile care pot fi câștigate
-                    sunt următoarele:
+                    Extragerea câștigătorilor are loc în data de 2 Iunie, în cadrul evenimentului
+                    nostru CatrafuSALE, unde te așteptăm cu multe activități și surprize! Premiile
+                    care pot fi câștigate sunt următoarele:
                     <ol>
                         <li>Un abonament la Untold.</li>
                         <li>
-                            10 pachete de vouchere cu reducere
-                            individuala/pachet de minim 300€ pentru vacanțe pe
-                            velier de la Dream Sales.
+                            10 pachete de vouchere cu reducere individuala/pachet de minim 300€
+                            pentru vacanțe pe velier de la Dream Sales.
                         </li>
                         <li>
-                            Voucher de cazare pentru 2 persoane 1 noapte de
-                            weekend în regim Bed & Breakfast la Double Tree by
-                            Hilton Cluj-Napoca.
+                            Voucher de cazare pentru 2 persoane 1 noapte de weekend în regim Bed &
+                            Breakfast la Double Tree by Hilton Cluj-Napoca.
                         </li>
                         <li>
-                            Voucher Day Pass la Salute per Aqua pentru 2
-                            persons, în incinta Double Tree by Hilton
-                            Cluj-Napoca.
+                            Voucher Day Pass la Salute per Aqua pentru 2 persons, în incinta Double
+                            Tree by Hilton Cluj-Napoca.
                         </li>
-                        <li>
-                            Un voucher de 300 de lei pentru o masă la Livada.
-                        </li>
+                        <li>Un voucher de 300 de lei pentru o masă la Livada.</li>
                         <li>Un voucher pentru tuns și aranjat la Vestige.</li>
                         <li>
-                            1 voucher de 50% reducere pentru 2 ore de joc, 8
-                            persoane, la LaserTag Fonix Cluj.
+                            1 voucher de 50% reducere pentru 2 ore de joc, 8 persoane, la LaserTag
+                            Fonix Cluj.
                         </li>
                         <li>
-                            2 vouchere de 50% reducere pentru 1 ore de joc, 8
-                            persoane, la LaserTag Fonix Cluj.
+                            2 vouchere de 50% reducere pentru 1 ore de joc, 8 persoane, la LaserTag
+                            Fonix Cluj.
                         </li>
                         <li>
-                            3 abonamente duble la Transylvania International
-                            Spoken Word Festival.
+                            3 abonamente duble la Transylvania International Spoken Word Festival.
                         </li>
-                        <li>
-                            3 vouchere pentru 1 luna de cafea gratuită la Ted’s
-                            Coffee.
-                        </li>
+                        <li>3 vouchere pentru 1 luna de cafea gratuită la Ted’s Coffee.</li>
                         <li>O periuța de dinți electrică.</li>
                     </ol>
-                    Astfel, vom avea la finalul tombolei nu mai puțin de 25 de
-                    câștigători.
+                    Astfel, vom avea la finalul tombolei nu mai puțin de 25 de câștigători.
                 </Text>
 
                 <Section>
-                    <Text style={text}>
-                        Mai jos găsești numărul biletelor tale:
-                    </Text>
+                    <Text style={text}>Mai jos găsești numărul biletelor tale:</Text>
                     <Section style={codeBox}>
                         <Text style={confirmationCodeText}>
                             {ticket_numbers.start === ticket_numbers.end
@@ -103,10 +86,9 @@ export const CatrafusaleRaffleTicketEmail = (ticket_numbers: TicketNumbers) => (
                 </Section>
 
                 <Text style={text}>
-                    Dacă te afli printre câștigători, te vom contacta în ziua
-                    următoare pentru a-ți revendica premiul. Pentru alte
-                    întrebări, ne poți contacta pe paginile noastre de social
-                    media sau la adresa de e-mail {ROTARACT_VISIO_EMAIL}.
+                    Dacă te afli printre câștigători, te vom contacta în ziua următoare pentru a-ți
+                    revendica premiul. Pentru alte întrebări, ne poți contacta pe paginile noastre
+                    de social media sau la adresa de e-mail {ROTARACT_VISIO_EMAIL}.
                 </Text>
                 <Text style={text}>Mult noroc! Echipa CatrafuSALE</Text>
             </Container>

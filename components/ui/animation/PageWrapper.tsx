@@ -3,12 +3,7 @@ import { usePathname } from 'next/navigation';
 
 import { m } from 'motion/react';
 
-const PageWrapper = ({
-    children,
-}: {
-    children: React.ReactNode;
-    className?: string;
-}) => {
+const PageWrapper = ({ children }: { children: React.ReactNode; className?: string }) => {
     const path = usePathname();
     return (
         <m.div

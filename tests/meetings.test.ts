@@ -14,9 +14,7 @@ describe('MeetingsService', () => {
             };
         });
 
-        const meetingInteractor = new MeetingInteractor(
-            new MeetingRepository()
-        );
+        const meetingInteractor = new MeetingInteractor(new MeetingRepository());
         const meetings = await meetingInteractor.getAllMeetings();
 
         expect(meetings).toEqual([]);

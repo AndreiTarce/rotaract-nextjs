@@ -3,10 +3,7 @@ import { IProjectRepository } from '@/interfaces/project/IProjectRepository';
 import Project from '@/models/project';
 import { Repository } from './repository';
 
-export class ProjectRepository
-    extends Repository<IProjectDocument>
-    implements IProjectRepository
-{
+export class ProjectRepository extends Repository<IProjectDocument> implements IProjectRepository {
     constructor() {
         super(Project);
     }

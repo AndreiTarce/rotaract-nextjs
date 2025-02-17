@@ -47,9 +47,7 @@ export default function Minuta(props: {
                             {new Date(props.date).getFullYear()}
                         </span>
                     </p>
-                    <p className="text-muted-foreground text-sm">
-                        Autor: {props.author}
-                    </p>
+                    <p className="text-muted-foreground text-sm">Autor: {props.author}</p>
                 </div>
                 <div className="text-muted-foreground flex items-center justify-between text-sm"></div>
                 <FontAwesomeIcon

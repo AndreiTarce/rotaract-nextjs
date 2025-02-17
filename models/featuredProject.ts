@@ -1,7 +1,4 @@
-import {
-    FeaturedProjectActionType,
-    IFeaturedProjectDocument,
-} from '@/interfaces/project/IProject';
+import { FeaturedProjectActionType, IFeaturedProjectDocument } from '@/interfaces/project/IProject';
 import mongoose, { Schema } from 'mongoose';
 
 const featuredProjectSchema = new Schema<IFeaturedProjectDocument>(
@@ -19,7 +16,6 @@ const featuredProjectSchema = new Schema<IFeaturedProjectDocument>(
 );
 
 const FeaturedProject =
-    mongoose.models.FeaturedProject ||
-    mongoose.model('FeaturedProject', featuredProjectSchema);
+    mongoose.models.FeaturedProject || mongoose.model('FeaturedProject', featuredProjectSchema);
 
 export default FeaturedProject;

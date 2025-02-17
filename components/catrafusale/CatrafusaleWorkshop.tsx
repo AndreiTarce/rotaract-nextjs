@@ -4,15 +4,9 @@ import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import ProjectImageCarousel from '../projects/ProjectImageCarousel';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from '../ui/collapsible';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible';
 import { Separator } from '../ui/separator';
-import CatrafusaleWorkshopCard, {
-    CatrafusaleWorkshopCardProps,
-} from './CatrafusaleWorkshopCard';
+import CatrafusaleWorkshopCard, { CatrafusaleWorkshopCardProps } from './CatrafusaleWorkshopCard';
 import { CatrafusaleWorkshopRegistrationForm } from './CatrafusaleWorkshopRegistrationForm';
 
 const workshops: CatrafusaleWorkshopCardProps[] = [
@@ -57,46 +51,36 @@ export default function CatrafusaleWorkshop(props: CatrafusaleWorkshopProps) {
     return (
         <Card className="mb-4 flex w-full grow flex-col rounded-lg border bg-linear-to-tr from-[#ffe4d2] to-[#ee8984] shadow-md md:w-1/2">
             <CardHeader className="pb-4">
-                <CardTitle className="text-5xl font-extrabold text-foreground dark:text-background max-md:text-5xl">
+                <CardTitle className="text-foreground dark:text-background text-5xl font-extrabold max-md:text-5xl">
                     Workshopuri interactive
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <p className="mb-4 text-foreground dark:text-background">
-                    Apasă pe un atelier de mai jos pentru a afla informații
-                    adiționale.
+                <p className="text-foreground dark:text-background mb-4">
+                    Apasă pe un atelier de mai jos pentru a afla informații adiționale.
                 </p>
 
                 <div className="mb-4 hidden gap-2 lg:grid lg:grid-cols-3">
                     {workshops.map((workshop) => (
-                        <CatrafusaleWorkshopCard
-                            key={workshop.image}
-                            {...workshop}
-                        />
+                        <CatrafusaleWorkshopCard key={workshop.image} {...workshop} />
                     ))}
                 </div>
 
                 <div className="mb-4 lg:hidden">
                     <ProjectImageCarousel>
                         {workshops.map((workshop) => (
-                            <CatrafusaleWorkshopCard
-                                key={workshop.image}
-                                {...workshop}
-                            />
+                            <CatrafusaleWorkshopCard key={workshop.image} {...workshop} />
                         ))}
                     </ProjectImageCarousel>
                 </div>
 
-                <Separator className="mb-4 bg-foreground dark:bg-card" />
+                <Separator className="bg-foreground dark:bg-card mb-4" />
                 <Collapsible
                     open={isOpen}
                     onOpenChange={() => setIsOpen(!isOpen)}
                     className="text-foreground dark:text-background"
                 >
-                    <CollapsibleTrigger
-                        asChild
-                        className="mb-4 hover:cursor-pointer"
-                    >
+                    <CollapsibleTrigger asChild className="mb-4 hover:cursor-pointer">
                         <CardTitle className="flex items-center justify-between">
                             Către înregistrare
                             <ChevronDown

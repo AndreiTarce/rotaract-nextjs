@@ -10,8 +10,7 @@ export default async function MembersList() {
     await connectMongoDB();
     const members = await memberInteractor.getAllMembers();
     const activeMembers = members?.filter(
-        (member: MemberDto) =>
-            member.status === 'activ' && member.role === 'member'
+        (member: MemberDto) => member.status === 'activ' && member.role === 'member'
     );
     return activeMembers?.map((member: MemberDto, index: number) => (
         <MemberCard key={index} {...member} />

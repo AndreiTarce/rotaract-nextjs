@@ -3,12 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from '../ui/use-toast';
 import { IToastProps } from './success-toast';
 
-export const errorToast = ({
-    title,
-    message,
-    duration = 5000,
-    icon,
-}: IToastProps) =>
+export const errorToast = ({ title, message, duration = 5000, icon }: IToastProps) =>
     toast({
         title,
         variant: 'destructive',

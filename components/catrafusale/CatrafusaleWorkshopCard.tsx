@@ -6,13 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Button } from '../ui/button';
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-} from '../ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/dialog';
 import {
     Drawer,
     DrawerClose,
@@ -30,9 +24,7 @@ export interface CatrafusaleWorkshopCardProps {
     price: number;
 }
 
-export default function CatrafusaleWorkshopCard(
-    props: CatrafusaleWorkshopCardProps
-) {
+export default function CatrafusaleWorkshopCard(props: CatrafusaleWorkshopCardProps) {
     const isDesktop = useMediaQuery('(min-width: 768px)');
     const [open, setOpen] = useState(false);
 
@@ -73,9 +65,7 @@ export default function CatrafusaleWorkshopCard(
                         <DialogHeader>
                             <DialogTitle>{props.title}</DialogTitle>
                             <DialogDescription className="text-justify text-base">
-                                <div className="mb-4 font-semibold">
-                                    Preț: {props.price}RON
-                                </div>
+                                <div className="mb-4 font-semibold">Preț: {props.price}RON</div>
                                 {props.description}
                             </DialogDescription>
                         </DialogHeader>
@@ -87,13 +77,9 @@ export default function CatrafusaleWorkshopCard(
                 <Drawer open={open} onOpenChange={setOpen}>
                     <DrawerContent>
                         <DrawerHeader className="text-left">
-                            <DrawerTitle className="text-lg">
-                                {props.title}
-                            </DrawerTitle>
+                            <DrawerTitle className="text-lg">{props.title}</DrawerTitle>
                             <DrawerDescription className="text-justify text-base">
-                                <div className="mb-4 font-semibold">
-                                    Preț: {props.price}RON
-                                </div>
+                                <div className="mb-4 font-semibold">Preț: {props.price}RON</div>
                                 {props.description}
                             </DrawerDescription>
                         </DrawerHeader>

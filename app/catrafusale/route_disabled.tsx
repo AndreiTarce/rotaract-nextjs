@@ -28,40 +28,33 @@ export const metadata: Metadata = {
 const registrationLimitInteractor = new CatrafusaleRegistrationLimitInteractor(
     new Repository(CatrafusaleRegistrationWinter2024Limit)
 );
-const workshopRegistrationLimitInteractor =
-    new CatrafusaleWorkshopRegistrationLimitInteractor(
-        new Repository(CatrafusaleWorkshopRegistrationWinter2024Limit)
-    );
+const workshopRegistrationLimitInteractor = new CatrafusaleWorkshopRegistrationLimitInteractor(
+    new Repository(CatrafusaleWorkshopRegistrationWinter2024Limit)
+);
 
 export default async function Catrafusale() {
     await connectMongoDB();
-    const remainingStanders =
-        await registrationLimitInteractor.getRemainingStanders();
-    const remainingTables =
-        await registrationLimitInteractor.getRemainingTables();
-    const remainingCandles =
-        await workshopRegistrationLimitInteractor.getRemainingCandles();
-    const remainingGlobes =
-        await workshopRegistrationLimitInteractor.getRemainingGlobes();
-    const remainingClay =
-        await workshopRegistrationLimitInteractor.getRemainingClay();
+    const remainingStanders = await registrationLimitInteractor.getRemainingStanders();
+    const remainingTables = await registrationLimitInteractor.getRemainingTables();
+    const remainingCandles = await workshopRegistrationLimitInteractor.getRemainingCandles();
+    const remainingGlobes = await workshopRegistrationLimitInteractor.getRemainingGlobes();
+    const remainingClay = await workshopRegistrationLimitInteractor.getRemainingClay();
 
     return (
-        <main className="mx-24 mb-8 mt-5 max-md:mx-4 md:mt-12">
+        <main className="mx-24 mt-5 mb-8 max-md:mx-4 md:mt-12">
             <div className="flex flex-col items-center">
-                <h1 className="mb-4 text-8xl font-extrabold leading-none max-md:text-6xl">
+                <h1 className="mb-4 text-8xl leading-none font-extrabold max-md:text-6xl">
                     Pachete
                 </h1>
 
-                <h2 className="mb-1 bg-linear-to-r from-[#ffe4d2] to-[#ee8984] bg-clip-text text-3xl font-extrabold leading-none text-transparent md:text-6xl">
+                <h2 className="mb-1 bg-linear-to-r from-[#ffe4d2] to-[#ee8984] bg-clip-text text-3xl leading-none font-extrabold text-transparent md:text-6xl">
                     CATRAFU-SALE #9
                 </h2>
                 <div className="mb-2 text-xl font-semibold">Winter Edition</div>
 
-                <div className="mb-4 flex flex-wrap justify-center gap-x-6 text-muted-foreground">
+                <div className="text-muted-foreground mb-4 flex flex-wrap justify-center gap-x-6">
                     <p>
-                        <FontAwesomeIcon icon={faCalendar} className="mr-2" />8
-                        decembrie
+                        <FontAwesomeIcon icon={faCalendar} className="mr-2" />8 decembrie
                     </p>
                     <p>
                         <Link
@@ -69,10 +62,7 @@ export default async function Catrafusale() {
                             className="flex items-center justify-center"
                             target="_blank"
                         >
-                            <FontAwesomeIcon
-                                icon={faLocationPin}
-                                className="mr-2"
-                            />
+                            <FontAwesomeIcon icon={faLocationPin} className="mr-2" />
                             Casino - Centrul de Cultură Urbană
                             <FontAwesomeIcon
                                 icon={faArrowUpRightFromSquare}
@@ -83,7 +73,7 @@ export default async function Catrafusale() {
                     </p>
                 </div>
 
-                <p className="mb-4 text-center text-muted-foreground md:w-1/2">
+                <p className="text-muted-foreground mb-4 text-center md:w-1/2">
                     Vrei să participi la
                     <Link href="/projects/catrafusale" target="_blank">
                         <b>
@@ -97,8 +87,8 @@ export default async function Catrafusale() {
                         </b>
                     </Link>
                     în calitate de seller?
-                    <br /> Alege unul dintre pachetele de donații de mai jos, și
-                    înscrie-te la ediția de anul acesta!{' '}
+                    <br /> Alege unul dintre pachetele de donații de mai jos, și înscrie-te la
+                    ediția de anul acesta!{' '}
                 </p>
 
                 <div className="mb-8 flex items-center justify-center gap-4">

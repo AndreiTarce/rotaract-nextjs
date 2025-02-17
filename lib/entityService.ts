@@ -15,11 +15,7 @@ import {
     PROJECTS_PATH,
 } from './constants';
 
-const getEntity = async <T>(
-    url: string,
-    cookies?: string,
-    tags?: string[]
-): Promise<T> => {
+const getEntity = async <T>(url: string, cookies?: string, tags?: string[]): Promise<T> => {
     const headers = cookies ? { Cookie: cookies } : undefined;
 
     const response = await fetch(url, {
@@ -112,10 +108,7 @@ export const getMembers = async (cookie?: string) => {
     }
 };
 
-export const getMemberByEmail = async (
-    memberEmail: string,
-    cookie?: string
-) => {
+export const getMemberByEmail = async (memberEmail: string, cookie?: string) => {
     const url = `${API_BASE_URL + MEMBERS_PATH}/?email=${memberEmail}`;
 
     try {
@@ -127,11 +120,7 @@ export const getMemberByEmail = async (
     }
 };
 
-export const getMemberById = async (
-    memberId: string,
-    cookie?: string,
-    tags?: string[]
-) => {
+export const getMemberById = async (memberId: string, cookie?: string, tags?: string[]) => {
     const url = `${API_BASE_URL + MEMBERS_PATH}/${memberId}`;
 
     try {

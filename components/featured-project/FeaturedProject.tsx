@@ -5,9 +5,7 @@ import { FeaturedProjectRepository } from '@/repositories/featuredProjectReposit
 import { ProjectRepository } from '@/repositories/projectRepository';
 import FeaturedProjectCard from '../ui/home/FeaturedProjectCard';
 
-const featuredProjectInteractor = new FeaturedProjectInteractor(
-    new FeaturedProjectRepository()
-);
+const featuredProjectInteractor = new FeaturedProjectInteractor(new FeaturedProjectRepository());
 
 const projectInteractor = new ProjectInteractor(new ProjectRepository());
 
@@ -17,9 +15,7 @@ export default async function FeaturedProject() {
     await connectMongoDB();
 
     const featuredProjectInfo = await featuredProjectInteractor.getProject();
-    const project = await projectInteractor.getProjectById(
-        featuredProjectInfo.projectId
-    );
+    const project = await projectInteractor.getProjectById(featuredProjectInfo.projectId);
     const featuredProject = { ...featuredProjectInfo, ...project };
 
     const today = new Date();

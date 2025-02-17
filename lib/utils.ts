@@ -20,10 +20,7 @@ export const isPRCoordinator = (user: MemberDto) => {
 export const isBoard = (user: MemberDto) => user?.isBoard === true;
 
 export const memberIsBoardBasedOnRole = (member: MemberDto) =>
-    !(
-        member.role === memberRoles.MEMBER ||
-        member.role === memberRoles.PAST_PRESIDENT
-    );
+    !(member.role === memberRoles.MEMBER || member.role === memberRoles.PAST_PRESIDENT);
 
 export const memberIsCurrentPastPresident = (member: MemberDto) =>
     member.role === memberRoles.PAST_PRESIDENT &&

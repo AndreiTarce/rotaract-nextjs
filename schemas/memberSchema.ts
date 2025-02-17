@@ -19,10 +19,7 @@ export const memberFormSchema = z.object({
     role: z.nativeEnum(memberRoles),
     urls: memberLinksSchema.optional(),
     start_mandate: z.number().optional(),
-    email: z
-        .string()
-        .email('This is not a valid email')
-        .min(1, { message: 'Email is required' }),
+    email: z.string().email('This is not a valid email').min(1, { message: 'Email is required' }),
     status: z.nativeEnum(memberStatus),
     isBoard: z.boolean().optional(),
 });

@@ -9,10 +9,7 @@ import { ObjectId } from 'mongodb';
 import { SortOrder } from 'mongoose';
 import { Repository } from './repository';
 
-export class MeetingRepository
-    extends Repository<IMeetingDocument>
-    implements IMeetingRepository
-{
+export class MeetingRepository extends Repository<IMeetingDocument> implements IMeetingRepository {
     constructor() {
         super(Meeting);
     }
@@ -39,11 +36,7 @@ export class MeetingRepository
         });
     }
 
-    async aggregateMemberPresences(
-        memberId: string,
-        type: string,
-        period: IPeriod
-    ) {
+    async aggregateMemberPresences(memberId: string, type: string, period: IPeriod) {
         return this.model
             .aggregate()
             .unwind('$presentMembers')

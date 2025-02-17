@@ -22,16 +22,9 @@ export async function POST(request: NextRequest) {
     let event;
 
     try {
-        event = stripe.webhooks.constructEvent(
-            body,
-            sig as string,
-            endpointSecret as string
-        );
+        event = stripe.webhooks.constructEvent(body, sig as string, endpointSecret as string);
     } catch (err) {
-        return NextResponse.json(
-            { error: `Webhook Error: ${err}` },
-            { status: 400 }
-        );
+        return NextResponse.json({ error: `Webhook Error: ${err}` }, { status: 400 });
     }
 
     // Handle the event
@@ -58,19 +51,11 @@ export async function POST(request: NextRequest) {
                 await handleRaffleTicketSale(checkoutSession);
             }
 
-            if (
-                checkoutSession.metadata?.catrafusale_2024_winter_edition ===
-                'true'
-            ) {
-                await confirmCatrafusale2024WinterEditionRegistrationPayment(
-                    checkoutSession
-                );
+            if (checkoutSession.metadata?.catrafusale_2024_winter_edition === 'true') {
+                await confirmCatrafusale2024WinterEditionRegistrationPayment(checkoutSession);
             }
 
-            if (
-                checkoutSession.metadata
-                    ?.catrafusale_workshop_2024_winter_edition === 'true'
-            ) {
+            if (checkoutSession.metadata?.catrafusale_workshop_2024_winter_edition === 'true') {
                 await confirmCatrafusaleWorkshop2024WinterEditionRegistrationPayment(
                     checkoutSession
                 );

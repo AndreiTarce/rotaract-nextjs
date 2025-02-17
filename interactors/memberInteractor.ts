@@ -22,9 +22,7 @@ export class MemberInteractor {
         const members = await this.memberRepository.findByName(name);
 
         if (members) {
-            return members.map((member: IMemberDocument) =>
-                toMemberDto(member)
-            );
+            return members.map((member: IMemberDocument) => toMemberDto(member));
         }
     }
 
@@ -39,13 +37,10 @@ export class MemberInteractor {
             searchFilter.role = filter.role;
         }
 
-        const members =
-            await this.memberRepository.findAllWithQuery(searchFilter);
+        const members = await this.memberRepository.findAllWithQuery(searchFilter);
 
         if (members) {
-            return members.map((member: IMemberDocument) =>
-                toMemberDto(member)
-            );
+            return members.map((member: IMemberDocument) => toMemberDto(member));
         }
 
         throw new NotFoundError();

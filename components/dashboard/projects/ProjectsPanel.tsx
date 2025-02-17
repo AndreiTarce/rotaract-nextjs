@@ -23,10 +23,7 @@ export default async function ProjectsPanel() {
                 <ScrollArea className="h-96 w-full rounded pr-4">
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-8">
                         {projects.map((project) => (
-                            <DashboardProjectCard
-                                project={project}
-                                key={project.id}
-                            />
+                            <DashboardProjectCard project={project} key={project.id} />
                         ))}
                     </div>
                 </ScrollArea>

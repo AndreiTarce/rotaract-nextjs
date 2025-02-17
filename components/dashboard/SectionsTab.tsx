@@ -20,20 +20,14 @@ export default function SectionsTab({
                 <TabsTrigger value="sedinte">Sedinte</TabsTrigger>
                 <TabsTrigger value="membri">Membri</TabsTrigger>
                 {functii_secretar && (
-                    <TabsTrigger value="functii_secretar">
-                        Functii secretar
-                    </TabsTrigger>
+                    <TabsTrigger value="functii_secretar">Functii secretar</TabsTrigger>
                 )}
-                {proiecte && (
-                    <TabsTrigger value="proiecte">Proiecte</TabsTrigger>
-                )}
+                {proiecte && <TabsTrigger value="proiecte">Proiecte</TabsTrigger>}
             </TabsList>
             <TabsContent value="sedinte">{sedinte}</TabsContent>
             <TabsContent value="membri">{membri}</TabsContent>
             {functii_secretar && (
-                <TabsContent value="functii_secretar">
-                    {functii_secretar}
-                </TabsContent>
+                <TabsContent value="functii_secretar">{functii_secretar}</TabsContent>
             )}
             {proiecte && <TabsContent value="proiecte">{proiecte}</TabsContent>}
         </Tabs>

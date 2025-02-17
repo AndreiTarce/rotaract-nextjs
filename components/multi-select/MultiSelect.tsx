@@ -22,10 +22,9 @@ export default function MultiSelect({
     const searchEntitiesByName = async (name: string) => {
         const url = entityPath;
 
-        const response = await fetch(
-            url + '?' + new URLSearchParams({ name: name }),
-            { cache: 'no-store' }
-        );
+        const response = await fetch(url + '?' + new URLSearchParams({ name: name }), {
+            cache: 'no-store',
+        });
 
         if (!response.ok) {
             throw new Error('Failed to fetch entities');
@@ -60,10 +59,8 @@ export default function MultiSelect({
                 className="multi-select"
                 classNames={{
                     control: () => 'multi-select-control',
-                    indicatorSeparator: () =>
-                        'multi-select-indicator-separator',
-                    indicatorsContainer: () =>
-                        'multi-select-indicator-container',
+                    indicatorSeparator: () => 'multi-select-indicator-separator',
+                    indicatorsContainer: () => 'multi-select-indicator-container',
                     option: () => 'multi-select-option',
                     menu: () => 'multi-select-menu',
                     multiValue: () => 'multi-select-multivalue',

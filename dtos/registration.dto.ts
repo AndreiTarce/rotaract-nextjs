@@ -10,8 +10,7 @@ import {
 } from '@/interfaces/registration/ICatrafusaleRegistration2024Winter';
 import { flattenObject } from './utils';
 
-export interface CatrafusaleRegistrationWinter2024Dto
-    extends ICatrafusaleRegistrationWinter2024 {
+export interface CatrafusaleRegistrationWinter2024Dto extends ICatrafusaleRegistrationWinter2024 {
     id: string;
 }
 

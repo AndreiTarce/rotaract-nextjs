@@ -44,11 +44,7 @@ const promiseOptions = (inputValue: string) =>
         resolve(getOptions(members));
     });
 
-const filterOptions = (
-    option: any,
-    input: string,
-    array: IPresentMemberSelect[]
-) => {
+const filterOptions = (option: any, input: string, array: IPresentMemberSelect[]) => {
     if (array && array.length) {
         for (let element of array) {
             if (element.label === option.label) {
@@ -66,9 +62,7 @@ export default function MemberSelect({
     clearErrors,
 }: {
     presentMembers: IPresentMemberSelect[];
-    setPresentMembers: React.Dispatch<
-        React.SetStateAction<IPresentMemberSelect[]>
-    >;
+    setPresentMembers: React.Dispatch<React.SetStateAction<IPresentMemberSelect[]>>;
     setFormValue: any;
     clearErrors: any;
 }) {
@@ -78,10 +72,8 @@ export default function MemberSelect({
                 className="member-select"
                 classNames={{
                     control: () => 'member-select-control',
-                    indicatorSeparator: () =>
-                        'member-select-indicator-separator',
-                    indicatorsContainer: () =>
-                        'member-select-indicator-container',
+                    indicatorSeparator: () => 'member-select-indicator-separator',
+                    indicatorsContainer: () => 'member-select-indicator-container',
                     option: () => 'member-select-option',
                     menu: () => 'member-select-menu',
                     multiValue: () => 'member-select-multivalue',
@@ -100,9 +92,7 @@ export default function MemberSelect({
                     setFormValue('presentMembers', e);
                     if (e.length) clearErrors();
                 }}
-                filterOption={(option, __) =>
-                    filterOptions(option, __, presentMembers)
-                }
+                filterOption={(option, __) => filterOptions(option, __, presentMembers)}
             />
         </>
     );

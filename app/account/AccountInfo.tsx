@@ -1,7 +1,5 @@
 const AccountInfo = () => {
-    return (
-        <>Account Info Component</>
-    )
+    return <>Account Info Component</>;
 };
 
 export default AccountInfo;

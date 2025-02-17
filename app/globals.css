@@ -56,18 +56,11 @@
 
     --animate-accordion-down: accordion-down 0.2s ease-out;
     --animate-accordion-up: accordion-up 0.2s ease-out;
-    --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite
-        alternate;
+    --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
     --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
 
-    --grid-template-columns-responsive-grid: repeat(
-        auto-fill,
-        minmax(250px, 1fr)
-    );
-    --grid-template-columns-responsive-grid-sm: repeat(
-        auto-fill,
-        minmax(150px, 1fr)
-    );
+    --grid-template-columns-responsive-grid: repeat(auto-fill, minmax(250px, 1fr));
+    --grid-template-columns-responsive-grid-sm: repeat(auto-fill, minmax(150px, 1fr));
 
     @keyframes accordion-down {
         from {

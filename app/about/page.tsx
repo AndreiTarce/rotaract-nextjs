@@ -21,32 +21,27 @@ export default function About() {
     return (
         <main className="mt-5 md:mt-12">
             <div className="relative flex h-screen w-full flex-col">
-                <h1 className="mx-16 mb-4 w-fit bg-linear-to-r from-rotaract-cranberry to-rose-500 bg-clip-text text-7xl font-extrabold leading-none text-transparent max-md:mx-4 max-md:text-5xl">
+                <h1 className="from-rotaract-cranberry mx-16 mb-4 w-fit bg-linear-to-r to-rose-500 bg-clip-text text-7xl leading-none font-extrabold text-transparent max-md:mx-4 max-md:text-5xl">
                     Despre noi
                 </h1>
-                <p className="mx-16 mb-2 max-md:mx-4 md:w-2/3 ">
-                    Clubul nostru a fost chartat în data de 12 octombrie 2013,
-                    sub îndrumarea clubului{' '}
+                <p className="mx-16 mb-2 max-md:mx-4 md:w-2/3">
+                    Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea
+                    clubului{' '}
                     <Link
                         href={ROTARY_VISIO_WEBSITE_URL}
                         target="_blank"
                         className="underline underline-offset-4"
                     >
                         Rotary Visio Cluj-Napoca{' '}
-                        <FontAwesomeIcon
-                            icon={faArrowUpRightFromSquare}
-                            size="xs"
-                        />
+                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
                     </Link>{' '}
-                    . Cu o istorie de implicare comunitară de peste un deceniu,
-                    ne străduim să aducem schimbări pozitive în orașul nostru și
-                    în lumea din jurul nostru.
+                    . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să
+                    aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru.
                 </p>
                 <p className="mx-16 max-md:mx-4 md:w-2/3">
-                    Misiunea noastră este de a inspira și mobiliza tinerii din
-                    Cluj-Napoca pentru a se implica activ în proiecte de
-                    voluntariat, dezvoltând astfel lideri viitori și promovând
-                    serviciul în comunitate.
+                    Misiunea noastră este de a inspira și mobiliza tinerii din Cluj-Napoca pentru a
+                    se implica activ în proiecte de voluntariat, dezvoltând astfel lideri viitori și
+                    promovând serviciul în comunitate.
                 </p>
                 <Image
                     src={background}

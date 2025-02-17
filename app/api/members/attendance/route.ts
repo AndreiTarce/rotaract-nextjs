@@ -11,21 +11,14 @@ export async function GET(request: NextRequest) {
         await connectMongoDB();
         const memberId = request.nextUrl.searchParams.get('id');
         const type = request.nextUrl.searchParams.get('type') || undefined;
-        const start_date =
-            request.nextUrl.searchParams.get('start_date') || undefined;
-        const end_date =
-            request.nextUrl.searchParams.get('end_date') || undefined;
+        const start_date = request.nextUrl.searchParams.get('start_date') || undefined;
+        const end_date = request.nextUrl.searchParams.get('end_date') || undefined;
 
         if (!memberId) {
             throw new ValidationError('Member ID is required');
         }
 
-        const attendance = await getMemberAttendance(
-            memberId,
-            type,
-            start_date,
-            end_date
-        );
+        const attendance = await getMemberAttendance(memberId, type, start_date, end_date);
 
         return NextResponse.json(attendance, { status: 200 });
     } catch (error) {

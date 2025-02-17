@@ -40,17 +40,12 @@ export async function generateMetadata(
     }
 }
 
-export default async function Project(props: {
-    params: Promise<{ url: string }>;
-}) {
+export default async function Project(props: { params: Promise<{ url: string }> }) {
     const params = await props.params;
     await connectMongoDB();
     const project = await projectInteractor.getProjectByUrl(params.url);
-    const projectPartnerIds = project.partners.map(
-        (partner) => partner.partnerId
-    );
-    const projectPartners =
-        await partnerInteractor.getPartnersByIds(projectPartnerIds);
+    const projectPartnerIds = project.partners.map((partner) => partner.partnerId);
+    const projectPartners = await partnerInteractor.getPartnersByIds(projectPartnerIds);
 
     return (
         <main className="mx-16 mt-5 mb-8 max-md:mx-4 md:mt-12">
@@ -73,40 +68,32 @@ export default async function Project(props: {
                     {projectPartners && (
                         <Card className="bg-dark-blue/20 dark:bg-light/10 mt-8">
                             <CardHeader>
-                                <CardTitle className="text-3xl font-bold">
-                                    Parteneri
-                                </CardTitle>
+                                <CardTitle className="text-3xl font-bold">Parteneri</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className="grid grid-cols-2 gap-4 md:grid-cols-6">
-                                    {projectPartners.map(
-                                        (partner, index: number) => (
-                                            <Link
-                                                href={partner.link}
-                                                target="_blank"
-                                                key={index}
-                                                className="relative flex flex-col items-center justify-center gap-4 self-center rounded-lg p-3 hover:bg-black/10 dark:hover:bg-white/10"
-                                            >
-                                                {partner.logoUrl ? (
-                                                    <div className="grow">
-                                                        <Image
-                                                            src={
-                                                                partner.logoUrl
-                                                            }
-                                                            alt={`${partner.name} logo`}
-                                                            width={200}
-                                                            height={200}
-                                                            className="h-full w-auto"
-                                                        />
-                                                    </div>
-                                                ) : (
-                                                    <p className="font-semibold">
-                                                        {partner.name}
-                                                    </p>
-                                                )}
-                                            </Link>
-                                        )
-                                    )}
+                                    {projectPartners.map((partner, index: number) => (
+                                        <Link
+                                            href={partner.link}
+                                            target="_blank"
+                                            key={index}
+                                            className="relative flex flex-col items-center justify-center gap-4 self-center rounded-lg p-3 hover:bg-black/10 dark:hover:bg-white/10"
+                                        >
+                                            {partner.logoUrl ? (
+                                                <div className="grow">
+                                                    <Image
+                                                        src={partner.logoUrl}
+                                                        alt={`${partner.name} logo`}
+                                                        width={200}
+                                                        height={200}
+                                                        className="h-full w-auto"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <p className="font-semibold">{partner.name}</p>
+                                            )}
+                                        </Link>
+                                    ))}
                                 </div>
                             </CardContent>
                         </Card>

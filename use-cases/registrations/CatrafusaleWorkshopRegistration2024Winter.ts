@@ -6,10 +6,9 @@ import { Repository } from '@/repositories/repository';
 export const reserveWorkshop = async (workshopPackageName: string) => {
     const { CATRAFUSALE_2024_WINTER_WORKSHOPS } = getStripePrices();
 
-    const registrationLimitInteractor =
-        new CatrafusaleWorkshopRegistrationLimitInteractor(
-            new Repository(CatrafusaleWorkshopRegistrationWinter2024Limit)
-        );
+    const registrationLimitInteractor = new CatrafusaleWorkshopRegistrationLimitInteractor(
+        new Repository(CatrafusaleWorkshopRegistrationWinter2024Limit)
+    );
 
     switch (workshopPackageName) {
         case CATRAFUSALE_2024_WINTER_WORKSHOPS[0].name:

@@ -61,7 +61,7 @@ export default function MemberInfoClient({ user }: { user: MemberDto }) {
                 </div>
                 <FontAwesomeIcon
                     icon={faUser}
-                    className="absolute right-6 top-6 text-muted-foreground"
+                    className="text-muted-foreground absolute top-6 right-6"
                 />
             </div>
         );
@@ -86,7 +86,7 @@ export default function MemberInfoClient({ user }: { user: MemberDto }) {
                         </CardTitle>
                         <CardDescription>{user.email}</CardDescription>
                         <div className="capitalize">{user.role}</div>
-                        <div className="text-sm capitalize text-muted-foreground">
+                        <div className="text-muted-foreground text-sm capitalize">
                             Status: {user.status}
                         </div>
                         <div className="mt-4 flex flex-wrap gap-2 text-sm">
@@ -105,7 +105,7 @@ export default function MemberInfoClient({ user }: { user: MemberDto }) {
                 </div>
                 <FontAwesomeIcon
                     icon={faUser}
-                    className="absolute right-6 top-6 text-muted-foreground"
+                    className="text-muted-foreground absolute top-6 right-6"
                 />
             </div>
         );

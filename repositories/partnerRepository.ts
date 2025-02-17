@@ -14,8 +14,6 @@ export class PartnerRepository extends Repository<IPartnerDocument> {
     }
 
     async findByName(name: string): Promise<IPartnerDocument[]> {
-        return this.model
-            .find({ name: { $regex: name, $options: 'i' } })
-            .exec();
+        return this.model.find({ name: { $regex: name, $options: 'i' } }).exec();
     }
 }
