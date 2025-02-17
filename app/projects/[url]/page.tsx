@@ -1,6 +1,7 @@
 import { ProjectArticleBody } from '@/components/projects/ProjectArticleBody';
 import ProjectImageCarousel from '@/components/projects/ProjectImageCarousel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import ExternalLinkWithPreview from '@/components/ui/external-link';
 import { PartnerInteractor } from '@/interactors/partnerInteractor';
 import { ProjectInteractor } from '@/interactors/projectInteractor';
 import connectMongoDB from '@/lib/mongodb';
@@ -8,7 +9,6 @@ import { PartnerRepository } from '@/repositories/partnerRepository';
 import { ProjectRepository } from '@/repositories/projectRepository';
 import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const projectInteractor = new ProjectInteractor(new ProjectRepository());
 const partnerInteractor = new PartnerInteractor(new PartnerRepository());
@@ -73,9 +73,8 @@ export default async function Project(props: { params: Promise<{ url: string }> 
                             <CardContent>
                                 <div className="grid grid-cols-2 gap-4 md:grid-cols-6">
                                     {projectPartners.map((partner, index: number) => (
-                                        <Link
-                                            href={partner.link}
-                                            target="_blank"
+                                        <ExternalLinkWithPreview
+                                            url={partner.link}
                                             key={index}
                                             className="relative flex flex-col items-center justify-center gap-4 self-center rounded-lg p-3 hover:bg-black/10 dark:hover:bg-white/10"
                                         >
@@ -92,7 +91,7 @@ export default async function Project(props: { params: Promise<{ url: string }> 
                                             ) : (
                                                 <p className="font-semibold">{partner.name}</p>
                                             )}
-                                        </Link>
+                                        </ExternalLinkWithPreview>
                                     ))}
                                 </div>
                             </CardContent>

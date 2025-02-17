@@ -2,12 +2,10 @@ import background from '@/assets/images/bg2.webp';
 import OurCauses from '@/components/about/cause/OurCauses';
 import MemberStatistics from '@/components/about/statistics/MemberStatistics';
 import OurValues from '@/components/about/values/OurValues';
+import ExternalLinkWithPreview from '@/components/ui/external-link';
 import { ROTARY_VISIO_WEBSITE_URL } from '@/lib/constants';
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Despre noi | Rotaract Visio Cluj-Napoca',
@@ -27,14 +25,9 @@ export default function About() {
                 <p className="mx-16 mb-2 max-md:mx-4 md:w-2/3">
                     Clubul nostru a fost chartat în data de 12 octombrie 2013, sub îndrumarea
                     clubului{' '}
-                    <Link
-                        href={ROTARY_VISIO_WEBSITE_URL}
-                        target="_blank"
-                        className="underline underline-offset-4"
-                    >
-                        Rotary Visio Cluj-Napoca{' '}
-                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
-                    </Link>{' '}
+                    <ExternalLinkWithPreview url={ROTARY_VISIO_WEBSITE_URL} underline showIcon>
+                        Rotary Visio Cluj-Napoca
+                    </ExternalLinkWithPreview>
                     . Cu o istorie de implicare comunitară de peste un deceniu, ne străduim să
                     aducem schimbări pozitive în orașul nostru și în lumea din jurul nostru.
                 </p>
